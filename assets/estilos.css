@@ -459,3 +459,24 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .ficha .medio-suelto .medio-vacio{min-height:78px;padding:12px}
 .explorador .accion{justify-self:start}
 .ficha-cuenta{margin:0 0 10px;font-size:.78rem;color:var(--tinta-media);font-weight:600}
+
+/* ---------- image lightbox ---------- */
+
+.ampliable{cursor:zoom-in}
+.ampliable:hover{border-color:var(--turquesa)}
+.lupa{
+  position:fixed;inset:0;z-index:60;background:rgba(11,23,39,.86);
+  display:flex;align-items:center;justify-content:center;padding:34px 24px;
+}
+.lupa-marco{margin:0;max-width:1100px;width:100%;display:grid;gap:10px;justify-items:center}
+.lupa-marco img{
+  max-width:100%;max-height:78vh;object-fit:contain;background:#fff;
+  border-radius:var(--radio);box-shadow:0 18px 50px rgba(0,0,0,.4);
+}
+.lupa-marco figcaption{color:#DCE7EE;font-size:.88rem;text-align:center;max-width:70ch;line-height:1.4}
+.lupa-cerrar{
+  position:absolute;top:16px;right:18px;background:none;border:1px solid rgba(255,255,255,.35);
+  color:#fff;width:38px;height:38px;border-radius:50%;font-size:1rem;line-height:1;
+}
+.lupa-cerrar:hover{background:rgba(255,255,255,.14)}
+@media print{ .lupa{display:none} }

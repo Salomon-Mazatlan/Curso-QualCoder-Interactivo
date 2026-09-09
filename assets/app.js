@@ -83,6 +83,44 @@ function avisar(html, clase) {
   temporizador = setTimeout(() => caja.remove(), 3400);
 }
 
+/* ---------- image lightbox ---------- */
+
+let lupaAbierta = null;
+
+function abrirLupa(src, pie) {
+  cerrarLupa();
+  const capa = crear("div", "lupa");
+  const marco = crear("figure", "lupa-marco");
+  const img = document.createElement("img");
+  img.src = src; img.alt = pie || "";
+  marco.appendChild(img);
+  if (pie) marco.appendChild(crear("figcaption", null, pie));
+  const cerrar = crear("button", "lupa-cerrar", "✕");
+  cerrar.setAttribute("aria-label", "Cerrar la imagen");
+  cerrar.addEventListener("click", cerrarLupa);
+  capa.appendChild(cerrar);
+  capa.appendChild(marco);
+  capa.addEventListener("click", ev => { if (ev.target === capa) cerrarLupa(); });
+  document.body.appendChild(capa);
+  lupaAbierta = capa;
+  cerrar.focus();
+}
+
+function cerrarLupa() {
+  if (lupaAbierta) { lupaAbierta.remove(); lupaAbierta = null; }
+}
+
+// Turns a course image into one that opens in the lightbox.
+function ampliable(img, pie) {
+  img.classList.add("ampliable");
+  img.tabIndex = 0;
+  img.title = "Tocar para ampliar";
+  const abrir = () => abrirLupa(img.src, pie);
+  img.addEventListener("click", abrir);
+  img.addEventListener("keydown", ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); abrir(); } });
+  return img;
+}
+
 /* ---------- hud ---------- */
 
 function pintarHud() {
@@ -214,7 +252,7 @@ function bloqueMedios(n) {
       img.src = m.src;
       img.alt = m.titulo || "";
       img.loading = "lazy";
-      pieza.appendChild(img);
+      pieza.appendChild(ampliable(img, m.pie || m.titulo));
     } else {
       const hueco = crear("div", "medio-vacio");
       hueco.appendChild(crear("span", "medio-marca", m.tipo === "video" ? "Video" : "Captura"));
@@ -464,7 +502,7 @@ function imagenOpcional(m, comoLlenarlo) {
   if (m.src) {
     const img = document.createElement("img");
     img.src = m.src; img.alt = m.titulo || ""; img.loading = "lazy";
-    fig.appendChild(img);
+    fig.appendChild(ampliable(img, m.pie || m.titulo));
     if (m.pie || m.titulo) fig.appendChild(crear("figcaption", null, m.pie || m.titulo));
   } else {
     const hueco = crear("div", "medio-vacio");
@@ -1348,6 +1386,10 @@ document.addEventListener("DOMContentLoaded", () => {
   $(".hud-referencias").addEventListener("click", () => { location.hash = "#referencias"; });
   $(".hud-reinicio").addEventListener("click", reiniciar);
   document.addEventListener("click", cerrarMenuAbierto);
-  document.addEventListener("keydown", ev => { if (ev.key === "Escape") cerrarMenuAbierto(); });
+  document.addEventListener("keydown", ev => {
+    if (ev.key !== "Escape") return;
+    if (lupaAbierta) return cerrarLupa();
+    cerrarMenuAbierto();
+  });
   enrutar();
 });
