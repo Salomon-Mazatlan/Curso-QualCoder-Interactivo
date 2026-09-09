@@ -506,3 +506,85 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .tarjeta-enlace{background:none;border:0;padding:0;font-size:.88rem;color:var(--turquesa);text-decoration:underline}
 .tarjeta-enlace:hover{color:var(--tinta)}
 .tarjeta-nota{font-size:.76rem;color:var(--tinta-media)}
+
+/* ---------- layout with side navigation ---------- */
+
+.lienzo{
+  display:grid;grid-template-columns:minmax(0,1fr) 268px;gap:26px;
+  max-width:1180px;margin:0 auto;padding:0 20px;align-items:start;
+}
+.lienzo #app{padding:30px 0 90px;max-width:none}
+@media (max-width:980px){
+  .lienzo{grid-template-columns:1fr;gap:0;padding:0 14px}
+  .lienzo #app{padding:16px 0 70px}
+}
+
+.rail-nav{
+  position:sticky;top:74px;margin-top:30px;background:var(--alto);border:1px solid var(--linea);
+  border-radius:var(--radio);padding:14px 14px 12px;max-height:calc(100vh - 100px);overflow-y:auto;
+}
+.rail-cabeza{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:10px}
+.rail-cabeza h2{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-media);margin:0;font-weight:600}
+.rail-plegar{display:none;background:none;border:1px solid var(--linea);border-radius:var(--radio);padding:4px 10px;font-size:.8rem}
+
+.rail-misiones{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.rail-mision-btn{
+  width:100%;display:flex;align-items:center;gap:8px;text-align:left;background:none;border:0;
+  padding:6px 6px;border-radius:var(--radio);font-size:.86rem;line-height:1.25;
+}
+.rail-mision-btn:hover{background:var(--papel)}
+.rail-num{
+  font-variant-numeric:tabular-nums;font-size:.74rem;color:var(--tinta-media);
+  min-width:18px;text-align:right;
+}
+.rail-titulo{flex:1}
+.rail-mision.activa > .rail-mision-btn{background:#E7F2F1;font-weight:600;box-shadow:inset 2px 0 0 var(--turquesa)}
+.rail-mision.listo .rail-titulo{color:var(--tinta-media)}
+
+.estrellas.mini{font-size:.6rem;gap:1px}
+
+.rail-actividades{list-style:none;margin:2px 0 8px;padding:0 0 0 12px;display:grid;gap:1px;border-left:1px solid var(--linea)}
+.rail-act-btn{
+  width:100%;display:flex;align-items:center;gap:7px;text-align:left;background:none;border:0;
+  padding:5px 6px;border-radius:var(--radio);font-size:.79rem;color:var(--tinta-media);
+}
+.rail-act-btn:hover{background:var(--papel);color:var(--tinta)}
+.rail-act-num{font-variant-numeric:tabular-nums;min-width:26px}
+.rail-act-tipo{flex:1}
+.rail-act.aqui .rail-act-btn{background:var(--tinta);color:#fff}
+.rail-act.aqui .estrella{color:rgba(255,255,255,.35)}
+.rail-act.aqui .estrella.viva{color:var(--amarillo)}
+.rail-act.saltada .rail-act-num{color:var(--amarillo)}
+
+.rail-pie{margin-top:12px;padding-top:10px;border-top:1px solid var(--linea);display:grid;gap:4px}
+.rail-enlace{background:none;border:0;padding:0;text-align:left;font-size:.82rem;color:var(--turquesa);text-decoration:underline}
+.rail-enlace:hover{color:var(--tinta)}
+
+@media (max-width:980px){
+  .rail-nav{position:static;max-height:none;margin:12px 0 0;order:-1}
+  .rail-plegar{display:inline-block}
+  .rail-nav .rail-misiones,.rail-nav .rail-pie{display:none}
+  .rail-nav.abierto .rail-misiones{display:grid}
+  .rail-nav.abierto .rail-pie{display:grid}
+}
+@media print{ .rail-nav{display:none} .lienzo{display:block} }
+
+/* ---------- guided instructions ---------- */
+
+.guia{display:grid;gap:18px}
+.guia-bloque{border-left:2px solid var(--linea);padding-left:16px}
+.guia-bloque h4{margin:0 0 6px;font-size:1rem}
+.guia-texto{margin:0 0 10px;font-family:var(--serif);font-size:1rem;line-height:1.55}
+.guia-pasos{margin:0;padding-left:20px;display:grid;gap:5px}
+.guia-pasos li{font-size:.92rem;line-height:1.45}
+.guia .medio{margin-top:12px}
+
+/* ---------- certificate signature and citation ---------- */
+
+.constancia-firma{margin:26px auto 0;display:grid;gap:2px;justify-items:center;max-width:340px;text-align:center}
+.firma-linea{display:block;width:100%;border-top:1px solid var(--tinta);margin-bottom:6px}
+.firma-nombre{font-family:var(--serif);font-size:1.05rem}
+.firma-cargo{font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-media)}
+.constancia-cita{margin-top:24px;border-top:1px solid var(--linea);padding-top:12px}
+.constancia-cita h4{margin:0 0 5px;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-media)}
+.constancia-cita p{margin:0;font-family:var(--serif);font-size:.86rem;line-height:1.45;padding-left:20px;text-indent:-20px;text-align:left}

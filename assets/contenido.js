@@ -5,6 +5,8 @@ const CURSO = {
   titulo: "Introducción a QualCoder 4.0 (Beta)",
   subtitulo: "Diez misiones de práctica",
   duracion: "entre dos y tres horas y media",
+  responsable: "Lorenzo Salomón Cárdenas",
+  cita: "Salomón Cárdenas, L. (2026). Curso QualCoder Interactivo [Curso en línea]. https://salomon-mazatlan.github.io/Curso-QualCoder-Interactivo",
   huecosVisibles: true, // pon false al publicar para ocultar los recuadros de captura vacíos
 
   // Code colors used by the coding activities.
@@ -386,9 +388,8 @@ const CURSO = {
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
         { tipo: "video", id: "p2pWR1IrKbg", titulo: "Descarga e instalación paso a paso" },
-        { tipo: "imagen", src: "assets/img/1_Repositorio_oficial.png", titulo: "Repositorio Oficial de QualCoder y sección de Releases (versiones)", pie: "" },
-        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El aviso de desarrollador no identificado y cómo autorizarlo", pie: "" },
-        { tipo: "imagen", src: "assets/img/1_Acerca_de.png", titulo: "La ventana Acerca de con el número de versión", pie: "" }
+        { tipo: "imagen", src: "assets/img/1_0_Repositorio_oficial.png", titulo: "Repositorio Oficial de QualCoder y sección de Releases (versiones)", pie: "" },
+        { tipo: "imagen", src: "assets/img/1_10_Acerca_de.png", titulo: "La ventana Acerca de con el número de versión", pie: "" }
       ],
       lectura: `
         <p>QualCoder es software libre y gratuito, así que instalarlo es descargarlo y abrirlo. Hay dos
@@ -408,6 +409,57 @@ const CURSO = {
       `,
       ejercicios: [
         /* 1.1 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Antes de decidir nada, así se instala. Sigue los pasos que correspondan a tu sistema y vuelve aquí cuando lo tengas abierto.",
+          bloques: [
+            {
+              titulo: "Dónde se descarga",
+              texto: "El único sitio oficial es el repositorio del proyecto en GitHub. En su sección Releases están las versiones publicadas, y cada una trae los archivos de todos los sistemas.",
+              pasos: [
+                "Entra a github.com/ccbogel/QualCoder y abre la sección Releases.",
+                "Localiza la versión más reciente, la que aparece marcada como Latest.",
+                "Despliega Assets para ver la lista de archivos de esa versión."
+              ],
+              img: { src: "assets/img/1_0_Repositorio_oficial.png", titulo: "El repositorio oficial y su sección de versiones", pie: "" }
+            },
+            {
+              titulo: "Windows",
+              texto: "Hay dos archivos, el ejecutable suelto y el instalador. El ejecutable arranca sin instalar nada, tarda unos segundos la primera vez porque descomprime en memoria. El instalador deja el acceso directo y la entrada en el menú de inicio.",
+              pasos: [
+                "Descarga el archivo que corresponda a tu sistema.",
+                "Ejecútalo. Si aparece la pantalla azul de Windows, la resolvemos en la lección 1.5.",
+                "La primera apertura tarda unos veinte segundos, es normal."
+              ],
+              img: { src: "", titulo: "Los archivos de la versión para Windows", pie: "" }
+            },
+            {
+              titulo: "macOS",
+              texto: "Hay dos paquetes distintos y hay que bajar el del procesador correcto. Apple Silicon son los chips M, Intel son los equipos anteriores a 2020 y algunos posteriores.",
+              pasos: [
+                "Comprueba tu procesador en el menú Apple, Acerca de este Mac.",
+                "Descarga el paquete arm64 si es Apple Silicon, o el x86_64 si es Intel.",
+                "Arrastra QualCoder a la carpeta Aplicaciones y ábrelo desde ahí."
+              ],
+              img: { src: "", titulo: "El paquete de macOS y la carpeta Aplicaciones", pie: "" }
+            },
+            {
+              titulo: "Linux, desde el código fuente",
+              texto: "No hay paquete precompilado, se instala con Python. Los guiones del repositorio hacen el trabajo pesado, crean el entorno virtual e instalan las dependencias.",
+              pasos: [
+                "Instala Python en una versión reciente desde el gestor de paquetes de tu distribución.",
+                "Descarga el código del repositorio y descomprímelo en una carpeta.",
+                "Abre la terminal en esa carpeta y ejecuta el guion de instalación que trae el proyecto.",
+                "La instalación de dependencias tarda unos diez minutos, las bibliotecas de la capa de IA son grandes.",
+                "Entra en la subcarpeta del código y ejecuta el programa."
+              ],
+              img: { src: "", titulo: "La terminal durante la instalación", pie: "" }
+            }
+          ],
+          boton: "Ya lo instalé, seguir",
+          dice: "Con el programa abierto ya se puede trabajar. Lo que sigue es entender qué descargaste y qué le falta para el material audiovisual."
+        },
+        /* 1.2 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Vas a instalarlo en tu computadora de trabajo para empezar la tesis. ¿Qué camino eliges?",
@@ -417,9 +469,59 @@ const CURSO = {
             { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en el repositorio oficial de QualCoder." }
           ],
           consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel.",
-          consejoImagen: { src: "assets/img/1_1_Sistema.png", titulo: "Verificar Sistema en Windows", pie: "" }
+          consejoImagen: { src: "assets/img/1_2_Sistema.png", titulo: "Verificar Sistema en Windows", pie: "" }
         },
-        /* 1.2 */ {
+        /* 1.3 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "QualCoder se apoya en tres programas externos. Ninguno es obligatorio, pero cada uno enciende una parte del trabajo.",
+          bloques: [
+            {
+              titulo: "VLC, para reproducir audio y video",
+              texto: "QualCoder no trae reproductor propio, usa el de VLC. Sin él, los archivos de audio y video se importan pero no suenan ni se ven, y el módulo de codificación audiovisual queda inservible.",
+              pasos: [
+                "Descarga VLC desde videolan.org, que es su sitio oficial.",
+                "Instala la versión de la misma arquitectura que tu sistema, casi siempre 64 bits.",
+                "Reinicia QualCoder para que lo detecte.",
+                "En Fedora hay un problema conocido con VLC, ahí el material audiovisual no se puede usar."
+              ],
+              img: { src: "", titulo: "La descarga de VLC en videolan.org", pie: "" }
+            },
+            {
+              titulo: "ffmpeg, para la forma de onda",
+              texto: "La forma de onda es ese dibujo del sonido que permite ver dónde hay habla y dónde silencio. QualCoder la genera con ffmpeg. Sin él se puede codificar audio, pero a ciegas.",
+              pasos: [
+                "Descarga ffmpeg desde ffmpeg.org o instálalo con el gestor de paquetes de tu sistema.",
+                "En Windows hay que añadir su carpeta bin a la variable PATH para que otros programas lo encuentren.",
+                "Reinicia QualCoder y vuelve a abrir el archivo de audio."
+              ],
+              img: { src: "", titulo: "La forma de onda ya generada en QualCoder", pie: "" }
+            },
+            {
+              titulo: "Zotero, para las referencias",
+              texto: "El módulo de referencias importa desde archivos RIS sin ayuda de nadie. Zotero solo hace falta si quieres traer tu biblioteca por su API, sin exportar a mano.",
+              pasos: [
+                "Instala Zotero desde zotero.org y crea tu cuenta.",
+                "Obtén una clave de API desde tu perfil, en la sección de ajustes de seguridad.",
+                "Pega la clave en el módulo de referencias de QualCoder."
+              ],
+              img: { src: "", titulo: "El módulo de referencias de QualCoder", pie: "" }
+            },
+            {
+              titulo: "Python y el entorno virtual",
+              texto: "Solo entran en juego si instalas desde el código fuente. Python ejecuta el programa, y el entorno virtual es una carpeta aparte donde viven sus bibliotecas sin tocar las del resto del sistema.",
+              pasos: [
+                "Usa siempre entorno virtual, aunque parezca un paso de más.",
+                "Sin él, la instalación puede alterar las bibliotecas de otros programas de Python que ya tengas.",
+                "Los guiones del repositorio lo crean por ti."
+              ],
+              img: { src: "", titulo: "El entorno virtual creado en la carpeta del proyecto", pie: "" }
+            }
+          ],
+          boton: "Entendido, seguir",
+          dice: "Con eso queda claro qué enciende cada pieza. Ahora comprueba si te quedó el mapa completo."
+        },
+        /* 1.4 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada pieza externa con lo que aporta.",
@@ -431,7 +533,50 @@ const CURSO = {
             { a: "Entorno virtual", b: "Aísla las bibliotecas del programa de las del resto del sistema" }
           ]
         },
-        /* 1.3 */ {
+        /* 1.5 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "La primera vez que lo abras, el sistema va a protestar. Así se resuelve, y solo hace falta hacerlo una vez.",
+          bloques: [
+            {
+              titulo: "Qué está pasando",
+              texto: "Windows y macOS revisan si el programa viene firmado con un certificado de desarrollador. Esos certificados cuestan dinero cada año y un proyecto libre mantenido por voluntarios no los paga, así que el sistema avisa de que no reconoce a quien lo hizo. El aviso habla del certificado, no del contenido.",
+              pasos: [],
+              img: { src: "", titulo: "La pantalla azul de Windows protegió tu PC", pie: "" }
+            },
+            {
+              titulo: "Windows, la pantalla azul de SmartScreen",
+              texto: "Aparece un recuadro azul que dice que Windows protegió tu PC y a primera vista solo ofrece el botón No ejecutar. El botón que hace falta está escondido.",
+              pasos: [
+                "En el recuadro azul, haz clic en Más información.",
+                "Se despliega el nombre del archivo y aparece el botón Ejecutar de todas formas.",
+                "Haz clic en ese botón. La próxima vez ya no vuelve a preguntar.",
+                "Si el antivirus lo bloquea antes, añade la carpeta de QualCoder a sus excepciones."
+              ],
+              img: { src: "", titulo: "El enlace Más información y el botón Ejecutar de todas formas", pie: "" }
+            },
+            {
+              titulo: "macOS, Gatekeeper",
+              texto: "El sistema dice que no puede comprobar el desarrollador y cierra la aplicación. La autorización se da desde los ajustes del sistema.",
+              pasos: [
+                "Intenta abrir QualCoder una primera vez y acepta el aviso.",
+                "Abre Ajustes del sistema, Privacidad y seguridad.",
+                "Al final de la sección Seguridad aparece el aviso de que se impidió abrir QualCoder, con el botón Abrir de todos modos.",
+                "Confirma con tu contraseña. Solo hace falta la primera vez."
+              ],
+              img: { src: "", titulo: "Privacidad y seguridad en macOS con el botón Abrir de todos modos", pie: "" }
+            },
+            {
+              titulo: "Si prefieres no saltarte el aviso",
+              texto: "La alternativa que proponen los propios desarrolladores es instalar desde el código fuente. Se descarga el código, se ve lo que se ejecuta y no hay ningún binario sin firmar de por medio. Es la ventaja del software abierto, y en este caso no es retórica.",
+              pasos: [],
+              img: { src: "", titulo: "", pie: "" }
+            }
+          ],
+          boton: "Listo, seguir",
+          dice: "Ese aviso es el trámite de entrada de casi todo el software libre de escritorio."
+        },
+        /* 1.6 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Al abrirlo, el sistema avisa de que el programa procede de un desarrollador no identificado. ¿Qué significa?",
@@ -441,9 +586,47 @@ const CURSO = {
             { t: "Que el programa trae software malicioso", ok: false, dice: "El aviso solo dice que nadie pagó por firmar el paquete. Si te incomoda, el código es abierto y se puede instalar desde la fuente." }
           ],
           consejo: "Descarga siempre desde la página de versiones del repositorio oficial. Cuando el archivo viene de otro sitio, el aviso del sistema sí merece que te detengas.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El aviso del sistema y el botón para autorizar la ejecución", pie: "" }
+          consejoImagen: { src: "", titulo: "La dirección del repositorio oficial en la barra del navegador", pie: "" }
         },
-        /* 1.4 */ {
+        /* 1.7 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "El problema más común después de instalar es que el audio y el video no funcionan. Casi siempre son estas tres cosas.",
+          bloques: [
+            {
+              titulo: "No se reproduce nada",
+              texto: "Si el archivo se importó pero al darle a reproducir no pasa nada, lo que falta es VLC. QualCoder se apoya en él para todo el audio y el video.",
+              pasos: [
+                "Comprueba si VLC está instalado y si abre el archivo por su cuenta.",
+                "Si abre en VLC pero no en QualCoder, revisa la arquitectura. Mezclar VLC de 32 bits con un programa de 64 es una causa habitual.",
+                "Reinstala VLC en la arquitectura correcta y reinicia QualCoder."
+              ],
+              img: { src: "", titulo: "El módulo de codificar audio y video con el archivo cargado", pie: "" }
+            },
+            {
+              titulo: "Suena, pero no aparece la forma de onda",
+              texto: "Ahí el que falta es ffmpeg. La reproducción funciona porque la hace VLC, pero el dibujo del sonido lo genera ffmpeg.",
+              pasos: [
+                "Instala ffmpeg y, en Windows, añade su carpeta bin al PATH.",
+                "Cierra y vuelve a abrir QualCoder.",
+                "Abre otra vez el archivo, la forma de onda se genera la primera vez y queda guardada."
+              ],
+              img: { src: "", titulo: "La forma de onda del audio ya visible", pie: "" }
+            },
+            {
+              titulo: "Estás en Fedora",
+              texto: "Es una limitación conocida y documentada por los propios desarrolladores. En Fedora, VLC hace que el programa se cierre, así que el material audiovisual no se puede usar en esa distribución.",
+              pasos: [
+                "Trabaja el material audiovisual desde otra distribución o desde otro equipo.",
+                "O transcribe fuera y codifica solo la transcripción, que sí funciona."
+              ],
+              img: { src: "", titulo: "", pie: "" }
+            }
+          ],
+          boton: "Entendido, seguir",
+          dice: "Con esas tres revisiones se resuelve casi todo lo que falla con el audio."
+        },
+        /* 1.8 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Instalaste todo y el audio de las entrevistas no se reproduce. ¿Por dónde empiezas?",
@@ -453,16 +636,16 @@ const CURSO = {
             { t: "Convertir todos los audios a otro formato", ok: false, dice: "El formato rara vez es el problema si el reproductor externo no está." }
           ],
           consejo: "Si VLC ya está instalado y aun así no suena, revisa que su arquitectura coincida con la del programa. Mezclar versiones de 32 y 64 bits es una causa habitual.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
+          consejoImagen: { src: "", titulo: "La versión y la arquitectura de VLC en su ventana Acerca de", pie: "" }
         },
-        /* 1.5 */ {
+        /* 1.9 */ {
           tipo: "explorar",
           xp: 20,
           instruccion: "Antes de tocar nada en serio, recorre el programa. Toca las entradas de los menús y las pestañas que quieras, y lee a la derecha qué hace cada una.",
           objetivo: "Recorrer la barra de menús",
           dice: "Ya sabes dónde vive cada cosa. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados."
         },
-        /* 1.6 */ {
+        /* 1.10 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Ya lo tienes abierto. Comprueba qué versión instalaste, que es el dato que hay que citar en cualquier publicación.",

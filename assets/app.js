@@ -155,6 +155,77 @@ function pintarHud() {
   $(".hud-sonido").setAttribute("aria-label", estado.sonido ? "Apagar sonido" : "Encender sonido");
 }
 
+/* ---------- side navigation ---------- */
+
+function estrellasMini(valor) {
+  const caja = crear("span", "estrellas mini");
+  for (let k = 1; k <= 3; k++) caja.appendChild(crear("span", "estrella" + ((valor || 0) >= k ? " viva" : ""), "★"));
+  return caja;
+}
+
+function irAActividad(idxNivel, idxEj) {
+  const nivel = CURSO.niveles[idxNivel];
+  if (!mision || mision.nivel.id !== nivel.id) abrirMision(nivel, idxNivel, true);
+  mision.i = idxEj;
+  mision.paso = "ej";
+  location.hash = "#" + nivel.id;
+  pintarMision();
+  window.scrollTo(0, 0);
+}
+
+function pintarNav() {
+  const rail = $("#rail");
+  if (!rail) return;
+  rail.innerHTML = "";
+
+  const cab = crear("div", "rail-cabeza");
+  cab.appendChild(crear("h2", null, "Contenido del curso"));
+  const plegar = crear("button", "rail-plegar", "Índice");
+  plegar.addEventListener("click", () => rail.classList.toggle("abierto"));
+  cab.appendChild(plegar);
+  rail.appendChild(cab);
+
+  const lista = crear("ol", "rail-misiones");
+  CURSO.niveles.forEach((nivel, i) => {
+    const activa = mision && mision.nivel.id === nivel.id;
+    const li = crear("li", "rail-mision" + (activa ? " activa" : "") + (nivelCompleto(nivel) ? " listo" : ""));
+
+    const btn = crear("button", "rail-mision-btn");
+    btn.appendChild(crear("span", "rail-num", String(i + 1)));
+    btn.appendChild(crear("span", "rail-titulo", nivel.titulo));
+    btn.appendChild(estrellasMini(estrellasNivel(nivel)));
+    btn.addEventListener("click", () => { location.hash = "#" + nivel.id; rail.classList.remove("abierto"); });
+    li.appendChild(btn);
+
+    if (activa) {
+      const sub = crear("ol", "rail-actividades");
+      nivel.ejercicios.forEach((ej, j) => {
+        const estrella = estado.hechos[clave(nivel, j)];
+        const aqui = mision.paso === "ej" && mision.i === j;
+        const item = crear("li", "rail-act" + (aqui ? " aqui" : "") + (estrella === 0 ? " saltada" : ""));
+        const b = crear("button", "rail-act-btn");
+        b.appendChild(crear("span", "rail-act-num", (i + 1) + "." + (j + 1)));
+        b.appendChild(crear("span", "rail-act-tipo", NOMBRE_TIPO[ej.tipo] || ""));
+        b.appendChild(estrellasMini(estrella));
+        b.addEventListener("click", () => { irAActividad(i, j); rail.classList.remove("abierto"); });
+        item.appendChild(b);
+        sub.appendChild(item);
+      });
+      li.appendChild(sub);
+    }
+    lista.appendChild(li);
+  });
+  rail.appendChild(lista);
+
+  const pie = crear("div", "rail-pie");
+  const refs = crear("button", "rail-enlace", "Referencias");
+  refs.addEventListener("click", () => { location.hash = "#referencias"; });
+  const mapa = crear("button", "rail-enlace", "Mapa de misiones");
+  mapa.addEventListener("click", () => { location.hash = ""; if (!location.hash) enrutar(); });
+  pie.appendChild(mapa); pie.appendChild(refs);
+  rail.appendChild(pie);
+}
+
 /* ---------- map ---------- */
 
 function pintarMapa() {
@@ -210,6 +281,7 @@ function pintarMapa() {
 
   zona.appendChild(cont);
   pintarHud();
+  pintarNav();
 }
 
 /* ---------- mission ---------- */
@@ -227,13 +299,14 @@ function pintarMision() {
   const zona = $("#app");
   zona.innerHTML = "";
   const n = mision.nivel;
-  if (mision.paso === "briefing") return zona.appendChild(pantallaBriefing(n));
-  if (mision.paso === "fin") return zona.appendChild(pantallaFin(n));
+  if (mision.paso === "briefing") { zona.appendChild(pantallaBriefing(n)); return pintarNav(); }
+  if (mision.paso === "fin") { zona.appendChild(pantallaFin(n)); return pintarNav(); }
 
   const marco = crear("div", "mision");
   marco.appendChild(barraMision(n));
   marco.appendChild(tarjetaEjercicio(n, n.ejercicios[mision.i], mision.i));
   zona.appendChild(marco);
+  pintarNav();
 }
 
 function pantallaBriefing(n) {
@@ -345,7 +418,7 @@ function barraMision(n) {
 const NOMBRE_TIPO = {
   quiz: "Decisión comentada", parejas: "Parejas", secuencia: "Secuencia", codificar: "Codificar texto",
   clasificar: "Clasificación", abierta: "Escritura", interfaz: "Simulador", dialogo: "Ventana",
-  explorar: "Exploración"
+  explorar: "Exploración", guia: "Instructivo"
 };
 
 function tarjetaEjercicio(nivel, ej, idx) {
@@ -376,7 +449,8 @@ function tarjetaEjercicio(nivel, ej, idx) {
     cerrado = true;
     if (!hecho(nivel, idx)) { estado.hechos[clave(nivel, idx)] = 0; persistir(); }
     mision.racha = 0; mision.saltadas++;
-    avisar("Actividad saltada, sin XP. Puedes volver a ella repasando la misión.");
+    pintarNav();
+    avisar("Actividad saltada, sin XP. Puedes volver a ella cuando quieras desde el índice.");
     avanzar(nivel);
   });
   salidas.appendChild(reiniciar);
@@ -406,7 +480,7 @@ function tarjetaEjercicio(nivel, ej, idx) {
         estado.hechos[clave(nivel, idx)] = estrellas;
         mision.racha++;
       }
-      persistir(); pintarHud();
+      persistir(); pintarHud(); pintarNav();
       const barra = $(".barra-mision");
       if (barra) barra.replaceWith(barraMision(nivel));
       salidas.innerHTML = "";
@@ -417,7 +491,7 @@ function tarjetaEjercicio(nivel, ej, idx) {
   ({
     quiz: montarQuiz, parejas: montarParejas, secuencia: montarSecuencia, codificar: montarCodificar,
     clasificar: montarClasificar, abierta: montarAbierta, interfaz: montarInterfaz,
-    dialogo: montarDialogo, explorar: montarExplorar
+    dialogo: montarDialogo, explorar: montarExplorar, guia: montarGuia
   })[ej.tipo](cuerpo, ej, api);
 
   return caja;
@@ -722,6 +796,32 @@ function montarInterfaz(zona, ej, api) {
   const guia = cajaPasos(ej);
   if (guia) zona.appendChild(guia);
   if (ej.pista) zona.appendChild(cajaPista(ej.pista));
+}
+
+/* ---------- activity: guia ---------- */
+
+function montarGuia(zona, ej, api) {
+  const caja = crear("div", "guia");
+  (ej.bloques || []).forEach(b => {
+    const sec = crear("section", "guia-bloque");
+    if (b.titulo) sec.appendChild(crear("h4", null, b.titulo));
+    if (b.texto) sec.appendChild(crear("p", "guia-texto", b.texto));
+    if (b.pasos && b.pasos.length) {
+      const ol = crear("ol", "guia-pasos");
+      b.pasos.forEach(t => ol.appendChild(crear("li", null, t)));
+      sec.appendChild(ol);
+    }
+    if (b.img && (b.img.src || b.img.titulo)) {
+      const img = imagenOpcional(b.img,
+        "Guarda la imagen en assets/img/ y escribe su ruta en el campo src de este bloque, dentro de assets/contenido.js");
+      if (img) sec.appendChild(img);
+    }
+    caja.appendChild(sec);
+  });
+  const btn = crear("button", "accion", ej.boton || "Continuar");
+  btn.addEventListener("click", () => { btn.disabled = true; api.resuelto(ej.dice); });
+  caja.appendChild(btn);
+  zona.appendChild(caja);
 }
 
 /* ---------- activity: explorar ---------- */
@@ -1255,11 +1355,35 @@ function cajaPista(texto) {
 
 /* ---------- certificate ---------- */
 
+// Stardate in TNG style, taking 1987 as stardate 41000.
+function fechaEstelar(d) {
+  const inicio = new Date(d.getFullYear(), 0, 0);
+  const dia = (d - inicio) / 86400000;
+  const valor = 41000 + (d.getFullYear() - 1987) * 1000 + (dia / 365.25) * 1000;
+  return valor.toFixed(1);
+}
+
+function iniciales(nombre) {
+  const letras = (nombre || "").trim().split(/\s+/)
+    .filter(p => p.length > 1)
+    .map(p => p[0].toUpperCase())
+    .join("");
+  return letras || "QC";
+}
+
+function sufijoAleatorio() {
+  if (!estado.sufijo) {
+    const abc = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    let x = "";
+    for (let i = 0; i < 4; i++) x += abc[Math.floor(Math.random() * abc.length)];
+    estado.sufijo = x;
+    persistir();
+  }
+  return estado.sufijo;
+}
+
 function folio(nombre) {
-  const base = (nombre || "sin nombre") + "|" + CURSO.titulo;
-  let h = 0;
-  for (let i = 0; i < base.length; i++) { h = (h * 31 + base.charCodeAt(i)) >>> 0; }
-  return "QC4-" + h.toString(36).toUpperCase().padStart(7, "0").slice(0, 7);
+  return iniciales(nombre) + "-" + fechaEstelar(new Date()) + "-" + sufijoAleatorio();
 }
 
 function fechaLarga() {
@@ -1321,14 +1445,29 @@ function pintarConstancia() {
   izq.appendChild(crear("span", "pie-etiqueta", "Fecha de emisión"));
   izq.appendChild(crear("span", "pie-valor", fechaLarga()));
   const der = crear("div");
-  der.appendChild(crear("span", "pie-etiqueta", "Folio"));
+  der.appendChild(crear("span", "pie-etiqueta", "Folio, fecha estelar"));
   const cifra = crear("span", "pie-valor pie-folio", folio(estado.nombre));
   der.appendChild(cifra);
   pie.appendChild(izq); pie.appendChild(der);
   marco.appendChild(pie);
 
+  if (CURSO.responsable) {
+    const firma = crear("div", "constancia-firma");
+    firma.appendChild(crear("span", "firma-linea", ""));
+    firma.appendChild(crear("span", "firma-nombre", CURSO.responsable));
+    firma.appendChild(crear("span", "firma-cargo", "Responsable del curso"));
+    marco.appendChild(firma);
+  }
+
+  if (CURSO.cita) {
+    const cita = crear("div", "constancia-cita");
+    cita.appendChild(crear("h4", null, "Cómo citar este curso"));
+    cita.appendChild(crear("p", null, CURSO.cita));
+    marco.appendChild(cita);
+  }
+
   marco.appendChild(crear("p", "constancia-nota",
-    "Documento de autoformación generado por el propio sitio del curso a partir del avance registrado en este navegador. Deja constancia del trabajo realizado y no constituye una acreditación institucional."));
+    "Documento de autoformación generado por el propio sitio del curso a partir del avance registrado en este navegador. El folio combina las iniciales de quien lo recibe, la fecha estelar de emisión y un identificador aleatorio. Deja constancia del trabajo realizado y no constituye una acreditación institucional."));
 
   nombre.addEventListener("input", () => {
     estado.nombre = nombre.value; persistir();
@@ -1382,6 +1521,7 @@ function pintarReferencias() {
   c.appendChild(fila);
   zona.appendChild(c);
   pintarHud();
+  pintarNav();
 }
 
 /* ---------- routing ---------- */
