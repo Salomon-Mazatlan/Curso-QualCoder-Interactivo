@@ -38,7 +38,8 @@ aporta y cuándo estorba, y por qué la frecuencia describe la codificación y n
 
 ### Cómo funciona el juego
 
-Cada misión empieza con la lección y sigue con sus actividades, una a la vez. Resolver a la primera da tres
+Cada misión empieza con su galería de videos y capturas, sigue con la lección y después vienen las
+actividades, una a la vez. Resolver a la primera da tres
 estrellas y el XP completo, fallar una vez da dos estrellas y la mitad del XP, y a partir de ahí una
 estrella. Los errores no expulsan de la misión, solo explican qué pasó y dejan seguir intentando. Debajo de
 cada actividad hay dos salidas, reiniciar la lección desde el principio o saltar esa actividad, que entonces
@@ -82,18 +83,28 @@ informales de personas mayores. No corresponden a personas reales.
 Para probarlo antes en tu máquina, abre `index.html` en el navegador o levanta `python3 -m http.server`
 dentro de la carpeta.
 
-## Poner los videos
+## Poner los videos y las capturas
 
-Cada misión tiene un campo `video` vacío en `assets/contenido.js`. Se llena con el identificador del video de
-YouTube, no con la URL completa.
+Cada misión abre con una galería de medios, antes del texto de la lección. Ahí van los videos y las capturas
+de pantalla, y ya vienen los huecos preparados con el título de lo que conviene mostrar en cada uno.
+
+Se editan en el arreglo `medios` de cada misión, en `assets/contenido.js`.
 
 ```js
-video: "dQw4w9WgXcQ",
-videoTitulo: "Marcar un segmento en Codificar texto",
+medios: [
+  { tipo: "video", id: "dQw4w9WgXcQ", titulo: "Crear un código y marcar el primer segmento" },
+  { tipo: "imagen", src: "assets/img/03-codificar-texto.png",
+    titulo: "El módulo Codificar texto con sus tres paneles",
+    pie: "Figura 3.1. Los tres paneles del módulo." }
+],
 ```
 
-Con el campo vacío aparece un recuadro punteado indicando que el espacio está reservado. El video se
-incrusta con `youtube-nocookie.com`.
+En los videos va el identificador de YouTube, no la URL completa, y se incrustan con `youtube-nocookie.com`.
+Las capturas se guardan en `assets/img/` y su ruta va en `src`. Si `pie` queda vacío, el pie de figura toma
+el texto de `titulo`. Mientras un hueco esté sin llenar aparece un recuadro punteado con el título sugerido y
+la instrucción para completarlo, así que el curso se puede publicar antes de tener todo el material grabado.
+
+Se pueden añadir o quitar medios de cada misión libremente, no hay número fijo.
 
 ## Editar el contenido
 
@@ -108,8 +119,10 @@ Una misión se ve así.
   titulo: "Nombre de la misión",
   lema: "Frase corta",
   insignia: { nombre: "Nombre de la insignia", icono: "✦" },
-  video: "",
-  videoTitulo: "",
+  medios: [
+    { tipo: "video", id: "", titulo: "Qué mostrar en el video" },
+    { tipo: "imagen", src: "", titulo: "Qué mostrar en la captura", pie: "" }
+  ],
   lectura: `<p>Texto de la lección en HTML.</p>`,
   ejercicios: [ ... ]
 }
