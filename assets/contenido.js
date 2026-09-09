@@ -33,164 +33,216 @@ const CURSO = {
     pestanas: [
       { id: "registro", t: "Registro de acciones",
         d: "Donde el programa habla. Versión y cita del software, avisos de copias de seguridad, mensajes de las operaciones y resultados de algunos informes.",
-        tip: "Míralo después de abrir el proyecto y después de cualquier operación grande. Varios avisos aparecen ahí y en ningún otro sitio." },
+        tip: "Míralo después de abrir el proyecto y después de cualquier operación grande. Varios avisos aparecen ahí y en ningún otro sitio.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Registro de acciones", pie: "" } },
       { id: "gestionar", t: "Gestionar",
-        d: "Aloja los módulos de archivos, casos, atributos, diarios y referencias, y mientras no haya ninguno abierto muestra su panel de bienvenida." },
+        d: "Aloja los módulos de archivos, casos, atributos, diarios y referencias, y mientras no haya ninguno abierto muestra su panel de bienvenida.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Gestionar", pie: "" } },
       { id: "codificar", t: "Codificar",
-        d: "Aloja los cuatro módulos de codificación. Los módulos se abren dentro de la pestaña, no en ventanas flotantes." },
+        d: "Aloja los cuatro módulos de codificación. Los módulos se abren dentro de la pestaña, no en ventanas flotantes.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar", pie: "" } },
       { id: "informes", t: "Informes",
-        d: "Aloja los módulos de reportes y visualización." },
+        d: "Aloja los módulos de reportes y visualización.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Informes", pie: "" } },
       { id: "agente", t: "Agente de IA",
-        d: "La conversación con el agente sobre el proyecto, cuando la IA está configurada." }
+        d: "La conversación con el agente sobre el proyecto, cuando la IA está configurada.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Agente de IA", pie: "" } }
     ],
     menus: [
       {
         id: "proyecto", nombre: "Proyecto", items: [
           { id: "crear", t: "Crear un proyecto nuevo (Create new project)", k: "Ctrl+N",
             d: "Pide nombre y ubicación y construye la carpeta .qda con sus subcarpetas y la base de datos vacía.",
-            tip: "El nombre de la carpeta aparece en cada exportación, y las copias de seguridad se guardan junto al proyecto. Elige un sitio con espacio." },
+            tip: "El nombre de la carpeta aparece en cada exportación, y las copias de seguridad se guardan junto al proyecto. Elige un sitio con espacio.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Crear un proyecto nuevo", pie: "" } },
           { id: "abrir", t: "Abrir proyecto (Open project)", k: "Ctrl+O",
-            d: "Abre un proyecto existente. Si la opción está activa, crea una copia de seguridad al abrirlo." },
+            d: "Abre un proyecto existente. Si la opción está activa, crea una copia de seguridad al abrirlo.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Abrir proyecto", pie: "" } },
           { id: "recientes", t: "Abrir proyecto reciente (Open recent project)",
-            d: "Submenú con hasta cinco proyectos recientes. La lista vive en la carpeta de configuración, no en el proyecto." },
+            d: "Submenú con hasta cinco proyectos recientes. La lista vive en la carpeta de configuración, no en el proyecto.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Abrir proyecto reciente", pie: "" } },
           { id: "cerrar", t: "Cerrar proyecto (Close project)", k: "Alt+X",
             d: "Cierra los módulos abiertos, confirma los cambios pendientes y depura las copias de seguridad.",
-            tip: "Cerrar antes de salir no es obligatorio pero sí buena práctica, sobre todo si el proyecto está en una carpeta sincronizada en la nube." },
+            tip: "Cerrar antes de salir no es obligatorio pero sí buena práctica, sobre todo si el proyecto está en una carpeta sincronizada en la nube.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Cerrar proyecto", pie: "" } },
           { id: "memo", t: "Memo del proyecto (Project memo)", k: "Ctrl+M",
             d: "El memo general del proyecto, que viaja con él y aparece en el resumen.",
-            tip: "Es el sitio para la descripción que después será tu sección de método. Qué se investiga, con qué material, quién codifica y qué decisiones de diseño se tomaron." },
+            tip: "Es el sitio para la descripción que después será tu sección de método. Qué se investiga, con qué material, quién codifica y qué decisiones de diseño se tomaron.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Memo del proyecto", pie: "" } },
           { id: "ajustes", t: "Configuración (Settings)", k: "Alt+S",
             d: "Ochenta y un preferencias. Idioma, tamaños de fuente, estilo de resaltado, copias de seguridad, nombre del codificador y ajustes de IA.",
-            tip: "Cambia el nombre del codificador antes de marcar nada. Todo lo que codifiques queda firmado, y reparar codificaciones firmadas mal cuesta mucho." },
+            tip: "Cambia el nombre del codificador antes de marcar nada. Todo lo que codifiques queda firmado, y reparar codificaciones firmadas mal cuesta mucho.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Configuración", pie: "" } },
           { id: "resumen", t: "Resumen del proyecto (Project summary)",
             d: "Informe de estado en el registro de acciones. Recuentos de archivos, casos, códigos y atributos, más la lista de enlaces rotos.",
-            tip: "Ejecútalo al retomar un proyecto viejo o al cambiar de computadora, y otra vez antes de archivarlo o entregarlo." },
+            tip: "Ejecútalo al retomar un proyecto viejo o al cambiar de computadora, y otra vez antes de archivarlo o entregarlo.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Resumen del proyecto", pie: "" } },
           { id: "encuesta", t: "Importar encuesta (Import survey)",
             d: "Importa un CSV o XLSX y crea de una pasada los casos, los atributos y un archivo de texto por cada respuesta abierta.",
-            tip: "Deja las preguntas cerradas como atributos y las abiertas como archivos. Así puedes comparar respuestas por perfil desde el primer día." },
+            tip: "Deja las preguntas cerradas como atributos y las abiertas como archivos. Así puedes comparar respuestas por perfil desde el primer día.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Importar encuesta", pie: "" } },
           { id: "exportar", t: "Exportar (Export)",
             d: "Exporta el proyecto completo en el estándar REFI-QDA, o solo el libro de códigos, en .qdc o en ODT legible.",
-            tip: "El libro de códigos con memos en ODT es el anexo que piden muchas revistas y comités de tesis." },
-          { id: "salir", t: "Salir (Exit)", k: "Ctrl+Q", d: "Cierra el programa." }
+            tip: "El libro de códigos con memos en ODT es el anexo que piden muchas revistas y comités de tesis.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Exportar", pie: "" } },
+          { id: "salir", t: "Salir (Exit)", k: "Ctrl+Q", d: "Cierra el programa.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Salir", pie: "" } }
         ]
       },
       {
         id: "gestionar", nombre: "Gestionar", items: [
           { id: "archivos", t: "Archivos (Files)", k: "Alt+F",
             d: "La puerta de entrada del material. Importar, vincular, crear, renombrar y asignar atributos, con filtros por columna en la tabla.",
-            tip: "Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos enlaces se rompen al cambiar de computadora. Vincular solo tiene sentido con video pesado." },
+            tip: "Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos enlaces se rompen al cambiar de computadora. Vincular solo tiene sentido con video pesado.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Archivos", pie: "" } },
           { id: "casos", t: "Casos (Cases)", k: "Alt+C",
             d: "Agrupa el material de una misma persona o unidad, aunque esté repartido en varios archivos o en tramos de uno solo.",
-            tip: "Los casos son lo que permite decir cuántas personas dijeron algo, no cuántas veces se dijo. Sin ellos, un participante hablador se ve como una tendencia." },
+            tip: "Los casos son lo que permite decir cuántas personas dijeron algo, no cuántas veces se dijo. Sin ellos, un participante hablador se ve como una tendencia.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Casos", pie: "" } },
           { id: "atributos", t: "Atributos (Attributes)", k: "Alt+A",
             d: "Variables de texto o numéricas que describen archivos o casos. Edad, sexo, municipio, años cuidando.",
-            tip: "Sin atributos no hay comparación entre grupos, porque los informes no tienen con qué filtrar. Cárgalos antes de codificar en serio." },
+            tip: "Sin atributos no hay comparación entre grupos, porque los informes no tienen con qué filtrar. Cárgalos antes de codificar en serio.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Atributos", pie: "" } },
           { id: "diarios", t: "Diarios (Journals)", k: "Alt+J",
             d: "Bitácora fechada del proceso. Es el único módulo que se abre en ventana propia, así que se puede escribir mientras se codifica.",
-            tip: "Un diario metodológico y otro de campo. El primero justifica tus decisiones ante un comité, el segundo guarda lo que viste y no cabía en la transcripción." },
+            tip: "Un diario metodológico y otro de campo. El primero justifica tus decisiones ante un comité, el segundo guarda lo que viste y no cabía en la transcripción.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Diarios", pie: "" } },
           { id: "referencias", t: "Referencias (References)",
-            d: "Gestión bibliográfica del proyecto, con importación desde archivos RIS o desde Zotero, y vinculación de referencias a archivos." },
+            d: "Gestión bibliográfica del proyecto, con importación desde archivos RIS o desde Zotero, y vinculación de referencias a archivos.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Referencias", pie: "" } },
           { id: "enlaces", t: "Enlaces rotos a archivos (Bad links to files)",
             d: "Localiza los archivos vinculados que ya no están en su ruta y permite restablecerla.",
-            tip: "El resumen del proyecto los detecta y este módulo los repara. Con archivos copiados en vez de vinculados el problema no existe." }
+            tip: "El resumen del proyecto los detecta y este módulo los repara. Con archivos copiados en vez de vinculados el problema no existe.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Enlaces rotos a archivos", pie: "" } }
         ]
       },
       {
         id: "codificar", nombre: "Codificar", items: [
           { id: "texto", t: "Codificar texto (Code text)", k: "Alt+T",
             d: "El módulo central. Lista de documentos, árbol de códigos, documento con su margen de franjas de color y las teclas de trabajo.",
-            tip: "Codificar aquí es cosa de teclado. Q marca, V crea un código in vivo, A anota, M abre el memo de la codificación y U desmarca." },
+            tip: "Codificar aquí es cosa de teclado. Q marca, V crea un código in vivo, A anota, M abre el memo de la codificación y U desmarca.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar texto", pie: "" } },
           { id: "pdf", t: "Codificar PDF (Code pdf)",
-            d: "Codifica sobre el PDF conservando su maquetación, trabajando a la vez con la página y con el texto extraído." },
+            d: "Codifica sobre el PDF conservando su maquetación, trabajando a la vez con la página y con el texto extraído.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar PDF", pie: "" } },
           { id: "imagen", t: "Codificar imagen (Code image)", k: "Alt+I",
-            d: "Asigna códigos a regiones rectangulares de una imagen. La unidad no es texto, es un área con su posición y su tamaño." },
+            d: "Asigna códigos a regiones rectangulares de una imagen. La unidad no es texto, es un área con su posición y su tamaño.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar imagen", pie: "" } },
           { id: "av", t: "Codificar audio y video (Code audio/video)", k: "Alt+V",
             d: "Codifica el medio por tiempo y su transcripción por posición, y mantiene el vínculo entre los dos.",
-            tip: "Codificar sobre el audio conserva el tono, la pausa y el silencio, que la transcripción borra. Para algunos análisis eso es el dato." },
+            tip: "Codificar sobre el audio conserva el tono, la pausa y el silencio, que la transcripción borra. Para algunos análisis eso es el dato.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar audio y video", pie: "" } },
           { id: "ia", t: "Codificación asistida por IA (AI assisted coding)",
             d: "Búsqueda y propuesta de codificación con inteligencia artificial, sobre los códigos que ya definiste.",
-            tip: "Sirve para encontrar candidatos, no para decidir. Lo que no revisaste segmento por segmento no es tuyo y no deberías defenderlo en un examen." },
+            tip: "Sirve para encontrar candidatos, no para decidir. Lo que no revisaste segmento por segmento no es tuyo y no deberías defenderlo en un examen.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificación asistida por IA", pie: "" } },
           { id: "organizador", t: "Organizador de códigos (Code organiser)",
-            d: "Lienzo para reordenar el sistema de códigos moviendo códigos y categorías, útil cuando el árbol creció demasiado." },
+            d: "Lienzo para reordenar el sistema de códigos moviendo códigos y categorías, útil cuando el árbol creció demasiado.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Organizador de códigos", pie: "" } },
           { id: "colores", t: "Esquema de color (Colour scheme)", k: "Alt+E",
             d: "Asigna colores en bloque a una rama, con una paleta de 120 y simulación de distintas formas de visión cromática.",
-            tip: "Un color por familia de códigos hace que el documento codificado se lea de un vistazo. Y la simulación evita elegir una paleta que un coautor no distingue." }
+            tip: "Un color por familia de códigos hace que el documento codificado se lea de un vistazo. Y la simulación evita elegir una paleta que un coautor no distingue.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Esquema de color", pie: "" } }
         ]
       },
       {
         id: "analisis", nombre: "Análisis", items: [
           { id: "recuperacion", t: "Recuperación de códigos (Code retrieval)", k: "Alt+K",
             d: "Junta todos los segmentos de los códigos que elijas, con su archivo de origen, filtrables por casos y atributos.",
-            tip: "Es la prueba de fuego de un código. Si los segmentos recuperados no se parecen entre sí, el código está haciendo demasiado trabajo." },
+            tip: "Es la prueba de fuego de un código. Si los segmentos recuperados no se parecen entre sí, el código está haciendo demasiado trabajo.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Recuperación de códigos", pie: "" } },
           { id: "coocurrencia", t: "Co-ocurrencia de códigos (Code co-occurrence)",
             d: "Muestra qué códigos se solapan en el mismo material y con qué frecuencia.",
-            tip: "Una co-ocurrencia alta puede ser un hallazgo o puede ser que dos códigos digan lo mismo. Mira los segmentos antes de decidir cuál de las dos." },
+            tip: "Una co-ocurrencia alta puede ser un hallazgo o puede ser que dos códigos digan lo mismo. Mira los segmentos antes de decidir cuál de las dos.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Co-ocurrencia de códigos", pie: "" } },
           { id: "relaciones", t: "Relaciones entre códigos (Code relations)",
-            d: "Analiza cómo se relacionan las codificaciones entre sí dentro de los archivos, más allá de la simple coincidencia." },
+            d: "Analiza cómo se relacionan las codificaciones entre sí dentro de los archivos, más allá de la simple coincidencia.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Relaciones entre códigos", pie: "" } },
           { id: "exactas", t: "Coincidencias exactas de texto (Code text exact matches)",
-            d: "Encuentra segmentos idénticos codificados con varios códigos, útil para detectar codificación redundante." },
+            d: "Encuentra segmentos idénticos codificados con varios códigos, útil para detectar codificación redundante.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Coincidencias exactas de texto", pie: "" } },
           { id: "grafo", t: "Grafo (Graph)", k: "Alt+G",
             d: "Lienzo donde códigos, categorías, casos, archivos y memos se ven como nodos que puedes mover y conectar.",
-            tip: "Sirve para pensar, no solo para ilustrar. Arrastrar una rama y verla junto a los casos suele mostrar relaciones que la lista de códigos esconde." }
+            tip: "Sirve para pensar, no solo para ilustrar. Arrastrar una rama y verla junto a los casos suele mostrar relaciones que la lista de códigos esconde.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Grafo", pie: "" } }
         ]
       },
       {
         id: "informes", nombre: "Informes", items: [
           { id: "frecuencias", t: "Frecuencias de códigos (Code frequencies)", k: "Alt+N",
             d: "Cuántas veces se aplicó cada código, en total y por codificador.",
-            tip: "La cuenta describe tu codificación, no el campo. Un código con noventa apariciones puede ser importante o puede ser que lo estés aplicando a todo." },
+            tip: "La cuenta describe tu codificación, no el campo. Un código con noventa apariciones puede ser importante o puede ser que lo estés aplicando a todo.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Frecuencias de códigos", pie: "" } },
           { id: "conteos", t: "Conteos por archivo o caso (Code counts by file/case)",
             d: "Cómo se reparte cada código entre los archivos o entre los casos.",
-            tip: "Aquí se ve si un tema es del corpus o de una sola persona. Es el dato honesto cuando vas a escribir que algo apareció de manera recurrente." },
+            tip: "Aquí se ve si un tema es del corpus o de una sola persona. Es el dato honesto cuando vas a escribir que algo apareció de manera recurrente.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Conteos por archivo o caso", pie: "" } },
           { id: "resumen_codigo", t: "Resumen de códigos (Code summary)", k: "Alt+P",
-            d: "Qué hay detrás de un código concreto, con sus recuentos y su reparto." },
+            d: "Qué hay detrás de un código concreto, con sus recuentos y su reparto.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Resumen de códigos", pie: "" } },
           { id: "resumen_archivo", t: "Resumen de archivos (File summary)", k: "Alt+O",
-            d: "Qué hay dentro de un archivo concreto, incluido su origen, copiado o vinculado." },
+            d: "Qué hay dentro de un archivo concreto, incluido su origen, copiado o vinculado.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Resumen de archivos", pie: "" } },
           { id: "comparacion", t: "Comparación de codificación (Coding comparison)", k: "Alt+L",
             d: "Compara dos codificadores código por código en todo el corpus, con porcentajes de acuerdo y kappa de Cohen.",
-            tip: "El coeficiente mide, no resuelve. Cuando el acuerdo baja, lo que hay que revisar es el memo de cada código, no la fórmula." },
+            tip: "El coeficiente mide, no resuelve. Cuando el acuerdo baja, lo que hay que revisar es el memo de cada código, no la fórmula.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Comparación de codificación", pie: "" } },
           { id: "comparacion_archivo", t: "Comparación por archivo (Coding comparison by file)", k: "Alt+M",
-            d: "Lo mismo dentro de un archivo concreto, con texto, imagen y audio o video." },
+            d: "Lo mismo dentro de un archivo concreto, con texto, imagen y audio o video.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Comparación por archivo", pie: "" } },
           { id: "graficas", t: "Gráficas (Charts)", k: "Alt+U",
             d: "Figuras a partir de la codificación, contando por frecuencia, por caracteres codificados o por área de imagen.",
-            tip: "Elige la unidad a conciencia. Frecuencia dice cuántas veces apareció el tema, caracteres dice cuánto espacio ocupó, y no siempre coinciden." },
+            tip: "Elige la unidad a conciencia. Frecuencia dice cuántas veces apareció el tema, caracteres dice cuánto espacio ocupó, y no siempre coinciden.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Gráficas", pie: "" } },
           { id: "consultas", t: "Consultas a la base de datos (Database queries)", k: "Alt+D",
             d: "SQL directo sobre la base del proyecto, con consultas predefinidas y espacio para las tuyas.",
-            tip: "Es la ventaja de tener el formato abierto. Cualquier conteo que el programa no ofrezca lo puedes sacar tú, sin depender de nadie." }
+            tip: "Es la ventaja de tener el formato abierto. Cualquier conteo que el programa no ofrezca lo puedes sacar tú, sin depender de nadie.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Consultas a la base de datos", pie: "" } }
         ]
       },
       {
         id: "ia", nombre: "IA", items: [
           { id: "asistente", t: "Asistente de configuración (Setup Wizard)",
-            d: "Guía la configuración inicial de la IA y la activa. Sin este paso el resto del menú aparece inactivo." },
+            d: "Guía la configuración inicial de la IA y la activa. Sin este paso el resto del menú aparece inactivo.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Asistente de configuración", pie: "" } },
           { id: "ajustes_ia", t: "Configuración (Settings)",
             d: "Abre las preferencias en la sección de IA, con el proveedor, el modelo y las claves.",
-            tip: "Revisa a dónde viajan tus datos antes de activar nada. Con material sensible, un modelo local evita mandar entrevistas a un servidor ajeno." },
+            tip: "Revisa a dónde viajan tus datos antes de activar nada. Con material sensible, un modelo local evita mandar entrevistas a un servidor ajeno.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Configuración", pie: "" } },
           { id: "memoria", t: "Reconstruir la memoria interna (Rebuild internal memory)",
-            d: "Vuelve a leer todos los documentos del proyecto para rehacer el índice de búsqueda semántica." },
+            d: "Vuelve a leer todos los documentos del proyecto para rehacer el índice de búsqueda semántica.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Reconstruir la memoria interna", pie: "" } },
           { id: "prompts", t: "Biblioteca de prompts (Prompt library)",
-            d: "Editor de los prompts analíticos que usa el programa, para adaptarlos a tu enfoque." },
+            d: "Editor de los prompts analíticos que usa el programa, para adaptarlos a tu enfoque.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Biblioteca de prompts", pie: "" } },
           { id: "agente", t: "Agente de IA (AI Agent)",
             d: "Conversación sobre el proyecto, con acceso al material y enlaces que llevan al segmento citado.",
-            tip: "Pídele que te muestre de dónde sale cada afirmación. Si no puede señalar el segmento, no lo uses en tus resultados." },
+            tip: "Pídele que te muestre de dónde sale cada afirmación. Si no puede señalar el segmento, no lo uses en tus resultados.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Agente de IA", pie: "" } },
           { id: "codificacion_ia", t: "Codificación asistida por IA (AI Assisted Coding)",
-            d: "La misma entrada que está en el menú Codificar." }
+            d: "La misma entrada que está en el menú Codificar.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificación asistida por IA", pie: "" } }
         ]
       },
       {
         id: "ayuda", nombre: "Ayuda", items: [
           { id: "contenido", t: "Contenido (Contents)", k: "Alt+H",
-            d: "Abre la documentación en el navegador. Es en línea, así que requiere conexión." },
+            d: "Abre la documentación en el navegador. Es en línea, así que requiere conexión.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Contenido", pie: "" } },
           { id: "atajos", t: "Atajos de teclado (Keyboard shortcuts)",
-            d: "Vuelca la lista completa de atajos en el registro de acciones." },
+            d: "Vuelca la lista completa de atajos en el registro de acciones.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Atajos de teclado", pie: "" } },
           { id: "preguntar", t: "Preguntar al agente de IA (Ask the AI Agent)",
-            d: "El agente, orientado a preguntas sobre el uso del propio programa." },
+            d: "El agente, orientado a preguntas sobre el uso del propio programa.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Preguntar al agente de IA", pie: "" } },
           { id: "especiales", t: "Funciones especiales (Special functions)", k: "Alt+Z",
             d: "Fusionar dos proyectos, sustituir el texto de un archivo conservando sus codificaciones y desplazar posiciones de codificación.",
-            tip: "Son operaciones sin marcha atrás y las copias automáticas rotan. Copia la carpeta del proyecto a mano antes de entrar aquí." },
+            tip: "Son operaciones sin marcha atrás y las copias automáticas rotan. Copia la carpeta del proyecto a mano antes de entrar aquí.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Funciones especiales", pie: "" } },
           { id: "acerca", t: "Acerca de (About)", k: "Alt+Y",
             d: "Versión, autoría y licencia.",
-            tip: "Ahí está la cita del software. Citar el programa de análisis es parte de la descripción del método, igual que citar el paquete estadístico." }
+            tip: "Ahí está la cita del software. Citar el programa de análisis es parte de la descripción del método, igual que citar el paquete estadístico.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Acerca de", pie: "" } }
         ]
       }
     ],
@@ -269,10 +321,10 @@ const CURSO = {
       insignia: { nombre: "Puesta en marcha", icono: "⬇" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Descarga e instalación paso a paso" },
-        { tipo: "imagen", src: "", titulo: "La página de versiones con los archivos de cada sistema", pie: "" },
-        { tipo: "imagen", src: "", titulo: "El aviso de desarrollador no identificado y cómo autorizarlo", pie: "" },
-        { tipo: "imagen", src: "", titulo: "La ventana Acerca de con el número de versión", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Descarga e instalación paso a paso" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La página de versiones con los archivos de cada sistema", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El aviso de desarrollador no identificado y cómo autorizarlo", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La ventana Acerca de con el número de versión", pie: "" }
       ],
       lectura: `
         <p>QualCoder es software libre y gratuito, así que instalarlo es descargarlo y abrirlo. Hay dos
@@ -300,7 +352,8 @@ const CURSO = {
             { t: "El código fuente, para tener la versión de desarrollo", ok: false, dice: "Requiere Python, línea de comandos y entornos virtuales. Tiene sentido si vas a contribuir o si tu sistema no tiene paquete, no para empezar una tesis." },
             { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en la página de versiones del proyecto." }
           ],
-          consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel. Bajar el paquete que no toca es el tropiezo más común."
+          consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel. Bajar el paquete que no toca es el tropiezo más común.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         },
         /* 1.2 */ {
           tipo: "parejas",
@@ -324,7 +377,7 @@ const CURSO = {
             { t: "Que el programa trae software malicioso", ok: false, dice: "El aviso solo dice que nadie pagó por firmar el paquete. Si te incomoda, el código es abierto y se puede instalar desde la fuente." }
           ],
           consejo: "Descarga siempre desde la página de versiones del repositorio oficial. Cuando el archivo viene de otro sitio, el aviso del sistema sí merece que te detengas.",
-          consejoImagen: { src: "", titulo: "El aviso del sistema y el botón para autorizar la ejecución", pie: "" }
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El aviso del sistema y el botón para autorizar la ejecución", pie: "" }
         },
         /* 1.4 */ {
           tipo: "quiz",
@@ -335,7 +388,8 @@ const CURSO = {
             { t: "Reinstalar QualCoder desde cero", ok: false, dice: "El programa está bien, lo que falta es una pieza externa." },
             { t: "Convertir todos los audios a otro formato", ok: false, dice: "El formato rara vez es el problema si el reproductor externo no está." }
           ],
-          consejo: "Si VLC ya está instalado y aun así no suena, revisa que su arquitectura coincida con la del programa. Mezclar versiones de 32 y 64 bits es una causa habitual."
+          consejo: "Si VLC ya está instalado y aun así no suena, revisa que su arquitectura coincida con la del programa. Mezclar versiones de 32 y 64 bits es una causa habitual.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         },
         /* 1.5 */ {
           tipo: "explorar",
@@ -375,9 +429,9 @@ const CURSO = {
       insignia: { nombre: "Ojo de lector", icono: "◉" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Recorrido por la ventana principal de QualCoder 4" },
-        { tipo: "imagen", src: "", titulo: "La ventana principal con sus cinco pestañas y la barra de menús", pie: "" },
-        { tipo: "imagen", src: "", titulo: "El registro de acciones con el mensaje de copia de seguridad", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Recorrido por la ventana principal de QualCoder 4" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La ventana principal con sus cinco pestañas y la barra de menús", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El registro de acciones con el mensaje de copia de seguridad", pie: "" }
       ],
       lectura: `
         <p>Codificar es ponerle una etiqueta corta a un fragmento de datos para poder volver a encontrarlo,
@@ -400,7 +454,8 @@ const CURSO = {
             { t: "Tiempo", ok: false, dice: "Demasiado ancho. Bajo esa etiqueta va a caer medio corpus." },
             { t: "Cuatro años", ok: false, dice: "Es un dato del caso, no un concepto. No se repite en otras entrevistas." }
           ],
-          consejo: "Cuando dudes entre dos nombres para un código, escribe primero su memo. Si al definirlo te salen dos definiciones, es que hacían falta dos códigos."
+          consejo: "Cuando dudes entre dos nombres para un código, escribe primero su memo. Si al definirlo te salen dos definiciones, es que hacían falta dos códigos.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         },
         /* 2.2 */ {
           tipo: "interfaz",
@@ -433,7 +488,8 @@ const CURSO = {
             { t: "Al abrir el proyecto, para tener el árbol listo desde el inicio", ok: false, dice: "Encaja con un marco cerrado. Si estás explorando, un árbol prefabricado te obliga a meter el dato donde no cabe." },
             { t: "Nunca, las categorías son de otros programas", ok: false, dice: "QualCoder sí tiene categorías y las muestra como carpetas en el árbol de códigos." }
           ],
-          consejo: "Una manera cómoda de trabajar es dejar las categorías para la segunda vuelta, con tres o cuatro entrevistas ya codificadas y la lista de códigos a la vista."
+          consejo: "Una manera cómoda de trabajar es dejar las categorías para la segunda vuelta, con tres o cuatro entrevistas ya codificadas y la lista de códigos a la vista.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         }
       ]
     },
@@ -454,10 +510,10 @@ const CURSO = {
       insignia: { nombre: "Cartografía", icono: "▤" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Crear el proyecto, configurar el codificador e importar los archivos" },
-        { tipo: "imagen", src: "", titulo: "El diálogo de creación de proyecto", pie: "" },
-        { tipo: "imagen", src: "", titulo: "La ventana de Configuración con el nombre del codificador", pie: "" },
-        { tipo: "imagen", src: "", titulo: "El gestor de archivos con cuatro entrevistas importadas", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Crear el proyecto, configurar el codificador e importar los archivos" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El diálogo de creación de proyecto", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La ventana de Configuración con el nombre del codificador", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El gestor de archivos con cuatro entrevistas importadas", pie: "" }
       ],
       lectura: `
         <p>Un proyecto de QualCoder es una carpeta terminada en <code>.qda</code>. Dentro viven la base de datos
@@ -543,9 +599,9 @@ const CURSO = {
       insignia: { nombre: "Fichero", icono: "▦" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Casos, atributos e importación de encuestas" },
-        { tipo: "imagen", src: "", titulo: "La tabla de casos con archivos asignados", pie: "" },
-        { tipo: "imagen", src: "", titulo: "La tabla de atributos con una variable de agrupación", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Casos, atributos e importación de encuestas" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La tabla de casos con archivos asignados", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La tabla de atributos con una variable de agrupación", pie: "" }
       ],
       lectura: `
         <p>Un caso agrupa todo el material de una misma persona o unidad, aunque esté repartido en varios
@@ -605,7 +661,8 @@ const CURSO = {
             { t: "Solo más códigos", ok: false, dice: "Más códigos no separan grupos. La variable de comparación vive en los atributos." },
             { t: "Exportar todo a una hoja de cálculo y hacerlo a mano", ok: false, dice: "Se puede, pero el programa filtra sin errores de copiado." }
           ],
-          consejo: "Deja definidos los atributos antes de codificar en serio. Añadirlos después obliga a volver caso por caso, y ahí es donde se pierden las tardes."
+          consejo: "Deja definidos los atributos antes de codificar en serio. Añadirlos después obliga a volver caso por caso, y ahí es donde se pierden las tardes.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         }
       ]
     },
@@ -629,10 +686,10 @@ const CURSO = {
       insignia: { nombre: "Marcador", icono: "▮" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Crear un código y marcar el primer segmento" },
-        { tipo: "imagen", src: "", titulo: "El módulo Codificar texto con sus tres paneles", pie: "" },
-        { tipo: "imagen", src: "", titulo: "El menú contextual del árbol de códigos desplegado", pie: "" },
-        { tipo: "imagen", src: "", titulo: "Un segmento marcado, con su franja de color en el margen", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Crear un código y marcar el primer segmento" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El módulo Codificar texto con sus tres paneles", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El menú contextual del árbol de códigos desplegado", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Un segmento marcado, con su franja de color en el margen", pie: "" }
       ],
       lectura: `
         <p>Codificar texto (Code text) es el módulo central. A la izquierda están las pestañas Documentos y
@@ -738,9 +795,9 @@ const CURSO = {
       insignia: { nombre: "Voz del campo", icono: "❝" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Código in vivo, anotación y memo" },
-        { tipo: "imagen", src: "", titulo: "El menú contextual del texto con la selección activa", pie: "" },
-        { tipo: "imagen", src: "", titulo: "Un diario del proyecto con una entrada fechada", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Código in vivo, anotación y memo" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El menú contextual del texto con la selección activa", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Un diario del proyecto con una entrada fechada", pie: "" }
       ],
       lectura: `
         <p>El módulo cubre tres operaciones que conviene no confundir. <strong>Codificar</strong> asigna un
@@ -815,7 +872,8 @@ const CURSO = {
             { t: "Son lo mismo, solo cambia dónde se abren", ok: false, dice: "No. Uno viaja con el código por todo el proyecto, el otro pertenece a una codificación concreta." },
             { t: "El de la codificación se exporta y el del código no", ok: false, dice: "Los dos se pueden llevar a los informes." }
           ],
-          consejo: "Escribe el memo del código el día que lo creas, y el de la codificación cuando dudes al aplicarlo. Esas dudas son justo lo que vale la pena dejar por escrito."
+          consejo: "Escribe el memo del código el día que lo creas, y el de la codificación cuando dudes al aplicarlo. Esas dudas son justo lo que vale la pena dejar por escrito.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         }
       ]
     },
@@ -836,9 +894,9 @@ const CURSO = {
       insignia: { nombre: "Arquitectura", icono: "⌗" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Categorías, fusión de códigos y esquema de color" },
-        { tipo: "imagen", src: "", titulo: "El árbol con categorías y códigos colgando de ellas", pie: "" },
-        { tipo: "imagen", src: "", titulo: "El diálogo de fusión de un código en otro", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Categorías, fusión de códigos y esquema de color" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El árbol con categorías y códigos colgando de ellas", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El diálogo de fusión de un código en otro", pie: "" }
       ],
       lectura: `
         <p>El árbol de códigos es el mismo componente en los cuatro módulos de codificación. Todo lo que tiene
@@ -898,7 +956,8 @@ const CURSO = {
             { t: "Eliminarlo, uno solo no significa nada", ok: false, dice: "La frecuencia no decide relevancia, y eliminar borra también su codificación." },
             { t: "Dejarlo ahí, no molesta", ok: false, dice: "Cien códigos huérfanos sí molestan y ensucian cualquier informe." }
           ],
-          consejo: "Antes de decidir, abre la recuperación de ese código y lee su único segmento en contexto. Con el fragmento delante, la decisión tarda un minuto."
+          consejo: "Antes de decidir, abre la recuperación de ese código y lee su único segmento en contexto. Con el fragmento delante, la decisión tarda un minuto.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         }
       ]
     },
@@ -919,10 +978,10 @@ const CURSO = {
       insignia: { nombre: "Lupa", icono: "◎" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Recuperación de códigos, frecuencias y gráficas" },
-        { tipo: "imagen", src: "", titulo: "La recuperación con segmentos y su archivo de origen", pie: "" },
-        { tipo: "imagen", src: "", titulo: "La tabla de frecuencias por código y codificador", pie: "" },
-        { tipo: "imagen", src: "", titulo: "Una gráfica de barras por categoría", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Recuperación de códigos, frecuencias y gráficas" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La recuperación con segmentos y su archivo de origen", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La tabla de frecuencias por código y codificador", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Una gráfica de barras por categoría", pie: "" }
       ],
       lectura: `
         <p>Codificar sin recuperar es archivar. La recuperación de códigos junta todos los segmentos de un
@@ -985,7 +1044,8 @@ const CURSO = {
             { t: "Que el código es muy productivo y hay que dejarlo así", ok: false, dice: "Un código que abarca dos fenómenos no es productivo, es impreciso." },
             { t: "Que hay un error del programa", ok: false, dice: "El programa devuelve lo que marcaste. El problema está en las decisiones." }
           ],
-          consejo: "Para dividir un código, crea primero los dos nuevos y recodifica sus segmentos. Eliminar el viejo va al final, porque borrarlo antes se lleva las marcas."
+          consejo: "Para dividir un código, crea primero los dos nuevos y recodifica sus segmentos. Eliminar el viejo va al final, porque borrarlo antes se lleva las marcas.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         }
       ]
     },
@@ -1009,9 +1069,9 @@ const CURSO = {
       insignia: { nombre: "Podadora", icono: "✂" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Comparación entre codificadores y funciones especiales" },
-        { tipo: "imagen", src: "", titulo: "La tabla de acuerdo con los porcentajes y la kappa", pie: "" },
-        { tipo: "imagen", src: "", titulo: "El módulo de enlaces rotos", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Comparación entre codificadores y funciones especiales" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La tabla de acuerdo con los porcentajes y la kappa", pie: "" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El módulo de enlaces rotos", pie: "" }
       ],
       lectura: `
         <p>Si codifican varias personas, cada una tiene que trabajar con su propio nombre de codificador puesto
@@ -1060,7 +1120,8 @@ const CURSO = {
             { t: "Calcular la kappa y quedarse con el resultado", ok: false, dice: "El coeficiente mide, no resuelve. Sin revisar las definiciones el siguiente cálculo sale igual." },
             { t: "Que decida quien tenga más experiencia", ok: false, dice: "Eso cierra la discusión sin arreglar el instrumento." }
           ],
-          consejo: "Deja el acuerdo por escrito en el memo del código, con un ejemplo que sí entra y otro que no. Es lo que evita repetir la misma discusión el mes que viene."
+          consejo: "Deja el acuerdo por escrito en el memo del código, con un ejemplo que sí entra y otro que no. Es lo que evita repetir la misma discusión el mes que viene.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         },
         /* 9.5 */ {
           tipo: "parejas",
@@ -1093,8 +1154,8 @@ const CURSO = {
       insignia: { nombre: "Codificación de campo", icono: "★" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Una sesión de codificación completa, de principio a fin" },
-        { tipo: "imagen", src: "", titulo: "El proyecto terminado, con su árbol y su diario", pie: "" }
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Una sesión de codificación completa, de principio a fin" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El proyecto terminado, con su árbol y su diario", pie: "" }
       ],
       lectura: `
         <p>Última misión. Una entrevista nueva, un sistema de códigos a medio construir y las decisiones de
