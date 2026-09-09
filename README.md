@@ -1,7 +1,7 @@
 # Curso QualCoder 4.0-Beta (Interactivo)
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.0-Beta.
-Está armado como un juego. Diez misiones en orden de trabajo real, cincuenta actividades, insignias,
+Está armado como un juego. Diez misiones en orden de trabajo real, cincuenta y cuatro actividades, insignias,
 rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
 codificar texto. Son archivos estáticos, sin frameworks ni compilación, y se publica tal cual en GitHub
@@ -70,7 +70,7 @@ comparación posible después.
 
 | Misión | Tema | Qué se practica |
 | --- | --- | --- |
-| 1 | Instalar QualCoder | Paquete precompilado o código fuente, qué archivo baja cada sistema, programas externos, avisos de seguridad y comprobar la versión |
+| 1 | Instalar QualCoder | Instructivos de descarga e instalación por sistema, los programas externos y cómo instalarlos, cómo resolver la advertencia de Windows y macOS, qué revisar cuando el audio no funciona, recorrido por los siete menús y comprobar la versión |
 | 2 | Qué es codificar | Vocabulario básico y un recorrido guiado por los siete menús, con la descripción y el consejo de uso de cada entrada |
 | 3 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
 | 4 | Casos y atributos | Gestión de casos, de atributos e importación de encuestas |
@@ -105,6 +105,19 @@ Willis.
 Las citas de las definiciones se abren en una tarjeta flotante con la referencia completa, sin salir de la
 misión. La tarjeta se cierra con Esc, con la equis o tocando fuera, y trae al pie un enlace a la lista
 completa de referencias del curso para quien quiera verla toda.
+
+### El índice lateral
+
+A la derecha hay una barra con el contenido completo. Muestra las diez misiones con sus estrellas y, al
+entrar en una, la despliega en sus lecciones numeradas, con el tipo de cada una, sus estrellas y la actual
+resaltada. Desde ahí se salta a cualquier lección sin pasar por las anteriores, y las saltadas quedan
+marcadas para volver. En pantallas estrechas se pliega detrás del botón Índice.
+
+### Nombres de las capturas
+
+Las imágenes siguen el número de su lección. Para la lección 1.1 son `1_1_nombre.png`, para la 1.5 son
+`1_5_nombre.png`, y las de la galería de la misión, que van antes de cualquier lección, usan el cero, como
+`1_0_Repositorio_oficial.png`.
 
 ### Duración
 
@@ -164,6 +177,21 @@ definiciones: [
     texto: "Palabra o frase corta que asigna...",
     cita: "Saldaña, 2011, p. 95", clave: "saldana2011" }
 ],
+```
+
+Los instructivos se arman por bloques, cada uno con su título, su párrafo, su lista de pasos y su captura.
+
+```js
+{ tipo: "guia", xp: 10,
+  instruccion: "Antes de decidir nada, así se instala.",
+  bloques: [
+    { titulo: "Windows",
+      texto: "...",
+      pasos: ["Descarga el archivo...", "Ejecútalo..."],
+      img: { src: "assets/img/1_1_Windows.png", titulo: "...", pie: "" } }
+  ],
+  boton: "Ya lo instalé, seguir",
+  dice: "..." }
 ```
 
 Una misión se ve así.
@@ -252,6 +280,7 @@ Missaghieh-Poncet, Lorenzo Salomón y su comunidad de colaboradores.
 ## La constancia
 
 Al terminar las diez misiones se libera una constancia de participación con el nombre de quien la recibe, el
-número de misiones y actividades concluidas, los resultados obtenidos, la fecha de emisión y un folio
-derivado del nombre. Se imprime o se guarda en PDF desde el propio navegador. Es un documento de
+número de misiones y actividades concluidas, los resultados obtenidos, la fecha de emisión, la firma del
+responsable del curso y la referencia para citarlo. El folio combina las iniciales de quien la recibe, la
+fecha estelar de emisión en formato TNG y cuatro caracteres aleatorios, de modo que no se repita. Se imprime o se guarda en PDF desde el propio navegador. Es un documento de
 autoformación, deja constancia del trabajo hecho y no constituye una acreditación institucional.
