@@ -1,4 +1,4 @@
-# Codificar en QualCoder 4
+# Curso QualCoder Interactivo
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.
 Está armado como un juego. Diez misiones en orden de trabajo real, cincuenta y dos actividades, estrellas según los errores,
