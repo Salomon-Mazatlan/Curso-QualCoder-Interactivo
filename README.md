@@ -1,8 +1,8 @@
 # Curso QualCoder 4.0-Beta (Interactivo)
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.0-Beta.
-Está armado como un juego. Diez misiones en orden de trabajo real, cincuenta y dos actividades, estrellas según los errores,
-insignias, rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
+Está armado como un juego. Diez misiones en orden de trabajo real, cincuenta actividades, insignias,
+rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
 codificar texto. Son archivos estáticos, sin frameworks ni compilación, y se publica tal cual en GitHub
 Pages.
@@ -55,14 +55,17 @@ Cada misión empieza con su galería de videos y capturas, sigue con la lección
 actividades, una a la vez. Cada actividad da tres estrellas y el XP completo. Debajo de
 cada actividad hay dos salidas, reiniciar la lección desde el principio o saltar esa actividad.
 
-Tres aciertos seguidos dan un bono de racha. Las misiones se abren en orden y cada una entrega su insignia.
-El XP acumulado sube de rango, de Aprendiz de campo a Oficio de campo. Todo el avance se guarda en el
+Tres aciertos seguidos dan un bono de racha y cada misión entrega su insignia. Ninguna misión está
+bloqueada, el mapa las propone en un orden recomendado pero se pueden tomar en el que cada quien necesite, y
+las que quedaron a medias muestran cuántas actividades llevan. El XP acumulado sube de rango, de Aprendiz de
+campo a Oficio de campo. Todo el avance se guarda en el
 navegador de quien juega, sin cuentas ni servidor.
 
-### Las nueve misiones
+### Las diez misiones
 
-El orden sigue el del trabajo real, primero el programa, después el material, después la codificación y al
-final lo que devuelve resultados. Casos y atributos va antes de codificar, porque sin ellos no hay
+El orden propuesto sigue el del trabajo real, primero el programa, después el material, después la
+codificación y al final lo que devuelve resultados. Es una recomendación, no una barrera, cualquier misión se
+puede abrir desde el mapa en cualquier momento. Casos y atributos va antes de codificar, porque sin ellos no hay
 comparación posible después.
 
 | Misión | Tema | Qué se practica |
@@ -96,6 +99,12 @@ Obras citadas en el curso.
 La pantalla de referencias incluye además una lista de lecturas recomendadas, con Adams, Holman Jones y
 Ellis, Anfara y Mertz, Angrosino, Boucher y Holian, Brinkmann, Flick, Harris, Hyers, Timmermans y Tavory, y
 Willis.
+
+### Las definiciones y su ficha
+
+Las citas de las definiciones se abren en una tarjeta flotante con la referencia completa, sin salir de la
+misión. La tarjeta se cierra con Esc, con la equis o tocando fuera, y trae al pie un enlace a la lista
+completa de referencias del curso para quien quiera verla toda.
 
 ### Duración
 
