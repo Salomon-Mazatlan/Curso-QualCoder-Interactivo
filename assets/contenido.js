@@ -388,7 +388,7 @@ const CURSO = {
         { tipo: "video", id: "p2pWR1IrKbg", titulo: "Descarga e instalación paso a paso" },
         { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La página de versiones con los archivos de cada sistema", pie: "" },
         { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El aviso de desarrollador no identificado y cómo autorizarlo", pie: "" },
-        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La ventana Acerca de con el número de versión", pie: "" }
+        { tipo: "imagen", src: "assets/img/1_Acerca_de.png", titulo: "La ventana Acerca de con el número de versión", pie: "" }
       ],
       lectura: `
         <p>QualCoder es software libre y gratuito, así que instalarlo es descargarlo y abrirlo. Hay dos
