@@ -1,0 +1,12 @@
+Carpeta para las capturas de pantalla del curso.
+
+Guarda aquí las imágenes y escribe su ruta en el campo src del medio correspondiente,
+dentro de assets/contenido.js. Por ejemplo, para una captura guardada como
+assets/img/03-codificar-texto.png:
+
+  { tipo: "imagen", src: "assets/img/03-codificar-texto.png",
+    titulo: "El módulo Codificar texto con sus tres paneles",
+    pie: "Figura 3.1. Los tres paneles del módulo." }
+
+Si el campo pie está vacío, el pie de figura toma el texto de titulo.
+Formatos recomendados, PNG para capturas de interfaz y JPG para fotos.
