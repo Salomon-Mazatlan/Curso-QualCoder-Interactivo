@@ -1,7 +1,7 @@
 # Codificar en QualCoder 4
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.
-Está armado como un juego. Diez misiones, cincuenta y dos actividades, estrellas según los errores,
+Está armado como un juego. Diez misiones en orden de trabajo real, cincuenta y dos actividades, estrellas según los errores,
 insignias, rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
 codificar texto. Son archivos estáticos, sin frameworks ni compilación, y se publica tal cual en GitHub
@@ -52,18 +52,41 @@ navegador de quien juega, sin cuentas ni servidor.
 
 ### Las nueve misiones
 
+El orden sigue el del trabajo real, primero el programa, después el material, después la codificación y al
+final lo que devuelve resultados. Casos y atributos va antes de codificar, porque sin ellos no hay
+comparación posible después.
+
 | Misión | Tema | Qué se practica |
 | --- | --- | --- |
-| 0 | Instalar QualCoder | Paquete precompilado o código fuente, qué archivo baja cada sistema, programas externos, avisos de seguridad y comprobar la versión |
-| 1 | Qué es codificar | Vocabulario básico y un recorrido guiado por los siete menús, con la descripción y el consejo de uso de cada entrada |
-| 2 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
-| 3 | Codificar texto | Abrir el módulo, crear un código desde el árbol, marcar dos segmentos con Q |
-| 4 | En vivo, anotar y memos | Código in vivo con V, anotación con A, memo del código, diarios |
-| 5 | El árbol de códigos | Categorías, fusionar un código en otro, mover un código a una categoría |
-| 6 | Casos y atributos | Gestión de casos, de atributos e importación de encuestas |
-| 7 | Recuperar y mirar | Recuperación de códigos, configurar la salida, frecuencias y gráficas |
-| 8 | Equipo y mantenimiento | Comparación de codificación, enlaces rotos, funciones especiales |
-| 9 | Prueba de campo | Entrevista nueva de principio a fin, recuperación y entrada de diario |
+| 1 | Instalar QualCoder | Paquete precompilado o código fuente, qué archivo baja cada sistema, programas externos, avisos de seguridad y comprobar la versión |
+| 2 | Qué es codificar | Vocabulario básico y un recorrido guiado por los siete menús, con la descripción y el consejo de uso de cada entrada |
+| 3 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
+| 4 | Casos y atributos | Gestión de casos, de atributos e importación de encuestas |
+| 5 | Codificar texto | Abrir el módulo, crear un código desde el árbol, marcar dos segmentos con Q |
+| 6 | En vivo, anotar y memos | Código in vivo con V, anotación con A, memo del código, diarios |
+| 7 | El árbol de códigos | Categorías, fusionar un código en otro, mover un código a una categoría |
+| 8 | Recuperar y mirar | Recuperación de códigos, configurar la salida, frecuencias y gráficas |
+| 9 | Equipo y mantenimiento | Comparación de codificación, enlaces rotos, funciones especiales |
+| 10 | Prueba de campo | Entrevista nueva de principio a fin, recuperación y entrada de diario |
+
+### Las definiciones y sus fuentes
+
+Cada misión trae, después de la lección, un bloque de definiciones conceptuales con su cita. No son
+definiciones inventadas para el curso, salen de la literatura metodológica, y la cita lleva a la pantalla de
+referencias del propio sitio. Ahí se define código y codificar con Saldaña y con Bazeley, segmento y código in
+vivo con Saldaña, atributo y caso con Bazeley, diario con Alaszewski, y saturación, acuerdo entre
+codificadores, estrategias de calidad y transparencia con Bazeley y con Flick.
+
+Obras citadas en el curso.
+
+- Alaszewski, A. (2006). Using diaries for social research. SAGE.
+- Bazeley, P. (2013). Qualitative data analysis. Practical strategies. SAGE.
+- Flick, U. (2007). Designing qualitative research. SAGE.
+- Saldaña, J. (2011). Fundamentals of qualitative research. Oxford University Press.
+
+La pantalla de referencias incluye además una lista de lecturas recomendadas, con Adams, Holman Jones y
+Ellis, Anfara y Mertz, Angrosino, Boucher y Holian, Brinkmann, Flick, Harris, Hyers, Timmermans y Tavory, y
+Willis.
 
 ### Duración
 
@@ -113,6 +136,18 @@ Se pueden añadir o quitar medios de cada misión libremente, no hay número fij
 Todo el material vive en `assets/contenido.js`. El motor está en `assets/app.js` y no hace falta tocarlo para
 cambiar lecciones, actividades, menús o rangos.
 
+Las definiciones conceptuales de cada misión van en su arreglo `definiciones`, y las obras completas en
+`CURSO.bibliografia`. La `clave` de la definición enlaza con la `clave` de la referencia, y el botón de la cita
+lleva a la pantalla de referencias. Las lecturas recomendadas se editan en `CURSO.lecturas`.
+
+```js
+definiciones: [
+  { termino: "Código",
+    texto: "Palabra o frase corta que asigna...",
+    cita: "Saldaña, 2011, p. 95", clave: "saldana2011" }
+],
+```
+
 Una misión se ve así.
 
 ```js
@@ -121,6 +156,7 @@ Una misión se ve así.
   titulo: "Nombre de la misión",
   lema: "Frase corta",
   insignia: { nombre: "Nombre de la insignia", icono: "✦" },
+  definiciones: [ ... ],
   medios: [
     { tipo: "video", id: "", titulo: "Qué mostrar en el video" },
     { tipo: "imagen", src: "", titulo: "Qué mostrar en la captura", pie: "" }
