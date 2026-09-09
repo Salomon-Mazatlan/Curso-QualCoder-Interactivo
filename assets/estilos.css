@@ -58,13 +58,14 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
   padding:14px 16px;position:relative;transition:transform .12s ease,border-color .12s ease;
 }
 .nodo-btn:hover:not(:disabled){transform:translateX(3px);border-color:var(--turquesa)}
-.nodo-btn:disabled{cursor:not-allowed;opacity:.55}
+.nodo.en-marcha .disco{border-color:var(--amarillo);color:var(--tinta)}
+.nodo-avance{font-size:.76rem;color:var(--turquesa);font-weight:600}
 .disco{
   width:44px;height:44px;flex:0 0 44px;border-radius:50%;display:grid;place-items:center;
   background:var(--papel);border:2px solid var(--linea);font-weight:700;font-size:1.05rem;
 }
 .nodo.listo .disco{background:var(--tinta);color:var(--amarillo);border-color:var(--tinta)}
-.nodo:not(.cerrado):not(.listo) .disco{border-color:var(--turquesa);color:var(--turquesa)}
+.nodo:not(.listo) .disco{border-color:var(--turquesa);color:var(--turquesa)}
 .nodo-texto{display:grid;gap:2px}
 .nodo-texto strong{font-size:1.02rem;font-weight:600}
 .nodo-lema{font-size:.86rem;color:var(--tinta-media);font-family:var(--serif);font-style:italic}
@@ -482,3 +483,26 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 }
 .lupa-cerrar:hover{background:rgba(255,255,255,.14)}
 @media print{ .lupa{display:none} }
+
+/* ---------- reference card ---------- */
+
+.capa-ref{padding:24px}
+.tarjeta-ref{
+  background:var(--alto);border-radius:var(--radio);padding:26px 28px 20px;
+  max-width:560px;width:100%;box-shadow:0 18px 50px rgba(0,0,0,.35);
+}
+.tarjeta-tipo{
+  margin:0 0 10px;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--tinta-media);
+}
+.tarjeta-ref-texto{
+  margin:0;font-family:var(--serif);font-size:1.02rem;line-height:1.55;
+  padding-left:22px;text-indent:-22px;
+}
+.tarjeta-cita{margin:12px 0 0;font-size:.86rem;color:var(--tinta-media)}
+.tarjeta-pie{
+  margin-top:18px;padding-top:12px;border-top:1px solid var(--linea);
+  display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between;
+}
+.tarjeta-enlace{background:none;border:0;padding:0;font-size:.88rem;color:var(--turquesa);text-decoration:underline}
+.tarjeta-enlace:hover{color:var(--tinta)}
+.tarjeta-nota{font-size:.76rem;color:var(--tinta-media)}

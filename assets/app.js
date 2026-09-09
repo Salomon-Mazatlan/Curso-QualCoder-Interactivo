@@ -28,7 +28,9 @@ const revolver = a => a.map(v => [Math.random(), v]).sort((x, y) => x[0] - y[0])
 const clave = (nivel, i) => nivel.id + "-" + i;
 const hecho = (nivel, i) => estado.hechos[clave(nivel, i)] !== undefined;
 const nivelCompleto = n => n.ejercicios.every((_, i) => hecho(n, i));
-const nivelAbierto = i => i === 0 || nivelCompleto(CURSO.niveles[i - 1]);
+// Todas las misiones están abiertas. Se pueden tomar en cualquier orden.
+const nivelAbierto = () => true;
+const nivelEmpezado = n => n.ejercicios.some((_, i) => hecho(n, i));
 const persistir = () => guardado.escribir(estado);
 const xpTotal = CURSO.niveles.reduce((s, n) => s + n.ejercicios.reduce((t, e) => t + e.xp, 0), 0);
 const corto = (t, n) => t.length > n ? t.slice(0, n - 1).trim() + "…" : t;
@@ -87,23 +89,44 @@ function avisar(html, clase) {
 
 let lupaAbierta = null;
 
-function abrirLupa(src, pie) {
+function abrirCapa(contenido, clase, etiquetaCerrar) {
   cerrarLupa();
-  const capa = crear("div", "lupa");
+  const capa = crear("div", "lupa" + (clase ? " " + clase : ""));
+  const cerrar = crear("button", "lupa-cerrar", "✕");
+  cerrar.setAttribute("aria-label", etiquetaCerrar || "Cerrar");
+  cerrar.addEventListener("click", cerrarLupa);
+  capa.appendChild(cerrar);
+  capa.appendChild(contenido);
+  capa.addEventListener("click", ev => { if (ev.target === capa) cerrarLupa(); });
+  document.body.appendChild(capa);
+  lupaAbierta = capa;
+  cerrar.focus();
+  return capa;
+}
+
+function abrirLupa(src, pie) {
   const marco = crear("figure", "lupa-marco");
   const img = document.createElement("img");
   img.src = src; img.alt = pie || "";
   marco.appendChild(img);
   if (pie) marco.appendChild(crear("figcaption", null, pie));
-  const cerrar = crear("button", "lupa-cerrar", "✕");
-  cerrar.setAttribute("aria-label", "Cerrar la imagen");
-  cerrar.addEventListener("click", cerrarLupa);
-  capa.appendChild(cerrar);
-  capa.appendChild(marco);
-  capa.addEventListener("click", ev => { if (ev.target === capa) cerrarLupa(); });
-  document.body.appendChild(capa);
-  lupaAbierta = capa;
-  cerrar.focus();
+  abrirCapa(marco, null, "Cerrar la imagen");
+}
+
+// Small card with the full reference, so nobody loses their place in the mission.
+function abrirReferencia(clave, cita) {
+  const caja = crear("div", "tarjeta-ref");
+  caja.appendChild(crear("p", "tarjeta-tipo", "Referencia"));
+  const texto = referencia(clave);
+  caja.appendChild(crear("p", "tarjeta-ref-texto", texto || "Esta cita todavía no tiene su ficha completa en la lista de referencias."));
+  if (cita) caja.appendChild(crear("p", "tarjeta-cita", "En el texto se cita como (" + cita + ")."));
+  const pie = crear("footer", "tarjeta-pie");
+  const enlace = crear("button", "tarjeta-enlace", "Ver todas las referencias del curso");
+  enlace.addEventListener("click", () => { cerrarLupa(); location.hash = "#referencias"; });
+  pie.appendChild(enlace);
+  pie.appendChild(crear("span", "tarjeta-nota", "Se cierra con Esc y vuelves justo donde estabas."));
+  caja.appendChild(pie);
+  abrirCapa(caja, "capa-ref", "Cerrar la referencia");
 }
 
 function cerrarLupa() {
@@ -144,20 +167,23 @@ function pintarMapa() {
   intro.appendChild(crear("h1", null, "Mapa de misiones"));
   intro.appendChild(crear("p", null, estado.xp === 0
     ? CURSO.niveles.length + " misiones sobre el QualCoder 4 real, desde la instalación. Se practica en un simulador de la ventana del programa, con sus menús y sus módulos. Equivocarse no descuenta, cada actividad resuelta suma sus XP."
-    : "Rango actual " + rango().nombre + ". Las actividades saltadas quedan marcadas y se pueden retomar cuando quieras."));
+    : "Rango actual " + rango().nombre + ". Puedes tomar las misiones en el orden que quieras y retomar en cualquier momento las actividades saltadas."));
   cont.appendChild(intro);
 
   const senda = crear("ol", "senda");
   CURSO.niveles.forEach((nivel, i) => {
-    const abierto = nivelAbierto(i), listo = nivelCompleto(nivel);
-    const li = crear("li", "nodo" + (abierto ? "" : " cerrado") + (listo ? " listo" : ""));
+    const listo = nivelCompleto(nivel), empezada = nivelEmpezado(nivel);
+    const li = crear("li", "nodo" + (listo ? " listo" : empezada ? " en-marcha" : ""));
     const btn = crear("button", "nodo-btn");
-    btn.disabled = !abierto;
     btn.appendChild(crear("span", "disco", listo ? nivel.insignia.icono : String(i + 1)));
 
     const bloque = crear("span", "nodo-texto");
     bloque.appendChild(crear("strong", null, (i + 1) + ". " + nivel.titulo));
-    bloque.appendChild(crear("span", "nodo-lema", abierto ? nivel.lema : "Se abre al terminar la misión anterior"));
+    bloque.appendChild(crear("span", "nodo-lema", nivel.lema));
+    if (empezada && !listo) {
+      const hechas = nivel.ejercicios.filter((_, j) => hecho(nivel, j)).length;
+      bloque.appendChild(crear("span", "nodo-avance", "En marcha, " + hechas + " de " + nivel.ejercicios.length + " actividades"));
+    }
     const estrellas = crear("span", "estrellas");
     for (let e = 1; e <= 3; e++) estrellas.appendChild(crear("span", "estrella" + (estrellasNivel(nivel) >= e ? " viva" : ""), "★"));
     bloque.appendChild(estrellas);
@@ -286,8 +312,8 @@ function bloqueDefiniciones(n) {
     dd.appendChild(crear("span", "definicion-texto", d.texto));
     if (d.cita) {
       const cita = crear("button", "cita", "(" + d.cita + ")");
-      cita.title = referencia(d.clave) || "Ver las referencias del curso";
-      cita.addEventListener("click", () => { location.hash = "#referencias"; });
+      cita.title = referencia(d.clave) || "Ver la referencia";
+      cita.addEventListener("click", () => abrirReferencia(d.clave, d.cita));
       dd.appendChild(cita);
     }
     lista.appendChild(dt);
@@ -1366,7 +1392,6 @@ function enrutar() {
   if (id === "referencias") return pintarReferencias();
   const idx = CURSO.niveles.findIndex(n => n.id === id);
   if (idx === -1) return pintarMapa();
-  if (!nivelAbierto(idx)) { avisar("Esa misión todavía está cerrada.", "malo"); location.hash = ""; return; }
   abrirMision(CURSO.niveles[idx], idx);
   pintarHud();
   window.scrollTo(0, 0);
