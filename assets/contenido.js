@@ -38,8 +38,8 @@ const CURSO = {
       { id: "gestionar", t: "Gestionar",
         d: "Aloja los módulos de archivos, casos, atributos, diarios y referencias, y mientras no haya ninguno abierto muestra su panel de bienvenida.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Gestionar", pie: "" } },
-      { id: "codificar", t: "Codificar",
-        d: "Aloja los cuatro módulos de codificación. Los módulos se abren dentro de la pestaña, no en ventanas flotantes.",
+      { id: "codificar", t: "Codificación",
+        d: "Aloja los módulos de codificación. Los módulos se abren dentro de la pestaña, no en ventanas flotantes.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar", pie: "" } },
       { id: "informes", t: "Informes",
         d: "Aloja los módulos de reportes y visualización.",
@@ -51,150 +51,195 @@ const CURSO = {
     menus: [
       {
         id: "proyecto", nombre: "Proyecto", items: [
-          { id: "crear", t: "Crear un proyecto nuevo (Create new project)", k: "Ctrl+N",
+          { id: "crear", t: "Crear un proyecto nuevo", k: "Control+N",
+            en: "Create new project",
             d: "Pide nombre y ubicación y construye la carpeta .qda con sus subcarpetas y la base de datos vacía.",
             tip: "El nombre de la carpeta aparece en cada exportación, y las copias de seguridad se guardan junto al proyecto. Elige un sitio con espacio.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Crear un proyecto nuevo", pie: "" } },
-          { id: "abrir", t: "Abrir proyecto (Open project)", k: "Ctrl+O",
+          { id: "abrir", t: "Abrir proyecto", k: "Control+O",
+            en: "Open project",
             d: "Abre un proyecto existente. Si la opción está activa, crea una copia de seguridad al abrirlo.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Abrir proyecto", pie: "" } },
-          { id: "recientes", t: "Abrir proyecto reciente (Open recent project)",
-            d: "Submenú con hasta cinco proyectos recientes. La lista vive en la carpeta de configuración, no en el proyecto.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Abrir proyecto reciente", pie: "" } },
-          { id: "cerrar", t: "Cerrar proyecto (Close project)", k: "Alt+X",
+          { id: "recientes", t: "Abrir un proyecto reciente", sub: true,
+            en: "Open recent project",
+            d: "Submenú con los proyectos abiertos últimamente. La lista vive en la carpeta de configuración, no en el proyecto.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Abrir un proyecto reciente", pie: "" } },
+          { id: "cerrar", t: "Cerrar proyecto", k: "Alt+X",
+            en: "Close project",
             d: "Cierra los módulos abiertos, confirma los cambios pendientes y depura las copias de seguridad.",
             tip: "Cerrar antes de salir no es obligatorio pero sí buena práctica, sobre todo si el proyecto está en una carpeta sincronizada en la nube.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Cerrar proyecto", pie: "" } },
-          { id: "memo", t: "Memo del proyecto (Project memo)", k: "Ctrl+M",
+          { id: "memo", t: "Memo del proyecto", k: "Control+M",
+            en: "Project memo",
             d: "El memo general del proyecto, que viaja con él y aparece en el resumen.",
             tip: "Es el sitio para la descripción que después será tu sección de método. Qué se investiga, con qué material, quién codifica y qué decisiones de diseño se tomaron.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Memo del proyecto", pie: "" } },
-          { id: "ajustes", t: "Configuración (Settings)", k: "Alt+S",
-            d: "Ochenta y un preferencias. Idioma, tamaños de fuente, estilo de resaltado, copias de seguridad, nombre del codificador y ajustes de IA.",
+          { id: "ajustes", t: "Configuración", k: "Alt+S",
+            en: "Settings",
+            d: "Las preferencias del programa. Idioma, tamaños de fuente, estilo de resaltado, copias de seguridad, nombre del codificador y ajustes de IA.",
             tip: "Cambia el nombre del codificador antes de marcar nada. Todo lo que codifiques queda firmado, y reparar codificaciones firmadas mal cuesta mucho.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Configuración", pie: "" } },
-          { id: "resumen", t: "Resumen del proyecto (Project summary)",
-            d: "Informe de estado en el registro de acciones. Recuentos de archivos, casos, códigos y atributos, más la lista de enlaces rotos.",
+          { id: "resumen", t: "Resumen del proyecto",
+            en: "Project summary",
+            d: "Informe de estado en el registro de acciones. Recuentos de archivos, casos, códigos y atributos, más la lista de vínculos rotos.",
             tip: "Ejecútalo al retomar un proyecto viejo o al cambiar de computadora, y otra vez antes de archivarlo o entregarlo.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Resumen del proyecto", pie: "" } },
-          { id: "encuesta", t: "Importar encuesta (Import survey)",
-            d: "Importa un CSV o XLSX y crea de una pasada los casos, los atributos y un archivo de texto por cada respuesta abierta.",
+          { id: "importar", t: "Importar", sub: true,
+            en: "Import",
+            d: "Submenú de importación. De aquí cuelga la importación de encuestas desde CSV o XLSX, que crea de una pasada los casos, los atributos y un archivo de texto por respuesta.",
             tip: "Deja las preguntas cerradas como atributos y las abiertas como archivos. Así puedes comparar respuestas por perfil desde el primer día.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Importar encuesta", pie: "" } },
-          { id: "exportar", t: "Exportar (Export)",
-            d: "Exporta el proyecto completo en el estándar REFI-QDA, o solo el libro de códigos, en .qdc o en ODT legible.",
-            tip: "El libro de códigos con memos en ODT es el anexo que piden muchas revistas y comités de tesis.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Importar", pie: "" } },
+          { id: "exportar", t: "Exportar", sub: true,
+            en: "Export",
+            d: "Submenú de exportación. Permite sacar el proyecto en el estándar REFI-QDA o solo el libro de códigos.",
+            tip: "El libro de códigos con memos es el anexo que piden muchas revistas y comités de tesis.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Exportar", pie: "" } },
-          { id: "salir", t: "Salir (Exit)", k: "Ctrl+Q", d: "Cierra el programa.",
+          { id: "salir", t: "Salir", k: "Control+Q",
+            en: "Exit",
+            d: "Cierra el programa.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Salir", pie: "" } }
         ]
       },
       {
         id: "gestionar", nombre: "Gestionar", items: [
-          { id: "archivos", t: "Archivos (Files)", k: "Alt+F",
+          { id: "archivos", t: "Archivos", k: "Alt+F",
+            en: "Files",
             d: "La puerta de entrada del material. Importar, vincular, crear, renombrar y asignar atributos, con filtros por columna en la tabla.",
-            tip: "Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos enlaces se rompen al cambiar de computadora. Vincular solo tiene sentido con video pesado.",
+            tip: "Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos vínculos se rompen al cambiar de computadora. Vincular solo tiene sentido con video pesado.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Archivos", pie: "" } },
-          { id: "casos", t: "Casos (Cases)", k: "Alt+C",
+          { id: "casos", t: "Casos", k: "Alt+C",
+            en: "Cases",
             d: "Agrupa el material de una misma persona o unidad, aunque esté repartido en varios archivos o en tramos de uno solo.",
             tip: "Los casos son lo que permite decir cuántas personas dijeron algo, no cuántas veces se dijo. Sin ellos, un participante hablador se ve como una tendencia.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Casos", pie: "" } },
-          { id: "atributos", t: "Atributos (Attributes)", k: "Alt+A",
-            d: "Variables de texto o numéricas que describen archivos o casos. Edad, sexo, municipio, años cuidando.",
-            tip: "Sin atributos no hay comparación entre grupos, porque los informes no tienen con qué filtrar. Cárgalos antes de codificar en serio.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Atributos", pie: "" } },
-          { id: "diarios", t: "Diarios (Journals)", k: "Alt+J",
+          { id: "diarios", t: "Diarios", k: "Alt+J",
+            en: "Journals",
             d: "Bitácora fechada del proceso. Es el único módulo que se abre en ventana propia, así que se puede escribir mientras se codifica.",
             tip: "Un diario metodológico y otro de campo. El primero justifica tus decisiones ante un comité, el segundo guarda lo que viste y no cabía en la transcripción.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Diarios", pie: "" } },
-          { id: "referencias", t: "Referencias (References)",
+          { id: "atributos", t: "Atributos", k: "Alt+A",
+            en: "Attributes",
+            d: "Variables de texto o numéricas que describen archivos o casos. Edad, sexo, municipio, años cuidando.",
+            tip: "Sin atributos no hay comparación entre grupos, porque los informes no tienen con qué filtrar. Cárgalos antes de codificar en serio.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Atributos", pie: "" } },
+          { id: "referencias", t: "Referencias", k: "Alt+R",
+            en: "References",
             d: "Gestión bibliográfica del proyecto, con importación desde archivos RIS o desde Zotero, y vinculación de referencias a archivos.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Referencias", pie: "" } },
-          { id: "enlaces", t: "Enlaces rotos a archivos (Bad links to files)",
-            d: "Localiza los archivos vinculados que ya no están en su ruta y permite restablecerla.",
+          { id: "enlaces", t: "Vínculos rotos a archivos",
+            en: "Bad links to files",
+            d: "Localiza los archivos vinculados que ya no están en su ruta y permite restablecerla. Aparece atenuado cuando no hay ninguno roto.",
             tip: "El resumen del proyecto los detecta y este módulo los repara. Con archivos copiados en vez de vinculados el problema no existe.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Enlaces rotos a archivos", pie: "" } }
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Vínculos rotos a archivos", pie: "" } }
         ]
       },
       {
-        id: "codificar", nombre: "Codificar", items: [
-          { id: "texto", t: "Codificar texto (Code text)", k: "Alt+T",
+        id: "codificar", nombre: "Codificación", items: [
+          { id: "texto", t: "Codificar texto", k: "Alt+T",
+            en: "Code text",
             d: "El módulo central. Lista de documentos, árbol de códigos, documento con su margen de franjas de color y las teclas de trabajo.",
             tip: "Codificar aquí es cosa de teclado. Q marca, V crea un código in vivo, A anota, M abre el memo de la codificación y U desmarca.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar texto", pie: "" } },
-          { id: "pdf", t: "Codificar PDF (Code pdf)",
-            d: "Codifica sobre el PDF conservando su maquetación, trabajando a la vez con la página y con el texto extraído.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar PDF", pie: "" } },
-          { id: "imagen", t: "Codificar imagen (Code image)", k: "Alt+I",
+          { id: "imagen", t: "Codificar imagen", k: "Alt+I",
+            en: "Code image",
             d: "Asigna códigos a regiones rectangulares de una imagen. La unidad no es texto, es un área con su posición y su tamaño.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar imagen", pie: "" } },
-          { id: "av", t: "Codificar audio y video (Code audio/video)", k: "Alt+V",
+          { id: "av", t: "Codificar audio y video", k: "Alt+V",
+            en: "Code audio/video",
             d: "Codifica el medio por tiempo y su transcripción por posición, y mantiene el vínculo entre los dos.",
             tip: "Codificar sobre el audio conserva el tono, la pausa y el silencio, que la transcripción borra. Para algunos análisis eso es el dato.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar audio y video", pie: "" } },
-          { id: "ia", t: "Codificación asistida por IA (AI assisted coding)",
+          { id: "pdf", t: "Codificar PDF",
+            en: "Code pdf",
+            d: "Codifica sobre el PDF conservando su maquetación, trabajando a la vez con la página y con el texto extraído.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificar PDF", pie: "" } },
+          { id: "ia", t: "Codificación asistida por IA",
+            en: "AI assisted coding",
             d: "Búsqueda y propuesta de codificación con inteligencia artificial, sobre los códigos que ya definiste.",
             tip: "Sirve para encontrar candidatos, no para decidir. Lo que no revisaste segmento por segmento no es tuyo y no deberías defenderlo en un examen.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificación asistida por IA", pie: "" } },
-          { id: "organizador", t: "Organizador de códigos (Code organiser)",
+          { id: "organizador", t: "Organizador de códigos",
+            en: "Code organiser",
             d: "Lienzo para reordenar el sistema de códigos moviendo códigos y categorías, útil cuando el árbol creció demasiado.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Organizador de códigos", pie: "" } },
-          { id: "colores", t: "Esquema de color (Colour scheme)", k: "Alt+E",
-            d: "Asigna colores en bloque a una rama, con una paleta de 120 y simulación de distintas formas de visión cromática.",
+          { id: "colores", t: "Esquema de color", k: "Alt+E",
+            en: "Colour scheme",
+            d: "Asigna colores en bloque a una rama, con una paleta amplia y simulación de distintas formas de visión cromática.",
             tip: "Un color por familia de códigos hace que el documento codificado se lea de un vistazo. Y la simulación evita elegir una paleta que un coautor no distingue.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Esquema de color", pie: "" } }
         ]
       },
       {
         id: "analisis", nombre: "Análisis", items: [
-          { id: "recuperacion", t: "Recuperación de códigos (Code retrieval)", k: "Alt+K",
+          { id: "recuperacion", t: "Recuperación de códigos", k: "Alt+K",
+            en: "Code retrieval",
             d: "Junta todos los segmentos de los códigos que elijas, con su archivo de origen, filtrables por casos y atributos.",
             tip: "Es la prueba de fuego de un código. Si los segmentos recuperados no se parecen entre sí, el código está haciendo demasiado trabajo.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Recuperación de códigos", pie: "" } },
-          { id: "coocurrencia", t: "Co-ocurrencia de códigos (Code co-occurrence)",
+          { id: "coocurrencia", t: "Co-ocurrencia de códigos",
+            en: "Code co-occurrence",
             d: "Muestra qué códigos se solapan en el mismo material y con qué frecuencia.",
             tip: "Una co-ocurrencia alta puede ser un hallazgo o puede ser que dos códigos digan lo mismo. Mira los segmentos antes de decidir cuál de las dos.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Co-ocurrencia de códigos", pie: "" } },
-          { id: "relaciones", t: "Relaciones entre códigos (Code relations)",
+          { id: "relaciones", t: "Relaciones entre códigos", k: "Alt+Q",
+            en: "Code relations",
             d: "Analiza cómo se relacionan las codificaciones entre sí dentro de los archivos, más allá de la simple coincidencia.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Relaciones entre códigos", pie: "" } },
-          { id: "exactas", t: "Coincidencias exactas de texto (Code text exact matches)",
+          { id: "exactas", t: "Coincidencias exactas del texto codificado",
+            en: "Code text exact matches",
             d: "Encuentra segmentos idénticos codificados con varios códigos, útil para detectar codificación redundante.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Coincidencias exactas de texto", pie: "" } },
-          { id: "grafo", t: "Grafo (Graph)", k: "Alt+G",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Coincidencias exactas del texto codificado", pie: "" } },
+          { id: "segmentos", t: "Códigos por segmentos de texto",
+            en: "Codes by text segments",
+            d: "Recorre el material segmento a segmento mostrando qué códigos recibió cada tramo.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Códigos por segmentos de texto", pie: "" } },
+          { id: "grafo", t: "Grafo", k: "Alt+G",
+            en: "Graph",
             d: "Lienzo donde códigos, categorías, casos, archivos y memos se ven como nodos que puedes mover y conectar.",
             tip: "Sirve para pensar, no solo para ilustrar. Arrastrar una rama y verla junto a los casos suele mostrar relaciones que la lista de códigos esconde.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Grafo", pie: "" } }
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Grafo", pie: "" } },
+          { id: "ia_analisis", t: "Análisis asistido por IA", sub: true,
+            en: "AI assisted analysis",
+            d: "Submenú con las funciones de análisis apoyadas en inteligencia artificial.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Análisis asistido por IA", pie: "" } }
         ]
       },
       {
         id: "informes", nombre: "Informes", items: [
-          { id: "frecuencias", t: "Frecuencias de códigos (Code frequencies)", k: "Alt+N",
-            d: "Cuántas veces se aplicó cada código, en total y por codificador.",
-            tip: "La cuenta describe tu codificación, no el campo. Un código con noventa apariciones puede ser importante o puede ser que lo estés aplicando a todo.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Frecuencias de códigos", pie: "" } },
-          { id: "conteos", t: "Conteos por archivo o caso (Code counts by file/case)",
-            d: "Cómo se reparte cada código entre los archivos o entre los casos.",
-            tip: "Aquí se ve si un tema es del corpus o de una sola persona. Es el dato honesto cuando vas a escribir que algo apareció de manera recurrente.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Conteos por archivo o caso", pie: "" } },
-          { id: "resumen_codigo", t: "Resumen de códigos (Code summary)", k: "Alt+P",
-            d: "Qué hay detrás de un código concreto, con sus recuentos y su reparto.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Resumen de códigos", pie: "" } },
-          { id: "resumen_archivo", t: "Resumen de archivos (File summary)", k: "Alt+O",
-            d: "Qué hay dentro de un archivo concreto, incluido su origen, copiado o vinculado.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Resumen de archivos", pie: "" } },
-          { id: "comparacion", t: "Comparación de codificación (Coding comparison)", k: "Alt+L",
+          { id: "comparacion", t: "Comparación de codificación", k: "Alt+L",
+            en: "Coding comparison",
             d: "Compara dos codificadores código por código en todo el corpus, con porcentajes de acuerdo y kappa de Cohen.",
             tip: "El coeficiente mide, no resuelve. Cuando el acuerdo baja, lo que hay que revisar es el memo de cada código, no la fórmula.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Comparación de codificación", pie: "" } },
-          { id: "comparacion_archivo", t: "Comparación por archivo (Coding comparison by file)", k: "Alt+M",
+          { id: "comparacion_archivo", t: "Comparación de codificación por archivo", k: "Alt+M",
+            en: "Coding comparison by file",
             d: "Lo mismo dentro de un archivo concreto, con texto, imagen y audio o video.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Comparación por archivo", pie: "" } },
-          { id: "graficas", t: "Gráficas (Charts)", k: "Alt+U",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Comparación de codificación por archivo", pie: "" } },
+          { id: "conteos", t: "Recuento de códigos por archivo o caso",
+            en: "Code counts by file/case",
+            d: "Cómo se reparte cada código entre los archivos o entre los casos.",
+            tip: "Aquí se ve si un tema es del corpus o de una sola persona. Es el dato honesto cuando vas a escribir que algo apareció de manera recurrente.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Recuento de códigos por archivo o caso", pie: "" } },
+          { id: "frecuencias", t: "Frecuencias de códigos", k: "Alt+N",
+            en: "Code frequencies",
+            d: "Cuántas veces se aplicó cada código, en total y por codificador.",
+            tip: "La cuenta describe tu codificación, no el campo. Un código con noventa apariciones puede ser importante o puede ser que lo estés aplicando a todo.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Frecuencias de códigos", pie: "" } },
+          { id: "resumen_archivo", t: "Resumen de archivos", k: "Alt+O",
+            en: "File summary",
+            d: "Qué hay dentro de un archivo concreto, incluido su origen, copiado o vinculado.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Resumen de archivos", pie: "" } },
+          { id: "resumen_codigo", t: "Resumen de códigos", k: "Alt+P",
+            en: "Code summary",
+            d: "Qué hay detrás de un código concreto, con sus recuentos y su reparto.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Resumen de códigos", pie: "" } },
+          { id: "graficas", t: "Gráficos", k: "Alt+U",
+            en: "Charts",
             d: "Figuras a partir de la codificación, contando por frecuencia, por caracteres codificados o por área de imagen.",
             tip: "Elige la unidad a conciencia. Frecuencia dice cuántas veces apareció el tema, caracteres dice cuánto espacio ocupó, y no siempre coinciden.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Gráficas", pie: "" } },
-          { id: "consultas", t: "Consultas a la base de datos (Database queries)", k: "Alt+D",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Gráficos", pie: "" } },
+          { id: "consultas", t: "Consultas a la base de datos", k: "Alt+D",
+            en: "Database queries",
             d: "SQL directo sobre la base del proyecto, con consultas predefinidas y espacio para las tuyas.",
             tip: "Es la ventaja de tener el formato abierto. Cualquier conteo que el programa no ofrezca lo puedes sacar tú, sin depender de nadie.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Consultas a la base de datos", pie: "" } }
@@ -202,47 +247,66 @@ const CURSO = {
       },
       {
         id: "ia", nombre: "IA", items: [
-          { id: "asistente", t: "Asistente de configuración (Setup Wizard)",
+          { id: "agente", t: "Chat con el Agente de IA",
+            en: "Chat with the AI Agent",
+            d: "Conversación sobre el proyecto, con acceso al material y enlaces que llevan al segmento citado.",
+            tip: "Pídele que te muestre de dónde sale cada afirmación. Si no puede señalar el segmento, no lo uses en tus resultados.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Chat con el Agente de IA", pie: "" } },
+          { id: "lateral", t: "Vista lateral del Agente",
+            en: "Agent side view",
+            d: "Casilla que deja el agente abierto en un panel al costado, para consultarlo mientras trabajas.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Vista lateral del Agente", pie: "" } },
+          { id: "codificacion_ia", t: "Codificación asistida por IA",
+            en: "AI Assisted Coding",
+            d: "La misma entrada que está en el menú Codificación.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificación asistida por IA", pie: "" } },
+          { id: "prompts", t: "Biblioteca de prompts",
+            en: "Prompt library",
+            d: "Editor de los prompts analíticos que usa el programa, para adaptarlos a tu enfoque.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Biblioteca de prompts", pie: "" } },
+          { id: "preparacion", t: "Comprobar la preparación del proyecto para la IA",
+            en: "Check project readiness for AI",
+            d: "Revisa si el proyecto cumple las condiciones para usar las funciones de inteligencia artificial.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Comprobar la preparación del proyecto para la IA", pie: "" } },
+          { id: "asistente", t: "Asistente de configuración",
+            en: "Setup Wizard",
             d: "Guía la configuración inicial de la IA y la activa. Sin este paso el resto del menú aparece inactivo.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Asistente de configuración", pie: "" } },
-          { id: "ajustes_ia", t: "Configuración (Settings)",
+          { id: "ajustes_ia", t: "Configuración",
+            en: "Settings",
             d: "Abre las preferencias en la sección de IA, con el proveedor, el modelo y las claves.",
             tip: "Revisa a dónde viajan tus datos antes de activar nada. Con material sensible, un modelo local evita mandar entrevistas a un servidor ajeno.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Configuración", pie: "" } },
-          { id: "memoria", t: "Reconstruir la memoria interna (Rebuild internal memory)",
+          { id: "memoria", t: "Reconstruir la memoria interna",
+            en: "Rebuild internal memory",
             d: "Vuelve a leer todos los documentos del proyecto para rehacer el índice de búsqueda semántica.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Reconstruir la memoria interna", pie: "" } },
-          { id: "prompts", t: "Biblioteca de prompts (Prompt library)",
-            d: "Editor de los prompts analíticos que usa el programa, para adaptarlos a tu enfoque.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Biblioteca de prompts", pie: "" } },
-          { id: "agente", t: "Agente de IA (AI Agent)",
-            d: "Conversación sobre el proyecto, con acceso al material y enlaces que llevan al segmento citado.",
-            tip: "Pídele que te muestre de dónde sale cada afirmación. Si no puede señalar el segmento, no lo uses en tus resultados.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Agente de IA", pie: "" } },
-          { id: "codificacion_ia", t: "Codificación asistida por IA (AI Assisted Coding)",
-            d: "La misma entrada que está en el menú Codificar.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Codificación asistida por IA", pie: "" } }
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Reconstruir la memoria interna", pie: "" } }
         ]
       },
       {
         id: "ayuda", nombre: "Ayuda", items: [
-          { id: "contenido", t: "Contenido (Contents)", k: "Alt+H",
+          { id: "contenido", t: "Contenido", k: "Alt+H",
+            en: "Contents",
             d: "Abre la documentación en el navegador. Es en línea, así que requiere conexión.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Contenido", pie: "" } },
-          { id: "atajos", t: "Atajos de teclado (Keyboard shortcuts)",
-            d: "Vuelca la lista completa de atajos en el registro de acciones.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Atajos de teclado", pie: "" } },
-          { id: "preguntar", t: "Preguntar al agente de IA (Ask the AI Agent)",
+          { id: "preguntar", t: "Preguntar al Agente de IA",
+            en: "Ask the AI Agent",
             d: "El agente, orientado a preguntas sobre el uso del propio programa.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Preguntar al agente de IA", pie: "" } },
-          { id: "especiales", t: "Funciones especiales (Special functions)", k: "Alt+Z",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Preguntar al Agente de IA", pie: "" } },
+          { id: "acerca", t: "Acerca de", k: "Alt+Y",
+            en: "About",
+            d: "Versión, autoría y licencia.",
+            tip: "Ahí está la cita del software. Citar el programa de análisis es parte de la descripción del método, igual que citar el paquete estadístico.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Acerca de", pie: "" } },
+          { id: "especiales", t: "Funciones especiales", k: "Alt+Z",
+            en: "Special functions",
             d: "Fusionar dos proyectos, sustituir el texto de un archivo conservando sus codificaciones y desplazar posiciones de codificación.",
             tip: "Son operaciones sin marcha atrás y las copias automáticas rotan. Copia la carpeta del proyecto a mano antes de entrar aquí.",
             img: { src: "assets/img/ejemplo.png", titulo: "Captura de Funciones especiales", pie: "" } },
-          { id: "acerca", t: "Acerca de (About)", k: "Alt+Y",
-            d: "Versión, autoría y licencia.",
-            tip: "Ahí está la cita del software. Citar el programa de análisis es parte de la descripción del método, igual que citar el paquete estadístico.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Acerca de", pie: "" } }
+          { id: "atajos", t: "Atajos de teclado",
+            en: "Keyboard shortcuts",
+            d: "Vuelca la lista completa de atajos en el registro de acciones.",
+            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Atajos de teclado", pie: "" } }
         ]
       }
     ],
@@ -518,10 +582,10 @@ const CURSO = {
       lectura: `
         <p>Un proyecto de QualCoder es una carpeta terminada en <code>.qda</code>. Dentro viven la base de datos
         y las copias de los archivos. Se mueve completa, se respalda completa y se comparte completa.</p>
-        <p>Antes de codificar hay que pasar por Configuración (Settings) y cambiar el nombre del codificador,
+        <p>Antes de codificar hay que pasar por Configuración y cambiar el nombre del codificador,
         que por defecto es <code>default</code>. Todo lo que marques queda firmado con ese nombre, y reparar
         codificaciones firmadas mal cuesta caro.</p>
-        <p>El material entra por Gestionar (Manage) y sus módulos. Archivos para textos, PDF, imágenes y medios,
+        <p>El material entra por el menú Gestionar y sus módulos. Archivos para textos, PDF, imágenes y medios,
         y una entrada aparte en el menú Proyecto para importar encuestas desde CSV o XLSX.</p>
       `,
       ejercicios: [
@@ -537,8 +601,8 @@ const CURSO = {
         /* 3.2 */ {
           tipo: "dialogo",
           xp: 15,
-          instruccion: "Se abrió Configuración (Settings). Déjala lista para trabajar en español y con tu firma.",
-          titulo: "Configuración (Settings)",
+          instruccion: "Se abrió Configuración. Déjala lista para trabajar en español y con tu firma.",
+          titulo: "Configuración",
           campos: [
             { id: "idioma", etiqueta: "Idioma de la interfaz", tipo: "select", opciones: ["English", "Español", "Français", "Deutsch"], correcto: "Español" },
             { id: "coder", etiqueta: "Nombre del codificador", tipo: "texto", marcador: "Escribe un nombre", correcto: "cualquiera" },
@@ -563,7 +627,7 @@ const CURSO = {
           objetivo: "Generar el resumen del proyecto",
           ruta: ["proyecto", "resumen"],
           pista: "Es una entrada del menú Proyecto y su resultado sale en el registro de acciones.",
-          dice: "El resumen lista recuentos de archivos, casos, códigos y atributos, y destaca los enlaces rotos. Conviene ejecutarlo al retomar un proyecto viejo."
+          dice: "El resumen lista recuentos de archivos, casos, códigos y atributos, y destaca los vínculos rotos. Conviene ejecutarlo al retomar un proyecto viejo."
         },
         /* 3.5 */ {
           tipo: "secuencia",
@@ -636,9 +700,9 @@ const CURSO = {
           xp: 15,
           instruccion: "Te llegó una encuesta en CSV con tres preguntas abiertas y ocho variables de perfil. Métela al proyecto.",
           objetivo: "Importar una encuesta",
-          ruta: ["proyecto", "encuesta"],
-          pista: "No está en Gestionar, la importación de encuestas cuelga del menú Proyecto.",
-          dice: "La importación crea los casos, los atributos y un archivo de texto por respuesta, todo de una pasada."
+          ruta: ["proyecto", "importar"],
+          pista: "No está en Gestionar. La importación cuelga del menú Proyecto, en un submenú.",
+          dice: "Dentro de ese submenú está la importación de encuestas, que crea los casos, los atributos y un archivo de texto por respuesta, todo de una pasada."
         },
         /* 4.4 */ {
           tipo: "parejas",
@@ -692,7 +756,7 @@ const CURSO = {
         { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Un segmento marcado, con su franja de color en el margen", pie: "" }
       ],
       lectura: `
-        <p>Codificar texto (Code text) es el módulo central. A la izquierda están las pestañas Documentos y
+        <p>Codificar texto es el módulo central. A la izquierda están las pestañas Documentos y
         Asistencia de IA con la lista de archivos, y debajo el árbol de códigos. Al centro el documento con su
         margen de franjas de color, donde se ve qué código toca cada tramo.</p>
         <p>Codificar aquí es una operación de teclado. Se selecciona el texto, se elige el código en el árbol y
@@ -807,7 +871,7 @@ const CURSO = {
         segmento concreto.</p>
         <p>El código in vivo crea una etiqueta con las palabras exactas del texto seleccionado. Sirve cuando la
         expresión dice algo que el vocabulario académico aplana, y estorba cuando se abusa.</p>
-        <p>El diario (Journal) es el único módulo que se abre en ventana aparte. Ahí va la bitácora fechada del
+        <p>El módulo de diarios es el único que se abre en ventana aparte. Ahí va la bitácora fechada del
         proceso, que después es tu apartado de método.</p>
       `,
       ejercicios: [
@@ -978,7 +1042,7 @@ const CURSO = {
       insignia: { nombre: "Lupa", icono: "◎" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Recuperación de códigos, frecuencias y gráficas" },
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Recuperación de códigos, frecuencias y gráficos" },
         { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La recuperación con segmentos y su archivo de origen", pie: "" },
         { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La tabla de frecuencias por código y codificador", pie: "" },
         { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Una gráfica de barras por categoría", pie: "" }
@@ -989,7 +1053,7 @@ const CURSO = {
         estaba metiendo cosas distintas en la misma bolsa.</p>
         <p>Las salidas están repartidas en dos menús. En Análisis viven la recuperación, las co-ocurrencias, las
         relaciones y el grafo. En Informes viven las frecuencias, los conteos por archivo o caso, los resúmenes,
-        las comparaciones entre codificadores, las gráficas y las consultas a la base de datos.</p>
+        las comparaciones entre codificadores, los gráficos y las consultas a la base de datos.</p>
         <p>Cuidado con la frecuencia. Un código con noventa apariciones puede ser importante o puede ser que lo
         estés aplicando a todo. La cuenta describe tu codificación, no la realidad del campo.</p>
       `,
@@ -1030,10 +1094,10 @@ const CURSO = {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Necesitas una figura para el artículo con el peso de cada categoría.",
-          objetivo: "Abrir las gráficas",
+          objetivo: "Abrir los gráficos",
           ruta: ["informes", "graficas"],
           pista: "Está en Informes, con atajo Alt+U.",
-          dice: "Las gráficas cuentan por frecuencia, por caracteres codificados o por área de imagen, y no es lo mismo. Elige la unidad según lo que quieras mostrar."
+          dice: "Los gráficos cuentan por frecuencia, por caracteres codificados o por área de imagen, y no es lo mismo. Elige la unidad según lo que quieras mostrar."
         },
         /* 8.5 */ {
           tipo: "quiz",
@@ -1071,7 +1135,7 @@ const CURSO = {
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
         { tipo: "video", id: "p2pWR1IrKbg", titulo: "Comparación entre codificadores y funciones especiales" },
         { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La tabla de acuerdo con los porcentajes y la kappa", pie: "" },
-        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El módulo de enlaces rotos", pie: "" }
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El módulo de vínculos rotos a archivos", pie: "" }
       ],
       lectura: `
         <p>Si codifican varias personas, cada una tiene que trabajar con su propio nombre de codificador puesto
@@ -1097,9 +1161,9 @@ const CURSO = {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Cambiaste el proyecto de computadora y varios archivos vinculados ya no abren.",
-          objetivo: "Reparar los enlaces rotos",
+          objetivo: "Abrir los vínculos rotos a archivos",
           ruta: ["gestionar", "enlaces"],
-          pista: "Los archivos vinculados se gestionan donde se gestionan los archivos.",
+          pista: "Los archivos vinculados se gestionan en el menú Gestionar, en la última entrada.",
           dice: "El resumen del proyecto los detecta y este módulo los repara. Con archivos copiados en vez de vinculados el problema no existe."
         },
         /* 9.3 */ {
@@ -1131,7 +1195,7 @@ const CURSO = {
             { a: "Dos códigos dicen lo mismo", b: "Fusionar el código en otro" },
             { a: "El nombre confunde a quien lee", b: "Renombrar y actualizar su memo" },
             { a: "Los códigos sueltos no se entienden juntos", b: "Crear categorías y mover los códigos" },
-            { a: "Un archivo vinculado ya no abre", b: "Reparar enlaces rotos" },
+            { a: "Un archivo vinculado ya no abre", b: "Abrir vínculos rotos a archivos" },
             { a: "Hay que unir el proyecto de dos personas", b: "Funciones especiales, fusionar proyectos" }
           ]
         }

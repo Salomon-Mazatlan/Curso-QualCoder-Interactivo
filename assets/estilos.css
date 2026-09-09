@@ -206,6 +206,7 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .qc-item{background:none;border:0;text-align:left;padding:6px 14px;font-size:.85rem;display:flex;justify-content:space-between;gap:24px;align-items:baseline}
 .qc-item:hover{background:#DCEAF6}
 .qc-tecla{font-size:.72rem;color:var(--tinta-media);white-space:nowrap}
+.qc-sub{font-size:.85rem}
 
 .qc-pestanas-principales{display:flex;gap:3px;padding:6px 8px 0;background:#F7F9FA;border-bottom:1px solid #D4DDE4;overflow-x:auto}
 .qc-pestana-p{
@@ -323,7 +324,8 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .ficha-cabeza{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
 .ficha-ruta{font-size:.76rem;color:var(--tinta-media)}
 .ficha-tecla{font-size:.72rem;color:var(--tinta-media);background:var(--alto);border:1px solid var(--linea);padding:1px 6px;border-radius:3px}
-.ficha h4{margin:4px 0 8px;font-size:1rem;line-height:1.2}
+.ficha h4{margin:4px 0 2px;font-size:1rem;line-height:1.2}
+.ficha-en{margin:0 0 8px;font-size:.76rem;color:var(--tinta-media);font-style:italic}
 .ficha-que{margin:0;line-height:1.45;font-size:.88rem}
 .ficha-tip{margin-top:12px;border-top:1px solid var(--linea);padding-top:10px}
 .ficha-tip h5{margin:0 0 5px;font-size:.74rem;color:var(--tinta-media);font-weight:600}

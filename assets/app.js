@@ -551,6 +551,7 @@ function ventanaQC(opciones) {
       const b = crear("button", "qc-item");
       b.appendChild(crear("span", null, item.t));
       if (item.k) b.appendChild(crear("span", "qc-tecla", item.k));
+      else if (item.sub) b.appendChild(crear("span", "qc-tecla qc-sub", "▸"));
       b.addEventListener("click", ev => { ev.stopPropagation(); alClic(item); });
       capa.appendChild(b);
     });
@@ -722,6 +723,7 @@ function montarExplorar(zona, ej, api) {
     if (item.k) cab.appendChild(crear("span", "ficha-tecla", item.k));
     ficha.appendChild(cab);
     ficha.appendChild(crear("h4", null, item.t.split(" (")[0]));
+    if (item.en) ficha.appendChild(crear("p", "ficha-en", "En inglés, " + item.en));
     ficha.appendChild(crear("p", "ficha-que", item.d || "Sin descripción todavía."));
     if (item.tip) {
       const nota = crear("div", "ficha-tip");
