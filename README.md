@@ -214,14 +214,11 @@ opcional.
 ## Cómo citar este curso
 
 Salomón Cárdenas, L. (2026). Introducción al análisis de datos cualitativos con QualCoder [Curso en línea].
-SoftCualitativo. https://salomon-mazatlan.github.io/Curso-QualCoder/
+SoftCualitativo. https://salomon-mazatlan.github.io/Curso-QualCoder-Interactivo
 
-En el texto se cita como (Salomón Cárdenas, 2026). Ajusta el título, el año y la dirección a los de la
-versión que publiques.
+En el texto se cita como (Salomón Cárdenas, 2026). 
 
-## Independencia del curso
-
-Este curso es un material de formación independiente del proyecto QualCoder. Las recomendaciones y las
+> Este curso es un material de formación independiente del proyecto QualCoder. Las recomendaciones y las
 opiniones que aparecen en el presente curso son a título personal y no representan la posición del equipo de
 desarrollo ni del proyecto.
 
@@ -232,8 +229,7 @@ GitHub. https://github.com/ccbogel/QualCoder/releases/tag/4.0
 
 En el texto se cita como (Curtain et al., 2026). Ajusta el año y el número de versión a los de tu
 instalación. QualCoder es software libre desarrollado por Colin Curtain junto con Kai Dröge, Justin
-Missaghieh-Poncet, Lorenzo Salomón y su comunidad de colaboradores, independiente de este material de
-formación.
+Missaghieh-Poncet, Lorenzo Salomón y su comunidad de colaboradores.
 
 ## La constancia
 
