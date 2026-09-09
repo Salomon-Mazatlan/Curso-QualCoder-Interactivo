@@ -213,7 +213,7 @@ opcional.
 
 ## Cómo citar este curso
 
-Salomón Cárdenas, L. (2026). Introducción al análisis de datos cualitativos con QualCoder [Curso en línea].
+Salomón Cárdenas, L. (2026). Curso QualCoder Interactivo [Curso en línea].
 SoftCualitativo. https://salomon-mazatlan.github.io/Curso-QualCoder-Interactivo
 
 En el texto se cita como (Salomón Cárdenas, 2026). 
