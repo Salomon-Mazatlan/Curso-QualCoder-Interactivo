@@ -386,7 +386,7 @@ const CURSO = {
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
         { tipo: "video", id: "p2pWR1IrKbg", titulo: "Descarga e instalación paso a paso" },
-        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "La página de versiones con los archivos de cada sistema", pie: "" },
+        { tipo: "imagen", src: "assets/img/1_Repositorio_oficial.png", titulo: "Repositorio Oficial de QualCoder y sección de Releases (versiones)", pie: "" },
         { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "El aviso de desarrollador no identificado y cómo autorizarlo", pie: "" },
         { tipo: "imagen", src: "assets/img/1_Acerca_de.png", titulo: "La ventana Acerca de con el número de versión", pie: "" }
       ],
