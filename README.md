@@ -1,4 +1,4 @@
-# Curso QualCoder Interactivo
+# Curso QualCoder (Interactivo)
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.
 Está armado como un juego. Diez misiones en orden de trabajo real, cincuenta y dos actividades, estrellas según los errores,
@@ -6,6 +6,18 @@ insignias, rangos y una constancia al final. La mitad de las actividades se prac
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
 codificar texto. Son archivos estáticos, sin frameworks ni compilación, y se publica tal cual en GitHub
 Pages.
+
+> **Curso gratuito, con donativos voluntarios**.
+> 
+> Esta iniciativa es una propuesta de democratización del conocimiento. Las herramientas y la
+> formación en análisis de datos cualitativos deben estar al alcance de todas y todos, así que
+> el curso es gratuito y se mantiene con donativos voluntarios, nunca obligatorios.
+> - Gastos médicos personales | Personal medical expenses, https://gofund.me/5c133cc99
+> - Asistencia humanitaria a migrantes y personas desplazadas | Humanitarian assistance for
+  migrants and displaced persons, https://www.paypal.com/paypalme/lorenzosalomon
+> - Perfil de recaudación, https://www.gofundme.com/u/lorenzo-salomon-cardenas
+> 
+> Tu participación en el curso ya es una forma valiosa de contribuir.
 
 ## Descripción del curso
 
@@ -15,7 +27,7 @@ La mayoría de los tutoriales de software cualitativo enseñan a apretar botones
 y practica los botones mientras tanto. Cada misión combina una lección breve, un video opcional y varias
 actividades donde hay que tomar la decisión analítica y ejecutarla en el simulador.
 
-El simulador reproduce la ventana de QualCoder 4 tal como es, con la estructura de menús del manual de
+El simulador reproduce la ventana de QualCoder 4.0 (Beta) tal como es, con la estructura de menús del manual de
 usuario. Proyecto, Gestionar, Codificar, Análisis, Informes, IA y Ayuda, con sus entradas y sus atajos, las
 cinco pestañas de la ventana principal, el menú contextual del árbol de códigos y el módulo de codificar
 texto con su lista de documentos, su nombre de codificador, su margen de franjas de color y sus teclas de
