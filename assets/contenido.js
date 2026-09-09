@@ -412,11 +412,11 @@ const CURSO = {
           xp: 10,
           pregunta: "Vas a instalarlo en tu computadora de trabajo para empezar la tesis. ¿Qué camino eliges?",
           opciones: [
-            { t: "El paquete precompilado de la página de versiones", ok: true, dice: "Es la opción recomendada. Se descarga, se ejecuta y ya, sin línea de comandos." },
-            { t: "El código fuente, para tener la versión de desarrollo", ok: false, dice: "Requiere Python, línea de comandos y entornos virtuales. Tiene sentido si vas a contribuir o si tu sistema no tiene paquete, no para empezar una tesis." },
-            { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en la página de versiones del proyecto." }
+            { t: "El paquete precompilado de la página de versiones (Releases)", ok: true, dice: "Es la opción recomendada. Se descarga, se ejecuta y listo, sin líneas de comandos." },
+            { t: "El código fuente, para tener la versión de desarrollo", ok: false, dice: "Requiere Python, línea de comandos y entornos virtuales. Tiene sentido si vas a contribuir o probar la versión en desarrollo." },
+            { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en el repositorio oficial de QualCoder." }
           ],
-          consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel. Bajar el paquete que no toca es el tropiezo más común.",
+          consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel.",
           consejoImagen: { src: "assets/img/1_1_Sistema.png", titulo: "Verificar Sistema en Windows", pie: "" }
         },
         /* 1.2 */ {
