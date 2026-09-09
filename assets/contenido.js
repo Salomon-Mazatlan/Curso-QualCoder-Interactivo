@@ -2,7 +2,7 @@
 // Activity types: quiz, parejas, secuencia, codificar, clasificar, abierta, interfaz, dialogo.
 
 const CURSO = {
-  titulo: "Codificar en QualCoder 4",
+  titulo: "Introducción a QualCoder 4.0 (Beta)",
   subtitulo: "Diez misiones de práctica",
   duracion: "entre dos y tres horas y media",
   huecosVisibles: true, // pon false al publicar para ocultar los recuadros de captura vacíos
