@@ -1,6 +1,7 @@
 /* Codificar en QualCoder 4 - game styles */
 
 :root{
+  --magenta:#D6006E;
   --papel:#EEF2F5;
   --alto:#FFFFFF;
   --tinta:#132339;
@@ -183,7 +184,13 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 }
 .qc-listo{border-color:var(--verde);box-shadow:0 0 0 2px rgba(95,160,90,.28)}
 .qc-titulo{background:#E3E9EE;padding:6px 10px;font-size:.82rem;display:flex;align-items:center;gap:9px;border-bottom:1px solid #C0CCD6}
-.qc-icono{background:var(--turquesa);color:#fff;font-size:.62rem;font-weight:700;padding:2px 4px;border-radius:3px;letter-spacing:.5px}
+.qc-icono{
+  display:inline-flex;align-items:center;justify-content:center;gap:0;
+  background:#fff;border:1.5px solid var(--magenta);border-radius:3px;
+  font-size:.66rem;font-weight:700;padding:2px 4px;letter-spacing:.5px;line-height:1;
+}
+.qc-icono-q{color:#101010}
+.qc-icono-c{color:var(--magenta)}
 .qc-nombre{flex:1}
 .qc-controles{color:#8A9AA8;letter-spacing:3px;font-size:.72rem}
 
@@ -434,3 +441,21 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .repaso-consejo{margin-top:14px;background:#EEF4F5;border-radius:var(--radio);padding:12px 14px}
 .repaso-consejo h5{margin:0 0 5px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--turquesa)}
 .repaso-consejo p{margin:0;font-family:var(--serif);font-size:.95rem;line-height:1.5}
+
+/* ---------- step by step reminder ---------- */
+
+.instructivo{margin:2px 0 8px}
+.instructivo-btn{
+  background:none;border:0;padding:0;font-size:.85rem;color:var(--turquesa);text-decoration:underline;
+}
+.instructivo-btn:hover{color:var(--tinta)}
+.instructivo-lista{
+  margin:10px 0 0;padding:12px 16px 12px 32px;background:var(--papel);
+  border:1px solid var(--linea);border-radius:var(--radio);display:grid;gap:6px;
+}
+.instructivo-lista li{font-size:.9rem;line-height:1.4}
+
+.medio-suelto{margin-top:12px}
+.ficha .medio-suelto .medio-vacio{min-height:78px;padding:12px}
+.explorador .accion{justify-self:start}
+.ficha-cuenta{margin:0 0 10px;font-size:.78rem;color:var(--tinta-media);font-weight:600}

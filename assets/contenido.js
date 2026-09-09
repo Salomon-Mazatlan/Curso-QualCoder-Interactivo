@@ -5,6 +5,7 @@ const CURSO = {
   titulo: "Codificar en QualCoder 4",
   subtitulo: "Diez misiones de práctica",
   duracion: "entre dos y tres horas y media",
+  huecosVisibles: true, // pon false al publicar para ocultar los recuadros de captura vacíos
 
   // Code colors used by the coding activities.
   paleta: {
@@ -302,37 +303,6 @@ const CURSO = {
           consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel. Bajar el paquete que no toca es el tropiezo más común."
         },
         /* 1.2 */ {
-          tipo: "clasificar",
-          xp: 20,
-          instruccion: "Toca cada archivo y mándalo al sistema al que corresponde.",
-          categorias: [
-            { id: "win", nombre: "Windows" },
-            { id: "mac", nombre: "macOS" },
-            { id: "lin", nombre: "Linux" }
-          ],
-          items: [
-            { t: "Archivo ejecutable o instalador", cat: "win" },
-            { t: "Paquete para arquitectura arm64", cat: "mac" },
-            { t: "Paquete para arquitectura x86_64", cat: "mac" },
-            { t: "Código fuente e instrucciones para Debian, Fedora o Arch", cat: "lin" },
-            { t: "Se arrastra a la carpeta Aplicaciones", cat: "mac" },
-            { t: "El primer arranque tarda unos veinte segundos", cat: "win" }
-          ]
-        },
-        /* 1.3 */ {
-          tipo: "secuencia",
-          xp: 15,
-          instruccion: "Tu colega usa Linux y no hay paquete para su sistema. Ordena los pasos de la instalación desde el código fuente.",
-          pasos: [
-            "Instalar Python en una versión reciente",
-            "Descargar el código del proyecto",
-            "Descomprimirlo en una carpeta",
-            "Abrir la línea de comandos y situarse en esa carpeta",
-            "Crear un entorno virtual e instalar las dependencias",
-            "Entrar en la subcarpeta del código y ejecutar el programa"
-          ]
-        },
-        /* 1.4 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada pieza externa con lo que aporta.",
@@ -344,7 +314,7 @@ const CURSO = {
             { a: "Entorno virtual", b: "Aísla las bibliotecas del programa de las del resto del sistema" }
           ]
         },
-        /* 1.5 */ {
+        /* 1.3 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Al abrirlo, el sistema avisa de que el programa procede de un desarrollador no identificado. ¿Qué significa?",
@@ -353,9 +323,10 @@ const CURSO = {
             { t: "Que el archivo se descargó dañado", ok: false, dice: "No. El aviso aparece siempre, incluso con la descarga íntegra." },
             { t: "Que el programa trae software malicioso", ok: false, dice: "El aviso solo dice que nadie pagó por firmar el paquete. Si te incomoda, el código es abierto y se puede instalar desde la fuente." }
           ],
-          consejo: "Descarga siempre desde la página de versiones del repositorio oficial. Cuando el archivo viene de otro sitio, el aviso del sistema sí merece que te detengas."
+          consejo: "Descarga siempre desde la página de versiones del repositorio oficial. Cuando el archivo viene de otro sitio, el aviso del sistema sí merece que te detengas.",
+          consejoImagen: { src: "", titulo: "El aviso del sistema y el botón para autorizar la ejecución", pie: "" }
         },
-        /* 1.6 */ {
+        /* 1.4 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Instalaste todo y el audio de las entrevistas no se reproduce. ¿Por dónde empiezas?",
@@ -366,7 +337,14 @@ const CURSO = {
           ],
           consejo: "Si VLC ya está instalado y aun así no suena, revisa que su arquitectura coincida con la del programa. Mezclar versiones de 32 y 64 bits es una causa habitual."
         },
-        /* 1.7 */ {
+        /* 1.5 */ {
+          tipo: "explorar",
+          xp: 20,
+          instruccion: "Antes de tocar nada en serio, recorre el programa. Toca las entradas de los menús y las pestañas que quieras, y lee a la derecha qué hace cada una.",
+          objetivo: "Recorrer la barra de menús",
+          dice: "Ya sabes dónde vive cada cosa. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados."
+        },
+        /* 1.6 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Ya lo tienes abierto. Comprueba qué versión instalaste, que es el dato que hay que citar en cualquier publicación.",
@@ -425,14 +403,6 @@ const CURSO = {
           consejo: "Cuando dudes entre dos nombres para un código, escribe primero su memo. Si al definirlo te salen dos definiciones, es que hacían falta dos códigos."
         },
         /* 2.2 */ {
-          tipo: "explorar",
-          xp: 20,
-          meta: 8,
-          instruccion: "Antes de tocar nada en serio, recorre el programa. Toca las entradas de los menús y las pestañas que quieras, y lee a la derecha qué hace cada una.",
-          objetivo: "Recorrer la barra de menús",
-          dice: "Con eso ya sabes dónde vive cada cosa. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados."
-        },
-        /* 2.3 */ {
           tipo: "interfaz",
           xp: 10,
           instruccion: "Ya con el mapa en la cabeza. Abre la pestaña donde el programa deja sus mensajes, los avisos de respaldo y los resultados de algunos informes.",
@@ -441,7 +411,7 @@ const CURSO = {
           pista: "Es la primera de las cinco pestañas de la ventana principal.",
           dice: "Conviene mirarla después de abrir el proyecto y después de cualquier operación grande. Varios avisos aparecen ahí y en ningún otro lado."
         },
-        /* 2.4 */ {
+        /* 2.3 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada pieza con lo que hace. Toca una tarjeta de la izquierda y luego su definición.",
@@ -450,10 +420,11 @@ const CURSO = {
             { a: "Categoría", b: "Agrupa códigos que comparten un sentido" },
             { a: "Segmento", b: "El trozo de texto marcado dentro del archivo" },
             { a: "Memo", b: "Registro de por qué tomaste una decisión analítica" },
-            { a: "Anotación", b: "Nota sobre un punto del texto, sin asignar código" }
+            { a: "Anotación", b: "Nota sobre un punto del texto, sin asignar código" },
+            { a: "Subcódigo", b: "Código que cuelga de otro código y nombra un matiz suyo" }
           ]
         },
-        /* 2.5 */ {
+        /* 2.4 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "¿Cuándo conviene crear una categoría?",
