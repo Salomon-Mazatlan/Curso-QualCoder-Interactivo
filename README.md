@@ -1,9 +1,11 @@
 # Codificar en QualCoder 4
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.
-Está armado como un juego. Nueve misiones, tres vidas por misión, estrellas según los errores, insignias,
-rangos y una constancia al final. Son archivos estáticos, sin frameworks ni compilación, y se publica tal
-cual en GitHub Pages.
+Está armado como un juego. Nueve misiones, cuarenta y cuatro actividades, estrellas según los errores,
+insignias, rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
+ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
+codificar texto. Son archivos estáticos, sin frameworks ni compilación, y se publica tal cual en GitHub
+Pages.
 
 ## Descripción del curso
 
@@ -11,8 +13,13 @@ cual en GitHub Pages.
 
 La mayoría de los tutoriales de software cualitativo enseñan a apretar botones. Este curso enseña a decidir
 y practica los botones mientras tanto. Cada misión combina una lección breve, un video opcional y varias
-actividades donde hay que tomar la decisión analítica y ejecutarla en un simulador de la interfaz de
-QualCoder que reproduce sus menús, su panel de códigos y sus ventanas de configuración.
+actividades donde hay que tomar la decisión analítica y ejecutarla en el simulador.
+
+El simulador reproduce la ventana de QualCoder 4 tal como es, con la estructura de menús del manual de
+usuario. Proyecto, Gestionar, Codificar, Análisis, Informes, IA y Ayuda, con sus entradas y sus atajos, las
+cinco pestañas de la ventana principal, el menú contextual del árbol de códigos y el módulo de codificar
+texto con su lista de documentos, su nombre de codificador, su margen de franjas de color y sus teclas de
+trabajo, Q para marcar, V para el código in vivo, A para anotar, U para desmarcar.
 
 ### A quién va dirigido
 
@@ -31,30 +38,33 @@ aporta y cuándo estorba, y por qué la frecuencia describe la codificación y n
 
 ### Cómo funciona el juego
 
-Cada misión empieza con la lección y sigue con sus actividades, una a la vez. Se entra con tres vidas y cada
-error cuesta una. Terminar sin fallar da tres estrellas y el XP completo, fallar una vez da dos estrellas y
-la mitad del XP, y quedarse sin vidas manda a la pantalla de reintento sin perder lo ya resuelto. Tres
-aciertos seguidos dan un bono de racha. Las misiones se abren en orden y cada una entrega su insignia. El XP
-acumulado sube de rango, de Aprendiz de campo a Oficio de campo. Todo el avance se guarda en el navegador de
-quien juega, sin cuentas ni servidor.
+Cada misión empieza con la lección y sigue con sus actividades, una a la vez. Resolver a la primera da tres
+estrellas y el XP completo, fallar una vez da dos estrellas y la mitad del XP, y a partir de ahí una
+estrella. Los errores no expulsan de la misión, solo explican qué pasó y dejan seguir intentando. Debajo de
+cada actividad hay dos salidas, reiniciar la lección desde el principio o saltar esa actividad, que entonces
+queda sin XP y se puede recuperar después repasando la misión.
+
+Tres aciertos seguidos dan un bono de racha. Las misiones se abren en orden y cada una entrega su insignia.
+El XP acumulado sube de rango, de Aprendiz de campo a Oficio de campo. Todo el avance se guarda en el
+navegador de quien juega, sin cuentas ni servidor.
 
 ### Las nueve misiones
 
-| Misión | Tema | Actividades |
+| Misión | Tema | Qué se practica |
 | --- | --- | --- |
-| 1 | Qué es codificar | Decisiones y parejas de conceptos |
-| 2 | Abrir el proyecto | Crear proyecto en el simulador, ventana de Ajustes, importar archivos, orden de arranque |
-| 3 | Tu primer código | Abrir Codificar texto, ventana de código nuevo, marcar dos segmentos |
-| 4 | En vivo, memos y diario | Código en vivo, redacción de un memo, abrir el diario |
-| 5 | Ordenar el sistema | Armar categorías, fusionar códigos desde el menú contextual |
-| 6 | Casos y atributos | Gestión de casos, gestión de atributos, vocabulario del proyecto |
-| 7 | Recuperar y mirar | Informes de codificación, configurar el informe, frecuencia de códigos |
-| 8 | Trabajo en equipo | Comparación entre codificadores, depuración, respaldo y traslado del proyecto |
-| 9 | Prueba de campo | Entrevista nueva de principio a fin y entrada de diario |
+| 1 | Qué es codificar | Vocabulario básico y la pestaña de registro de acciones |
+| 2 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
+| 3 | Codificar texto | Abrir el módulo, crear un código desde el árbol, marcar dos segmentos con Q |
+| 4 | En vivo, anotar y memos | Código in vivo con V, anotación con A, memo del código, diarios |
+| 5 | El árbol de códigos | Categorías, fusionar un código en otro, mover un código a una categoría |
+| 6 | Casos y atributos | Gestión de casos, de atributos e importación de encuestas |
+| 7 | Recuperar y mirar | Recuperación de códigos, configurar la salida, frecuencias y gráficas |
+| 8 | Equipo y mantenimiento | Comparación de codificación, enlaces rotos, funciones especiales |
+| 9 | Prueba de campo | Entrevista nueva de principio a fin, recuperación y entrada de diario |
 
 ### Duración
 
-Entre hora y media y dos horas y media, según cuánto se detenga cada quien en las actividades de escritura.
+Entre dos y tres horas, según cuánto se detenga cada quien en las actividades de escritura.
 Se puede dejar a medias y retomar, el avance queda guardado.
 
 ### Material de práctica
@@ -112,25 +122,29 @@ Los ocho tipos de actividad disponibles.
 | `quiz` | Opción múltiple con retroalimentación por opción | `pregunta`, `opciones` con `t`, `ok`, `dice` |
 | `parejas` | Une concepto con definición | `pares` con `a` y `b` |
 | `secuencia` | Ordena pasos tocándolos en orden | `pasos` |
-| `codificar` | Marca fragmentos de una entrevista y aplica un código | `texto`, `codigos`, `solucion` |
 | `clasificar` | Acomoda códigos en categorías | `categorias`, `items` |
 | `abierta` | Escritura libre con respuesta modelo y autoevaluación | `guia`, `modelo` |
 | `interfaz` | Simulador de QualCoder, hay que llegar a la función correcta | `objetivo`, `ruta`, `dice` |
+| `codificar` | Codificar dentro del simulador, seleccionar el tramo y aplicar la acción | `texto`, `codigos`, `solucion` |
 | `dialogo` | Ventana de configuración con campos que hay que dejar bien | `titulo`, `campos`, `boton`, `dice` |
 
 En `codificar`, `solucion.segmentos` lleva los índices del arreglo `texto` que hay que marcar, empezando en
-cero, y `solucion.codigo` el `id` del código correcto.
+cero, `solucion.codigo` el `id` del código correcto y `solucion.accion` la operación esperada, que puede ser
+`marcar`, `invivo` o `anotar`. Con `invivo` el nombre del código lo genera el propio texto seleccionado, así
+que no hace falta `solucion.codigo`.
 
-En `interfaz`, `ruta` es el par menú e ítem, por ejemplo `["gestionar", "archivos"]`, tomando los `id` que
-están definidos en `CURSO.interfaz.menus`. Si la ruta empieza con `codigo:` seguido del nombre de un código,
-la respuesta se busca en el menú contextual de ese código, por ejemplo
-`["codigo:Sentimiento de culpa", "fusionar"]`.
+En `interfaz`, `ruta` acepta tres formas. El par menú e ítem, por ejemplo `["gestionar", "archivos"]`,
+tomando los `id` definidos en `CURSO.interfaz.menus`. Una pestaña de la ventana principal, con
+`["pestana", "registro"]`. Y el menú contextual de un código del árbol, escribiendo `codigo:` seguido del
+nombre, por ejemplo `["codigo:Sentimiento de culpa", "fusionar"]`.
 
 En `dialogo`, cada campo puede ser `texto`, `select` o `casilla`. Para los de texto, `correcto` acepta un
 arreglo de fragmentos válidos o la palabra `cualquiera` cuando solo se pide que no quede vacío.
 
-Los menús del simulador, los códigos del panel, los archivos, los colores y los rangos también se editan en
-`contenido.js`, en los bloques `interfaz`, `paleta` y `rangos`.
+Los menús del simulador, sus atajos, las pestañas, el menú contextual del árbol, las teclas del módulo de
+codificar texto, los códigos del panel, los archivos, los colores y los rangos también se editan en
+`contenido.js`, en los bloques `interfaz`, `paleta` y `rangos`. La estructura de menús que trae por defecto
+está tomada del manual de usuario de QualCoder 4.
 
 ## Créditos
 
