@@ -1,6 +1,6 @@
-# Curso QualCoder (Interactivo)
+# Curso QualCoder 4.0-Beta (Interactivo)
 
-Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.
+Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.0-Beta.
 Está armado como un juego. Diez misiones en orden de trabajo real, cincuenta y dos actividades, estrellas según los errores,
 insignias, rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
@@ -52,11 +52,8 @@ aporta y cuándo estorba, y por qué la frecuencia describe la codificación y n
 ### Cómo funciona el juego
 
 Cada misión empieza con su galería de videos y capturas, sigue con la lección y después vienen las
-actividades, una a la vez. Resolver a la primera da tres
-estrellas y el XP completo, fallar una vez da dos estrellas y la mitad del XP, y a partir de ahí una
-estrella. Los errores no expulsan de la misión, solo explican qué pasó y dejan seguir intentando. Debajo de
-cada actividad hay dos salidas, reiniciar la lección desde el principio o saltar esa actividad, que entonces
-queda sin XP y se puede recuperar después repasando la misión.
+actividades, una a la vez. Cada actividad da tres estrellas y el XP completo. Debajo de
+cada actividad hay dos salidas, reiniciar la lección desde el principio o saltar esa actividad.
 
 Tres aciertos seguidos dan un bono de racha. Las misiones se abren en orden y cada una entrega su insignia.
 El XP acumulado sube de rango, de Aprendiz de campo a Oficio de campo. Todo el avance se guarda en el
