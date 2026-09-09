@@ -1,12 +1,12 @@
-// Course content. Edit this file to change lessons, videos and exercises.
-// Exercise types: quiz, parejas, secuencia, codificar, clasificar, abierta.
+// Course content. Edit this file to change missions, videos and activities.
+// Activity types: quiz, parejas, secuencia, codificar, clasificar, abierta, interfaz, dialogo.
 
 const CURSO = {
   titulo: "Codificar en QualCoder 4",
-  subtitulo: "Un curso de práctica, no de lectura",
+  subtitulo: "Nueve misiones de práctica",
   autoria: "SoftCualitativo",
 
-  // Code palette used by the coding exercises.
+  // Code colors used by the coding activities.
   paleta: {
     amarillo: "#F2C744",
     turquesa: "#2FA8A0",
@@ -15,9 +15,90 @@ const CURSO = {
     verde: "#5FA05A"
   },
 
+  // Ranks unlocked by accumulated XP.
+  rangos: [
+    { xp: 0, nombre: "Aprendiz de campo" },
+    { xp: 100, nombre: "Libreta en mano" },
+    { xp: 220, nombre: "Codificación en marcha" },
+    { xp: 360, nombre: "Analista de corpus" },
+    { xp: 520, nombre: "Oficio de campo" }
+  ],
+
+  // Simulated QualCoder window used by the "interfaz" activities.
+  interfaz: {
+    proyecto: "Cuidados_2026.qda",
+    menus: [
+      {
+        id: "proyecto", nombre: "Proyecto", items: [
+          { id: "crear", t: "Crear proyecto nuevo (Create new project)" },
+          { id: "abrir", t: "Abrir proyecto (Open project)" },
+          { id: "cerrar", t: "Cerrar proyecto (Close project)" },
+          { id: "memo", t: "Memo del proyecto (Project memo)" },
+          { id: "respaldo", t: "Respaldar proyecto (Backup project)" },
+          { id: "ajustes", t: "Ajustes (Settings)" },
+          { id: "salir", t: "Salir (Exit)" }
+        ]
+      },
+      {
+        id: "gestionar", nombre: "Gestionar", items: [
+          { id: "archivos", t: "Gestionar archivos (Manage files)" },
+          { id: "cat_archivos", t: "Categorías de archivos (File categories)" },
+          { id: "diarios", t: "Gestionar diarios (Manage journals)" },
+          { id: "casos", t: "Gestionar casos (Manage cases)" },
+          { id: "atributos", t: "Gestionar atributos (Manage attributes)" },
+          { id: "referencias", t: "Gestionar referencias (Manage references)" },
+          { id: "encuesta", t: "Importar encuesta (Import survey)" }
+        ]
+      },
+      {
+        id: "codificar", nombre: "Codificar", items: [
+          { id: "texto", t: "Codificar texto (Code text)" },
+          { id: "imagen", t: "Codificar imagen (Code image)" },
+          { id: "av", t: "Codificar audio y video (Code audio/video)" },
+          { id: "caso", t: "Codificar por caso (Code by case)" },
+          { id: "organizador", t: "Organizador de códigos (Code organiser)" }
+        ]
+      },
+      {
+        id: "informes", nombre: "Informes", items: [
+          { id: "codificacion", t: "Informes de codificación (Coding reports)" },
+          { id: "frecuencias", t: "Frecuencia de códigos (Code frequencies)" },
+          { id: "graficas", t: "Gráficas (Charts)" },
+          { id: "grafo", t: "Ver grafo (View graph)" },
+          { id: "codificadores", t: "Comparación entre codificadores (Coder comparisons)" },
+          { id: "mineria", t: "Buscar texto (Text mining)" }
+        ]
+      },
+      {
+        id: "ayuda", nombre: "Ayuda", items: [
+          { id: "contenido", t: "Contenido de la ayuda (Help contents)" },
+          { id: "acerca", t: "Acerca de (About)" }
+        ]
+      }
+    ],
+    // Right-click menu over a code in the codes panel.
+    contextual: [
+      { id: "memo_codigo", t: "Memo del código" },
+      { id: "renombrar", t: "Renombrar" },
+      { id: "color", t: "Cambiar color" },
+      { id: "fusionar", t: "Fusionar con otro código" },
+      { id: "mover", t: "Mover a categoría" },
+      { id: "eliminar", t: "Eliminar código" }
+    ],
+    codigos: [
+      { nombre: "Abandono del empleo", color: "coral" },
+      { nombre: "Culpa", color: "violeta" },
+      { nombre: "Sentimiento de culpa", color: "violeta" },
+      { nombre: "Duración imprevista", color: "turquesa" },
+      { nombre: "Reparto desigual", color: "amarillo" }
+    ],
+    archivos: ["E01_Rosa.txt", "E02_Alicia.txt", "E03_Delia.docx", "E04_Marta.txt"],
+    fragmento: "Yo trabajaba en la farmacia de la esquina, ocho años llevaba ahí. Cuando mi mamá empezó a necesitar ayuda para todo, pedí mi liquidación y me salí."
+  },
+
   niveles: [
 
-    /* ---------------------------------------------------------------- */
+    /* ============================ 1 ============================ */
     {
       id: "n1",
       titulo: "Qué es codificar",
@@ -27,27 +108,23 @@ const CURSO = {
       videoTitulo: "Qué hace y qué no hace un código",
       lectura: `
         <p>Codificar es ponerle una etiqueta corta a un fragmento de datos para poder volver a encontrarlo,
-        compararlo con otros y contarlo si hace falta. La etiqueta es el <strong>código</strong> y el fragmento
-        marcado es el <strong>segmento</strong>.</p>
+        compararlo y contarlo si hace falta. La etiqueta es el <strong>código</strong> y el fragmento marcado
+        es el <strong>segmento</strong>.</p>
         <p>Un código no resume el texto, lo señala. Si la etiqueta necesita tres renglones para explicarse,
-        todavía no es un código, es una idea a medio cocer. Y si nombra algo que solo aparece una vez en todo
-        el corpus, quizá sea una anotación y no un código.</p>
+        todavía no es un código.</p>
         <p>QualCoder no codifica por ti. Guarda tus decisiones, las ordena y te las devuelve cuando las
         necesitas. Ese es el trato.</p>
-        <p>Tres piezas conviven en el programa y conviene no confundirlas. El <strong>código</strong> se aplica
-        al dato. La <strong>categoría</strong> agrupa códigos. El <strong>memo</strong> guarda por qué tomaste
-        una decisión, y es lo único que te salvará dentro de seis meses.</p>
       `,
       ejercicios: [
         {
           tipo: "quiz",
           xp: 10,
-          pregunta: "Lees esta línea de una entrevista. \"Ya van cuatro años y yo pensaba que eran unos meses.\" ¿Cuál de estas etiquetas funciona mejor como código?",
+          pregunta: "Lees esta línea de una entrevista. \"Ya van cuatro años y yo pensaba que eran unos meses.\" ¿Cuál etiqueta funciona mejor como código?",
           opciones: [
             { t: "Duración imprevista del cuidado", ok: true, dice: "Corto, nombra el fenómeno y sirve para comparar con otras entrevistas." },
-            { t: "La señora lleva cuatro años cuidando a su mamá y no lo esperaba", ok: false, dice: "Eso es una paráfrasis del fragmento. Un código tiene que caber en una etiqueta, no en un renglón." },
-            { t: "Tiempo", ok: false, dice: "Demasiado ancho. Bajo esa etiqueta va a caer medio corpus y después no vas a poder distinguir nada." },
-            { t: "Cuatro años", ok: false, dice: "Es un dato del caso, no un concepto. No se va a repetir en otras entrevistas." }
+            { t: "La señora lleva cuatro años cuidando a su mamá y no lo esperaba", ok: false, dice: "Eso es una paráfrasis. Un código cabe en una etiqueta, no en un renglón." },
+            { t: "Tiempo", ok: false, dice: "Demasiado ancho. Bajo esa etiqueta va a caer medio corpus." },
+            { t: "Cuatro años", ok: false, dice: "Es un dato del caso, no un concepto. No se repite en otras entrevistas." }
           ]
         },
         {
@@ -55,11 +132,11 @@ const CURSO = {
           xp: 15,
           instruccion: "Une cada pieza con lo que hace. Toca una tarjeta de la izquierda y luego su definición.",
           pares: [
-            { a: "Código", b: "Etiqueta que se aplica directamente a un fragmento de datos" },
-            { a: "Categoría", b: "Agrupa varios códigos que comparten un mismo sentido" },
+            { a: "Código", b: "Etiqueta que se aplica a un fragmento de datos" },
+            { a: "Categoría", b: "Agrupa códigos que comparten un sentido" },
             { a: "Segmento", b: "El trozo de texto marcado dentro del archivo" },
             { a: "Memo", b: "Registro de por qué tomaste una decisión analítica" },
-            { a: "Código en vivo", b: "Etiqueta tomada literalmente de las palabras del participante" }
+            { a: "Código en vivo", b: "Etiqueta tomada literal de las palabras del participante" }
           ]
         },
         {
@@ -67,91 +144,119 @@ const CURSO = {
           xp: 10,
           pregunta: "¿Cuándo conviene crear una categoría?",
           opciones: [
-            { t: "Cuando ya tienes varios códigos que se parecen y quieres verlos juntos", ok: true, dice: "Exacto. La categoría llega después de los códigos, no antes." },
-            { t: "Al abrir el proyecto, para tener el árbol listo desde el inicio", ok: false, dice: "Se puede, pero encaja mejor con un análisis deductivo con marco cerrado. Si estás explorando, un árbol prefabricado te obliga a meter el dato donde no cabe." },
+            { t: "Cuando ya tienes varios códigos que se parecen y quieres verlos juntos", ok: true, dice: "La categoría llega después de los códigos, no antes." },
+            { t: "Al abrir el proyecto, para tener el árbol listo desde el inicio", ok: false, dice: "Encaja con un marco cerrado. Si estás explorando, un árbol prefabricado te obliga a meter el dato donde no cabe." },
             { t: "Nunca, las categorías son de otros programas", ok: false, dice: "QualCoder sí tiene categorías y las muestra como carpetas en el panel de códigos." }
           ]
         }
       ]
     },
 
-    /* ---------------------------------------------------------------- */
+    /* ============================ 2 ============================ */
     {
       id: "n2",
-      titulo: "Preparar el proyecto",
-      lema: "Media hora aquí te ahorra semanas después",
+      titulo: "Abrir el proyecto",
+      lema: "Media hora aquí ahorra semanas después",
       insignia: { nombre: "Cartografía", icono: "▤" },
       video: "",
-      videoTitulo: "Crear el proyecto e importar archivos",
+      videoTitulo: "Crear el proyecto, ajustes e importación",
       lectura: `
         <p>Un proyecto de QualCoder es una carpeta terminada en <code>.qda</code>. Dentro viven la base de datos
         y las copias de tus archivos. Se mueve completa, se respalda completa y se comparte completa.</p>
-        <p>El orden mínimo tiene cuatro pasos. Crear el proyecto desde Proyecto (Project), importar los archivos
-        desde Gestionar archivos (Manage files), revisar que el texto se importó legible y solo entonces empezar
-        a codificar en Codificar texto (Code text).</p>
-        <p>Ese tercer paso es el que casi todo el mundo se salta. Un PDF escaneado se importa sin protestar y te
-        deja un archivo vacío o lleno de basura. Ábrelo antes de invertir dos días marcando segmentos.</p>
-        <p>Los nombres de archivo también son datos. E01_Rosa dice más que Entrevista final buena 2 corregida.</p>
+        <p>Antes de codificar conviene pasar por Ajustes (Settings) y dejar puesto tu nombre de codificador.
+        Todo lo que marques queda firmado con ese nombre, y eso es lo que después permite comparar entre
+        personas del equipo.</p>
       `,
       ejercicios: [
+        {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Estás frente a QualCoder recién abierto. Crea el proyecto donde vivirán las entrevistas.",
+          objetivo: "Crear un proyecto nuevo",
+          ruta: ["proyecto", "crear"],
+          pista: "Todo lo que afecta al proyecto completo cuelga del primer menú.",
+          dice: "Se abre el diálogo para elegir carpeta y nombre. QualCoder crea ahí una carpeta .qda con la base de datos dentro."
+        },
+        {
+          tipo: "dialogo",
+          xp: 15,
+          instruccion: "Se abrió la ventana de Ajustes (Settings). Déjala lista para trabajar en español y con tu firma.",
+          titulo: "Ajustes (Settings)",
+          campos: [
+            { id: "idioma", etiqueta: "Idioma de la interfaz", tipo: "select", opciones: ["English", "Español", "Français", "Deutsch"], correcto: "Español" },
+            { id: "coder", etiqueta: "Nombre del codificador", tipo: "texto", marcador: "Escribe un nombre", correcto: "cualquiera" },
+            { id: "respaldo", etiqueta: "Respaldar el proyecto al abrirlo", tipo: "casilla", correcto: true }
+          ],
+          boton: "Guardar ajustes",
+          dice: "Con el respaldo automático encendido, cada vez que abres el proyecto queda una copia fechada junto a la carpeta .qda."
+        },
+        {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "El proyecto está vacío. Mete las cuatro entrevistas transcritas.",
+          objetivo: "Importar los archivos de entrevista",
+          ruta: ["gestionar", "archivos"],
+          pista: "Los archivos, casos, atributos y diarios viven todos en el mismo menú.",
+          dice: "Desde Gestionar archivos (Manage files) se importan textos, PDF, imágenes, audio y video, y ahí mismo se revisa cómo quedaron."
+        },
         {
           tipo: "secuencia",
           xp: 15,
           instruccion: "Ordena el arranque de un proyecto. Toca los pasos en el orden correcto.",
           pasos: [
             "Crear el proyecto y darle un nombre sin espacios raros",
+            "Poner tu nombre de codificador en Ajustes",
             "Importar los archivos de entrevista",
             "Abrir cada archivo y revisar que el texto se lee bien",
-            "Marcar los primeros segmentos con códigos provisionales",
-            "Escribir en el diario (Journal) qué decisiones tomaste hoy"
-          ]
-        },
-        {
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "Importaste un PDF escaneado y al abrirlo aparece en blanco. ¿Qué pasó?",
-          opciones: [
-            { t: "El PDF es una imagen y no tiene capa de texto, hay que pasarlo por OCR antes", ok: true, dice: "Así es. Sin capa de texto no hay nada que seleccionar ni que codificar." },
-            { t: "QualCoder no admite PDF", ok: false, dice: "Sí los admite, siempre que el PDF tenga texto real y no solo la foto de la página." },
-            { t: "Se corrompió la base de datos del proyecto", ok: false, dice: "Sería mucha mala suerte. Lo habitual es un escaneo sin OCR." }
-          ]
-        },
-        {
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "Vas a respaldar tu trabajo antes de un viaje. ¿Qué copias?",
-          opciones: [
-            { t: "La carpeta .qda completa", ok: true, dice: "Correcto. La base de datos y los archivos van juntos, separarlos rompe el proyecto." },
-            { t: "Solo el archivo de base de datos que está dentro", ok: false, dice: "Te quedas sin los documentos y sin los medios. El proyecto es la carpeta entera." },
-            { t: "Solo los informes exportados", ok: false, dice: "Eso guarda resultados, no el trabajo. No podrías seguir codificando." }
+            "Escribir en el diario qué decisiones tomaste hoy"
           ]
         }
       ]
     },
 
-    /* ---------------------------------------------------------------- */
+    /* ============================ 3 ============================ */
     {
       id: "n3",
       titulo: "Tu primer código",
       lema: "Marcar, nombrar, seguir",
       insignia: { nombre: "Marcador", icono: "▮" },
       video: "",
-      videoTitulo: "Marcar un segmento en Codificar texto",
+      videoTitulo: "Crear un código y marcar un segmento",
       lectura: `
-        <p>Ya en Codificar texto (Code text) tienes el archivo a la derecha y el panel de códigos a la izquierda.
-        La operación básica es siempre la misma. Seleccionas el fragmento con el ratón, eliges el código en el
-        panel y lo aplicas. El segmento queda con el color del código y aparece listado en el propio programa.</p>
-        <p>El tamaño del segmento importa. Si marcas la frase suelta pierdes el contexto y el informe te va a
-        devolver fragmentos ilegibles. Si marcas la página entera, el código deja de significar algo. La regla
-        práctica es marcar lo mínimo que todavía se entiende solo.</p>
-        <p>Un código mal puesto no es un desastre, se quita y ya. Lo que no se recupera es el fragmento que
-        nunca marcaste porque no supiste cómo llamarlo. Márcalo con una etiqueta provisional y sigue.</p>
+        <p>En Codificar texto (Code text) tienes el archivo a la derecha y el panel de códigos a la izquierda.
+        La operación básica siempre es la misma. Seleccionas el fragmento, eliges el código y lo aplicas. El
+        segmento queda con el color del código.</p>
+        <p>El tamaño importa. Si marcas una frase suelta pierdes el contexto y el informe devuelve fragmentos
+        ilegibles. Si marcas la página entera, el código deja de significar algo. Marca lo mínimo que todavía
+        se entiende solo.</p>
       `,
       ejercicios: [
         {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Ya tienes las entrevistas dentro. Abre la ventana donde se codifica texto.",
+          objetivo: "Abrir Codificar texto",
+          ruta: ["codificar", "texto"],
+          pista: "Hay una ventana distinta para cada tipo de dato, texto, imagen y audio o video.",
+          dice: "Esta es la ventana donde vas a pasar la mayor parte del análisis."
+        },
+        {
+          tipo: "dialogo",
+          xp: 15,
+          instruccion: "Vas a crear el primer código para el fragmento donde la participante deja su trabajo. Llámalo Abandono del empleo.",
+          titulo: "Añadir código nuevo",
+          campos: [
+            { id: "nombre", etiqueta: "Nombre del código", tipo: "texto", marcador: "Abandono del empleo", correcto: ["abandono"] },
+            { id: "color", etiqueta: "Color", tipo: "select", opciones: ["Sin color", "Coral", "Turquesa", "Violeta"], correcto: "Coral" },
+            { id: "memo", etiqueta: "Escribir el memo del código ahora", tipo: "casilla", correcto: true }
+          ],
+          boton: "Crear código",
+          dice: "El memo escrito el mismo día en que nace el código es el que después te salva de aplicarlo a cualquier cosa."
+        },
+        {
           tipo: "codificar",
           xp: 20,
-          instruccion: "Entrevista E01_Rosa, cuidadora de su madre. Toca los fragmentos que hablan de haber dejado el empleo y aplica el código correcto.",
+          instruccion: "Entrevista E01_Rosa. Toca el fragmento que habla de haber dejado el empleo y aplícale el código.",
           pista: "Busca la frase donde aparece la decisión laboral, no la que explica la enfermedad.",
           texto: [
             "Yo trabajaba en la farmacia de la esquina, ocho años llevaba ahí.",
@@ -169,7 +274,7 @@ const CURSO = {
         {
           tipo: "codificar",
           xp: 20,
-          instruccion: "Sigue la misma entrevista. Marca ahora el tramo que muestra que el cuidado duró mucho más de lo previsto.",
+          instruccion: "Sigue la misma entrevista. Marca el tramo que muestra que el cuidado duró mucho más de lo previsto.",
           pista: "Aquí el sentido se arma con dos frases seguidas, no con una sola.",
           texto: [
             "El doctor nos dijo que era cuestión de acompañarla y ya.",
@@ -183,37 +288,24 @@ const CURSO = {
             { id: "c2", nombre: "Diagnóstico médico", color: "turquesa" }
           ],
           solucion: { segmentos: [1, 2], codigo: "c3" }
-        },
-        {
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "Encuentras un fragmento potente y no se te ocurre cómo llamarlo. ¿Qué haces?",
-          opciones: [
-            { t: "Lo marcas con un código provisional, le pones un memo y sigues", ok: true, dice: "Así es como avanza el trabajo real. El nombre definitivo llega después, cuando ya viste casos parecidos." },
-            { t: "Lo dejas sin marcar y confías en acordarte", ok: false, dice: "No te vas a acordar. Un corpus de veinte entrevistas borra cualquier memoria." },
-            { t: "Paras a rediseñar todo el sistema de códigos", ok: false, dice: "Rediseñar con un solo caso en la mano suele salir caro. Junta más evidencia antes." }
-          ]
         }
       ]
     },
 
-    /* ---------------------------------------------------------------- */
+    /* ============================ 4 ============================ */
     {
       id: "n4",
-      titulo: "En vivo y memos",
-      lema: "La voz del campo y tu propia voz",
+      titulo: "En vivo, memos y diario",
+      lema: "La voz del campo y la tuya",
       insignia: { nombre: "Voz del campo", icono: "❝" },
       video: "",
-      videoTitulo: "Códigos en vivo, memos y anotaciones",
+      videoTitulo: "Códigos en vivo, memos y diario de campo",
       lectura: `
-        <p>Un código en vivo usa las palabras exactas del participante como nombre de la etiqueta. Sirve cuando
-        la expresión dice algo que tu vocabulario académico aplana. QualCoder tiene una opción específica para
-        crear el código a partir del texto seleccionado, así que el nombre sale literal del dato.</p>
-        <p>No abuses. Veinte códigos en vivo son veinte etiquetas que solo existen en una entrevista y no se
-        pueden comparar entre casos. Úsalos donde la fuerza está en cómo se dijo.</p>
-        <p>El memo es la otra mitad del oficio. Hay memos de código, que explican qué entra y qué no entra bajo
-        esa etiqueta, y está el diario (Journal), donde se registra el proceso completo con fecha. Lo primero
-        salva tu consistencia, lo segundo salva tu apartado de método.</p>
+        <p>Un código en vivo usa las palabras exactas de la persona entrevistada como nombre de la etiqueta.
+        Sirve cuando la expresión dice algo que el vocabulario académico aplana. No abuses, veinte códigos en
+        vivo son veinte etiquetas que solo existen en una entrevista.</p>
+        <p>El memo de código explica qué entra y qué no entra bajo esa etiqueta. El diario (Journal) registra el
+        proceso con fecha. Lo primero salva tu consistencia, lo segundo salva tu apartado de método.</p>
       `,
       ejercicios: [
         {
@@ -236,7 +328,7 @@ const CURSO = {
         {
           tipo: "abierta",
           xp: 20,
-          instruccion: "Escribe el memo del código Abandono del empleo. Tienes que dejar claro qué se marca con él y qué no.",
+          instruccion: "Escribe el memo del código Abandono del empleo. Tiene que quedar claro qué se marca con él y qué no.",
           guia: [
             "Qué fenómeno nombra el código",
             "Un ejemplo de fragmento que sí entra",
@@ -246,11 +338,20 @@ const CURSO = {
           modelo: "Abandono del empleo. Marca los fragmentos donde la persona relata haber dejado un trabajo remunerado a causa de la tarea de cuidado, sea por renuncia, liquidación o despido negociado. Entra \"pedí mi liquidación y me salí\". No entra la reducción de horas ni el cambio de turno, que van en Ajuste de jornada. Se confunde con Pérdida de ingresos, que se refiere al efecto económico y no a la salida del empleo."
         },
         {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Terminaste la sesión de hoy y quieres dejar por escrito qué decidiste y por qué.",
+          objetivo: "Abrir el diario del proyecto",
+          ruta: ["gestionar", "diarios"],
+          pista: "El diario se gestiona junto con los archivos, los casos y los atributos.",
+          dice: "Puedes tener varios diarios, uno de decisiones metodológicas y otro de trabajo de campo, por ejemplo."
+        },
+        {
           tipo: "quiz",
           xp: 10,
           pregunta: "¿Qué diferencia hay entre un memo de código y una anotación sobre el texto?",
           opciones: [
-            { t: "El memo de código define la etiqueta, la anotación comenta un punto concreto del archivo", ok: true, dice: "Correcto. Uno viaja con el código por todo el proyecto, la otra se queda pegada a ese lugar del documento." },
+            { t: "El memo de código define la etiqueta, la anotación comenta un punto concreto del archivo", ok: true, dice: "Uno viaja con el código por todo el proyecto, la otra se queda pegada a ese lugar del documento." },
             { t: "Son lo mismo con distinto nombre", ok: false, dice: "No. Si borras un código, su memo se va con él. La anotación pertenece al documento." },
             { t: "La anotación se exporta y el memo no", ok: false, dice: "Ambos se pueden llevar a los informes." }
           ]
@@ -258,22 +359,20 @@ const CURSO = {
       ]
     },
 
-    /* ---------------------------------------------------------------- */
+    /* ============================ 5 ============================ */
     {
       id: "n5",
       titulo: "Ordenar el sistema",
       lema: "De la lista larga al mapa",
       insignia: { nombre: "Arquitectura", icono: "⌗" },
       video: "",
-      videoTitulo: "Categorías, colores y árbol de códigos",
+      videoTitulo: "Categorías, fusiones y color",
       lectura: `
-        <p>Después de dos o tres entrevistas vas a tener una lista larga y desordenada. Ahí empieza el trabajo
-        interesante. Agrupar códigos en categorías obliga a decidir qué tienen en común, y esa decisión ya es
-        análisis.</p>
-        <p>En el panel de códigos las categorías se ven como carpetas y los códigos cuelgan de ellas. Un código
-        puede moverse de categoría cuando cambias de idea, y cambiarás de idea varias veces.</p>
-        <p>El color no es decoración. Si le das el mismo tono a los códigos de una misma familia, el documento
-        codificado se lee de un vistazo y ves dónde se concentra cada cosa.</p>
+        <p>Después de dos o tres entrevistas vas a tener una lista larga y desordenada. Agrupar códigos en
+        categorías obliga a decidir qué tienen en común, y esa decisión ya es análisis.</p>
+        <p>Sobre cada código del panel izquierdo hay un menú contextual con las operaciones de mantenimiento,
+        renombrar, cambiar color, mover a categoría, fusionar y eliminar. Fusionar conserva los segmentos de
+        los dos códigos, eliminar los tira.</p>
       `,
       ejercicios: [
         {
@@ -297,101 +396,171 @@ const CURSO = {
           ]
         },
         {
+          tipo: "interfaz",
+          xp: 20,
+          instruccion: "En el panel de códigos tienes Culpa y Sentimiento de culpa diciendo lo mismo. Únelos sin perder ningún segmento.",
+          objetivo: "Fusionar Sentimiento de culpa con otro código",
+          ruta: ["codigo:Sentimiento de culpa", "fusionar"],
+          pista: "Las operaciones sobre un código salen del menú contextual del propio código, no de la barra de menús.",
+          dice: "Al fusionar, los segmentos marcados con el código que desaparece pasan al que conservas."
+        },
+        {
           tipo: "quiz",
           xp: 10,
-          pregunta: "Tienes dos códigos, Culpa y Sentimiento de culpa, aplicados en distintas entrevistas. ¿Qué haces?",
+          pregunta: "Un código tiene un solo segmento en todo el corpus, marcado hace cuatro meses. ¿Qué haces?",
           opciones: [
-            { t: "Fusionar los dos códigos en uno solo, conservando todos los segmentos", ok: true, dice: "Sí. QualCoder permite fusionar y los segmentos de ambos quedan bajo la etiqueta que conserves." },
-            { t: "Borrar uno de los dos", ok: false, dice: "Perderías los segmentos marcados con él. Fusionar conserva el trabajo, borrar lo tira." },
-            { t: "Dejarlos separados por si acaso significan algo distinto", ok: false, dice: "Si de verdad significan cosas distintas, hay que renombrarlos para que se note. Si no, es ruido en el informe." }
+            { t: "Revisar el segmento y decidir si entra en otro código o si vale por sí mismo", ok: true, dice: "Un caso único puede ser un hallazgo o el resto de una idea que abandonaste. Hay que mirarlo." },
+            { t: "Borrarlo, uno solo no significa nada", ok: false, dice: "La frecuencia no decide relevancia. Un caso negativo puede ser lo más interesante del corpus." },
+            { t: "Dejarlo ahí, no molesta", ok: false, dice: "Cien códigos huérfanos sí molestan y ensucian cualquier informe." }
           ]
         }
       ]
     },
 
-    /* ---------------------------------------------------------------- */
+    /* ============================ 6 ============================ */
     {
       id: "n6",
+      titulo: "Casos y atributos",
+      lema: "Para comparar hay que poder separar",
+      insignia: { nombre: "Fichero", icono: "▦" },
+      video: "",
+      videoTitulo: "Casos, atributos y filtros",
+      lectura: `
+        <p>Un caso agrupa todo el material de una misma persona o unidad, aunque esté repartido en varios
+        archivos. Un atributo es una variable que describe ese caso o ese archivo, la edad, si trabaja fuera,
+        el municipio, cuántos años lleva cuidando.</p>
+        <p>Sin atributos no hay comparación posible. Con ellos puedes pedir los segmentos de un código solo en
+        las cuidadoras que trabajan fuera de casa, y ver si dicen algo distinto.</p>
+      `,
+      ejercicios: [
+        {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Rosa tiene dos entrevistas y una nota de campo. Vas a juntarlas bajo una misma unidad.",
+          objetivo: "Abrir la gestión de casos",
+          ruta: ["gestionar", "casos"],
+          pista: "Está en el mismo menú donde importaste los archivos.",
+          dice: "Un caso puede reunir archivos completos o solo tramos de un archivo, útil cuando una transcripción trae a varias personas."
+        },
+        {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Quieres registrar si cada cuidadora trabaja fuera de casa, para poder comparar después.",
+          objetivo: "Abrir la gestión de atributos",
+          ruta: ["gestionar", "atributos"],
+          pista: "Las variables descriptivas tienen su propia entrada en el menú Gestionar.",
+          dice: "Los atributos pueden ser de texto o numéricos, y se aplican a archivos o a casos."
+        },
+        {
+          tipo: "parejas",
+          xp: 15,
+          instruccion: "Une cada elemento con lo que representa dentro del proyecto.",
+          pares: [
+            { a: "Archivo", b: "La transcripción tal como se importó" },
+            { a: "Caso", b: "Todo el material de una misma persona" },
+            { a: "Atributo", b: "Variable que describe a un caso o a un archivo" },
+            { a: "Diario", b: "Bitácora fechada del proceso de análisis" },
+            { a: "Segmento", b: "Tramo del archivo marcado con un código" }
+          ]
+        },
+        {
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "Quieres comparar qué dicen las cuidadoras que trabajan fuera de casa frente a las que no. ¿Qué necesitas tener listo?",
+          opciones: [
+            { t: "El atributo cargado en cada caso o archivo", ok: true, dice: "Sin atributos no hay con qué filtrar y esa comparación no se puede armar." },
+            { t: "Solo más códigos", ok: false, dice: "Más códigos no separan grupos. La variable de comparación vive en los atributos." },
+            { t: "Exportar todo a una hoja de cálculo y hacerlo a mano", ok: false, dice: "Se puede, pero el programa lo hace con filtros y sin errores de copiado." }
+          ]
+        }
+      ]
+    },
+
+    /* ============================ 7 ============================ */
+    {
+      id: "n7",
       titulo: "Recuperar y mirar",
       lema: "El informe no piensa por ti",
       insignia: { nombre: "Lupa", icono: "◎" },
       video: "",
-      videoTitulo: "Informes de codificación y frecuencia de códigos",
+      videoTitulo: "Informes de codificación, frecuencias y gráficas",
       lectura: `
-        <p>Codificar sin recuperar es archivar. La recuperación junta todos los segmentos marcados con un código
-        y te los pone uno detrás de otro, con la referencia del archivo del que salieron. Ahí es donde se ve si
-        el código aguanta o si estaba metiendo cosas distintas en la misma bolsa.</p>
-        <p>En Informes (Reports) están las salidas principales. Los informes de codificación devuelven los
-        segmentos, la frecuencia de códigos devuelve cuántas veces aparece cada uno y en cuántos archivos, y las
-        gráficas dan la vista rápida.</p>
+        <p>Codificar sin recuperar es archivar. La recuperación junta todos los segmentos de un código y te los
+        pone uno detrás de otro con su referencia. Ahí se ve si el código aguanta o si estaba metiendo cosas
+        distintas en la misma bolsa.</p>
         <p>Cuidado con la frecuencia. Un código con noventa apariciones puede ser importante o puede ser que lo
-        estés aplicando a todo. Un código con tres apariciones puede sostener el hallazgo central. La cuenta
-        describe tu codificación, no la realidad del campo.</p>
+        estés aplicando a todo. La cuenta describe tu codificación, no la realidad del campo.</p>
       `,
       ejercicios: [
         {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Quieres leer juntos todos los fragmentos que marcaste con el código Culpa.",
+          objetivo: "Abrir los informes de codificación",
+          ruta: ["informes", "codificacion"],
+          pista: "Todo lo que devuelve resultados está en el mismo menú.",
+          dice: "Ahí eliges códigos, archivos, casos y atributos, y el informe devuelve los segmentos con su origen."
+        },
+        {
+          tipo: "dialogo",
+          xp: 20,
+          instruccion: "Configura el informe para poder revisar el código con contexto y llevártelo a tu procesador de textos.",
+          titulo: "Informe de codificación (Coding report)",
+          campos: [
+            { id: "codigos", etiqueta: "Códigos incluidos", tipo: "select", opciones: ["Ninguno", "Solo Culpa", "Todos los códigos"], correcto: "Solo Culpa" },
+            { id: "memos", etiqueta: "Incluir los memos de los códigos", tipo: "casilla", correcto: true },
+            { id: "origen", etiqueta: "Mostrar el archivo de origen de cada segmento", tipo: "casilla", correcto: true },
+            { id: "formato", etiqueta: "Formato de exportación", tipo: "select", opciones: ["ODT", "HTML", "CSV", "Portapapeles"], correcto: "ODT" }
+          ],
+          boton: "Ejecutar informe",
+          dice: "Sin el archivo de origen los fragmentos pierden su rastro y ya no puedes volver a la entrevista completa."
+        },
+        {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Antes de escribir resultados quieres ver cuántas veces se aplicó cada código y en cuántos archivos.",
+          objetivo: "Abrir la frecuencia de códigos",
+          ruta: ["informes", "frecuencias"],
+          pista: "Está junto a los informes de codificación.",
+          dice: "La tabla muestra la cuenta total y en cuántos archivos aparece cada código, que suele ser el dato más honesto de los dos."
+        },
+        {
           tipo: "quiz",
           xp: 10,
-          pregunta: "Abres la recuperación del código Culpa y ves que la mitad de los segmentos hablan de vergüenza frente a los hermanos y la otra mitad de arrepentimiento por enojarse. ¿Qué te está diciendo el informe?",
+          pregunta: "Abres la recuperación del código Culpa y ves que la mitad de los segmentos hablan de vergüenza frente a los hermanos y la otra mitad de arrepentimiento por enojarse. ¿Qué te dice eso?",
           opciones: [
             { t: "Que el código junta dos cosas distintas y conviene dividirlo", ok: true, dice: "Ese es el uso fuerte de la recuperación, ver de golpe lo que aplicaste caso por caso." },
             { t: "Que el código es muy productivo y hay que dejarlo así", ok: false, dice: "Un código que abarca dos fenómenos no es productivo, es impreciso." },
-            { t: "Que hay un error del programa", ok: false, dice: "El programa devuelve lo que marcaste. El problema, si lo hay, está en las decisiones." }
-          ]
-        },
-        {
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "Quieres comparar qué dicen las cuidadoras que trabajan fuera de casa frente a las que no. ¿Qué necesitas tener listo antes?",
-          opciones: [
-            { t: "Los atributos de cada archivo o caso cargados en el proyecto", ok: true, dice: "Correcto. Sin atributos no hay con qué filtrar ni cruzar, y esa comparación no se puede armar." },
-            { t: "Solo más códigos", ok: false, dice: "Más códigos no separan grupos. La variable de comparación vive en los atributos." },
-            { t: "Exportar todo a una hoja de cálculo y hacerlo a mano", ok: false, dice: "Se puede, pero el programa lo hace con filtros y sin errores de copiado." }
-          ]
-        },
-        {
-          tipo: "secuencia",
-          xp: 15,
-          instruccion: "Ordena el ciclo de trabajo de una sesión de análisis.",
-          pasos: [
-            "Codificar dos o tres archivos nuevos",
-            "Recuperar los segmentos de los códigos que más creciste",
-            "Revisar si algún código junta cosas distintas",
-            "Fusionar, dividir o renombrar lo que haga falta",
-            "Anotar en el diario qué cambió y por qué"
+            { t: "Que hay un error del programa", ok: false, dice: "El programa devuelve lo que marcaste. El problema está en las decisiones." }
           ]
         }
       ]
     },
 
-    /* ---------------------------------------------------------------- */
+    /* ============================ 8 ============================ */
     {
-      id: "n7",
-      titulo: "Podar y sostener",
-      lema: "Un sistema que no se depura, se derrumba",
+      id: "n8",
+      titulo: "Trabajo en equipo",
+      lema: "El acuerdo se construye, no se decreta",
       insignia: { nombre: "Podadora", icono: "✂" },
       video: "",
-      videoTitulo: "Fusionar, dividir y comparar codificadores",
+      videoTitulo: "Comparación entre codificadores y depuración",
       lectura: `
-        <p>Un sistema de códigos crece solo. Llega un punto en que trescientas etiquetas dejan de ser un
-        instrumento y se vuelven un problema de memoria. La poda consiste en fusionar lo que dice lo mismo,
-        dividir lo que dice dos cosas, renombrar lo que engaña y jubilar lo que nunca se usó.</p>
-        <p>Si codifican varias personas, hace falta acordar antes qué significa cada código y revisar después qué
-        tanto coinciden. QualCoder incluye una comparación entre codificadores que reporta el acuerdo. El número
-        importa menos que la conversación que provoca cuando no coinciden.</p>
-        <p>La saturación no es que ya no salgan códigos nuevos porque estás cansado. Es que entrevistas nuevas
-        siguen cayendo en categorías existentes sin obligarte a inventar nada.</p>
+        <p>Si codifican varias personas, hace falta acordar antes qué significa cada código y revisar después
+        cuánto coinciden. QualCoder incluye una comparación entre codificadores que reporta el acuerdo. El
+        número importa menos que la conversación que provoca cuando no coinciden.</p>
+        <p>La saturación no es que ya no salgan códigos nuevos porque estás cansado. Es que las entrevistas
+        nuevas siguen cayendo en categorías existentes sin obligarte a inventar nada.</p>
       `,
       ejercicios: [
         {
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "Tienes un código con un solo segmento en todo el corpus, marcado hace cuatro meses. ¿Qué haces?",
-          opciones: [
-            { t: "Revisar el segmento y decidir si entra en otro código o si vale por sí mismo", ok: true, dice: "Un caso único puede ser un hallazgo o puede ser un resto de una idea que abandonaste. Hay que mirarlo antes de decidir." },
-            { t: "Borrarlo, uno solo no significa nada", ok: false, dice: "La frecuencia no decide relevancia. Un caso negativo puede ser lo más interesante del corpus." },
-            { t: "Dejarlo ahí, no molesta", ok: false, dice: "Cien códigos huérfanos sí molestan, y ensucian cualquier informe." }
-          ]
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Tu colega codificó las mismas dos entrevistas que tú. Vas a ver dónde coinciden y dónde no.",
+          objetivo: "Abrir la comparación entre codificadores",
+          ruta: ["informes", "codificadores"],
+          pista: "Es un informe, así que sale del menú de informes.",
+          dice: "Para que esto funcione cada quien tuvo que codificar con su propio nombre de codificador puesto en Ajustes."
         },
         {
           tipo: "quiz",
@@ -399,7 +568,7 @@ const CURSO = {
           pregunta: "Dos codificadores marcan el mismo fragmento con códigos distintos. ¿Qué es lo primero que hay que hacer?",
           opciones: [
             { t: "Revisar juntos el memo de cada código y precisar qué entra en cada uno", ok: true, dice: "El desacuerdo casi siempre nace de definiciones vagas, no de mala fe." },
-            { t: "Calcular el acuerdo y quedarse con el resultado", ok: false, dice: "El coeficiente mide, no resuelve. Sin revisar las definiciones el siguiente cálculo va a salir igual." },
+            { t: "Calcular el acuerdo y quedarse con el resultado", ok: false, dice: "El coeficiente mide, no resuelve. Sin revisar las definiciones el siguiente cálculo sale igual." },
             { t: "Que decida quien tenga más experiencia", ok: false, dice: "Eso cierra la discusión sin arreglar el instrumento." }
           ]
         },
@@ -414,29 +583,48 @@ const CURSO = {
             { a: "Los códigos sueltos no se entienden juntos", b: "Crear categorías" },
             { a: "No hay registro de por qué cambió el sistema", b: "Escribir en el diario" }
           ]
+        },
+        {
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "Vas a compartir el proyecto con tu colega para que codifique en su computadora. ¿Qué le envías?",
+          opciones: [
+            { t: "La carpeta .qda completa", ok: true, dice: "La base de datos y los archivos van juntos, separarlos rompe el proyecto." },
+            { t: "Solo el archivo de base de datos que está dentro", ok: false, dice: "Se queda sin los documentos y sin los medios." },
+            { t: "Los informes exportados", ok: false, dice: "Eso comparte resultados, no el proyecto. No podría seguir codificando." }
+          ]
         }
       ]
     },
 
-    /* ---------------------------------------------------------------- */
+    /* ============================ 9 ============================ */
     {
-      id: "n8",
+      id: "n9",
       titulo: "Prueba de campo",
       lema: "Todo junto, una vez más",
       insignia: { nombre: "Codificación de campo", icono: "★" },
       video: "",
       videoTitulo: "Cierre del curso",
       lectura: `
-        <p>Último nivel. Un fragmento nuevo, un sistema de códigos a medio construir y las decisiones de siempre.
-        Nada que no hayas hecho ya en los niveles anteriores.</p>
-        <p>Al terminar se libera tu constancia. La puedes imprimir o guardar en PDF desde el navegador.</p>
+        <p>Última misión. Una entrevista nueva, un sistema de códigos a medio construir y las decisiones de
+        siempre. Nada que no hayas hecho ya.</p>
+        <p>Al terminar se libera la constancia, con tu nombre, tus XP y tus insignias.</p>
       `,
       ejercicios: [
         {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Llegó la entrevista E04_Marta y ya está importada. Abre la ventana para empezar a marcarla.",
+          objetivo: "Abrir Codificar texto",
+          ruta: ["codificar", "texto"],
+          pista: "Ya pasaste por aquí en la misión tres.",
+          dice: "De memoria y sin pista, que es como se trabaja."
+        },
+        {
           tipo: "codificar",
           xp: 25,
-          instruccion: "Entrevista E04_Marta. Marca el tramo donde aparece el costo físico del cuidado y aplícale su código.",
-          pista: "El costo físico no es el mismo que el cansancio de ánimo.",
+          instruccion: "Entrevista E04_Marta. Marca el tramo donde aparece el costo físico del cuidado.",
+          pista: "El costo físico no es lo mismo que el cansancio de ánimo.",
           texto: [
             "La levanto tres veces en la noche para cambiarla.",
             "La espalda ya no me responde igual, el año pasado me mandaron terapia.",
