@@ -191,7 +191,8 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .qc-menu-btn:hover,.qc-menu-btn.abierto{background:#2B6CB0;color:#fff}
 .qc-desplegable{
   position:absolute;z-index:14;background:#fff;border:1px solid #9FB0BE;
-  box-shadow:0 8px 22px rgba(19,35,57,.22);min-width:290px;display:flex;flex-direction:column;padding:3px 0;
+  box-shadow:0 8px 22px rgba(19,35,57,.22);min-width:290px;max-width:96%;display:flex;flex-direction:column;
+  padding:3px 0;max-height:230px;overflow-y:auto;
 }
 .qc-desplegable:empty{display:none}
 .qc-item{background:none;border:0;text-align:left;padding:6px 14px;font-size:.85rem;display:flex;justify-content:space-between;gap:24px;align-items:baseline}
@@ -206,7 +207,7 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .qc-pestana-p:hover{background:#DCEAF6}
 .qc-pestana-p.activa{background:#fff;color:var(--tinta);font-weight:600}
 
-.qc-cuerpo{display:grid;grid-template-columns:215px 1fr;min-height:210px;background:#fff}
+.qc-cuerpo{display:grid;grid-template-columns:215px 1fr;min-height:240px;background:#fff}
 @media (max-width:640px){.qc-cuerpo{grid-template-columns:1fr}}
 .qc-lateral{border-right:1px solid #DCE4EA;background:#FBFCFD;display:grid;align-content:start;gap:8px;padding:8px}
 .qc-subpestanas{display:flex;gap:3px}
@@ -317,12 +318,12 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 
 /* ---------- menu explorer ---------- */
 
-.explorador{display:grid;grid-template-columns:1fr 280px;gap:14px;align-items:start}
-@media (max-width:760px){.explorador{grid-template-columns:1fr}}
+.explorador{display:grid;gap:12px}
 .ficha{
   border:1px solid var(--linea);background:var(--papel);border-radius:var(--radio);
-  padding:14px 16px;font-size:.9rem;position:sticky;top:74px;
+  padding:14px 16px;font-size:.9rem;min-height:120px;
 }
+.ficha-tip{display:grid;gap:2px}
 .ficha-cuenta{margin:0 0 10px;font-size:.78rem;color:var(--turquesa);font-weight:600}
 .ficha-cabeza{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
 .ficha-ruta{font-size:.76rem;color:var(--tinta-media)}
@@ -333,3 +334,22 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .ficha-tip h5{margin:0 0 5px;font-size:.74rem;color:var(--tinta-media);font-weight:600}
 .ficha-tip p{margin:0;font-family:var(--serif);font-size:.9rem;line-height:1.5}
 .ficha-vacia{margin:0;color:var(--tinta-media);font-size:.86rem;line-height:1.45}
+
+/* ---------- media gallery ---------- */
+
+.medios{margin:22px 0 26px}
+.medios h2{font-size:.98rem;font-weight:600;margin:0 0 12px}
+.medios-rejilla{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+@media (max-width:640px){.medios-rejilla{grid-template-columns:1fr}}
+.medio{margin:0;display:grid;gap:6px}
+.medio-video{grid-column:1 / -1}
+.medio img{width:100%;border:1px solid var(--linea);border-radius:var(--radio);display:block;background:var(--alto)}
+.medio figcaption{font-size:.82rem;color:var(--tinta-media);line-height:1.35}
+.medio-vacio{
+  border:1px dashed var(--linea);background:var(--alto);border-radius:var(--radio);
+  padding:18px;display:grid;gap:6px;align-content:center;min-height:118px;text-align:center;
+}
+.medio-video .medio-vacio{min-height:150px}
+.medio-marca{font-size:.72rem;color:var(--turquesa);font-weight:600}
+.medio-sugerido{margin:0;font-size:.9rem;line-height:1.35}
+.medio-como{margin:0;font-size:.78rem;color:var(--tinta-media);line-height:1.35}

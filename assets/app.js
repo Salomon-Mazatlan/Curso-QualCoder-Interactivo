@@ -175,10 +175,10 @@ function pantallaBriefing(n) {
   c.appendChild(crear("p", "paso", "Misión " + (mision.idx + 1) + " de " + CURSO.niveles.length));
   c.appendChild(crear("h1", null, n.titulo));
   c.appendChild(crear("p", "lema", n.lema));
+  c.appendChild(bloqueMedios(n));
   const lec = crear("div", "lectura");
   lec.innerHTML = n.lectura;
   c.appendChild(lec);
-  c.appendChild(bloqueVideo(n));
 
   const fila = crear("div", "fila-acciones");
   const ir = crear("button", "accion", nivelCompleto(n) ? "Repasar la misión" : "Empezar la misión");
@@ -190,21 +190,46 @@ function pantallaBriefing(n) {
   return c;
 }
 
-function bloqueVideo(n) {
-  const caja = crear("section", "video");
-  caja.appendChild(crear("h2", null, n.videoTitulo || "Video de la lección"));
-  if (n.video) {
-    const marco = crear("div", "video-marco");
-    const ifr = document.createElement("iframe");
-    ifr.src = "https://www.youtube-nocookie.com/embed/" + n.video;
-    ifr.title = n.videoTitulo || n.titulo;
-    ifr.allowFullscreen = true; ifr.loading = "lazy";
-    marco.appendChild(ifr);
-    caja.appendChild(marco);
-  } else {
-    caja.appendChild(crear("div", "video-vacio",
-      "Espacio reservado para el video. Se activa poniendo el identificador de YouTube en el campo video de esta misión, dentro de assets/contenido.js"));
+// Video and screenshot gallery shown before the lesson. Fill "medios" in contenido.js.
+function bloqueMedios(n) {
+  const caja = crear("section", "medios");
+  caja.appendChild(crear("h2", null, "Videos y capturas"));
+  const rejilla = crear("div", "medios-rejilla");
+
+  (n.medios || []).forEach(m => {
+    const pieza = crear("figure", "medio" + (m.tipo === "video" ? " medio-video" : ""));
+    if (m.tipo === "video" && m.id) {
+      const marco = crear("div", "video-marco");
+      const ifr = document.createElement("iframe");
+      ifr.src = "https://www.youtube-nocookie.com/embed/" + m.id;
+      ifr.title = m.titulo || n.titulo;
+      ifr.allowFullscreen = true; ifr.loading = "lazy";
+      marco.appendChild(ifr);
+      pieza.appendChild(marco);
+    } else if (m.tipo === "imagen" && m.src) {
+      const img = document.createElement("img");
+      img.src = m.src;
+      img.alt = m.titulo || "";
+      img.loading = "lazy";
+      pieza.appendChild(img);
+    } else {
+      const hueco = crear("div", "medio-vacio");
+      hueco.appendChild(crear("span", "medio-marca", m.tipo === "video" ? "Video" : "Captura"));
+      hueco.appendChild(crear("p", "medio-sugerido", m.titulo || ""));
+      hueco.appendChild(crear("p", "medio-como", m.tipo === "video"
+        ? "Pon el identificador de YouTube en el campo id de este medio, dentro de assets/contenido.js"
+        : "Guarda la imagen en assets/img/ y escribe su ruta en el campo src, dentro de assets/contenido.js"));
+      pieza.appendChild(hueco);
+    }
+    const pie = m.pie || m.titulo;
+    if (pie) pieza.appendChild(crear("figcaption", null, pie));
+    rejilla.appendChild(pieza);
+  });
+
+  if (!(n.medios || []).length) {
+    rejilla.appendChild(crear("p", "medio-como", "Esta misión todavía no tiene medios. Se añaden en el arreglo medios de assets/contenido.js"));
   }
+  caja.appendChild(rejilla);
   return caja;
 }
 
@@ -424,6 +449,10 @@ function ventanaQC(opciones) {
     cerradorActivo = cerrarMenus;
     capa.style.left = anclaje.x + "px";
     capa.style.top = anclaje.y + "px";
+    setTimeout(() => {
+      const sobra = (capa.offsetLeft + capa.offsetWidth) - ventana.clientWidth;
+      if (sobra > 0) capa.style.left = Math.max(2, anclaje.x - sobra - 4) + "px";
+    }, 0);
     items.forEach(item => {
       const b = crear("button", "qc-item");
       b.appendChild(crear("span", null, item.t));

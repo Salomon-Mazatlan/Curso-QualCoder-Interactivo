@@ -239,8 +239,12 @@ const CURSO = {
       titulo: "Qué es codificar",
       lema: "Antes del programa está la decisión",
       insignia: { nombre: "Ojo de lector", icono: "◉" },
-      video: "", // put a YouTube ID here, for example "dQw4w9WgXcQ"
-      videoTitulo: "Qué hace y qué no hace un código",
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Recorrido por la ventana principal de QualCoder 4" },
+        { tipo: "imagen", src: "", titulo: "La ventana principal con sus cinco pestañas y la barra de menús", pie: "" },
+        { tipo: "imagen", src: "", titulo: "El registro de acciones con el mensaje de copia de seguridad", pie: "" }
+      ],
       lectura: `
         <p>Codificar es ponerle una etiqueta corta a un fragmento de datos para poder volver a encontrarlo,
         compararlo y contarlo si hace falta. La etiqueta es el <strong>código</strong> y el fragmento marcado
@@ -311,8 +315,13 @@ const CURSO = {
       titulo: "Abrir el proyecto",
       lema: "Media hora aquí ahorra semanas después",
       insignia: { nombre: "Cartografía", icono: "▤" },
-      video: "",
-      videoTitulo: "Crear el proyecto, configurar e importar",
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Crear el proyecto, configurar el codificador e importar los archivos" },
+        { tipo: "imagen", src: "", titulo: "El diálogo de creación de proyecto", pie: "" },
+        { tipo: "imagen", src: "", titulo: "La ventana de Configuración con el nombre del codificador", pie: "" },
+        { tipo: "imagen", src: "", titulo: "El gestor de archivos con cuatro entrevistas importadas", pie: "" }
+      ],
       lectura: `
         <p>Un proyecto de QualCoder es una carpeta terminada en <code>.qda</code>. Dentro viven la base de datos
         y las copias de los archivos. Se mueve completa, se respalda completa y se comparte completa.</p>
@@ -384,8 +393,13 @@ const CURSO = {
       titulo: "Codificar texto",
       lema: "Seleccionar, elegir el código, marcar",
       insignia: { nombre: "Marcador", icono: "▮" },
-      video: "",
-      videoTitulo: "El módulo Codificar texto por dentro",
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Crear un código y marcar el primer segmento" },
+        { tipo: "imagen", src: "", titulo: "El módulo Codificar texto con sus tres paneles", pie: "" },
+        { tipo: "imagen", src: "", titulo: "El menú contextual del árbol de códigos desplegado", pie: "" },
+        { tipo: "imagen", src: "", titulo: "Un segmento marcado, con su franja de color en el margen", pie: "" }
+      ],
       lectura: `
         <p>Codificar texto (Code text) es el módulo central. A la izquierda están las pestañas Documentos y
         Asistencia de IA con la lista de archivos, y debajo el árbol de códigos. Al centro el documento con su
@@ -474,8 +488,12 @@ const CURSO = {
       titulo: "En vivo, anotar y memos",
       lema: "La voz del campo y la tuya",
       insignia: { nombre: "Voz del campo", icono: "❝" },
-      video: "",
-      videoTitulo: "Código in vivo, anotaciones, memos y diario",
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Código in vivo, anotación y memo" },
+        { tipo: "imagen", src: "", titulo: "El menú contextual del texto con la selección activa", pie: "" },
+        { tipo: "imagen", src: "", titulo: "Un diario del proyecto con una entrada fechada", pie: "" }
+      ],
       lectura: `
         <p>El módulo cubre tres operaciones que conviene no confundir. <strong>Codificar</strong> asigna un
         código a un segmento y entra en los informes. <strong>Anotar</strong> deja una nota sobre el texto sin
@@ -559,8 +577,12 @@ const CURSO = {
       titulo: "El árbol de códigos",
       lema: "De la lista larga al mapa",
       insignia: { nombre: "Arquitectura", icono: "⌗" },
-      video: "",
-      videoTitulo: "Categorías, fusiones, colores y organizador",
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Categorías, fusión de códigos y esquema de color" },
+        { tipo: "imagen", src: "", titulo: "El árbol con categorías y códigos colgando de ellas", pie: "" },
+        { tipo: "imagen", src: "", titulo: "El diálogo de fusión de un código en otro", pie: "" }
+      ],
       lectura: `
         <p>El árbol de códigos es el mismo componente en los cuatro módulos de codificación. Todo lo que tiene
         que ver con crear, renombrar, mover, fusionar y borrar se hace con clic derecho sobre un código o sobre
@@ -629,8 +651,12 @@ const CURSO = {
       titulo: "Casos y atributos",
       lema: "Para comparar hay que poder separar",
       insignia: { nombre: "Fichero", icono: "▦" },
-      video: "",
-      videoTitulo: "Casos, atributos y encuestas",
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Casos, atributos e importación de encuestas" },
+        { tipo: "imagen", src: "", titulo: "La tabla de casos con archivos asignados", pie: "" },
+        { tipo: "imagen", src: "", titulo: "La tabla de atributos con una variable de agrupación", pie: "" }
+      ],
       lectura: `
         <p>Un caso agrupa todo el material de una misma persona o unidad, aunque esté repartido en varios
         archivos, y puede incluir archivos completos o solo tramos de un archivo, útil cuando una transcripción
@@ -699,8 +725,13 @@ const CURSO = {
       titulo: "Recuperar y mirar",
       lema: "El informe no piensa por ti",
       insignia: { nombre: "Lupa", icono: "◎" },
-      video: "",
-      videoTitulo: "Recuperación, frecuencias y gráficas",
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Recuperación de códigos, frecuencias y gráficas" },
+        { tipo: "imagen", src: "", titulo: "La recuperación con segmentos y su archivo de origen", pie: "" },
+        { tipo: "imagen", src: "", titulo: "La tabla de frecuencias por código y codificador", pie: "" },
+        { tipo: "imagen", src: "", titulo: "Una gráfica de barras por categoría", pie: "" }
+      ],
       lectura: `
         <p>Codificar sin recuperar es archivar. La recuperación de códigos junta todos los segmentos de un
         código y los pone uno detrás de otro con su archivo de origen. Ahí se ve si el código aguanta o si
@@ -772,8 +803,12 @@ const CURSO = {
       titulo: "Equipo y mantenimiento",
       lema: "El acuerdo se construye, no se decreta",
       insignia: { nombre: "Podadora", icono: "✂" },
-      video: "",
-      videoTitulo: "Acuerdo entre codificadores y funciones especiales",
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Comparación entre codificadores y funciones especiales" },
+        { tipo: "imagen", src: "", titulo: "La tabla de acuerdo con los porcentajes y la kappa", pie: "" },
+        { tipo: "imagen", src: "", titulo: "El módulo de enlaces rotos", pie: "" }
+      ],
       lectura: `
         <p>Si codifican varias personas, cada una tiene que trabajar con su propio nombre de codificador puesto
         en Configuración. Después, la comparación de codificación reporta el acuerdo código por código, con
@@ -843,8 +878,11 @@ const CURSO = {
       titulo: "Prueba de campo",
       lema: "Todo junto, una vez más",
       insignia: { nombre: "Codificación de campo", icono: "★" },
-      video: "",
-      videoTitulo: "Cierre del curso",
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Una sesión de codificación completa, de principio a fin" },
+        { tipo: "imagen", src: "", titulo: "El proyecto terminado, con su árbol y su diario", pie: "" }
+      ],
       lectura: `
         <p>Última misión. Una entrevista nueva, un sistema de códigos a medio construir y las decisiones de
         siempre. Nada que no hayas hecho ya, y esta vez sin pistas fáciles.</p>
