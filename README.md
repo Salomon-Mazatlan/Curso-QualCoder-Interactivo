@@ -1,7 +1,7 @@
 # Codificar en QualCoder 4
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.
-Está armado como un juego. Nueve misiones, cuarenta y cinco actividades, estrellas según los errores,
+Está armado como un juego. Diez misiones, cincuenta y dos actividades, estrellas según los errores,
 insignias, rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
 codificar texto. Son archivos estáticos, sin frameworks ni compilación, y se publica tal cual en GitHub
@@ -25,12 +25,13 @@ trabajo, Q para marcar, V para el código in vivo, A para anotar, U para desmarc
 
 Estudiantes de posgrado, tesistas, docentes y equipos de investigación que trabajan con entrevistas, grupos
 focales, notas de campo o respuestas abiertas de encuesta. No se necesita experiencia previa con software
-cualitativo ni conocimientos de programación. Tampoco hace falta instalar QualCoder para hacer los
-ejercicios, aunque el curso está pensado para que después se repita todo en un proyecto propio.
+cualitativo ni conocimientos de programación. El curso arranca por la instalación, así que tampoco hace falta
+tener el programa puesto para empezar, aunque está pensado para que después se repita todo en un proyecto
+propio.
 
 ### Qué se aprende
 
-Al terminar, quien tome el curso puede crear un proyecto, importar y revisar material, construir un sistema
+Al terminar, quien tome el curso puede instalar el programa, crear un proyecto, importar y revisar material, construir un sistema
 de códigos con categorías y memos, marcar segmentos con criterio, organizar casos y atributos, recuperar lo
 codificado en informes y depurar el sistema cuando crece de más. En el camino se trabajan las decisiones que
 sostienen todo eso, el tamaño del segmento, la diferencia entre código y categoría, cuándo un código en vivo
@@ -53,6 +54,7 @@ navegador de quien juega, sin cuentas ni servidor.
 
 | Misión | Tema | Qué se practica |
 | --- | --- | --- |
+| 0 | Instalar QualCoder | Paquete precompilado o código fuente, qué archivo baja cada sistema, programas externos, avisos de seguridad y comprobar la versión |
 | 1 | Qué es codificar | Vocabulario básico y un recorrido guiado por los siete menús, con la descripción y el consejo de uso de cada entrada |
 | 2 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
 | 3 | Codificar texto | Abrir el módulo, crear un código desde el árbol, marcar dos segmentos con Q |
@@ -65,7 +67,7 @@ navegador de quien juega, sin cuentas ni servidor.
 
 ### Duración
 
-Entre dos y tres horas, según cuánto se detenga cada quien en las actividades de escritura.
+Entre dos y tres horas y media, según cuánto se detenga cada quien en las actividades de escritura.
 Se puede dejar a medias y retomar, el avance queda guardado.
 
 ### Material de práctica
