@@ -224,7 +224,8 @@ function barraMision(n) {
 
 const NOMBRE_TIPO = {
   quiz: "Decisión", parejas: "Parejas", secuencia: "Secuencia", codificar: "Codificar texto",
-  clasificar: "Clasificación", abierta: "Escritura", interfaz: "Simulador", dialogo: "Ventana"
+  clasificar: "Clasificación", abierta: "Escritura", interfaz: "Simulador", dialogo: "Ventana",
+  explorar: "Exploración"
 };
 
 function tarjetaEjercicio(nivel, ej, idx) {
@@ -296,7 +297,8 @@ function tarjetaEjercicio(nivel, ej, idx) {
 
   ({
     quiz: montarQuiz, parejas: montarParejas, secuencia: montarSecuencia, codificar: montarCodificar,
-    clasificar: montarClasificar, abierta: montarAbierta, interfaz: montarInterfaz, dialogo: montarDialogo
+    clasificar: montarClasificar, abierta: montarAbierta, interfaz: montarInterfaz,
+    dialogo: montarDialogo, explorar: montarExplorar
   })[ej.tipo](cuerpo, ej, api);
 
   return caja;
@@ -387,6 +389,12 @@ function pantallaFin(n) {
 
 /* ---------- simulated QualCoder window ---------- */
 
+// Only one dropdown can be open at a time; Esc or a click outside closes it.
+let cerradorActivo = null;
+function cerrarMenuAbierto() {
+  if (cerradorActivo) { const f = cerradorActivo; cerradorActivo = null; f(); }
+}
+
 // Builds the main window skin. opciones.vista is "principal" or "codificar".
 function ventanaQC(opciones) {
   const I = CURSO.interfaz;
@@ -404,12 +412,16 @@ function ventanaQC(opciones) {
 
   function cerrarMenus() {
     capa.hidden = true;
+    capa.innerHTML = "";
+    if (cerradorActivo === cerrarMenus) cerradorActivo = null;
     barra.querySelectorAll("button").forEach(b => b.classList.remove("abierto"));
+    ventana.querySelectorAll(".qc-codigo.abierto").forEach(b => b.classList.remove("abierto"));
   }
 
   function abrirLista(anclaje, items, alClic) {
     capa.innerHTML = "";
     capa.hidden = false;
+    cerradorActivo = cerrarMenus;
     capa.style.left = anclaje.x + "px";
     capa.style.top = anclaje.y + "px";
     items.forEach(item => {
@@ -530,6 +542,7 @@ function montarInterfaz(zona, ej, api) {
     lateral.appendChild(arbolCodigos(I.codigos, (c, boton) => {
       if (cerrado) return;
       marco.cerrarMenus();
+      boton.classList.add("abierto");
       marco.abrirLista(
         { x: boton.offsetLeft + 24, y: boton.getBoundingClientRect().top - marco.ventana.getBoundingClientRect().top + boton.offsetHeight },
         I.contextual,
@@ -557,6 +570,72 @@ function montarInterfaz(zona, ej, api) {
   zona.appendChild(marco.ventana);
   if (destinoCodigo) zona.appendChild(crear("p", "nota-simulador", "Recuerda que el árbol de códigos se maneja con clic derecho. Aquí basta con tocar el código."));
   if (ej.pista) zona.appendChild(cajaPista(ej.pista));
+}
+
+/* ---------- activity: explorar ---------- */
+
+function montarExplorar(zona, ej, api) {
+  const vistos = {};
+  let contados = 0, cerrado = false;
+
+  const caja = crear("div", "explorador");
+  const ficha = crear("aside", "ficha");
+  const marcador = crear("p", "ficha-cuenta");
+
+  function contar(llave) {
+    if (vistos[llave]) return;
+    vistos[llave] = true;
+    contados++;
+    marcador.textContent = "Exploradas " + contados + " de " + ej.meta;
+    if (contados >= ej.meta && !cerrado) {
+      cerrado = true;
+      marco.ventana.classList.add("qc-listo");
+      api.resuelto(ej.dice);
+    }
+  }
+
+  function mostrar(titulo, item) {
+    ficha.innerHTML = "";
+    ficha.appendChild(marcador);
+    const cab = crear("div", "ficha-cabeza");
+    cab.appendChild(crear("span", "ficha-ruta", titulo));
+    if (item.k) cab.appendChild(crear("span", "ficha-tecla", item.k));
+    ficha.appendChild(cab);
+    ficha.appendChild(crear("h4", null, item.t.split(" (")[0]));
+    ficha.appendChild(crear("p", "ficha-que", item.d || "Sin descripción todavía."));
+    if (item.tip) {
+      const nota = crear("div", "ficha-tip");
+      nota.appendChild(crear("h5", null, "En la práctica"));
+      nota.appendChild(crear("p", null, item.tip));
+      ficha.appendChild(nota);
+    }
+  }
+
+  const marco = ventanaQC({
+    vista: "principal",
+    onMenu: (menuId, item) => {
+      const menu = CURSO.interfaz.menus.find(m => m.id === menuId);
+      mostrar(menu.nombre, item);
+      contar(menuId + "-" + item.id);
+    },
+    onPestana: (p) => {
+      mostrar("Ventana principal", p);
+      contar("pestana-" + p.id);
+    }
+  });
+
+  const cuerpo = crear("div", "qc-cuerpo");
+  cuerpo.appendChild(panelBienvenida());
+  marco.ventana.appendChild(cuerpo);
+  marco.ventana.appendChild(crear("div", "qc-estado", "Objetivo, " + ej.objetivo));
+
+  ficha.appendChild(marcador);
+  marcador.textContent = "Exploradas 0 de " + ej.meta;
+  ficha.appendChild(crear("p", "ficha-vacia", "Toca una entrada de menú o una pestaña y aquí aparece qué hace, con su consejo de uso."));
+
+  caja.appendChild(marco.ventana);
+  caja.appendChild(ficha);
+  zona.appendChild(caja);
 }
 
 /* ---------- activity: codificar ---------- */
@@ -979,5 +1058,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $(".hud-sonido").addEventListener("click", () => { estado.sonido = !estado.sonido; persistir(); pintarHud(); sonar("toque"); });
   $(".hud-mapa").addEventListener("click", () => { if (location.hash) location.hash = ""; else enrutar(); });
   $(".hud-reinicio").addEventListener("click", reiniciar);
+  document.addEventListener("click", cerrarMenuAbierto);
+  document.addEventListener("keydown", ev => { if (ev.key === "Escape") cerrarMenuAbierto(); });
   enrutar();
 });
