@@ -301,19 +301,6 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .aviso.bueno{background:var(--verde)}
 .aviso b{color:var(--amarillo)}
 
-/* ---------- certificate ---------- */
-
-.constancia{background:var(--alto);border:2px solid var(--tinta);padding:44px;text-align:center;border-radius:var(--radio)}
-.constancia h1{font-size:1.9rem;margin:0 0 6px;letter-spacing:-.02em}
-.constancia input{font-family:var(--serif);font-size:1.3rem;text-align:center;border:0;border-bottom:1px solid var(--linea);padding:10px 14px;background:none;color:var(--tinta);width:min(340px,84%);margin:14px 0}
-.constancia p{color:var(--tinta-media);font-size:.95rem;max-width:52ch;margin:6px auto}
-.constancia .cifras{font-weight:600;color:var(--tinta)}
-.constancia .fila-acciones{justify-content:center}
-
-@media print{
-  .hud,.fila-acciones,.aviso{display:none}
-  body{background:#fff}
-  .constancia{border-width:3px}
 }
 
 /* ---------- menu explorer ---------- */
@@ -380,4 +367,56 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .lista-referencias li{
   font-family:var(--serif);font-size:.98rem;line-height:1.5;
   padding:10px 0 10px 22px;text-indent:-22px;border-bottom:1px solid var(--linea);
+}
+
+/* ---------- certificate ---------- */
+
+.constancia{display:grid;gap:16px}
+.constancia-marco{
+  background:#fff;padding:46px 52px 34px;border:1px solid var(--tinta);
+  box-shadow:0 0 0 6px #fff, 0 0 0 7px var(--linea);
+}
+@media (max-width:640px){.constancia-marco{padding:30px 24px 24px}}
+.constancia-cabeza{text-align:center;border-bottom:1px solid var(--linea);padding-bottom:20px;margin-bottom:24px}
+.constancia-tipo{
+  margin:0 0 12px;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;color:var(--tinta-media);
+}
+.constancia-cabeza h1{font-family:var(--serif);font-size:2.05rem;line-height:1.15;margin:0 0 8px;font-weight:600}
+.constancia-sub{margin:0;font-size:.88rem;color:var(--tinta-media)}
+.constancia-formula{text-align:center;margin:0;font-family:var(--serif);font-style:italic;color:var(--tinta-media)}
+.constancia-nombre{
+  display:block;width:100%;margin:6px 0 18px;padding:8px 10px 12px;
+  font-family:var(--serif);font-size:1.85rem;text-align:center;color:var(--tinta);
+  background:none;border:0;border-bottom:1px solid var(--tinta);
+}
+.constancia-nombre::placeholder{color:#B4C1CC;font-size:1.1rem}
+.constancia-cuerpo{
+  margin:0 auto 26px;max-width:56ch;text-align:center;font-family:var(--serif);
+  font-size:1.05rem;line-height:1.65;
+}
+.constancia-datos{
+  list-style:none;margin:0 0 28px;padding:18px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;
+  border-top:1px solid var(--linea);border-bottom:1px solid var(--linea);
+}
+@media (max-width:640px){.constancia-datos{grid-template-columns:repeat(2,1fr)}}
+.constancia-datos li{display:grid;gap:3px;text-align:center}
+.dato-etiqueta{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-media)}
+.dato-valor{font-size:1.02rem;font-weight:600}
+.constancia-pie{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.constancia-pie div{display:grid;gap:2px}
+.pie-etiqueta{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta-media)}
+.pie-valor{font-size:.92rem}
+.pie-folio{font-family:ui-monospace,Menlo,Consolas,monospace;letter-spacing:.06em}
+.constancia-nota{
+  margin:22px 0 0;font-size:.76rem;line-height:1.45;color:var(--tinta-media);
+  border-top:1px solid var(--linea);padding-top:12px;
+}
+
+@media print{
+  .hud,.fila-acciones,.aviso,.salidas{display:none !important}
+  body{background:#fff}
+  #app{padding:0;max-width:none}
+  .constancia-marco{border-width:2px;box-shadow:none;padding:40px 46px}
+  .constancia-nombre{border-bottom-color:#000}
+  @page{margin:14mm}
 }

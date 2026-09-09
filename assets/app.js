@@ -1059,35 +1059,100 @@ function cajaPista(texto) {
 
 /* ---------- certificate ---------- */
 
+function folio(nombre) {
+  const base = (nombre || "sin nombre") + "|" + CURSO.titulo;
+  let h = 0;
+  for (let i = 0; i < base.length; i++) { h = (h * 31 + base.charCodeAt(i)) >>> 0; }
+  return "QC4-" + h.toString(36).toUpperCase().padStart(7, "0").slice(0, 7);
+}
+
+function fechaLarga() {
+  const meses = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
+    "agosto", "septiembre", "octubre", "noviembre", "diciembre"];
+  const d = new Date();
+  return d.getDate() + " de " + meses[d.getMonth()] + " de " + d.getFullYear();
+}
+
 function pintarConstancia() {
   mision = null;
   const zona = $("#app");
   zona.innerHTML = "";
   if (!CURSO.niveles.every(nivelCompleto)) { location.hash = ""; return; }
 
-  const caja = crear("section", "constancia");
-  caja.appendChild(crear("h1", null, "Constancia de participación"));
-  caja.appendChild(crear("p", null, "acredita haber completado las " + CURSO.niveles.length + " misiones del curso " + CURSO.titulo));
+  const actividades = CURSO.niveles.reduce((t, n) => t + n.ejercicios.length, 0);
+  const estrellas = CURSO.niveles.reduce((t, n) => t + estrellasNivel(n), 0);
+
+  const hoja = crear("section", "constancia");
+  const marco = crear("div", "constancia-marco");
+
+  const cab = crear("header", "constancia-cabeza");
+  cab.appendChild(crear("p", "constancia-tipo", "Constancia de participación"));
+  cab.appendChild(crear("h1", null, CURSO.titulo));
+  cab.appendChild(crear("p", "constancia-sub", "Curso de autoformación en análisis cualitativo asistido por computadora"));
+  marco.appendChild(cab);
+
+  marco.appendChild(crear("p", "constancia-formula", "Se hace constar que"));
 
   const nombre = document.createElement("input");
-  nombre.placeholder = "Escribe tu nombre";
+  nombre.className = "constancia-nombre";
+  nombre.placeholder = "Escribe aquí tu nombre";
   nombre.value = estado.nombre || "";
-  nombre.addEventListener("input", () => { estado.nombre = nombre.value; persistir(); });
-  caja.appendChild(nombre);
+  nombre.setAttribute("aria-label", "Nombre de quien recibe la constancia");
+  marco.appendChild(nombre);
 
-  const totalEstrellas = CURSO.niveles.reduce((s, n) => s + estrellasNivel(n), 0);
-  caja.appendChild(crear("p", "cifras", estado.xp + " XP · " + estado.insignias.length + " insignias · " +
-    totalEstrellas + " de " + (CURSO.niveles.length * 3) + " estrellas · rango " + rango().nombre));
-  caja.appendChild(crear("p", null, CURSO.autoria));
+  const cuerpo = crear("p", "constancia-cuerpo");
+  cuerpo.textContent = "concluyó las " + CURSO.niveles.length + " misiones del curso, con sus " +
+    actividades + " actividades prácticas sobre el manejo de QualCoder 4 y los fundamentos del análisis " +
+    "cualitativo, con una dedicación estimada de " + CURSO.duracion + ".";
+  marco.appendChild(cuerpo);
+
+  const datos = crear("ul", "constancia-datos");
+  [
+    ["Experiencia acumulada", estado.xp + " XP"],
+    ["Insignias obtenidas", estado.insignias.length + " de " + CURSO.niveles.length],
+    ["Estrellas", estrellas + " de " + (CURSO.niveles.length * 3)],
+    ["Nivel alcanzado", rango().nombre]
+  ].forEach(([a, b]) => {
+    const li = crear("li");
+    li.appendChild(crear("span", "dato-etiqueta", a));
+    li.appendChild(crear("span", "dato-valor", b));
+    datos.appendChild(li);
+  });
+  marco.appendChild(datos);
+
+  const pie = crear("footer", "constancia-pie");
+  const izq = crear("div");
+  izq.appendChild(crear("span", "pie-etiqueta", "Fecha de emisión"));
+  izq.appendChild(crear("span", "pie-valor", fechaLarga()));
+  const der = crear("div");
+  der.appendChild(crear("span", "pie-etiqueta", "Folio"));
+  const cifra = crear("span", "pie-valor pie-folio", folio(estado.nombre));
+  der.appendChild(cifra);
+  pie.appendChild(izq); pie.appendChild(der);
+  marco.appendChild(pie);
+
+  marco.appendChild(crear("p", "constancia-nota",
+    "Documento de autoformación generado por el propio sitio del curso a partir del avance registrado en este navegador. Deja constancia del trabajo realizado y no constituye una acreditación institucional."));
+
+  nombre.addEventListener("input", () => {
+    estado.nombre = nombre.value; persistir();
+    cifra.textContent = folio(estado.nombre);
+  });
+
+  hoja.appendChild(marco);
 
   const fila = crear("div", "fila-acciones");
   const imprimir = crear("button", "accion", "Imprimir o guardar en PDF");
-  imprimir.addEventListener("click", () => window.print());
+  imprimir.addEventListener("click", () => {
+    if (!nombre.value.trim()) { nombre.focus(); avisar("Escribe tu nombre antes de imprimir."); return; }
+    window.print();
+  });
   const mapa = crear("button", "accion fantasma", "Volver al mapa");
   mapa.addEventListener("click", () => { location.hash = ""; });
   fila.appendChild(imprimir); fila.appendChild(mapa);
-  caja.appendChild(fila);
-  zona.appendChild(caja);
+  hoja.appendChild(fila);
+
+  zona.appendChild(hoja);
   pintarHud();
 }
 

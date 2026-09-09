@@ -4,7 +4,7 @@
 const CURSO = {
   titulo: "Codificar en QualCoder 4",
   subtitulo: "Diez misiones de práctica",
-  autoria: "SoftCualitativo",
+  duracion: "entre dos y tres horas y media",
 
   // Code colors used by the coding activities.
   paleta: {
@@ -290,7 +290,7 @@ const CURSO = {
         Sin ellos el programa funciona, solo se apagan esas funciones.</p>
       `,
       ejercicios: [
-        {
+        /* 1.1 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Vas a instalarlo en tu computadora de trabajo para empezar la tesis. ¿Qué camino eliges?",
@@ -300,7 +300,7 @@ const CURSO = {
             { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en la página de versiones del proyecto." }
           ]
         },
-        {
+        /* 1.2 */ {
           tipo: "clasificar",
           xp: 20,
           instruccion: "Toca cada archivo y mándalo al sistema al que corresponde.",
@@ -318,7 +318,7 @@ const CURSO = {
             { t: "El primer arranque tarda unos veinte segundos", cat: "win" }
           ]
         },
-        {
+        /* 1.3 */ {
           tipo: "secuencia",
           xp: 15,
           instruccion: "Tu colega usa Linux y no hay paquete para su sistema. Ordena los pasos de la instalación desde el código fuente.",
@@ -331,7 +331,7 @@ const CURSO = {
             "Entrar en la subcarpeta del código y ejecutar el programa"
           ]
         },
-        {
+        /* 1.4 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada pieza externa con lo que aporta.",
@@ -343,7 +343,7 @@ const CURSO = {
             { a: "Entorno virtual", b: "Aísla las bibliotecas del programa de las del resto del sistema" }
           ]
         },
-        {
+        /* 1.5 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Al abrirlo, el sistema avisa de que el programa procede de un desarrollador no identificado. ¿Qué significa?",
@@ -353,7 +353,7 @@ const CURSO = {
             { t: "Que el programa trae software malicioso", ok: false, dice: "El aviso solo dice que nadie pagó por firmar el paquete. Si te incomoda, el código es abierto y se puede instalar desde la fuente." }
           ]
         },
-        {
+        /* 1.6 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Instalaste todo y el audio de las entrevistas no se reproduce. ¿Por dónde empiezas?",
@@ -363,7 +363,7 @@ const CURSO = {
             { t: "Convertir todos los audios a otro formato", ok: false, dice: "El formato rara vez es el problema si el reproductor externo no está." }
           ]
         },
-        {
+        /* 1.7 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Ya lo tienes abierto. Comprueba qué versión instalaste, que es el dato que hay que citar en cualquier publicación.",
@@ -409,7 +409,7 @@ const CURSO = {
         avisa de las copias de seguridad y suelta los resultados de varios informes.</p>
       `,
       ejercicios: [
-        {
+        /* 2.1 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Lees esta línea de una entrevista. \"Ya van cuatro años y yo pensaba que eran unos meses.\" ¿Cuál etiqueta funciona mejor como código?",
@@ -420,7 +420,7 @@ const CURSO = {
             { t: "Cuatro años", ok: false, dice: "Es un dato del caso, no un concepto. No se repite en otras entrevistas." }
           ]
         },
-        {
+        /* 2.2 */ {
           tipo: "explorar",
           xp: 20,
           meta: 8,
@@ -428,7 +428,7 @@ const CURSO = {
           objetivo: "Recorrer la barra de menús",
           dice: "Con eso ya sabes dónde vive cada cosa. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados."
         },
-        {
+        /* 2.3 */ {
           tipo: "interfaz",
           xp: 10,
           instruccion: "Ya con el mapa en la cabeza. Abre la pestaña donde el programa deja sus mensajes, los avisos de respaldo y los resultados de algunos informes.",
@@ -437,7 +437,7 @@ const CURSO = {
           pista: "Es la primera de las cinco pestañas de la ventana principal.",
           dice: "Conviene mirarla después de abrir el proyecto y después de cualquier operación grande. Varios avisos aparecen ahí y en ningún otro lado."
         },
-        {
+        /* 2.4 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada pieza con lo que hace. Toca una tarjeta de la izquierda y luego su definición.",
@@ -449,7 +449,7 @@ const CURSO = {
             { a: "Anotación", b: "Nota sobre un punto del texto, sin asignar código" }
           ]
         },
-        {
+        /* 2.5 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "¿Cuándo conviene crear una categoría?",
@@ -493,7 +493,7 @@ const CURSO = {
         y una entrada aparte en el menú Proyecto para importar encuestas desde CSV o XLSX.</p>
       `,
       ejercicios: [
-        {
+        /* 3.1 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Estás frente a QualCoder recién abierto. Crea el proyecto donde vivirán las entrevistas.",
@@ -502,7 +502,7 @@ const CURSO = {
           pista: "Todo lo que enmarca al proyecto completo cuelga del primer menú.",
           dice: "QualCoder pide nombre y ubicación, y construye la carpeta .qda con sus subcarpetas y la base de datos vacía."
         },
-        {
+        /* 3.2 */ {
           tipo: "dialogo",
           xp: 15,
           instruccion: "Se abrió Configuración (Settings). Déjala lista para trabajar en español y con tu firma.",
@@ -515,7 +515,7 @@ const CURSO = {
           boton: "Guardar",
           dice: "El cambio de idioma pide reiniciar el programa. Y ojo, las copias automáticas rotan, por defecto se guardan cinco."
         },
-        {
+        /* 3.3 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "El proyecto está vacío. Abre el módulo por donde entra todo el material al proyecto.",
@@ -524,7 +524,7 @@ const CURSO = {
           pista: "Archivos, casos, atributos, diarios y referencias viven en el mismo menú.",
           dice: "Desde ahí se importa, se vincula, se renombra y se asignan atributos. Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos enlaces se rompen al cambiar de computadora."
         },
-        {
+        /* 3.4 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Antes de empezar quieres ver qué hay dentro del proyecto y si algún archivo vinculado se perdió.",
@@ -533,7 +533,7 @@ const CURSO = {
           pista: "Es una entrada del menú Proyecto y su resultado sale en el registro de acciones.",
           dice: "El resumen lista recuentos de archivos, casos, códigos y atributos, y destaca los enlaces rotos. Conviene ejecutarlo al retomar un proyecto viejo."
         },
-        {
+        /* 3.5 */ {
           tipo: "secuencia",
           xp: 15,
           instruccion: "Ordena el arranque de un proyecto. Toca los pasos en el orden correcto.",
@@ -581,7 +581,7 @@ const CURSO = {
         una vez los casos, los atributos y los archivos de texto de cada respuesta.</p>
       `,
       ejercicios: [
-        {
+        /* 4.1 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Rosa tiene dos entrevistas y una nota de campo. Vas a juntarlas bajo una misma unidad.",
@@ -590,7 +590,7 @@ const CURSO = {
           pista: "Está en el mismo menú donde importaste los archivos.",
           dice: "Un caso puede reunir archivos completos o tramos marcados dentro de un archivo."
         },
-        {
+        /* 4.2 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Quieres registrar si cada cuidadora trabaja fuera de casa, para poder comparar después.",
@@ -599,7 +599,7 @@ const CURSO = {
           pista: "Las variables descriptivas tienen su propia entrada en el menú Gestionar.",
           dice: "Los atributos pueden ser de texto o numéricos y se aplican a archivos o a casos. Después filtran en casi todos los informes."
         },
-        {
+        /* 4.3 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Te llegó una encuesta en CSV con tres preguntas abiertas y ocho variables de perfil. Métela al proyecto.",
@@ -608,7 +608,7 @@ const CURSO = {
           pista: "No está en Gestionar, la importación de encuestas cuelga del menú Proyecto.",
           dice: "La importación crea los casos, los atributos y un archivo de texto por respuesta, todo de una pasada."
         },
-        {
+        /* 4.4 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada elemento con lo que representa dentro del proyecto.",
@@ -620,7 +620,7 @@ const CURSO = {
             { a: "Codificación", b: "Un código aplicado a un segmento concreto" }
           ]
         },
-        {
+        /* 4.5 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Quieres comparar qué dicen las cuidadoras que trabajan fuera de casa frente a las que no. ¿Qué necesitas tener listo?",
@@ -669,7 +669,7 @@ const CURSO = {
         pierde el contexto ni la página entera que vuelve inútil al código.</p>
       `,
       ejercicios: [
-        {
+        /* 5.1 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Ya tienes las entrevistas dentro. Abre el módulo donde se codifican los textos.",
@@ -678,7 +678,7 @@ const CURSO = {
           pista: "Hay un módulo distinto para texto, PDF, imagen y audio o video.",
           dice: "También se abre con Alt+T desde cualquier punto del programa. El módulo se aloja en la pestaña Codificar, no en una ventana aparte."
         },
-        {
+        /* 5.2 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "El árbol de códigos está vacío para este tema. Crea el código que vas a necesitar, sin colgarlo de ninguna categoría.",
@@ -687,7 +687,7 @@ const CURSO = {
           pista: "El árbol de códigos se maneja con clic derecho sobre cualquiera de sus elementos.",
           dice: "Crear un código nuevo lo pone en el nivel superior. Para colgarlo de una categoría existe Añadir un código nuevo a la categoría, y para hacerlo subcódigo, Añadir un subcódigo."
         },
-        {
+        /* 5.3 */ {
           tipo: "dialogo",
           xp: 15,
           instruccion: "Se abrió la ventana del código nuevo. Llámalo Abandono del empleo y déjalo listo para trabajar en equipo.",
@@ -700,7 +700,7 @@ const CURSO = {
           boton: "Crear código",
           dice: "El memo del código es lo que después aparece en la regla del código, con ejemplos reales debajo. Sin él, el acuerdo entre codificadores no tiene con qué sostenerse."
         },
-        {
+        /* 5.4 */ {
           tipo: "codificar",
           xp: 20,
           instruccion: "Entrevista E01_Rosa. Marca el fragmento donde deja el empleo. Selecciona el tramo, elige el código en el árbol y usa Marcar (Q).",
@@ -718,7 +718,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [1], codigo: "c1", accion: "marcar" }
         },
-        {
+        /* 5.5 */ {
           tipo: "codificar",
           xp: 20,
           instruccion: "Sigue en la misma entrevista. Marca el tramo que muestra que el cuidado duró mucho más de lo previsto.",
@@ -777,7 +777,7 @@ const CURSO = {
         proceso, que después es tu apartado de método.</p>
       `,
       ejercicios: [
-        {
+        /* 6.1 */ {
           tipo: "codificar",
           xp: 20,
           instruccion: "Esta frase vale por cómo está dicha. Selecciónala y créale un código in vivo con la tecla V.",
@@ -793,7 +793,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [1], accion: "invivo" }
         },
-        {
+        /* 6.2 */ {
           tipo: "codificar",
           xp: 20,
           instruccion: "Esta otra frase te llama la atención y todavía no sabes cómo nombrarla. Déjale una nota sin asignarle código.",
@@ -808,7 +808,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [2], accion: "anotar" }
         },
-        {
+        /* 6.3 */ {
           tipo: "abierta",
           xp: 20,
           instruccion: "Escribe el memo del código Abandono del empleo. Tiene que quedar claro qué se marca con él y qué no.",
@@ -820,7 +820,7 @@ const CURSO = {
           ],
           modelo: "Abandono del empleo. Marca los fragmentos donde la persona relata haber dejado un trabajo remunerado a causa de la tarea de cuidado, sea por renuncia, liquidación o despido negociado. Entra \"pedí mi liquidación y me salí\". No entra la reducción de horas ni el cambio de turno, que van en Ajuste de jornada. Se confunde con Pérdida de ingresos, que se refiere al efecto económico y no a la salida del empleo."
         },
-        {
+        /* 6.4 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Terminaste la sesión y quieres dejar por escrito qué decidiste y por qué.",
@@ -829,7 +829,7 @@ const CURSO = {
           pista: "Se gestionan junto con los archivos, los casos y los atributos.",
           dice: "Se pueden tener varios diarios, uno metodológico y otro de campo. Es el único módulo que se abre en ventana propia, así que puedes escribir mientras codificas."
         },
-        {
+        /* 6.5 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "¿Qué diferencia hay entre el memo de un código y el memo de una codificación?",
@@ -873,7 +873,7 @@ const CURSO = {
         simula cómo se ve la paleta para distintas formas de visión cromática.</p>
       `,
       ejercicios: [
-        {
+        /* 7.1 */ {
           tipo: "clasificar",
           xp: 25,
           instruccion: "Estos códigos salieron de cuatro entrevistas a cuidadoras. Toca un código y luego la categoría donde va.",
@@ -893,7 +893,7 @@ const CURSO = {
             { t: "Grupo de WhatsApp de cuidadoras", cat: "k2" }
           ]
         },
-        {
+        /* 7.2 */ {
           tipo: "interfaz",
           xp: 20,
           instruccion: "En el árbol tienes Culpa y Sentimiento de culpa diciendo lo mismo. Únelos sin perder ninguna codificación.",
@@ -902,7 +902,7 @@ const CURSO = {
           pista: "Las operaciones sobre un código salen de su menú contextual, no de la barra de menús.",
           dice: "Las codificaciones del código que desaparece pasan al de destino. Si hubieras elegido Eliminar, se habrían borrado con él y sin deshacer."
         },
-        {
+        /* 7.3 */ {
           tipo: "interfaz",
           xp: 20,
           instruccion: "Ya creaste la categoría Costos del cuidado. Ahora mete ahí el código Abandono del empleo.",
@@ -911,7 +911,7 @@ const CURSO = {
           pista: "Es otra entrada del mismo menú contextual, la que abre una lista jerárquica de destinos.",
           dice: "La lista deja elegir entre el nivel superior, una categoría o incluso otro código, que lo convertiría en subcódigo."
         },
-        {
+        /* 7.4 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Un código tiene una sola codificación en todo el corpus, hecha hace cuatro meses. ¿Qué haces?",
@@ -956,7 +956,7 @@ const CURSO = {
         estés aplicando a todo. La cuenta describe tu codificación, no la realidad del campo.</p>
       `,
       ejercicios: [
-        {
+        /* 8.1 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Quieres leer juntos todos los fragmentos que marcaste con el código Culpa.",
@@ -965,7 +965,7 @@ const CURSO = {
           pista: "No está en Informes. Lo que devuelve segmentos para leer cuelga del menú Análisis.",
           dice: "También se abre con Alt+K. Devuelve los segmentos con su archivo de origen y permite filtrar por códigos, archivos, casos y atributos."
         },
-        {
+        /* 8.2 */ {
           tipo: "dialogo",
           xp: 20,
           instruccion: "Configura la recuperación para revisar el código con contexto y llevártela a tu procesador de textos.",
@@ -979,7 +979,7 @@ const CURSO = {
           boton: "Ejecutar",
           dice: "Sin el archivo de origen los fragmentos pierden el rastro y ya no se puede volver a la entrevista completa."
         },
-        {
+        /* 8.3 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Antes de escribir resultados quieres ver cuántas veces se aplicó cada código y quién lo aplicó.",
@@ -988,7 +988,7 @@ const CURSO = {
           pista: "Las cuentas están en el menú Informes, no en Análisis.",
           dice: "Muestra el total por código y el desglose por codificador. Para ver cómo se reparte entre archivos o casos está Conteos por archivo o caso."
         },
-        {
+        /* 8.4 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Necesitas una figura para el artículo con el peso de cada categoría.",
@@ -997,7 +997,7 @@ const CURSO = {
           pista: "Está en Informes, con atajo Alt+U.",
           dice: "Las gráficas cuentan por frecuencia, por caracteres codificados o por área de imagen, y no es lo mismo. Elige la unidad según lo que quieras mostrar."
         },
-        {
+        /* 8.5 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Abres la recuperación del código Culpa y ves que la mitad de los segmentos hablan de vergüenza frente a los hermanos y la otra mitad de arrepentimiento por enojarse. ¿Qué te dice eso?",
@@ -1044,7 +1044,7 @@ const CURSO = {
         operaciones potentes y sin marcha atrás, así que se hace copia manual antes.</p>
       `,
       ejercicios: [
-        {
+        /* 9.1 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Tu colega codificó las mismas dos entrevistas que tú. Vas a ver dónde coinciden y dónde no.",
@@ -1053,7 +1053,7 @@ const CURSO = {
           pista: "Es un informe y tiene atajo Alt+L.",
           dice: "Compara dos codificadores en todo el corpus. Si quieres verlo dentro de un archivo concreto, existe Comparación por archivo."
         },
-        {
+        /* 9.2 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Cambiaste el proyecto de computadora y varios archivos vinculados ya no abren.",
@@ -1062,7 +1062,7 @@ const CURSO = {
           pista: "Los archivos vinculados se gestionan donde se gestionan los archivos.",
           dice: "El resumen del proyecto los detecta y este módulo los repara. Con archivos copiados en vez de vinculados el problema no existe."
         },
-        {
+        /* 9.3 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Tu colega te mandó su proyecto aparte y quieres incorporarlo al tuyo.",
@@ -1071,7 +1071,7 @@ const CURSO = {
           pista: "No están en Proyecto. Cuelgan del menú Ayuda, con atajo Alt+Z.",
           dice: "Ahí viven fusionar proyectos, sustituir el texto de un archivo y desplazar posiciones de codificación. Copia la carpeta a mano antes de usarlas."
         },
-        {
+        /* 9.4 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Dos codificadores marcan el mismo fragmento con códigos distintos. ¿Qué es lo primero que hay que hacer?",
@@ -1081,7 +1081,7 @@ const CURSO = {
             { t: "Que decida quien tenga más experiencia", ok: false, dice: "Eso cierra la discusión sin arreglar el instrumento." }
           ]
         },
-        {
+        /* 9.5 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada problema con la operación que lo resuelve.",
@@ -1121,7 +1121,7 @@ const CURSO = {
         <p>Al terminar se libera la constancia, con tu nombre, tus XP y tus insignias.</p>
       `,
       ejercicios: [
-        {
+        /* 10.1 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Llegó la entrevista E04_Marta y ya está importada. Abre donde vas a marcarla.",
@@ -1129,7 +1129,7 @@ const CURSO = {
           ruta: ["codificar", "texto"],
           dice: "De memoria y sin pista, que es como se trabaja."
         },
-        {
+        /* 10.2 */ {
           tipo: "codificar",
           xp: 25,
           instruccion: "Marca el tramo donde aparece el costo físico del cuidado y aplícale su código.",
@@ -1147,7 +1147,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [1], codigo: "m1", accion: "marcar" }
         },
-        {
+        /* 10.3 */ {
           tipo: "codificar",
           xp: 25,
           instruccion: "La frase que cierra el tema sin quejarse merece quedar con las palabras de Marta. Créale un código in vivo.",
@@ -1163,7 +1163,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [1], accion: "invivo" }
         },
-        {
+        /* 10.4 */ {
           tipo: "clasificar",
           xp: 25,
           instruccion: "Acomoda los códigos de Marta en el sistema que ya venías armando.",
@@ -1179,7 +1179,7 @@ const CURSO = {
             { t: "Hija que sugiere contratar ayuda", cat: "k2" }
           ]
         },
-        {
+        /* 10.5 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Antes de cerrar quieres releer juntos todos los segmentos del código que más creció.",
@@ -1187,7 +1187,7 @@ const CURSO = {
           ruta: ["analisis", "recuperacion"],
           dice: "Recuperar cada dos o tres archivos nuevos es lo que evita descubrir a los seis meses que un código traía dos cosas dentro."
         },
-        {
+        /* 10.6 */ {
           tipo: "abierta",
           xp: 25,
           instruccion: "Cierra la sesión con una entrada de diario. Cuenta qué hiciste y qué queda pendiente.",
