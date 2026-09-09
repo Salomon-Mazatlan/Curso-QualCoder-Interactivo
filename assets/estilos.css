@@ -103,7 +103,7 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .punto.saltado{background:var(--amarillo)}
 .racha{font-size:.84rem;color:var(--amarillo);font-weight:600;min-width:74px;text-align:right}
 
-.mision.golpe{animation:sacudir .35s}
+.mision.golpe{animation:none}
 @keyframes sacudir{
   25%{transform:translateX(-6px)} 50%{transform:translateX(5px)} 75%{transform:translateX(-3px)}
 }
@@ -113,7 +113,8 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 
 .ejercicio{background:var(--alto);border:1px solid var(--linea);border-radius:var(--radio);padding:22px 24px}
 .ejercicio-cabeza{display:flex;justify-content:space-between;gap:16px;align-items:baseline;margin-bottom:10px}
-.ejercicio-tipo{font-size:.8rem;color:var(--tinta-media)}
+.ejercicio-tipo{font-size:.8rem;color:var(--tinta-media);display:flex;gap:8px;align-items:baseline}
+.ejercicio-num{color:var(--tinta);font-variant-numeric:tabular-nums}
 .ejercicio-xp{font-size:.8rem;font-weight:700;color:var(--turquesa)}
 .enunciado{margin:0 0 16px;font-size:1.02rem;line-height:1.45}
 
@@ -121,11 +122,11 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .opcion{text-align:left;background:var(--papel);border:1px solid var(--linea);padding:11px 14px;border-radius:var(--radio);line-height:1.35;font-size:.97rem}
 .opcion:hover:not(:disabled){border-color:var(--turquesa)}
 .opcion.bien{border-color:var(--verde);background:#EDF6EC}
-.opcion.mal{border-color:var(--coral);background:#FCEFF3}
+.opcion.tibio{border-color:#C8D3DC;background:#F1F5F7;color:var(--tinta-media)}
 .opcion:disabled{cursor:default}
 
 .dice{margin-top:12px;font-size:.94rem;line-height:1.45;padding:11px 14px;border-radius:var(--radio);background:#E7F0F1}
-.dice.mal{background:#FCEFF3}
+.dice.mal{background:#FBF3E4}
 .dice.bien{background:#EDF6EC}
 
 .chips{display:flex;flex-wrap:wrap;gap:8px}
@@ -420,3 +421,16 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
   .constancia-nombre{border-bottom-color:#000}
   @page{margin:14mm}
 }
+
+/* ---------- quiz review ---------- */
+
+.repaso{margin-top:16px;border-top:1px solid var(--linea);padding-top:14px}
+.repaso h4{margin:0 0 10px;font-size:.82rem;font-weight:600;color:var(--tinta-media)}
+.repaso ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.repaso li{font-size:.9rem;line-height:1.45;padding-left:14px;border-left:2px solid var(--linea)}
+.repaso li.buena{border-left-color:var(--verde)}
+.repaso li b{font-weight:600}
+.repaso li span{color:var(--tinta-media)}
+.repaso-consejo{margin-top:14px;background:#EEF4F5;border-radius:var(--radio);padding:12px 14px}
+.repaso-consejo h5{margin:0 0 5px;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--turquesa)}
+.repaso-consejo p{margin:0;font-family:var(--serif);font-size:.95rem;line-height:1.5}

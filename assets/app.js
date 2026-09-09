@@ -105,8 +105,8 @@ function pintarMapa() {
   const intro = crear("header", "mapa-intro");
   intro.appendChild(crear("h1", null, "Mapa de misiones"));
   intro.appendChild(crear("p", null, estado.xp === 0
-    ? CURSO.niveles.length + " misiones sobre el QualCoder 4 real, desde la instalación. Se practica en un simulador de la ventana del programa, con sus menús y sus módulos. Resolver a la primera da tres estrellas."
-    : "Rango actual " + rango().nombre + ". Repasar una misión terminada no quita XP y sí puede mejorar tus estrellas."));
+    ? CURSO.niveles.length + " misiones sobre el QualCoder 4 real, desde la instalación. Se practica en un simulador de la ventana del programa, con sus menús y sus módulos. Equivocarse no descuenta, cada actividad resuelta suma sus XP."
+    : "Rango actual " + rango().nombre + ". Las actividades saltadas quedan marcadas y se pueden retomar cuando quieras."));
   cont.appendChild(intro);
 
   const senda = crear("ol", "senda");
@@ -118,7 +118,7 @@ function pintarMapa() {
     btn.appendChild(crear("span", "disco", listo ? nivel.insignia.icono : String(i + 1)));
 
     const bloque = crear("span", "nodo-texto");
-    bloque.appendChild(crear("strong", null, nivel.titulo));
+    bloque.appendChild(crear("strong", null, (i + 1) + ". " + nivel.titulo));
     bloque.appendChild(crear("span", "nodo-lema", abierto ? nivel.lema : "Se abre al terminar la misión anterior"));
     const estrellas = crear("span", "estrellas");
     for (let e = 1; e <= 3; e++) estrellas.appendChild(crear("span", "estrella" + (estrellasNivel(nivel) >= e ? " viva" : ""), "★"));
@@ -154,7 +154,7 @@ function abrirMision(nivel, idx, directo, desdeCero) {
   const pendiente = nivel.ejercicios.findIndex((_, i) => !hecho(nivel, i));
   mision = {
     nivel: nivel, idx: idx, i: desdeCero || pendiente === -1 ? 0 : pendiente,
-    paso: directo ? "ej" : "briefing", racha: 0, errores: 0, ganado: 0
+    paso: directo ? "ej" : "briefing", racha: 0, hechas: 0, saltadas: 0, ganado: 0
   };
   pintarMision();
 }
@@ -175,7 +175,7 @@ function pintarMision() {
 function pantallaBriefing(n) {
   const c = crear("div", "briefing");
   c.appendChild(crear("p", "paso", "Misión " + (mision.idx + 1) + " de " + CURSO.niveles.length));
-  c.appendChild(crear("h1", null, n.titulo));
+  c.appendChild(crear("h1", null, (mision.idx + 1) + ". " + n.titulo));
   c.appendChild(crear("p", "lema", n.lema));
   c.appendChild(bloqueMedios(n));
   const lec = crear("div", "lectura");
@@ -279,7 +279,7 @@ function barraMision(n) {
 }
 
 const NOMBRE_TIPO = {
-  quiz: "Decisión", parejas: "Parejas", secuencia: "Secuencia", codificar: "Codificar texto",
+  quiz: "Decisión comentada", parejas: "Parejas", secuencia: "Secuencia", codificar: "Codificar texto",
   clasificar: "Clasificación", abierta: "Escritura", interfaz: "Simulador", dialogo: "Ventana",
   explorar: "Exploración"
 };
@@ -287,7 +287,10 @@ const NOMBRE_TIPO = {
 function tarjetaEjercicio(nivel, ej, idx) {
   const caja = crear("section", "ejercicio");
   const cabeza = crear("div", "ejercicio-cabeza");
-  cabeza.appendChild(crear("span", "ejercicio-tipo", NOMBRE_TIPO[ej.tipo] || ""));
+  const etiqueta = crear("span", "ejercicio-tipo");
+  etiqueta.appendChild(crear("b", "ejercicio-num", (mision.idx + 1) + "." + (idx + 1)));
+  etiqueta.appendChild(crear("span", null, NOMBRE_TIPO[ej.tipo] || ""));
+  cabeza.appendChild(etiqueta);
   cabeza.appendChild(crear("span", "ejercicio-xp", ej.xp + " XP"));
   caja.appendChild(cabeza);
   caja.appendChild(crear("p", "enunciado", ej.pregunta || ej.instruccion));
@@ -308,7 +311,7 @@ function tarjetaEjercicio(nivel, ej, idx) {
     if (cerrado) return;
     cerrado = true;
     if (!hecho(nivel, idx)) { estado.hechos[clave(nivel, idx)] = 0; persistir(); }
-    mision.racha = 0;
+    mision.racha = 0; mision.saltadas++;
     avisar("Actividad saltada, sin XP. Puedes volver a ella repasando la misión.");
     avanzar(nivel);
   });
@@ -318,29 +321,25 @@ function tarjetaEjercicio(nivel, ej, idx) {
   const api = {
     fallo(mensaje) {
       if (cerrado) return;
-      errores++; mision.errores++; mision.racha = 0;
-      sonar("mal");
-      const marco = $(".mision");
-      if (marco) { marco.classList.add("golpe"); setTimeout(() => marco.classList.remove("golpe"), 400); }
-      if (mensaje) avisar(mensaje, "malo");
-      const barra = $(".barra-mision");
-      if (barra) barra.replaceWith(barraMision(nivel));
+      errores++;
+      sonar("toque");
+      if (mensaje) avisar(mensaje);
     },
     aviso(mensaje) { avisar(mensaje); },
     resuelto(mensaje) {
       if (cerrado) return;
       cerrado = true;
       sonar("bien");
-      const estrellas = errores === 0 ? 3 : errores === 1 ? 2 : 1;
+      const estrellas = 3;
       const previo = estado.hechos[clave(nivel, idx)];
+      mision.hechas++;
       if (previo === undefined || previo === 0) {
-        const gana = errores === 0 ? ej.xp : Math.ceil(ej.xp / 2);
-        estado.xp += gana; mision.ganado += gana;
+        estado.xp += ej.xp; mision.ganado += ej.xp;
         estado.hechos[clave(nivel, idx)] = estrellas;
         mision.racha++;
-        if (mision.racha % 3 === 0) { estado.xp += 5; mision.ganado += 5; avisar("Racha de " + mision.racha + ", <b>+5 XP</b>", "bueno"); }
+        if (mision.racha % 3 === 0) { estado.xp += 5; mision.ganado += 5; avisar("Tres seguidas, <b>+5 XP</b>", "bueno"); }
       } else {
-        estado.hechos[clave(nivel, idx)] = Math.max(previo, estrellas);
+        estado.hechos[clave(nivel, idx)] = estrellas;
         mision.racha++;
       }
       persistir(); pintarHud();
@@ -403,8 +402,8 @@ function pantallaFin(n) {
   const saltadas = n.ejercicios.filter((_, i) => estado.hechos[clave(n, i)] === 0).length;
   const tabla = crear("ul", "marcador");
   [
+    ["Actividades resueltas", mision.hechas + " de " + n.ejercicios.length],
     ["XP ganado en esta misión", mision.ganado],
-    ["Errores", mision.errores],
     ["Actividades saltadas", saltadas],
     ["XP total", estado.xp]
   ].forEach(([a, b]) => {
@@ -903,20 +902,54 @@ function montarDialogo(zona, ej, api) {
 
 function montarQuiz(zona, ej, api) {
   const lista = crear("div", "opciones");
-  const dice = crear("div", "dice"); dice.hidden = true;
-  revolver(ej.opciones.slice()).forEach(op => {
+  const dice = crear("div", "dice");
+  dice.hidden = true;
+
+  const opciones = revolver(ej.opciones.slice());
+  opciones.forEach(op => {
     const btn = crear("button", "opcion", op.t);
     btn.addEventListener("click", () => {
       if (btn.disabled) return;
-      dice.hidden = false; dice.textContent = op.dice;
+      dice.hidden = false;
+      dice.textContent = op.dice;
       dice.classList.toggle("mal", !op.ok);
-      btn.classList.add(op.ok ? "bien" : "mal");
-      if (op.ok) { lista.querySelectorAll("button").forEach(b => b.disabled = true); api.resuelto(); }
-      else { btn.disabled = true; api.fallo("Respuesta incorrecta"); }
+      btn.classList.add(op.ok ? "bien" : "tibio");
+      if (op.ok) {
+        lista.querySelectorAll("button").forEach(b => b.disabled = true);
+        zona.appendChild(repaso(ej));
+        api.resuelto(ej.dice);
+      } else {
+        btn.disabled = true;
+        api.fallo("Por ahí no. Lee la nota y prueba con otra.");
+      }
     });
     lista.appendChild(btn);
   });
-  zona.appendChild(lista); zona.appendChild(dice);
+
+  zona.appendChild(lista);
+  zona.appendChild(dice);
+  if (ej.pista) zona.appendChild(cajaPista(ej.pista));
+}
+
+// Shown once the question is answered: why each option works or not, plus the tip.
+function repaso(ej) {
+  const caja = crear("div", "repaso");
+  caja.appendChild(crear("h4", null, "Qué pasa con cada respuesta"));
+  const ul = crear("ul");
+  ej.opciones.forEach(op => {
+    const li = crear("li", op.ok ? "buena" : "");
+    li.appendChild(crear("b", null, op.t));
+    li.appendChild(crear("span", null, " " + op.dice));
+    ul.appendChild(li);
+  });
+  caja.appendChild(ul);
+  if (ej.consejo) {
+    const tip = crear("div", "repaso-consejo");
+    tip.appendChild(crear("h5", null, "Consejo práctico"));
+    tip.appendChild(crear("p", null, ej.consejo));
+    caja.appendChild(tip);
+  }
+  return caja;
 }
 
 /* ---------- activity: parejas ---------- */

@@ -298,7 +298,8 @@ const CURSO = {
             { t: "El paquete precompilado de la página de versiones", ok: true, dice: "Es la opción recomendada. Se descarga, se ejecuta y ya, sin línea de comandos." },
             { t: "El código fuente, para tener la versión de desarrollo", ok: false, dice: "Requiere Python, línea de comandos y entornos virtuales. Tiene sentido si vas a contribuir o si tu sistema no tiene paquete, no para empezar una tesis." },
             { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en la página de versiones del proyecto." }
-          ]
+          ],
+          consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel. Bajar el paquete que no toca es el tropiezo más común."
         },
         /* 1.2 */ {
           tipo: "clasificar",
@@ -351,7 +352,8 @@ const CURSO = {
             { t: "Que el paquete no está firmado, y hay que autorizar la ejecución a mano", ok: true, dice: "Los certificados de firma cuestan dinero y el proyecto lo mantienen voluntarios. En macOS se autoriza desde privacidad y seguridad, y solo la primera vez." },
             { t: "Que el archivo se descargó dañado", ok: false, dice: "No. El aviso aparece siempre, incluso con la descarga íntegra." },
             { t: "Que el programa trae software malicioso", ok: false, dice: "El aviso solo dice que nadie pagó por firmar el paquete. Si te incomoda, el código es abierto y se puede instalar desde la fuente." }
-          ]
+          ],
+          consejo: "Descarga siempre desde la página de versiones del repositorio oficial. Cuando el archivo viene de otro sitio, el aviso del sistema sí merece que te detengas."
         },
         /* 1.6 */ {
           tipo: "quiz",
@@ -361,7 +363,8 @@ const CURSO = {
             { t: "Revisar si VLC está instalado en el sistema", ok: true, dice: "Es la causa más común. En Fedora, además, hay un problema conocido con VLC y el material audiovisual no se puede usar en esa distribución." },
             { t: "Reinstalar QualCoder desde cero", ok: false, dice: "El programa está bien, lo que falta es una pieza externa." },
             { t: "Convertir todos los audios a otro formato", ok: false, dice: "El formato rara vez es el problema si el reproductor externo no está." }
-          ]
+          ],
+          consejo: "Si VLC ya está instalado y aun así no suena, revisa que su arquitectura coincida con la del programa. Mezclar versiones de 32 y 64 bits es una causa habitual."
         },
         /* 1.7 */ {
           tipo: "interfaz",
@@ -418,7 +421,8 @@ const CURSO = {
             { t: "La señora lleva cuatro años cuidando a su mamá y no lo esperaba", ok: false, dice: "Eso es una paráfrasis. Un código cabe en una etiqueta, no en un renglón." },
             { t: "Tiempo", ok: false, dice: "Demasiado ancho. Bajo esa etiqueta va a caer medio corpus." },
             { t: "Cuatro años", ok: false, dice: "Es un dato del caso, no un concepto. No se repite en otras entrevistas." }
-          ]
+          ],
+          consejo: "Cuando dudes entre dos nombres para un código, escribe primero su memo. Si al definirlo te salen dos definiciones, es que hacían falta dos códigos."
         },
         /* 2.2 */ {
           tipo: "explorar",
@@ -457,7 +461,8 @@ const CURSO = {
             { t: "Cuando ya tienes varios códigos que se parecen y quieres verlos juntos", ok: true, dice: "La categoría llega después de los códigos, no antes." },
             { t: "Al abrir el proyecto, para tener el árbol listo desde el inicio", ok: false, dice: "Encaja con un marco cerrado. Si estás explorando, un árbol prefabricado te obliga a meter el dato donde no cabe." },
             { t: "Nunca, las categorías son de otros programas", ok: false, dice: "QualCoder sí tiene categorías y las muestra como carpetas en el árbol de códigos." }
-          ]
+          ],
+          consejo: "Una manera cómoda de trabajar es dejar las categorías para la segunda vuelta, con tres o cuatro entrevistas ya codificadas y la lista de códigos a la vista."
         }
       ]
     },
@@ -628,7 +633,8 @@ const CURSO = {
             { t: "El atributo cargado en cada caso o archivo", ok: true, dice: "Sin atributos no hay con qué filtrar y esa comparación no se puede armar." },
             { t: "Solo más códigos", ok: false, dice: "Más códigos no separan grupos. La variable de comparación vive en los atributos." },
             { t: "Exportar todo a una hoja de cálculo y hacerlo a mano", ok: false, dice: "Se puede, pero el programa filtra sin errores de copiado." }
-          ]
+          ],
+          consejo: "Deja definidos los atributos antes de codificar en serio. Añadirlos después obliga a volver caso por caso, y ahí es donde se pierden las tardes."
         }
       ]
     },
@@ -837,7 +843,8 @@ const CURSO = {
             { t: "El del código define la etiqueta en general, el de la codificación explica por qué la aplicaste a ese segmento", ok: true, dice: "Y todavía hay un tercero, el memo del archivo, que documenta el documento completo." },
             { t: "Son lo mismo, solo cambia dónde se abren", ok: false, dice: "No. Uno viaja con el código por todo el proyecto, el otro pertenece a una codificación concreta." },
             { t: "El de la codificación se exporta y el del código no", ok: false, dice: "Los dos se pueden llevar a los informes." }
-          ]
+          ],
+          consejo: "Escribe el memo del código el día que lo creas, y el de la codificación cuando dudes al aplicarlo. Esas dudas son justo lo que vale la pena dejar por escrito."
         }
       ]
     },
@@ -919,7 +926,8 @@ const CURSO = {
             { t: "Revisar el segmento y decidir si entra en otro código o si vale por sí mismo", ok: true, dice: "Un caso único puede ser un hallazgo o el resto de una idea que abandonaste. Hay que mirarlo." },
             { t: "Eliminarlo, uno solo no significa nada", ok: false, dice: "La frecuencia no decide relevancia, y eliminar borra también su codificación." },
             { t: "Dejarlo ahí, no molesta", ok: false, dice: "Cien códigos huérfanos sí molestan y ensucian cualquier informe." }
-          ]
+          ],
+          consejo: "Antes de decidir, abre la recuperación de ese código y lee su único segmento en contexto. Con el fragmento delante, la decisión tarda un minuto."
         }
       ]
     },
@@ -1005,7 +1013,8 @@ const CURSO = {
             { t: "Que el código junta dos cosas distintas y conviene dividirlo", ok: true, dice: "Ese es el uso fuerte de la recuperación, ver de golpe lo que aplicaste caso por caso." },
             { t: "Que el código es muy productivo y hay que dejarlo así", ok: false, dice: "Un código que abarca dos fenómenos no es productivo, es impreciso." },
             { t: "Que hay un error del programa", ok: false, dice: "El programa devuelve lo que marcaste. El problema está en las decisiones." }
-          ]
+          ],
+          consejo: "Para dividir un código, crea primero los dos nuevos y recodifica sus segmentos. Eliminar el viejo va al final, porque borrarlo antes se lleva las marcas."
         }
       ]
     },
@@ -1079,7 +1088,8 @@ const CURSO = {
             { t: "Revisar juntos el memo de cada código y precisar qué entra en cada uno", ok: true, dice: "El desacuerdo casi siempre nace de definiciones vagas, no de mala fe." },
             { t: "Calcular la kappa y quedarse con el resultado", ok: false, dice: "El coeficiente mide, no resuelve. Sin revisar las definiciones el siguiente cálculo sale igual." },
             { t: "Que decida quien tenga más experiencia", ok: false, dice: "Eso cierra la discusión sin arreglar el instrumento." }
-          ]
+          ],
+          consejo: "Deja el acuerdo por escrito en el memo del código, con un ejemplo que sí entra y otro que no. Es lo que evita repetir la misma discusión el mes que viene."
         },
         /* 9.5 */ {
           tipo: "parejas",
