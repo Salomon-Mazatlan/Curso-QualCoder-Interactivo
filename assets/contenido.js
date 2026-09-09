@@ -417,7 +417,7 @@ const CURSO = {
             { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en la página de versiones del proyecto." }
           ],
           consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel. Bajar el paquete que no toca es el tropiezo más común.",
-          consejoImagen: { src: "assets/img/1.1. Sistema.png", titulo: "Captura que acompaña al consejo", pie: "" }
+          consejoImagen: { src: "assets/img/1_1_Sistema.png", titulo: "Verificar Sistema en Windows", pie: "" }
         },
         /* 1.2 */ {
           tipo: "parejas",
