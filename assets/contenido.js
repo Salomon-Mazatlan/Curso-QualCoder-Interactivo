@@ -231,13 +231,40 @@ const CURSO = {
     ]
   },
 
+  // Obras citadas en las definiciones conceptuales de las misiones.
+  bibliografia: [
+    { clave: "alaszewski2006", ref: "Alaszewski, A. (2006). Using diaries for social research. SAGE." },
+    { clave: "bazeley2013", ref: "Bazeley, P. (2013). Qualitative data analysis. Practical strategies. SAGE." },
+    { clave: "flick2007", ref: "Flick, U. (2007). Designing qualitative research. SAGE." },
+    { clave: "saldana2011", ref: "Saldaña, J. (2011). Fundamentals of qualitative research. Oxford University Press." }
+  ],
+
+  // Lecturas recomendadas para seguir por tu cuenta.
+  lecturas: [
+    "Adams, T. E., Holman Jones, S. y Ellis, C. (2014). Autoethnography. Oxford University Press.",
+    "Anfara, V. A. y Mertz, N. T. (Eds.). (2015). Theoretical frameworks in qualitative research. SAGE.",
+    "Angrosino, M. (2008). Doing ethnographic and observational research. SAGE.",
+    "Boucher, C. y Holian, R. (2001). Emerging forms of representing qualitative data. RMIT University Press.",
+    "Brinkmann, S. (2013). Qualitative interviewing. Oxford University Press.",
+    "Flick, U. (2008). Managing quality in qualitative research. SAGE.",
+    "Harris, A. M. (2016). Video as method. Oxford University Press.",
+    "Hyers, L. L. (2018). Diary methods. Oxford University Press.",
+    "Timmermans, S. y Tavory, I. (2014). Abductive analysis. Theorizing qualitative research. University of Chicago Press.",
+    "Willis, G. B. (2015). Analysis of the cognitive interview in questionnaire design. Oxford University Press."
+  ],
+
   niveles: [
 
-    /* ============================ 0 ============================ */
+    /* ============================ 1 ============================ */
     {
-      id: "n0",
+      id: "m01",
       titulo: "Instalar QualCoder",
       lema: "Descargar, abrir y comprobar",
+      definiciones: [
+        { termino: "Programa de análisis cualitativo asistido",
+          texto: "El programa administra, organiza y recupera el material, y deja en manos de quien investiga las decisiones analíticas. Bazeley insiste en que codificar depende de una lectura atenta y no es una tarea mecánica, así que la herramienta acelera el trabajo pero no lo sustituye.",
+          cita: "Bazeley, 2013, p. 126", clave: "bazeley2013" }
+      ],
       insignia: { nombre: "Puesta en marcha", icono: "⬇" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
@@ -348,11 +375,22 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 1 ============================ */
+    /* ============================ 2 ============================ */
     {
-      id: "n1",
+      id: "m02",
       titulo: "Qué es codificar",
       lema: "Antes del programa está la decisión",
+      definiciones: [
+        { termino: "Código",
+          texto: "Palabra o frase corta que asigna de manera simbólica un atributo sumativo, destacado, capturador de esencia o evocador a una porción de datos en lenguaje o en imagen. Igual que un título representa un libro o una película, el código representa el contenido y la esencia de ese dato.",
+          cita: "Saldaña, 2011, p. 95", clave: "saldana2011" },
+        { termino: "Codificar",
+          texto: "Etiquetar un pasaje según lo que se entiende que trata, de modo que la etiqueta sirva a la vez para representarlo y para recuperarlo junto con los datos iguales o parecidos. Bazeley lo resume con una frase que conviene tener presente, codificar es retención de datos y no reducción de datos.",
+          cita: "Bazeley, 2013, p. 126", clave: "bazeley2013" },
+        { termino: "Categoría",
+          texto: "Resultado de la segunda vuelta del trabajo. La codificación pasa al menos por dos etapas, una inicial de identificación y etiquetado y otra de refinamiento donde los códigos se agrupan en categorías más analíticas.",
+          cita: "Bazeley, 2013, p. 126", clave: "bazeley2013" }
+      ],
       insignia: { nombre: "Ojo de lector", icono: "◉" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
@@ -424,11 +462,19 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 2 ============================ */
+    /* ============================ 3 ============================ */
     {
-      id: "n2",
+      id: "m03",
       titulo: "Abrir el proyecto",
       lema: "Media hora aquí ahorra semanas después",
+      definiciones: [
+        { termino: "Diseño de investigación",
+          texto: "El plan que articula pregunta, material y métodos, y que se juzga por su capacidad de sostener las conclusiones. Flick advierte que en lo cualitativo no hay umbrales universales de calidad, así que la calidad se construye con estrategias durante el proceso y no con un número al final.",
+          cita: "Flick, 2007", clave: "flick2007" },
+        { termino: "Rastro de auditoría",
+          texto: "Registro claro de las decisiones de codificación, ligado a la evidencia que las sostiene. Lo que convence a quien lee no es un coeficiente de fiabilidad, sino poder mostrar el camino recorrido, y por eso los memos y el diario del proyecto valen tanto como los códigos.",
+          cita: "Bazeley, 2013, p. 151", clave: "bazeley2013" }
+      ],
       insignia: { nombre: "Cartografía", icono: "▤" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
@@ -502,11 +548,107 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 3 ============================ */
+    /* ============================ 4 ============================ */
     {
-      id: "n3",
+      id: "m04",
+      titulo: "Casos y atributos",
+      lema: "Para comparar hay que poder separar",
+      definiciones: [
+        { termino: "Caso",
+          texto: "La unidad de análisis muestreada, sea una persona, una organización, un lugar o un evento, con los detalles que después harán falta para comparar e interpretar.",
+          cita: "Bazeley, 2013, p. 84", clave: "bazeley2013" },
+        { termino: "Atributo",
+          texto: "Dato clasificatorio que describe a la fuente o al caso completo, no a un pasaje. Bazeley señala que lo que en los programas estadísticos se llama variable, en los cualitativos se llama atributo, y que se guarda aparte del sistema de códigos.",
+          cita: "Bazeley, 2013, pp. 84, 142", clave: "bazeley2013" },
+        { termino: "Contexto, código o atributo",
+          texto: "Regla práctica para no confundirlos. Si el rasgo contextual afecta solo a ciertos pasajes, va como código. Si describe al archivo o al caso entero, va como atributo.",
+          cita: "Bazeley, 2013, p. 161", clave: "bazeley2013" }
+      ],
+      insignia: { nombre: "Fichero", icono: "▦" },
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Casos, atributos e importación de encuestas" },
+        { tipo: "imagen", src: "", titulo: "La tabla de casos con archivos asignados", pie: "" },
+        { tipo: "imagen", src: "", titulo: "La tabla de atributos con una variable de agrupación", pie: "" }
+      ],
+      lectura: `
+        <p>Un caso agrupa todo el material de una misma persona o unidad, aunque esté repartido en varios
+        archivos, y puede incluir archivos completos o solo tramos de un archivo, útil cuando una transcripción
+        trae a varias personas.</p>
+        <p>Un atributo es una variable que describe a un caso o a un archivo. Sin atributos no hay comparación
+        posible, porque no hay con qué filtrar en los informes.</p>
+        <p>Si el material viene de una encuesta con preguntas abiertas, la importación desde CSV o XLSX crea de
+        una vez los casos, los atributos y los archivos de texto de cada respuesta.</p>
+      `,
+      ejercicios: [
+        {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Rosa tiene dos entrevistas y una nota de campo. Vas a juntarlas bajo una misma unidad.",
+          objetivo: "Abrir la gestión de casos",
+          ruta: ["gestionar", "casos"],
+          pista: "Está en el mismo menú donde importaste los archivos.",
+          dice: "Un caso puede reunir archivos completos o tramos marcados dentro de un archivo."
+        },
+        {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Quieres registrar si cada cuidadora trabaja fuera de casa, para poder comparar después.",
+          objetivo: "Abrir la gestión de atributos",
+          ruta: ["gestionar", "atributos"],
+          pista: "Las variables descriptivas tienen su propia entrada en el menú Gestionar.",
+          dice: "Los atributos pueden ser de texto o numéricos y se aplican a archivos o a casos. Después filtran en casi todos los informes."
+        },
+        {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Te llegó una encuesta en CSV con tres preguntas abiertas y ocho variables de perfil. Métela al proyecto.",
+          objetivo: "Importar una encuesta",
+          ruta: ["proyecto", "encuesta"],
+          pista: "No está en Gestionar, la importación de encuestas cuelga del menú Proyecto.",
+          dice: "La importación crea los casos, los atributos y un archivo de texto por respuesta, todo de una pasada."
+        },
+        {
+          tipo: "parejas",
+          xp: 15,
+          instruccion: "Une cada elemento con lo que representa dentro del proyecto.",
+          pares: [
+            { a: "Archivo", b: "La transcripción tal como se importó" },
+            { a: "Caso", b: "Todo el material de una misma persona" },
+            { a: "Atributo", b: "Variable que describe a un caso o a un archivo" },
+            { a: "Diario", b: "Bitácora fechada del proceso de análisis" },
+            { a: "Codificación", b: "Un código aplicado a un segmento concreto" }
+          ]
+        },
+        {
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "Quieres comparar qué dicen las cuidadoras que trabajan fuera de casa frente a las que no. ¿Qué necesitas tener listo?",
+          opciones: [
+            { t: "El atributo cargado en cada caso o archivo", ok: true, dice: "Sin atributos no hay con qué filtrar y esa comparación no se puede armar." },
+            { t: "Solo más códigos", ok: false, dice: "Más códigos no separan grupos. La variable de comparación vive en los atributos." },
+            { t: "Exportar todo a una hoja de cálculo y hacerlo a mano", ok: false, dice: "Se puede, pero el programa filtra sin errores de copiado." }
+          ]
+        }
+      ]
+    },
+
+    /* ============================ 5 ============================ */
+    {
+      id: "m05",
       titulo: "Codificar texto",
       lema: "Seleccionar, elegir el código, marcar",
+      definiciones: [
+        { termino: "Segmento",
+          texto: "La porción de datos que recibe el código. Puede ir de una palabra a una frase, a una página entera o a un flujo de imágenes en movimiento, de modo que su tamaño es una decisión analítica y no un detalle técnico.",
+          cita: "Saldaña, 2011, pp. 95-96", clave: "saldana2011" },
+        { termino: "Agrupar y dividir",
+          texto: "Las dos maneras de acercarse al texto. Quien divide busca temas de grano fino y maximiza las diferencias entre pasajes, quien agrupa pasa por alto los matices para quedarse con los temas amplios. En la práctica casi todo el mundo hace las dos cosas en algún momento del proyecto.",
+          cita: "Bernard y Ryan, 2010, en Bazeley, 2013, p. 143", clave: "bazeley2013" },
+        { termino: "Sobrecodificación",
+          texto: "El exceso que enturbia. Cuando se captura toda referencia vaga a un concepto, con contexto de sobra, el significado del código se vuelve borroso y los patrones de asociación se ven peor.",
+          cita: "Bazeley, 2013, p. 153", clave: "bazeley2013" }
+      ],
       insignia: { nombre: "Marcador", icono: "▮" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
@@ -597,11 +739,25 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 4 ============================ */
+    /* ============================ 6 ============================ */
     {
-      id: "n4",
+      id: "m06",
       titulo: "En vivo, anotar y memos",
       lema: "La voz del campo y la tuya",
+      definiciones: [
+        { termino: "Código in vivo",
+          texto: "Código basado en el lenguaje propio de la persona entrevistada. Saldaña recomienda escribirlo entre comillas, justamente para dejar claro que salió del registro de datos y no del vocabulario de quien analiza.",
+          cita: "Saldaña, 2011, pp. 99-100", clave: "saldana2011" },
+        { termino: "Memo analítico",
+          texto: "Reflexión fechada y abierta sobre los datos y su análisis, con título propio para poder categorizarla después. No es el texto final, es el material del que ese texto acabará saliendo.",
+          cita: "Saldaña, 2011, pp. 97-99", clave: "saldana2011" },
+        { termino: "Anotación",
+          texto: "Pensamiento breve pegado a un punto del texto. Sirve para aclarar algo, para dejar una idea fugaz o para apuntar una referencia cruzada, y más adelante puede convertirse en memo.",
+          cita: "Bazeley, 2013, p. 105", clave: "bazeley2013" },
+        { termino: "Diario",
+          texto: "Documento creado por una persona que mantiene un registro regular, personal y contemporáneo. Regular porque son entradas fechadas y sucesivas, personal porque hay alguien identificable detrás, y contemporáneo porque se escribe cerca del momento de los hechos y así no lo deforma la memoria.",
+          cita: "Alaszewski, 2006, pp. 1-2", clave: "alaszewski2006" }
+      ],
       insignia: { nombre: "Voz del campo", icono: "❝" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
@@ -686,11 +842,19 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 5 ============================ */
+    /* ============================ 7 ============================ */
     {
-      id: "n5",
+      id: "m07",
       titulo: "El árbol de códigos",
       lema: "De la lista larga al mapa",
+      definiciones: [
+        { termino: "Sistema de códigos",
+          texto: "El conjunto organizado de códigos y categorías. Bazeley calcula que un proyecto de complejidad moderada rara vez necesita más de diez categorías de primer nivel, y que los sistemas casi nunca pasan de dos o tres niveles de profundidad, porque más abajo quien codifica ya no recuerda ni encuentra sus propios códigos.",
+          cita: "Bazeley, 2013, p. 183", clave: "bazeley2013" },
+        { termino: "Los códigos como herramientas",
+          texto: "Principios de organización que no están grabados en piedra. Los elegimos nosotros, así que se revisan, se renombran y se fusionan a medida que el trabajo avanza. Revisar y recodificar es parte del método, no una señal de haber empezado mal.",
+          cita: "Bazeley, 2013, pp. 126, 150", clave: "bazeley2013" }
+      ],
       insignia: { nombre: "Arquitectura", icono: "⌗" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
@@ -760,85 +924,19 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 6 ============================ */
+    /* ============================ 8 ============================ */
     {
-      id: "n6",
-      titulo: "Casos y atributos",
-      lema: "Para comparar hay que poder separar",
-      insignia: { nombre: "Fichero", icono: "▦" },
-      medios: [
-        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
-        { tipo: "video", id: "", titulo: "Casos, atributos e importación de encuestas" },
-        { tipo: "imagen", src: "", titulo: "La tabla de casos con archivos asignados", pie: "" },
-        { tipo: "imagen", src: "", titulo: "La tabla de atributos con una variable de agrupación", pie: "" }
-      ],
-      lectura: `
-        <p>Un caso agrupa todo el material de una misma persona o unidad, aunque esté repartido en varios
-        archivos, y puede incluir archivos completos o solo tramos de un archivo, útil cuando una transcripción
-        trae a varias personas.</p>
-        <p>Un atributo es una variable que describe a un caso o a un archivo. Sin atributos no hay comparación
-        posible, porque no hay con qué filtrar en los informes.</p>
-        <p>Si el material viene de una encuesta con preguntas abiertas, la importación desde CSV o XLSX crea de
-        una vez los casos, los atributos y los archivos de texto de cada respuesta.</p>
-      `,
-      ejercicios: [
-        {
-          tipo: "interfaz",
-          xp: 15,
-          instruccion: "Rosa tiene dos entrevistas y una nota de campo. Vas a juntarlas bajo una misma unidad.",
-          objetivo: "Abrir la gestión de casos",
-          ruta: ["gestionar", "casos"],
-          pista: "Está en el mismo menú donde importaste los archivos.",
-          dice: "Un caso puede reunir archivos completos o tramos marcados dentro de un archivo."
-        },
-        {
-          tipo: "interfaz",
-          xp: 15,
-          instruccion: "Quieres registrar si cada cuidadora trabaja fuera de casa, para poder comparar después.",
-          objetivo: "Abrir la gestión de atributos",
-          ruta: ["gestionar", "atributos"],
-          pista: "Las variables descriptivas tienen su propia entrada en el menú Gestionar.",
-          dice: "Los atributos pueden ser de texto o numéricos y se aplican a archivos o a casos. Después filtran en casi todos los informes."
-        },
-        {
-          tipo: "interfaz",
-          xp: 15,
-          instruccion: "Te llegó una encuesta en CSV con tres preguntas abiertas y ocho variables de perfil. Métela al proyecto.",
-          objetivo: "Importar una encuesta",
-          ruta: ["proyecto", "encuesta"],
-          pista: "No está en Gestionar, la importación de encuestas cuelga del menú Proyecto.",
-          dice: "La importación crea los casos, los atributos y un archivo de texto por respuesta, todo de una pasada."
-        },
-        {
-          tipo: "parejas",
-          xp: 15,
-          instruccion: "Une cada elemento con lo que representa dentro del proyecto.",
-          pares: [
-            { a: "Archivo", b: "La transcripción tal como se importó" },
-            { a: "Caso", b: "Todo el material de una misma persona" },
-            { a: "Atributo", b: "Variable que describe a un caso o a un archivo" },
-            { a: "Diario", b: "Bitácora fechada del proceso de análisis" },
-            { a: "Codificación", b: "Un código aplicado a un segmento concreto" }
-          ]
-        },
-        {
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "Quieres comparar qué dicen las cuidadoras que trabajan fuera de casa frente a las que no. ¿Qué necesitas tener listo?",
-          opciones: [
-            { t: "El atributo cargado en cada caso o archivo", ok: true, dice: "Sin atributos no hay con qué filtrar y esa comparación no se puede armar." },
-            { t: "Solo más códigos", ok: false, dice: "Más códigos no separan grupos. La variable de comparación vive en los atributos." },
-            { t: "Exportar todo a una hoja de cálculo y hacerlo a mano", ok: false, dice: "Se puede, pero el programa filtra sin errores de copiado." }
-          ]
-        }
-      ]
-    },
-
-    /* ============================ 7 ============================ */
-    {
-      id: "n7",
+      id: "m08",
       titulo: "Recuperar y mirar",
       lema: "El informe no piensa por ti",
+      definiciones: [
+        { termino: "Recuperación",
+          texto: "Traer de vuelta todos los datos que representa un código, para leerlos juntos. Es lo que permite revisar si el código es consistente, y también lo que convierte la codificación en material de escritura.",
+          cita: "Bazeley, 2013, p. 126", clave: "bazeley2013" },
+        { termino: "Comparación por subgrupos",
+          texto: "Poner lado a lado lo que dicen quienes comparten un atributo frente a quienes no. Bazeley subraya que sin atributos registrados y sin un modo de ordenar por ellos, releer el material no lleva de manera fiable a una comparación sólida.",
+          cita: "Bazeley, 2013, p. 258", clave: "bazeley2013" }
+      ],
       insignia: { nombre: "Lupa", icono: "◎" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
@@ -912,11 +1010,22 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 8 ============================ */
+    /* ============================ 9 ============================ */
     {
-      id: "n8",
+      id: "m09",
       titulo: "Equipo y mantenimiento",
       lema: "El acuerdo se construye, no se decreta",
+      definiciones: [
+        { termino: "Acuerdo entre codificadores",
+          texto: "Medida de consistencia entre dos personas que codifican el mismo material. Bazeley advierte que el valor del ejercicio no está en el coeficiente sino en la conversación que provoca, porque comparar codificaciones obliga a acordar qué es importante y a definir bien las categorías.",
+          cita: "Bazeley, 2013, pp. 151-152", clave: "bazeley2013" },
+        { termino: "Saturación",
+          texto: "Punto en que dejar de añadir material ya no aporta. Suele entenderse como que no aparecen categorías nuevas, aunque Corbin y Strauss piden más que eso, que cada categoría esté desarrollada y descrita con sus variaciones antes de darla por saturada.",
+          cita: "Corbin y Strauss, 2008, en Bazeley, 2013, pp. 50, 152", clave: "bazeley2013" },
+        { termino: "Estrategias de calidad",
+          texto: "Triangulación, inducción analítica y atención al caso negativo, entre otras. Flick recuerda que estos criterios no traen umbrales que separen la buena de la mala investigación, y que se aplican durante el proceso y no como sello final.",
+          cita: "Flick, 2007, p. 65", clave: "flick2007" }
+      ],
       insignia: { nombre: "Podadora", icono: "✂" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
@@ -987,11 +1096,19 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 9 ============================ */
+    /* ============================ 10 ============================ */
     {
-      id: "n9",
+      id: "m10",
       titulo: "Prueba de campo",
       lema: "Todo junto, una vez más",
+      definiciones: [
+        { termino: "Transparencia",
+          texto: "El informe es la única base sobre la que se puede juzgar la calidad de una investigación cualitativa, con su relato del acceso al campo, sus materiales, sus transcripciones y sus inferencias. De ahí que el diario y los memos no sean adorno, son lo que hace posible escribirlo.",
+          cita: "Lüders, 1995, en Flick, 2007, p. 66", clave: "flick2007" },
+        { termino: "Codificar es descubrir",
+          texto: "Saldaña llama a la codificación una heurística, un método de descubrimiento del significado de cada sección de datos. Los códigos sirven para dar patrón, clasificar y reorganizar cada dato en categorías emergentes, así que el sistema con el que terminas no es el que tenías al empezar.",
+          cita: "Saldaña, 2011, p. 95", clave: "saldana2011" }
+      ],
       insignia: { nombre: "Codificación de campo", icono: "★" },
       medios: [
         // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"

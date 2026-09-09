@@ -353,3 +353,31 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .medio-marca{font-size:.72rem;color:var(--turquesa);font-weight:600}
 .medio-sugerido{margin:0;font-size:.9rem;line-height:1.35}
 .medio-como{margin:0;font-size:.78rem;color:var(--tinta-media);line-height:1.35}
+
+/* ---------- definitions and references ---------- */
+
+.definiciones{margin:24px 0 4px;max-width:64ch}
+.definiciones h2{font-size:.98rem;font-weight:600;margin:0 0 10px}
+.definiciones-lista{margin:0;border-top:1px solid var(--linea)}
+.definiciones-lista dt{
+  font-weight:600;font-size:.95rem;padding:12px 0 2px;
+}
+.definiciones-lista dd{
+  margin:0 0 12px;padding-bottom:12px;border-bottom:1px solid var(--linea);
+  font-family:var(--serif);font-size:1rem;line-height:1.6;
+}
+.definicion-texto{display:inline}
+.cita{
+  background:none;border:0;padding:0 0 0 6px;font-family:var(--sans);font-size:.8rem;
+  color:var(--turquesa);text-decoration:underline;white-space:nowrap;
+}
+.cita:hover{color:var(--tinta)}
+
+.referencias h1{font-size:2rem;letter-spacing:-.02em;margin:0 0 8px}
+.referencias > p{color:var(--tinta-media);max-width:60ch}
+.referencias h2{font-size:.95rem;font-weight:600;margin:26px 0 10px}
+.lista-referencias{list-style:none;margin:0;padding:0;max-width:66ch}
+.lista-referencias li{
+  font-family:var(--serif);font-size:.98rem;line-height:1.5;
+  padding:10px 0 10px 22px;text-indent:-22px;border-bottom:1px solid var(--linea);
+}

@@ -1,6 +1,6 @@
 // Game engine: progress, map, missions, streak, stars and activities.
 
-const CLAVE = "curso-qualcoder-v3";
+const CLAVE = "curso-qualcoder-v4";
 
 const guardado = (() => {
   let memoria = null;
@@ -181,6 +181,7 @@ function pantallaBriefing(n) {
   const lec = crear("div", "lectura");
   lec.innerHTML = n.lectura;
   c.appendChild(lec);
+  c.appendChild(bloqueDefiniciones(n));
 
   const fila = crear("div", "fila-acciones");
   const ir = crear("button", "accion", nivelCompleto(n) ? "Repasar la misión" : "Empezar la misión");
@@ -233,6 +234,34 @@ function bloqueMedios(n) {
   }
   caja.appendChild(rejilla);
   return caja;
+}
+
+// Sourced conceptual definitions for the mission.
+function bloqueDefiniciones(n) {
+  const caja = crear("section", "definiciones");
+  if (!(n.definiciones || []).length) return caja;
+  caja.appendChild(crear("h2", null, "Definiciones"));
+  const lista = crear("dl", "definiciones-lista");
+  n.definiciones.forEach(d => {
+    const dt = crear("dt", null, d.termino);
+    const dd = crear("dd");
+    dd.appendChild(crear("span", "definicion-texto", d.texto));
+    if (d.cita) {
+      const cita = crear("button", "cita", "(" + d.cita + ")");
+      cita.title = referencia(d.clave) || "Ver las referencias del curso";
+      cita.addEventListener("click", () => { location.hash = "#referencias"; });
+      dd.appendChild(cita);
+    }
+    lista.appendChild(dt);
+    lista.appendChild(dd);
+  });
+  caja.appendChild(lista);
+  return caja;
+}
+
+function referencia(clave) {
+  const r = (CURSO.bibliografia || []).find(x => x.clave === clave);
+  return r ? r.ref : "";
 }
 
 function barraMision(n) {
@@ -1062,11 +1091,44 @@ function pintarConstancia() {
   pintarHud();
 }
 
+/* ---------- references ---------- */
+
+function pintarReferencias() {
+  mision = null;
+  const zona = $("#app");
+  zona.innerHTML = "";
+  const c = crear("div", "referencias");
+  c.appendChild(crear("h1", null, "Referencias"));
+  c.appendChild(crear("p", null,
+    "Las definiciones conceptuales de las misiones salen de estas obras. Las citas de cada misión llevan aquí."));
+
+  c.appendChild(crear("h2", null, "Obras citadas"));
+  const ol = crear("ul", "lista-referencias");
+  (CURSO.bibliografia || []).forEach(r => ol.appendChild(crear("li", null, r.ref)));
+  c.appendChild(ol);
+
+  if ((CURSO.lecturas || []).length) {
+    c.appendChild(crear("h2", null, "Lecturas recomendadas"));
+    const ul = crear("ul", "lista-referencias");
+    CURSO.lecturas.forEach(r => ul.appendChild(crear("li", null, r)));
+    c.appendChild(ul);
+  }
+
+  const fila = crear("div", "fila-acciones");
+  const mapa = crear("button", "accion fantasma", "Volver al mapa");
+  mapa.addEventListener("click", () => { location.hash = ""; });
+  fila.appendChild(mapa);
+  c.appendChild(fila);
+  zona.appendChild(c);
+  pintarHud();
+}
+
 /* ---------- routing ---------- */
 
 function enrutar() {
   const id = location.hash.replace("#", "");
   if (id === "constancia") return pintarConstancia();
+  if (id === "referencias") return pintarReferencias();
   const idx = CURSO.niveles.findIndex(n => n.id === id);
   if (idx === -1) return pintarMapa();
   if (!nivelAbierto(idx)) { avisar("Esa misión todavía está cerrada.", "malo"); location.hash = ""; return; }
@@ -1088,6 +1150,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $(".hud-titulo").textContent = CURSO.titulo;
   $(".hud-sonido").addEventListener("click", () => { estado.sonido = !estado.sonido; persistir(); pintarHud(); sonar("toque"); });
   $(".hud-mapa").addEventListener("click", () => { if (location.hash) location.hash = ""; else enrutar(); });
+  $(".hud-referencias").addEventListener("click", () => { location.hash = "#referencias"; });
   $(".hud-reinicio").addEventListener("click", reiniciar);
   document.addEventListener("click", cerrarMenuAbierto);
   document.addEventListener("keydown", ev => { if (ev.key === "Escape") cerrarMenuAbierto(); });
