@@ -105,7 +105,7 @@ function pintarMapa() {
   const intro = crear("header", "mapa-intro");
   intro.appendChild(crear("h1", null, "Mapa de misiones"));
   intro.appendChild(crear("p", null, estado.xp === 0
-    ? "Nueve misiones sobre el QualCoder 4 real. Se practica en un simulador de la ventana del programa, con sus menús y sus módulos. Resolver a la primera da tres estrellas."
+    ? CURSO.niveles.length + " misiones sobre el QualCoder 4 real, desde la instalación. Se practica en un simulador de la ventana del programa, con sus menús y sus módulos. Resolver a la primera da tres estrellas."
     : "Rango actual " + rango().nombre + ". Repasar una misión terminada no quita XP y sí puede mejorar tus estrellas."));
   cont.appendChild(intro);
 
@@ -134,7 +134,9 @@ function pintarMapa() {
   const todo = CURSO.niveles.every(nivelCompleto);
   const final = crear("div", "nodo-final" + (todo ? " listo" : ""));
   final.appendChild(crear("h2", null, todo ? "Constancia liberada" : "Constancia bloqueada"));
-  final.appendChild(crear("p", null, todo ? "Completaste las nueve misiones." : "Se libera al terminar las nueve misiones."));
+  final.appendChild(crear("p", null, todo
+    ? "Completaste las " + CURSO.niveles.length + " misiones."
+    : "Se libera al terminar las " + CURSO.niveles.length + " misiones."));
   if (todo) {
     const b = crear("button", "accion", "Ver mi constancia");
     b.addEventListener("click", () => { location.hash = "#constancia"; });
@@ -1036,7 +1038,7 @@ function pintarConstancia() {
 
   const caja = crear("section", "constancia");
   caja.appendChild(crear("h1", null, "Constancia de participación"));
-  caja.appendChild(crear("p", null, "acredita haber completado las nueve misiones del curso " + CURSO.titulo));
+  caja.appendChild(crear("p", null, "acredita haber completado las " + CURSO.niveles.length + " misiones del curso " + CURSO.titulo));
 
   const nombre = document.createElement("input");
   nombre.placeholder = "Escribe tu nombre";

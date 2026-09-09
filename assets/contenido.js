@@ -3,7 +3,7 @@
 
 const CURSO = {
   titulo: "Codificar en QualCoder 4",
-  subtitulo: "Nueve misiones de práctica",
+  subtitulo: "Diez misiones de práctica",
   autoria: "SoftCualitativo",
 
   // Code colors used by the coding activities.
@@ -18,10 +18,10 @@ const CURSO = {
   // Ranks unlocked by accumulated XP.
   rangos: [
     { xp: 0, nombre: "Aprendiz de campo" },
-    { xp: 100, nombre: "Libreta en mano" },
-    { xp: 220, nombre: "Codificación en marcha" },
-    { xp: 360, nombre: "Analista de corpus" },
-    { xp: 520, nombre: "Oficio de campo" }
+    { xp: 130, nombre: "Libreta en mano" },
+    { xp: 300, nombre: "Codificación en marcha" },
+    { xp: 490, nombre: "Analista de corpus" },
+    { xp: 700, nombre: "Oficio de campo" }
   ],
 
   // Simulated QualCoder 4 window used by the "interfaz" and "codificar" activities.
@@ -232,6 +232,121 @@ const CURSO = {
   },
 
   niveles: [
+
+    /* ============================ 0 ============================ */
+    {
+      id: "n0",
+      titulo: "Instalar QualCoder",
+      lema: "Descargar, abrir y comprobar",
+      insignia: { nombre: "Puesta en marcha", icono: "⬇" },
+      medios: [
+        // pon aquí el identificador de YouTube, por ejemplo id: "dQw4w9WgXcQ"
+        { tipo: "video", id: "", titulo: "Descarga e instalación paso a paso" },
+        { tipo: "imagen", src: "", titulo: "La página de versiones con los archivos de cada sistema", pie: "" },
+        { tipo: "imagen", src: "", titulo: "El aviso de desarrollador no identificado y cómo autorizarlo", pie: "" },
+        { tipo: "imagen", src: "", titulo: "La ventana Acerca de con el número de versión", pie: "" }
+      ],
+      lectura: `
+        <p>QualCoder es software libre y gratuito, así que instalarlo es descargarlo y abrirlo. Hay dos
+        caminos. El <strong>paquete precompilado</strong>, que es un archivo listo para ejecutar y es la opción
+        recomendada, y la <strong>instalación desde el código fuente</strong>, para quien necesite la versión de
+        desarrollo, quiera contribuir o use un sistema sin paquete disponible.</p>
+        <p>En Windows hay ejecutable e instalador. En macOS hay dos paquetes, uno para Apple Silicon y otro
+        para Intel, y hay que bajar el que corresponde al procesador. En Linux la vía es el código fuente, con
+        instrucciones para Debian y derivadas, Fedora y Arch.</p>
+        <p>Tanto Windows como macOS avisan de que el programa viene de un desarrollador no identificado. No
+        indica ningún problema, los certificados que evitan ese aviso cuestan dinero y un proyecto mantenido
+        por voluntarios no los paga. En macOS se autoriza a mano desde los ajustes de privacidad y seguridad,
+        y solo la primera vez.</p>
+        <p>Tres programas externos son opcionales y conviene tenerlos si vas a trabajar con audio y video.
+        VLC para reproducir, ffmpeg para la forma de onda y Zotero si vas a importar referencias por su API.
+        Sin ellos el programa funciona, solo se apagan esas funciones.</p>
+      `,
+      ejercicios: [
+        {
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "Vas a instalarlo en tu computadora de trabajo para empezar la tesis. ¿Qué camino eliges?",
+          opciones: [
+            { t: "El paquete precompilado de la página de versiones", ok: true, dice: "Es la opción recomendada. Se descarga, se ejecuta y ya, sin línea de comandos." },
+            { t: "El código fuente, para tener la versión de desarrollo", ok: false, dice: "Requiere Python, línea de comandos y entornos virtuales. Tiene sentido si vas a contribuir o si tu sistema no tiene paquete, no para empezar una tesis." },
+            { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en la página de versiones del proyecto." }
+          ]
+        },
+        {
+          tipo: "clasificar",
+          xp: 20,
+          instruccion: "Toca cada archivo y mándalo al sistema al que corresponde.",
+          categorias: [
+            { id: "win", nombre: "Windows" },
+            { id: "mac", nombre: "macOS" },
+            { id: "lin", nombre: "Linux" }
+          ],
+          items: [
+            { t: "Archivo ejecutable o instalador", cat: "win" },
+            { t: "Paquete para arquitectura arm64", cat: "mac" },
+            { t: "Paquete para arquitectura x86_64", cat: "mac" },
+            { t: "Código fuente e instrucciones para Debian, Fedora o Arch", cat: "lin" },
+            { t: "Se arrastra a la carpeta Aplicaciones", cat: "mac" },
+            { t: "El primer arranque tarda unos veinte segundos", cat: "win" }
+          ]
+        },
+        {
+          tipo: "secuencia",
+          xp: 15,
+          instruccion: "Tu colega usa Linux y no hay paquete para su sistema. Ordena los pasos de la instalación desde el código fuente.",
+          pasos: [
+            "Instalar Python en una versión reciente",
+            "Descargar el código del proyecto",
+            "Descomprimirlo en una carpeta",
+            "Abrir la línea de comandos y situarse en esa carpeta",
+            "Crear un entorno virtual e instalar las dependencias",
+            "Entrar en la subcarpeta del código y ejecutar el programa"
+          ]
+        },
+        {
+          tipo: "parejas",
+          xp: 15,
+          instruccion: "Une cada pieza externa con lo que aporta.",
+          pares: [
+            { a: "VLC", b: "Reproducción de audio y video" },
+            { a: "ffmpeg", b: "Generación de la forma de onda del audio" },
+            { a: "Zotero", b: "Importación de referencias por su API" },
+            { a: "Python", b: "Necesario solo para instalar desde el código fuente" },
+            { a: "Entorno virtual", b: "Aísla las bibliotecas del programa de las del resto del sistema" }
+          ]
+        },
+        {
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "Al abrirlo, el sistema avisa de que el programa procede de un desarrollador no identificado. ¿Qué significa?",
+          opciones: [
+            { t: "Que el paquete no está firmado, y hay que autorizar la ejecución a mano", ok: true, dice: "Los certificados de firma cuestan dinero y el proyecto lo mantienen voluntarios. En macOS se autoriza desde privacidad y seguridad, y solo la primera vez." },
+            { t: "Que el archivo se descargó dañado", ok: false, dice: "No. El aviso aparece siempre, incluso con la descarga íntegra." },
+            { t: "Que el programa trae software malicioso", ok: false, dice: "El aviso solo dice que nadie pagó por firmar el paquete. Si te incomoda, el código es abierto y se puede instalar desde la fuente." }
+          ]
+        },
+        {
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "Instalaste todo y el audio de las entrevistas no se reproduce. ¿Por dónde empiezas?",
+          opciones: [
+            { t: "Revisar si VLC está instalado en el sistema", ok: true, dice: "Es la causa más común. En Fedora, además, hay un problema conocido con VLC y el material audiovisual no se puede usar en esa distribución." },
+            { t: "Reinstalar QualCoder desde cero", ok: false, dice: "El programa está bien, lo que falta es una pieza externa." },
+            { t: "Convertir todos los audios a otro formato", ok: false, dice: "El formato rara vez es el problema si el reproductor externo no está." }
+          ]
+        },
+        {
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Ya lo tienes abierto. Comprueba qué versión instalaste, que es el dato que hay que citar en cualquier publicación.",
+          objetivo: "Ver la versión instalada",
+          ruta: ["ayuda", "acerca"],
+          pista: "La versión, la autoría y la licencia viven en el último menú.",
+          dice: "Ahí está también la cita del software. Anótala en el memo del proyecto junto con el número de versión y la tendrás lista al escribir el método."
+        }
+      ]
+    },
 
     /* ============================ 1 ============================ */
     {
