@@ -1,7 +1,7 @@
 # Codificar en QualCoder 4
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.
-Está armado como un juego. Nueve misiones, cuarenta y cuatro actividades, estrellas según los errores,
+Está armado como un juego. Nueve misiones, cuarenta y cinco actividades, estrellas según los errores,
 insignias, rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
 codificar texto. Son archivos estáticos, sin frameworks ni compilación, y se publica tal cual en GitHub
@@ -52,7 +52,7 @@ navegador de quien juega, sin cuentas ni servidor.
 
 | Misión | Tema | Qué se practica |
 | --- | --- | --- |
-| 1 | Qué es codificar | Vocabulario básico y la pestaña de registro de acciones |
+| 1 | Qué es codificar | Vocabulario básico y un recorrido guiado por los siete menús, con la descripción y el consejo de uso de cada entrada |
 | 2 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
 | 3 | Codificar texto | Abrir el módulo, crear un código desde el árbol, marcar dos segmentos con Q |
 | 4 | En vivo, anotar y memos | Código in vivo con V, anotación con A, memo del código, diarios |
@@ -127,6 +127,7 @@ Los ocho tipos de actividad disponibles.
 | `interfaz` | Simulador de QualCoder, hay que llegar a la función correcta | `objetivo`, `ruta`, `dice` |
 | `codificar` | Codificar dentro del simulador, seleccionar el tramo y aplicar la acción | `texto`, `codigos`, `solucion` |
 | `dialogo` | Ventana de configuración con campos que hay que dejar bien | `titulo`, `campos`, `boton`, `dice` |
+| `explorar` | Recorrido libre por los menús, con ficha de cada entrada al lado | `meta`, `objetivo`, `dice` |
 
 En `codificar`, `solucion.segmentos` lleva los índices del arreglo `texto` que hay que marcar, empezando en
 cero, `solucion.codigo` el `id` del código correcto y `solucion.accion` la operación esperada, que puede ser
@@ -141,10 +142,23 @@ nombre, por ejemplo `["codigo:Sentimiento de culpa", "fusionar"]`.
 En `dialogo`, cada campo puede ser `texto`, `select` o `casilla`. Para los de texto, `correcto` acepta un
 arreglo de fragmentos válidos o la palabra `cualquiera` cuando solo se pide que no quede vacío.
 
+En `explorar`, `meta` es cuántas entradas distintas hay que abrir para dar la actividad por cumplida. La
+ficha de la derecha sale de los propios menús, así que se enriquece editándolos.
+
 Los menús del simulador, sus atajos, las pestañas, el menú contextual del árbol, las teclas del módulo de
 codificar texto, los códigos del panel, los archivos, los colores y los rangos también se editan en
 `contenido.js`, en los bloques `interfaz`, `paleta` y `rangos`. La estructura de menús que trae por defecto
 está tomada del manual de usuario de QualCoder 4.
+
+Cada entrada de menú admite dos campos más, `d` con la descripción de qué hace y `tip` con el consejo
+metodológico o práctico. Son los que alimentan la ficha de la actividad de exploración, y el `tip` es
+opcional.
+
+```js
+{ id: "ajustes", t: "Configuración (Settings)", k: "Alt+S",
+  d: "Qué hace esta entrada.",
+  tip: "El consejo que quieres dar sobre ella." }
+```
 
 ## Créditos
 
