@@ -211,7 +211,33 @@ opcional.
   tip: "El consejo que quieres dar sobre ella." }
 ```
 
-## Créditos
+## Cómo citar este curso
 
-Material de SoftCualitativo, [www.softcualitativo.com](https://www.softcualitativo.com). QualCoder es
-software libre desarrollado por Colin Curtain y colaboradores.
+Salomón Cárdenas, L. (2026). Introducción al análisis de datos cualitativos con QualCoder [Curso en línea].
+SoftCualitativo. https://salomon-mazatlan.github.io/Curso-QualCoder/
+
+En el texto se cita como (Salomón Cárdenas, 2026). Ajusta el título, el año y la dirección a los de la
+versión que publiques.
+
+## Independencia del curso
+
+Este curso es un material de formación independiente del proyecto QualCoder. Las recomendaciones y las
+opiniones que aparecen en el presente curso son a título personal y no representan la posición del equipo de
+desarrollo ni del proyecto.
+
+## Cómo citar el software
+
+Curtain, C., Dröge, K., Missaghieh-Poncet, J. y Salomón, L. (2026). QualCoder 4.0 [Computer software].
+GitHub. https://github.com/ccbogel/QualCoder/releases/tag/4.0
+
+En el texto se cita como (Curtain et al., 2026). Ajusta el año y el número de versión a los de tu
+instalación. QualCoder es software libre desarrollado por Colin Curtain junto con Kai Dröge, Justin
+Missaghieh-Poncet, Lorenzo Salomón y su comunidad de colaboradores, independiente de este material de
+formación.
+
+## La constancia
+
+Al terminar las diez misiones se libera una constancia de participación con el nombre de quien la recibe, el
+número de misiones y actividades concluidas, los resultados obtenidos, la fecha de emisión y un folio
+derivado del nombre. Se imprime o se guarda en PDF desde el propio navegador. Es un documento de
+autoformación, deja constancia del trabajo hecho y no constituye una acreditación institucional.
