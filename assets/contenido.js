@@ -1282,7 +1282,7 @@ const CURSO = {
               img: { src: "", titulo: "El memo de una codificación", pie: "" }
             },
             {
-              titulo: "El diario del proyecto",
+              titulo: "Diarios",
               texto: "Es el único módulo que se abre en ventana propia, así que se puede escribir mientras se codifica.",
               pasos: [
                 "Abre Gestionar y elige Diarios, atajo Alt+J.",
