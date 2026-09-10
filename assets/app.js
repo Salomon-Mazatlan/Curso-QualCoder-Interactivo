@@ -113,6 +113,25 @@ function abrirLupa(src, pie) {
   abrirCapa(marco, null, "Cerrar la imagen");
 }
 
+// Right-click menu shown as a card, so it never gets cut off by the window edge.
+function abrirMenuContextual(titulo, nota, items, alClic) {
+  const caja = crear("div", "menu-flotante");
+  const cab = crear("div", "menu-flotante-cabeza");
+  cab.appendChild(crear("h4", null, titulo));
+  cab.appendChild(crear("p", null, nota));
+  caja.appendChild(cab);
+  const lista = crear("div", "menu-flotante-lista");
+  items.forEach(item => {
+    const b = crear("button", "qc-item");
+    b.appendChild(crear("span", null, item.t));
+    if (item.k) b.appendChild(crear("span", "qc-tecla", item.k));
+    b.addEventListener("click", () => { cerrarLupa(); alClic(item); });
+    lista.appendChild(b);
+  });
+  caja.appendChild(lista);
+  abrirCapa(caja, "capa-menu", "Cerrar el menú");
+}
+
 // Small card with the full reference, so nobody loses their place in the mission.
 function abrirReferencia(clave, cita) {
   const caja = crear("div", "tarjeta-ref");
@@ -711,6 +730,7 @@ function arbolCodigos(codigos, alClic, titulo) {
     b.appendChild(punto);
     b.appendChild(crear("span", null, c.nombre));
     b.addEventListener("click", ev => { ev.stopPropagation(); alClic(c, b); });
+    b.addEventListener("contextmenu", ev => { ev.preventDefault(); ev.stopPropagation(); alClic(c, b); });
     li.appendChild(b);
     lista.appendChild(li);
   });
@@ -766,12 +786,11 @@ function montarInterfaz(zona, ej, api) {
     lateral.appendChild(arbolCodigos(I.codigos, (c, boton) => {
       if (cerrado) return;
       marco.cerrarMenus();
-      boton.classList.add("abierto");
-      marco.abrirLista(
-        { x: boton.offsetLeft + 24, y: boton.getBoundingClientRect().top - marco.ventana.getBoundingClientRect().top + boton.offsetHeight },
+      abrirMenuContextual(
+        "Menú del código " + c.nombre,
+        "En QualCoder este menú se abre con clic derecho sobre el código, en el árbol de códigos.",
         I.contextual,
         item => {
-          marco.cerrarMenus();
           if (cerrado) return;
           if (c.nombre !== destinoCodigo) return api.fallo("Estás operando sobre " + c.nombre + ", revisa sobre qué código hay que actuar.");
           if (item.id !== ej.ruta[1]) return api.fallo(corto(item.t, 40) + " no resuelve lo que se pidió.");
@@ -792,7 +811,7 @@ function montarInterfaz(zona, ej, api) {
   marco.ventana.appendChild(crear("div", "qc-estado", "Objetivo, " + ej.objetivo));
 
   zona.appendChild(marco.ventana);
-  if (destinoCodigo) zona.appendChild(crear("p", "nota-simulador", "Recuerda que el árbol de códigos se maneja con clic derecho. Aquí basta con tocar el código."));
+  if (destinoCodigo) zona.appendChild(crear("p", "nota-simulador", "El árbol de códigos se maneja con clic derecho. Aquí funciona con clic derecho y también con un toque."));
   const guia = cajaPasos(ej);
   if (guia) zona.appendChild(guia);
   if (ej.pista) zona.appendChild(cajaPista(ej.pista));

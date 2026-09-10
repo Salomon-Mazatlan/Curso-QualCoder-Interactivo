@@ -21,10 +21,10 @@ const CURSO = {
   // Ranks unlocked by accumulated XP.
   rangos: [
     { xp: 0, nombre: "Aprendiz de campo" },
-    { xp: 130, nombre: "Libreta en mano" },
-    { xp: 300, nombre: "Codificación en marcha" },
-    { xp: 490, nombre: "Analista de corpus" },
-    { xp: 700, nombre: "Oficio de campo" }
+    { xp: 150, nombre: "Libreta en mano" },
+    { xp: 360, nombre: "Codificación en marcha" },
+    { xp: 590, nombre: "Analista de corpus" },
+    { xp: 830, nombre: "Oficio de campo" }
   ],
 
   // Simulated QualCoder 4 window used by the "interfaz" and "codificar" activities.
@@ -705,6 +705,35 @@ const CURSO = {
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         },
         /* 2.2 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Antes de tocar el simulador, así se mueve uno por la ventana de QualCoder.",
+          bloques: [
+            {
+              titulo: "Los módulos se abren dentro de las pestañas",
+              texto: "QualCoder no abre ventanas flotantes para cada módulo, salvo los diarios. Todo ocurre dentro de las cinco pestañas de la ventana principal, así que abrir un módulo es elegirlo en el menú y verlo aparecer en su pestaña.",
+              pasos: [
+                "Fíjate en la fila de pestañas, justo debajo de la barra de menús.",
+                "Toca la pestaña para cambiar de espacio de trabajo.",
+                "Cuando no hay ningún módulo abierto, la pestaña muestra su panel de bienvenida."
+              ],
+              img: { src: "", titulo: "Las cinco pestañas de la ventana principal", pie: "" }
+            },
+            {
+              titulo: "El registro de acciones",
+              texto: "Es la primera pestaña y funciona como la voz del programa. Ahí aparecen la versión y su cita, los avisos de copia de seguridad, los mensajes de cada operación y los resultados de varios informes.",
+              pasos: [
+                "Abre la pestaña Registro de acciones.",
+                "Léela después de abrir el proyecto y después de cualquier operación grande.",
+                "Si un informe no abre ventana propia, su resultado casi siempre cayó ahí."
+              ],
+              img: { src: "", titulo: "El registro de acciones con el aviso de copia de seguridad", pie: "" }
+            }
+          ],
+          boton: "Entendido, seguir",
+          dice: "Con eso ya sabes dónde mirar cuando el programa te habla."
+        },
+        /* 2.3 */ {
           tipo: "interfaz",
           xp: 10,
           instruccion: "Ya con el mapa en la cabeza. Abre la pestaña donde el programa deja sus mensajes, los avisos de respaldo y los resultados de algunos informes.",
@@ -713,7 +742,7 @@ const CURSO = {
           pista: "Es la primera de las cinco pestañas de la ventana principal.",
           dice: "Conviene mirarla después de abrir el proyecto y después de cualquier operación grande. Varios avisos aparecen ahí y en ningún otro lado."
         },
-        /* 2.3 */ {
+        /* 2.4 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada pieza con lo que hace. Toca una tarjeta de la izquierda y luego su definición.",
@@ -726,7 +755,7 @@ const CURSO = {
             { a: "Subcódigo", b: "Código que cuelga de otro código y nombra un matiz suyo" }
           ]
         },
-        /* 2.4 */ {
+        /* 2.5 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "¿Cuándo conviene crear una categoría?",
@@ -773,6 +802,57 @@ const CURSO = {
       `,
       ejercicios: [
         /* 3.1 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Esto es lo que vas a practicar en el simulador. Los mismos pasos sirven en el programa real.",
+          bloques: [
+            {
+              titulo: "Crear el proyecto",
+              texto: "El proyecto es una carpeta terminada en .qda que guarda la base de datos y las copias de los archivos. Se crea vacía y desde ahí se llena.",
+              pasos: [
+                "Abre el menú Proyecto y elige Crear un proyecto nuevo, atajo Control+N.",
+                "Elige la carpeta donde vivirá y escribe el nombre, sin espacios ni acentos.",
+                "QualCoder crea la carpeta .qda con sus subcarpetas y la base de datos vacía."
+              ],
+              img: { src: "", titulo: "El diálogo de creación del proyecto", pie: "" }
+            },
+            {
+              titulo: "Poner tu nombre de codificador",
+              texto: "Por defecto el programa firma como default. Todo lo que codifiques queda con esa firma, y es lo que después permite comparar entre personas del equipo.",
+              pasos: [
+                "Abre Proyecto y elige Configuración, atajo Alt+S.",
+                "Cambia el nombre del codificador por el tuyo.",
+                "Deja activada la copia de seguridad al abrir el proyecto.",
+                "Si cambias el idioma, hay que reiniciar el programa."
+              ],
+              img: { src: "", titulo: "La ventana de Configuración con el nombre del codificador", pie: "" }
+            },
+            {
+              titulo: "Importar los archivos",
+              texto: "El material entra por el gestor de archivos, que admite texto, PDF, imágenes, audio y video.",
+              pasos: [
+                "Abre Gestionar y elige Archivos, atajo Alt+F.",
+                "Usa el botón de importar y selecciona tus transcripciones.",
+                "Decide entre copiar al proyecto, que lo deja autónomo, o vincular, que deja los archivos fuera.",
+                "Abre cada archivo importado y comprueba que el texto se lee bien."
+              ],
+              img: { src: "", titulo: "El gestor de archivos con las entrevistas importadas", pie: "" }
+            },
+            {
+              titulo: "Comprobar cómo quedó",
+              texto: "El resumen del proyecto es el chequeo rápido de qué hay dentro y qué está roto.",
+              pasos: [
+                "Abre Proyecto y elige Resumen del proyecto.",
+                "El resultado aparece en la pestaña Registro de acciones.",
+                "Revisa los recuentos y la lista de vínculos rotos."
+              ],
+              img: { src: "", titulo: "El resumen del proyecto en el registro de acciones", pie: "" }
+            }
+          ],
+          boton: "Listo, a practicar",
+          dice: "Son cuatro operaciones y se hacen una sola vez por proyecto, pero condicionan todo lo demás."
+        },
+        /* 3.2 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Estás frente a QualCoder recién abierto. Crea el proyecto donde vivirán las entrevistas.",
@@ -781,7 +861,7 @@ const CURSO = {
           pista: "Todo lo que enmarca al proyecto completo cuelga del primer menú.",
           dice: "QualCoder pide nombre y ubicación, y construye la carpeta .qda con sus subcarpetas y la base de datos vacía."
         },
-        /* 3.2 */ {
+        /* 3.3 */ {
           tipo: "dialogo",
           xp: 15,
           instruccion: "Se abrió Configuración. Déjala lista para trabajar en español y con tu firma.",
@@ -794,7 +874,7 @@ const CURSO = {
           boton: "Guardar",
           dice: "El cambio de idioma pide reiniciar el programa. Y ojo, las copias automáticas rotan, por defecto se guardan cinco."
         },
-        /* 3.3 */ {
+        /* 3.4 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "El proyecto está vacío. Abre el módulo por donde entra todo el material al proyecto.",
@@ -803,7 +883,7 @@ const CURSO = {
           pista: "Archivos, casos, atributos, diarios y referencias viven en el mismo menú.",
           dice: "Desde ahí se importa, se vincula, se renombra y se asignan atributos. Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos enlaces se rompen al cambiar de computadora."
         },
-        /* 3.4 */ {
+        /* 3.5 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Antes de empezar quieres ver qué hay dentro del proyecto y si algún archivo vinculado se perdió.",
@@ -812,7 +892,7 @@ const CURSO = {
           pista: "Es una entrada del menú Proyecto y su resultado sale en el registro de acciones.",
           dice: "El resumen lista recuentos de archivos, casos, códigos y atributos, y destaca los vínculos rotos. Conviene ejecutarlo al retomar un proyecto viejo."
         },
-        /* 3.5 */ {
+        /* 3.6 */ {
           tipo: "secuencia",
           xp: 15,
           instruccion: "Ordena el arranque de un proyecto. Toca los pasos en el orden correcto.",
@@ -861,6 +941,47 @@ const CURSO = {
       `,
       ejercicios: [
         /* 4.1 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Casos y atributos se arman antes de codificar en serio. Así se hace.",
+          bloques: [
+            {
+              titulo: "Crear un caso",
+              texto: "Un caso reúne todo el material de una persona o unidad, aunque esté repartido en varios archivos.",
+              pasos: [
+                "Abre Gestionar y elige Casos, atajo Alt+C.",
+                "Crea el caso y dale el nombre de la persona o de la unidad.",
+                "Asígnale los archivos completos, o marca los tramos si un archivo trae a varias personas."
+              ],
+              img: { src: "", titulo: "La tabla de casos con sus archivos asignados", pie: "" }
+            },
+            {
+              titulo: "Crear atributos",
+              texto: "Los atributos son las variables que describen a un archivo o a un caso, y son las que después filtran en los informes.",
+              pasos: [
+                "Abre Gestionar y elige Atributos, atajo Alt+A.",
+                "Crea el atributo y elige si es de texto o numérico.",
+                "Indica si se aplica a archivos o a casos.",
+                "Rellena su valor en cada fila de la tabla."
+              ],
+              img: { src: "", titulo: "La tabla de atributos con una variable de agrupación", pie: "" }
+            },
+            {
+              titulo: "Importar una encuesta",
+              texto: "Si el material viene de un cuestionario con preguntas abiertas, la importación hace el trabajo completo de una pasada.",
+              pasos: [
+                "Abre Proyecto y entra en el submenú Importar.",
+                "Elige la importación de encuesta y selecciona el CSV o el XLSX.",
+                "Marca qué columnas son atributos y cuáles son texto para codificar.",
+                "Al terminar tendrás casos, atributos y un archivo por respuesta."
+              ],
+              img: { src: "", titulo: "El asistente de importación de encuestas", pie: "" }
+            }
+          ],
+          boton: "Entendido, seguir",
+          dice: "Con los casos y los atributos puestos, las comparaciones del final salen solas."
+        },
+        /* 4.2 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Rosa tiene dos entrevistas y una nota de campo. Vas a juntarlas bajo una misma unidad.",
@@ -869,7 +990,7 @@ const CURSO = {
           pista: "Está en el mismo menú donde importaste los archivos.",
           dice: "Un caso puede reunir archivos completos o tramos marcados dentro de un archivo."
         },
-        /* 4.2 */ {
+        /* 4.3 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Quieres registrar si cada cuidadora trabaja fuera de casa, para poder comparar después.",
@@ -878,7 +999,7 @@ const CURSO = {
           pista: "Las variables descriptivas tienen su propia entrada en el menú Gestionar.",
           dice: "Los atributos pueden ser de texto o numéricos y se aplican a archivos o a casos. Después filtran en casi todos los informes."
         },
-        /* 4.3 */ {
+        /* 4.4 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Te llegó una encuesta en CSV con tres preguntas abiertas y ocho variables de perfil. Métela al proyecto.",
@@ -887,7 +1008,7 @@ const CURSO = {
           pista: "No está en Gestionar. La importación cuelga del menú Proyecto, en un submenú.",
           dice: "Dentro de ese submenú está la importación de encuestas, que crea los casos, los atributos y un archivo de texto por respuesta, todo de una pasada."
         },
-        /* 4.4 */ {
+        /* 4.5 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada elemento con lo que representa dentro del proyecto.",
@@ -899,7 +1020,7 @@ const CURSO = {
             { a: "Codificación", b: "Un código aplicado a un segmento concreto" }
           ]
         },
-        /* 4.5 */ {
+        /* 4.6 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Quieres comparar qué dicen las cuidadoras que trabajan fuera de casa frente a las que no. ¿Qué necesitas tener listo?",
@@ -951,6 +1072,48 @@ const CURSO = {
       `,
       ejercicios: [
         /* 5.1 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Esto es exactamente lo que harás en el simulador, y es el trabajo diario del análisis.",
+          bloques: [
+            {
+              titulo: "Abrir el módulo",
+              texto: "Codificar texto es donde se pasa la mayor parte del tiempo. Se abre dentro de la pestaña Codificación.",
+              pasos: [
+                "Abre el menú Codificación y elige Codificar texto, atajo Alt+T.",
+                "En el panel izquierdo, pestaña Documentos, elige el archivo.",
+                "El documento aparece al centro, con su margen de franjas de color a la izquierda del texto."
+              ],
+              img: { src: "", titulo: "El módulo Codificar texto con sus tres paneles", pie: "" }
+            },
+            {
+              titulo: "Crear un código",
+              texto: "El árbol de códigos se maneja con el menú contextual, es decir con clic derecho sobre cualquiera de sus elementos.",
+              pasos: [
+                "Haz clic derecho en el árbol de códigos, en el panel izquierdo.",
+                "Elige Crear un código nuevo.",
+                "Escribe el nombre, elige color y escribe su memo el mismo día.",
+                "Para colgarlo de una categoría existe Añadir un código nuevo a la categoría."
+              ],
+              img: { src: "", titulo: "El menú contextual del árbol de códigos desplegado", pie: "" }
+            },
+            {
+              titulo: "Marcar el segmento",
+              texto: "La operación básica son tres movimientos, seleccionar, elegir el código y marcar.",
+              pasos: [
+                "Selecciona con el ratón el tramo de texto que vas a codificar.",
+                "Toca el código en el árbol para dejarlo seleccionado.",
+                "Pulsa Q, o usa clic derecho sobre la selección y elige Marcar.",
+                "Comprueba la franja de color que quedó en el margen.",
+                "Si te equivocaste, selecciona otra vez el tramo y pulsa U para desmarcar."
+              ],
+              img: { src: "", titulo: "Un segmento marcado con su franja en el margen", pie: "" }
+            }
+          ],
+          boton: "Listo, a practicar",
+          dice: "Seleccionar, elegir el código, marcar. Ese ciclo se repite miles de veces en un proyecto."
+        },
+        /* 5.2 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Ya tienes las entrevistas dentro. Abre el módulo donde se codifican los textos.",
@@ -959,7 +1122,7 @@ const CURSO = {
           pista: "Hay un módulo distinto para texto, PDF, imagen y audio o video.",
           dice: "También se abre con Alt+T desde cualquier punto del programa. El módulo se aloja en la pestaña Codificar, no en una ventana aparte."
         },
-        /* 5.2 */ {
+        /* 5.3 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "El árbol de códigos está vacío para este tema. Crea el código que vas a necesitar, sin colgarlo de ninguna categoría.",
@@ -968,7 +1131,7 @@ const CURSO = {
           pista: "El árbol de códigos se maneja con clic derecho sobre cualquiera de sus elementos.",
           dice: "Crear un código nuevo lo pone en el nivel superior. Para colgarlo de una categoría existe Añadir un código nuevo a la categoría, y para hacerlo subcódigo, Añadir un subcódigo."
         },
-        /* 5.3 */ {
+        /* 5.4 */ {
           tipo: "dialogo",
           xp: 15,
           instruccion: "Se abrió la ventana del código nuevo. Llámalo Abandono del empleo y déjalo listo para trabajar en equipo.",
@@ -981,7 +1144,7 @@ const CURSO = {
           boton: "Crear código",
           dice: "El memo del código es lo que después aparece en la regla del código, con ejemplos reales debajo. Sin él, el acuerdo entre codificadores no tiene con qué sostenerse."
         },
-        /* 5.4 */ {
+        /* 5.5 */ {
           tipo: "codificar",
           xp: 20,
           instruccion: "Entrevista E01_Rosa. Marca el fragmento donde deja el empleo. Selecciona el tramo, elige el código en el árbol y usa Marcar (Q).",
@@ -999,7 +1162,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [1], codigo: "c1", accion: "marcar" }
         },
-        /* 5.5 */ {
+        /* 5.6 */ {
           tipo: "codificar",
           xp: 20,
           instruccion: "Sigue en la misma entrevista. Marca el tramo que muestra que el cuidado duró mucho más de lo previsto.",
@@ -1059,6 +1222,57 @@ const CURSO = {
       `,
       ejercicios: [
         /* 6.1 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Tres operaciones que se parecen y no son lo mismo. Así se hace cada una.",
+          bloques: [
+            {
+              titulo: "Código in vivo",
+              texto: "Crea un código nuevo cuyo nombre son las palabras exactas que seleccionaste.",
+              pasos: [
+                "Selecciona el fragmento cuya expresión quieres conservar.",
+                "Pulsa V, o usa clic derecho y elige Código in vivo.",
+                "El código aparece en el árbol con el texto seleccionado como nombre.",
+                "Conviene escribirlo entre comillas para distinguirlo de los códigos que redactaste tú."
+              ],
+              img: { src: "", titulo: "Un código in vivo recién creado en el árbol", pie: "" }
+            },
+            {
+              titulo: "Anotar",
+              texto: "Deja una nota pegada a un punto del texto, sin asignar ningún código. No entra en los informes de codificación.",
+              pasos: [
+                "Selecciona el tramo que quieres comentar.",
+                "Pulsa A, o usa clic derecho y elige Anotar.",
+                "Escribe la nota y guarda.",
+                "Sirve para lo que todavía no sabes cómo nombrar."
+              ],
+              img: { src: "", titulo: "Una anotación sobre el texto", pie: "" }
+            },
+            {
+              titulo: "Memo de la codificación",
+              texto: "Documenta por qué aplicaste ese código a ese segmento concreto, y es distinto del memo del código.",
+              pasos: [
+                "Haz clic sobre un segmento ya codificado.",
+                "Pulsa M, o usa clic derecho y elige Memo del texto codificado.",
+                "Escribe la razón de la decisión mientras la tienes fresca."
+              ],
+              img: { src: "", titulo: "El memo de una codificación", pie: "" }
+            },
+            {
+              titulo: "El diario del proyecto",
+              texto: "Es el único módulo que se abre en ventana propia, así que se puede escribir mientras se codifica.",
+              pasos: [
+                "Abre Gestionar y elige Diarios, atajo Alt+J.",
+                "Crea un diario metodológico y, si quieres, otro de campo.",
+                "Escribe la entrada del día con lo que decidiste y por qué."
+              ],
+              img: { src: "", titulo: "Un diario con una entrada fechada", pie: "" }
+            }
+          ],
+          boton: "Entendido, seguir",
+          dice: "Codificar, anotar y escribir memos son tres cosas distintas, y el informe final nota la diferencia."
+        },
+        /* 6.2 */ {
           tipo: "codificar",
           xp: 20,
           instruccion: "Esta frase vale por cómo está dicha. Selecciónala y créale un código in vivo con la tecla V.",
@@ -1074,7 +1288,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [1], accion: "invivo" }
         },
-        /* 6.2 */ {
+        /* 6.3 */ {
           tipo: "codificar",
           xp: 20,
           instruccion: "Esta otra frase te llama la atención y todavía no sabes cómo nombrarla. Déjale una nota sin asignarle código.",
@@ -1089,7 +1303,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [2], accion: "anotar" }
         },
-        /* 6.3 */ {
+        /* 6.4 */ {
           tipo: "abierta",
           xp: 20,
           instruccion: "Escribe el memo del código Abandono del empleo. Tiene que quedar claro qué se marca con él y qué no.",
@@ -1101,7 +1315,7 @@ const CURSO = {
           ],
           modelo: "Abandono del empleo. Marca los fragmentos donde la persona relata haber dejado un trabajo remunerado a causa de la tarea de cuidado, sea por renuncia, liquidación o despido negociado. Entra \"pedí mi liquidación y me salí\". No entra la reducción de horas ni el cambio de turno, que van en Ajuste de jornada. Se confunde con Pérdida de ingresos, que se refiere al efecto económico y no a la salida del empleo."
         },
-        /* 6.4 */ {
+        /* 6.5 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Terminaste la sesión y quieres dejar por escrito qué decidiste y por qué.",
@@ -1110,7 +1324,7 @@ const CURSO = {
           pista: "Se gestionan junto con los archivos, los casos y los atributos.",
           dice: "Se pueden tener varios diarios, uno metodológico y otro de campo. Es el único módulo que se abre en ventana propia, así que puedes escribir mientras codificas."
         },
-        /* 6.5 */ {
+        /* 6.6 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "¿Qué diferencia hay entre el memo de un código y el memo de una codificación?",
@@ -1177,6 +1391,55 @@ const CURSO = {
           ]
         },
         /* 7.2 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "El mantenimiento del árbol se hace con el menú contextual. Así se hace cada operación.",
+          bloques: [
+            {
+              titulo: "Crear categorías",
+              texto: "Las categorías son las carpetas que agrupan códigos. Se crean desde el mismo menú contextual.",
+              pasos: [
+                "Haz clic derecho sobre el árbol de códigos.",
+                "Elige Crear una categoría nueva y dale nombre.",
+                "Una categoría también puede colgar de otra, aunque más de dos o tres niveles se vuelve inmanejable."
+              ],
+              img: { src: "", titulo: "El árbol con categorías y códigos colgando", pie: "" }
+            },
+            {
+              titulo: "Fusionar dos códigos",
+              texto: "Fusionar traslada las codificaciones del código que desaparece al de destino, así que no se pierde nada.",
+              pasos: [
+                "Haz clic derecho sobre el código que va a desaparecer.",
+                "Elige Fusionar el código en otro código, atajo F8.",
+                "Elige el código de destino en la lista.",
+                "Comprueba después la recuperación del código resultante."
+              ],
+              img: { src: "", titulo: "El diálogo de fusión de códigos", pie: "" }
+            },
+            {
+              titulo: "Mover un código a una categoría",
+              texto: "Es la operación con la que se arma el orden del sistema una vez que las categorías existen.",
+              pasos: [
+                "Haz clic derecho sobre el código.",
+                "Elige Mover el código a, atajo F6.",
+                "Selecciona la categoría de destino, o el nivel superior si quieres sacarlo de donde está."
+              ],
+              img: { src: "", titulo: "La lista de destinos al mover un código", pie: "" }
+            },
+            {
+              titulo: "Cuidado con Eliminar",
+              texto: "Eliminar borra el código, sus subcódigos y todas sus codificaciones, y no tiene deshacer. Si dudas, fusiona.",
+              pasos: [
+                "Antes de eliminar, abre la recuperación de ese código y lee sus segmentos.",
+                "Si alguno vale, fusiónalo en otro código en vez de borrarlo."
+              ],
+              img: { src: "", titulo: "El aviso de confirmación al eliminar un código", pie: "" }
+            }
+          ],
+          boton: "Listo, a practicar",
+          dice: "Fusionar conserva, eliminar tira. Es la diferencia que más caro cuesta aprender por las malas."
+        },
+        /* 7.3 */ {
           tipo: "interfaz",
           xp: 20,
           instruccion: "En el árbol tienes Culpa y Sentimiento de culpa diciendo lo mismo. Únelos sin perder ninguna codificación.",
@@ -1185,7 +1448,7 @@ const CURSO = {
           pista: "Las operaciones sobre un código salen de su menú contextual, no de la barra de menús.",
           dice: "Las codificaciones del código que desaparece pasan al de destino. Si hubieras elegido Eliminar, se habrían borrado con él y sin deshacer."
         },
-        /* 7.3 */ {
+        /* 7.4 */ {
           tipo: "interfaz",
           xp: 20,
           instruccion: "Ya creaste la categoría Costos del cuidado. Ahora mete ahí el código Abandono del empleo.",
@@ -1194,7 +1457,7 @@ const CURSO = {
           pista: "Es otra entrada del mismo menú contextual, la que abre una lista jerárquica de destinos.",
           dice: "La lista deja elegir entre el nivel superior, una categoría o incluso otro código, que lo convertiría en subcódigo."
         },
-        /* 7.4 */ {
+        /* 7.5 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Un código tiene una sola codificación en todo el corpus, hecha hace cuatro meses. ¿Qué haces?",
@@ -1242,6 +1505,47 @@ const CURSO = {
       `,
       ejercicios: [
         /* 8.1 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Así se sacan los resultados. Son tres salidas distintas y cada una responde a otra pregunta.",
+          bloques: [
+            {
+              titulo: "Recuperar los segmentos de un código",
+              texto: "Devuelve todos los fragmentos marcados con los códigos que elijas, con su archivo de origen.",
+              pasos: [
+                "Abre el menú Análisis y elige Recuperación de códigos, atajo Alt+K.",
+                "Marca los códigos que te interesan en el panel de selección.",
+                "Filtra por archivos, casos o atributos si quieres comparar grupos.",
+                "Ejecuta y lee los segmentos uno detrás de otro.",
+                "Exporta a ODT si vas a trabajarlos en tu procesador de textos."
+              ],
+              img: { src: "", titulo: "La recuperación con los segmentos y su archivo de origen", pie: "" }
+            },
+            {
+              titulo: "Contar",
+              texto: "Las frecuencias dicen cuántas veces se aplicó cada código, en total y por codificador.",
+              pasos: [
+                "Abre Informes y elige Frecuencias de códigos, atajo Alt+N.",
+                "Para ver el reparto entre archivos o casos, usa Recuento de códigos por archivo o caso.",
+                "Recuerda que la cuenta describe tu codificación, no el campo."
+              ],
+              img: { src: "", titulo: "La tabla de frecuencias por código", pie: "" }
+            },
+            {
+              titulo: "Graficar",
+              texto: "Los gráficos son la vista rápida, y la unidad de conteo cambia lo que muestran.",
+              pasos: [
+                "Abre Informes y elige Gráficos, atajo Alt+U.",
+                "Elige el tipo de figura y la unidad, frecuencia, caracteres codificados o área.",
+                "Guarda la imagen para el artículo o la tesis."
+              ],
+              img: { src: "", titulo: "Un gráfico de barras por categoría", pie: "" }
+            }
+          ],
+          boton: "Entendido, seguir",
+          dice: "Recuperar es para leer, contar es para describir, graficar es para mostrar. No se sustituyen entre sí."
+        },
+        /* 8.2 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Quieres leer juntos todos los fragmentos que marcaste con el código Culpa.",
@@ -1250,7 +1554,7 @@ const CURSO = {
           pista: "No está en Informes. Lo que devuelve segmentos para leer cuelga del menú Análisis.",
           dice: "También se abre con Alt+K. Devuelve los segmentos con su archivo de origen y permite filtrar por códigos, archivos, casos y atributos."
         },
-        /* 8.2 */ {
+        /* 8.3 */ {
           tipo: "dialogo",
           xp: 20,
           instruccion: "Configura la recuperación para revisar el código con contexto y llevártela a tu procesador de textos.",
@@ -1264,7 +1568,7 @@ const CURSO = {
           boton: "Ejecutar",
           dice: "Sin el archivo de origen los fragmentos pierden el rastro y ya no se puede volver a la entrevista completa."
         },
-        /* 8.3 */ {
+        /* 8.4 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Antes de escribir resultados quieres ver cuántas veces se aplicó cada código y quién lo aplicó.",
@@ -1273,7 +1577,7 @@ const CURSO = {
           pista: "Las cuentas están en el menú Informes, no en Análisis.",
           dice: "Muestra el total por código y el desglose por codificador. Para ver cómo se reparte entre archivos o casos está Conteos por archivo o caso."
         },
-        /* 8.4 */ {
+        /* 8.5 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Necesitas una figura para el artículo con el peso de cada categoría.",
@@ -1282,7 +1586,7 @@ const CURSO = {
           pista: "Está en Informes, con atajo Alt+U.",
           dice: "Los gráficos cuentan por frecuencia, por caracteres codificados o por área de imagen, y no es lo mismo. Elige la unidad según lo que quieras mostrar."
         },
-        /* 8.5 */ {
+        /* 8.6 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Abres la recuperación del código Culpa y ves que la mitad de los segmentos hablan de vergüenza frente a los hermanos y la otra mitad de arrepentimiento por enojarse. ¿Qué te dice eso?",
@@ -1332,6 +1636,46 @@ const CURSO = {
       `,
       ejercicios: [
         /* 9.1 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Las tres operaciones de equipo y mantenimiento que vas a practicar.",
+          bloques: [
+            {
+              titulo: "Comparar codificadores",
+              texto: "Compara dos personas código por código y reporta el acuerdo, con la kappa de Cohen entre los indicadores.",
+              pasos: [
+                "Cada quien tiene que haber codificado con su propio nombre en Configuración.",
+                "Abre Informes y elige Comparación de codificación, atajo Alt+L.",
+                "Selecciona los dos codificadores y los códigos que quieres revisar.",
+                "Para verlo dentro de un archivo concreto, usa Comparación de codificación por archivo, atajo Alt+M."
+              ],
+              img: { src: "", titulo: "La tabla de acuerdo entre codificadores", pie: "" }
+            },
+            {
+              titulo: "Reparar vínculos rotos",
+              texto: "Cuando los archivos se vincularon en vez de copiarse, cambiar de computadora rompe esas rutas.",
+              pasos: [
+                "Abre Gestionar y elige Vínculos rotos a archivos.",
+                "Selecciona el archivo que no abre y señala su nueva ubicación.",
+                "El resumen del proyecto los detecta antes de que te des cuenta trabajando."
+              ],
+              img: { src: "", titulo: "El módulo de vínculos rotos a archivos", pie: "" }
+            },
+            {
+              titulo: "Funciones especiales",
+              texto: "Ahí viven fusionar dos proyectos, sustituir el texto de un archivo conservando sus codificaciones y desplazar posiciones de codificación.",
+              pasos: [
+                "Copia a mano la carpeta del proyecto antes de entrar, no hay deshacer.",
+                "Abre Ayuda y elige Funciones especiales, atajo Alt+Z.",
+                "Elige la operación y sigue sus avisos con calma."
+              ],
+              img: { src: "", titulo: "El menú de funciones especiales", pie: "" }
+            }
+          ],
+          boton: "Listo, a practicar",
+          dice: "Son operaciones poco frecuentes y de mucho impacto. Conviene saber que existen antes de necesitarlas."
+        },
+        /* 9.2 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Tu colega codificó las mismas dos entrevistas que tú. Vas a ver dónde coinciden y dónde no.",
@@ -1340,7 +1684,7 @@ const CURSO = {
           pista: "Es un informe y tiene atajo Alt+L.",
           dice: "Compara dos codificadores en todo el corpus. Si quieres verlo dentro de un archivo concreto, existe Comparación por archivo."
         },
-        /* 9.2 */ {
+        /* 9.3 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Cambiaste el proyecto de computadora y varios archivos vinculados ya no abren.",
@@ -1349,7 +1693,7 @@ const CURSO = {
           pista: "Los archivos vinculados se gestionan en el menú Gestionar, en la última entrada.",
           dice: "El resumen del proyecto los detecta y este módulo los repara. Con archivos copiados en vez de vinculados el problema no existe."
         },
-        /* 9.3 */ {
+        /* 9.4 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Tu colega te mandó su proyecto aparte y quieres incorporarlo al tuyo.",
@@ -1358,7 +1702,7 @@ const CURSO = {
           pista: "No están en Proyecto. Cuelgan del menú Ayuda, con atajo Alt+Z.",
           dice: "Ahí viven fusionar proyectos, sustituir el texto de un archivo y desplazar posiciones de codificación. Copia la carpeta a mano antes de usarlas."
         },
-        /* 9.4 */ {
+        /* 9.5 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "Dos codificadores marcan el mismo fragmento con códigos distintos. ¿Qué es lo primero que hay que hacer?",
@@ -1370,7 +1714,7 @@ const CURSO = {
           consejo: "Deja el acuerdo por escrito en el memo del código, con un ejemplo que sí entra y otro que no. Es lo que evita repetir la misma discusión el mes que viene.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         },
-        /* 9.5 */ {
+        /* 9.6 */ {
           tipo: "parejas",
           xp: 15,
           instruccion: "Une cada problema con la operación que lo resuelve.",
@@ -1411,6 +1755,27 @@ const CURSO = {
       `,
       ejercicios: [
         /* 10.1 */ {
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Repaso rápido antes de la prueba de campo. Todo esto ya lo hiciste.",
+          bloques: [
+            {
+              titulo: "El ciclo completo",
+              texto: "Una sesión de análisis se parece siempre. Se abre el módulo, se marca, se revisa lo marcado y se anota lo decidido.",
+              pasos: [
+                "Abre Codificación y elige Codificar texto, atajo Alt+T.",
+                "Selecciona el tramo, elige el código en el árbol y pulsa Q.",
+                "Cuando la expresión vale por sí misma, usa V para el código in vivo.",
+                "Cada dos o tres archivos, recupera con Alt+K y revisa si los códigos siguen siendo consistentes.",
+                "Cierra la sesión escribiendo en el diario, con Alt+J."
+              ],
+              img: { src: "", titulo: "El proyecto terminado con su árbol y su diario", pie: "" }
+            }
+          ],
+          boton: "Entendido, empezar",
+          dice: "Si esos cinco pasos te salen sin pensar, el programa dejó de ser el problema."
+        },
+        /* 10.2 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Llegó la entrevista E04_Marta y ya está importada. Abre donde vas a marcarla.",
@@ -1418,7 +1783,7 @@ const CURSO = {
           ruta: ["codificar", "texto"],
           dice: "De memoria y sin pista, que es como se trabaja."
         },
-        /* 10.2 */ {
+        /* 10.3 */ {
           tipo: "codificar",
           xp: 25,
           instruccion: "Marca el tramo donde aparece el costo físico del cuidado y aplícale su código.",
@@ -1436,7 +1801,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [1], codigo: "m1", accion: "marcar" }
         },
-        /* 10.3 */ {
+        /* 10.4 */ {
           tipo: "codificar",
           xp: 25,
           instruccion: "La frase que cierra el tema sin quejarse merece quedar con las palabras de Marta. Créale un código in vivo.",
@@ -1452,7 +1817,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [1], accion: "invivo" }
         },
-        /* 10.4 */ {
+        /* 10.5 */ {
           tipo: "clasificar",
           xp: 25,
           instruccion: "Acomoda los códigos de Marta en el sistema que ya venías armando.",
@@ -1468,7 +1833,7 @@ const CURSO = {
             { t: "Hija que sugiere contratar ayuda", cat: "k2" }
           ]
         },
-        /* 10.5 */ {
+        /* 10.6 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Antes de cerrar quieres releer juntos todos los segmentos del código que más creció.",
@@ -1476,7 +1841,7 @@ const CURSO = {
           ruta: ["analisis", "recuperacion"],
           dice: "Recuperar cada dos o tres archivos nuevos es lo que evita descubrir a los seis meses que un código traía dos cosas dentro."
         },
-        /* 10.6 */ {
+        /* 10.7 */ {
           tipo: "abierta",
           xp: 25,
           instruccion: "Cierra la sesión con una entrada de diario. Cuenta qué hiciste y qué queda pendiente.",
