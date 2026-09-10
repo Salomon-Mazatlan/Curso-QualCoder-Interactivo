@@ -1522,6 +1522,14 @@ function pintarConstancia() {
   const hoja = crear("section", "constancia");
   const marco = crear("div", "constancia-marco");
 
+  if (CURSO.emblema && CURSO.emblema.src) {
+    const emblema = document.createElement("img");
+    emblema.className = "constancia-emblema";
+    emblema.src = CURSO.emblema.src;
+    emblema.alt = CURSO.emblema.alt || "";
+    marco.appendChild(emblema);
+  }
+
   const cab = crear("header", "constancia-cabeza");
   cab.appendChild(crear("p", "constancia-tipo", "Constancia de participación"));
   cab.appendChild(crear("h1", null, CURSO.titulo));
@@ -1562,7 +1570,7 @@ function pintarConstancia() {
   izq.appendChild(crear("span", "pie-etiqueta", "Fecha de emisión"));
   izq.appendChild(crear("span", "pie-valor", fechaLarga()));
   const der = crear("div");
-  der.appendChild(crear("span", "pie-etiqueta", "Folio"));
+  der.appendChild(crear("span", "pie-etiqueta", "Folio, fecha estelar"));
   const cifra = crear("span", "pie-valor pie-folio", folio(estado.nombre));
   der.appendChild(cifra);
   pie.appendChild(izq); pie.appendChild(der);
@@ -1570,9 +1578,28 @@ function pintarConstancia() {
 
   if (CURSO.responsable) {
     const firma = crear("div", "constancia-firma");
+    if (CURSO.firmaQR && CURSO.firmaQR.src) {
+      const qr = document.createElement("img");
+      qr.className = "firma-qr";
+      qr.src = CURSO.firmaQR.src;
+      qr.alt = "Código QR con la credencial verificable de " + CURSO.responsable;
+      if (CURSO.firmaQR.url) {
+        const enlace = document.createElement("a");
+        enlace.href = CURSO.firmaQR.url;
+        enlace.target = "_blank";
+        enlace.rel = "noopener";
+        enlace.appendChild(qr);
+        firma.appendChild(enlace);
+      } else {
+        firma.appendChild(qr);
+      }
+    }
     firma.appendChild(crear("span", "firma-linea", ""));
     firma.appendChild(crear("span", "firma-nombre", CURSO.responsable));
     firma.appendChild(crear("span", "firma-cargo", "Responsable del curso"));
+    if (CURSO.firmaQR && CURSO.firmaQR.url) {
+      firma.appendChild(crear("span", "firma-nota", "El código QR lleva a su credencial verificable."));
+    }
     marco.appendChild(firma);
   }
 
