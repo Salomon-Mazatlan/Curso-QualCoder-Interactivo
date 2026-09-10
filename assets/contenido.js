@@ -486,7 +486,7 @@ const CURSO = {
                 "Descarga VLC desde videolan.org, que es su sitio oficial.",
                 "Instala la versión de la misma arquitectura que tu sistema, casi siempre 64 bits.",
                 "Reinicia QualCoder para que lo detecte.",
-                "En Fedora hay un problema conocido con VLC, ahí el material audiovisual no se puede usar."
+                "NOTA: En Fedora hay un problema conocido con VLC, ahí el material audiovisual no se puede usar."
               ],
               img: { src: "", titulo: "La descarga de VLC en videolan.org", pie: "" }
             },
