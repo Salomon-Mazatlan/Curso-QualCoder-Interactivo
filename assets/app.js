@@ -1562,7 +1562,7 @@ function pintarConstancia() {
   izq.appendChild(crear("span", "pie-etiqueta", "Fecha de emisión"));
   izq.appendChild(crear("span", "pie-valor", fechaLarga()));
   const der = crear("div");
-  der.appendChild(crear("span", "pie-etiqueta", "Folio, fecha estelar"));
+  der.appendChild(crear("span", "pie-etiqueta", "Folio"));
   const cifra = crear("span", "pie-valor pie-folio", folio(estado.nombre));
   der.appendChild(cifra);
   pie.appendChild(izq); pie.appendChild(der);
