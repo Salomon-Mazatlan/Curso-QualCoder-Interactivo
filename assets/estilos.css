@@ -439,12 +439,29 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 }
 
 @media print{
+  @page{size:letter portrait;margin:12mm}
   .hud,.fila-acciones,.aviso,.salidas{display:none !important}
-  body{background:#fff}
+  body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   #app{padding:0;max-width:none}
-  .constancia-marco{border-width:2px;box-shadow:none;padding:40px 46px}
+
+  /* la constancia sale al 70 por ciento, así entra completa en una hoja carta */
+  .constancia{display:block}
+  .constancia-marco{
+    zoom:.7;border-width:2px;box-shadow:none;padding:34px 40px;
+    break-inside:avoid;page-break-inside:avoid;
+  }
+  .constancia-emblema{max-width:400px;margin-bottom:18px}
   .constancia-nombre{border-bottom-color:#000}
-  @page{margin:14mm}
+  .firma-qr{width:110px;height:110px}
+}
+
+/* respaldo para navegadores sin zoom, con la misma reducción */
+@supports not (zoom: 1){
+  @media print{
+    .constancia-marco{
+      zoom:normal;transform:scale(.7);transform-origin:top center;width:142.8%;margin-left:-21.4%;
+    }
+  }
 }
 
 /* ---------- quiz review ---------- */
@@ -629,3 +646,6 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .qc-arbol-vacio:hover{border-color:#2B6CB0;color:var(--tinta)}
 .campo-fijo{opacity:.75}
 .campo-fijo .campo-etiqueta::after{content:" (ya configurado)";font-size:.76rem;opacity:.7}
+
+.constancia-aviso{margin:0;font-size:.8rem;color:var(--tinta-media);text-align:center}
+@media print{ .constancia-aviso{display:none} }
