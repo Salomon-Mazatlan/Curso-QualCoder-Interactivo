@@ -9,7 +9,7 @@ const CURSO = {
   emblema: { src: "assets/img/emblema_qualcoder.jpg", alt: "QualCoder, análisis cualitativo de datos, CAQDAS de código abierto" },
   firmaQR: { src: "assets/img/firma_qr.png", url: "https://www.credential.net/profile/lorenzosalomoncardenas560816/wallet" },
   cita: "Salomón Cárdenas, L. (2026). Curso QualCoder Interactivo [Curso en línea]. https://salomon-mazatlan.github.io/Curso-QualCoder-Interactivo",
-  huecosVisibles: true, // pon false al publicar para ocultar los recuadros de captura vacíos
+  huecosVisibles: true, // 
 
   // Code colors used by the coding activities.
   paleta: {
