@@ -87,7 +87,7 @@ const CURSO = {
             en: "Project summary",
             d: "Informe de estado en el registro de acciones. Recuentos de archivos, casos, códigos y atributos, más la lista de vínculos rotos.",
             tip: "Ejecútalo al retomar un proyecto viejo o al cambiar de computadora, y otra vez antes de archivarlo o entregarlo.",
-            img: { src: "assets/img/ejemplo.png", titulo: "Captura de Resumen del proyecto", pie: "" } },
+            img: { src: "assets/img/1_9_Registro_acciones.png", titulo: "Captura de Resumen del proyecto", pie: "" } },
           { id: "importar", t: "Importar", sub: true,
             en: "Import",
             d: "Submenú de importación. De aquí cuelga la importación de encuestas desde CSV o XLSX, que crea de una pasada los casos, los atributos y un archivo de texto por respuesta.",
