@@ -38,6 +38,9 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .hud-barra{height:5px;background:rgba(255,255,255,.16);border-radius:99px;overflow:hidden;margin-top:4px}
 .hud-barra i{display:block;height:100%;width:0;background:var(--amarillo);transition:width .5s ease}
 .hud-insignias{font-size:.85rem;color:var(--amarillo)}
+.hud-pasos{display:flex;gap:6px}
+.hud-pasos button{white-space:nowrap}
+.hud-pasos button:disabled{opacity:.4;cursor:not-allowed}
 .hud button{background:none;border:1px solid rgba(255,255,255,.2);color:inherit;padding:5px 11px;border-radius:var(--radio);font-size:.83rem}
 .hud button:hover{background:rgba(255,255,255,.1)}
 
@@ -118,6 +121,7 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .ejercicio-tipo{font-size:.8rem;color:var(--tinta-media);display:flex;gap:8px;align-items:baseline}
 .ejercicio-num{color:var(--tinta);font-variant-numeric:tabular-nums}
 .ejercicio-xp{font-size:.8rem;font-weight:700;color:var(--turquesa)}
+.ejercicio-titulo{margin:0 0 6px;font-size:1.15rem;letter-spacing:-.01em;line-height:1.25}
 .enunciado{margin:0 0 16px;font-size:1.02rem;line-height:1.45}
 
 .opciones{display:grid;gap:8px}
@@ -558,7 +562,10 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 }
 .rail-act-btn:hover{background:var(--papel);color:var(--tinta)}
 .rail-act-num{font-variant-numeric:tabular-nums;min-width:26px}
-.rail-act-tipo{flex:1}
+.rail-act-texto{flex:1;display:grid;gap:1px;line-height:1.2}
+.rail-act-titulo{font-size:.8rem;color:var(--tinta)}
+.rail-act.aqui .rail-act-titulo{color:#fff}
+.rail-act-tipo{font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;opacity:.75}
 .rail-act.aqui .rail-act-btn{background:var(--tinta);color:#fff}
 .rail-act.aqui .estrella{color:rgba(255,255,255,.35)}
 .rail-act.aqui .estrella.viva{color:var(--amarillo)}

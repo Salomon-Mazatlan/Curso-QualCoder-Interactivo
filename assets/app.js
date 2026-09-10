@@ -174,12 +174,52 @@ function ampliable(img, pie) {
 /* ---------- hud ---------- */
 
 function pintarHud() {
+  const atras = $(".hud-anterior"), adelante = $(".hud-siguiente");
+  if (atras) atras.disabled = !mision || (mision.paso === "briefing" && mision.idx === 0);
+  if (adelante) adelante.disabled = false;
   $(".hud-rango").textContent = rango().nombre;
   $(".hud-xp").textContent = estado.xp + " XP";
   $(".hud-barra i").style.width = Math.min(100, (estado.xp / xpTotal) * 100) + "%";
   $(".hud-insignias").textContent = "✦ " + estado.insignias.length + " / " + CURSO.niveles.length;
   $(".hud-sonido").textContent = estado.sonido ? "🔊" : "🔇";
   $(".hud-sonido").setAttribute("aria-label", estado.sonido ? "Apagar sonido" : "Encender sonido");
+}
+
+/* ---------- sequential navigation ---------- */
+
+function puedeNavegar(dir) {
+  if (!mision) return dir > 0;
+  if (mision.paso === "fin") return true;
+  if (mision.paso === "briefing") return dir > 0 || mision.idx > 0;
+  if (dir > 0) return true;
+  return true;
+}
+
+function navegar(dir) {
+  if (!mision) {
+    if (dir > 0) location.hash = "#" + CURSO.niveles[0].id;
+    return;
+  }
+  const n = mision.nivel, idx = mision.idx;
+  const anterior = CURSO.niveles[idx - 1], siguiente = CURSO.niveles[idx + 1];
+
+  if (mision.paso === "briefing") {
+    if (dir > 0) { mision.paso = "ej"; mision.i = 0; pintarMision(); }
+    else if (anterior) location.hash = "#" + anterior.id;
+    window.scrollTo(0, 0);
+    return;
+  }
+  if (mision.paso === "fin") {
+    if (dir > 0) location.hash = siguiente ? "#" + siguiente.id : "#constancia";
+    else { mision.paso = "ej"; mision.i = n.ejercicios.length - 1; pintarMision(); }
+    window.scrollTo(0, 0);
+    return;
+  }
+  const j = mision.i + dir;
+  if (j >= 0 && j < n.ejercicios.length) { mision.i = j; pintarMision(); window.scrollTo(0, 0); return; }
+  if (dir > 0) location.hash = siguiente ? "#" + siguiente.id : "#constancia";
+  else { mision.paso = "briefing"; pintarMision(); }
+  window.scrollTo(0, 0);
 }
 
 /* ---------- side navigation ---------- */
@@ -232,7 +272,10 @@ function pintarNav() {
         const item = crear("li", "rail-act" + (aqui ? " aqui" : "") + (estrella === 0 ? " saltada" : ""));
         const b = crear("button", "rail-act-btn");
         b.appendChild(crear("span", "rail-act-num", (i + 1) + "." + (j + 1)));
-        b.appendChild(crear("span", "rail-act-tipo", NOMBRE_TIPO[ej.tipo] || ""));
+        const texto = crear("span", "rail-act-texto");
+        texto.appendChild(crear("span", "rail-act-titulo", ej.titulo || NOMBRE_TIPO[ej.tipo] || ""));
+        texto.appendChild(crear("span", "rail-act-tipo", NOMBRE_TIPO[ej.tipo] || ""));
+        b.appendChild(texto);
         b.appendChild(estrellasMini(estrella));
         b.addEventListener("click", () => { irAActividad(i, j); rail.classList.remove("abierto"); });
         item.appendChild(b);
@@ -334,6 +377,7 @@ function pintarMision() {
   marco.appendChild(tarjetaEjercicio(n, n.ejercicios[mision.i], mision.i));
   zona.appendChild(marco);
   pintarNav();
+  pintarHud();
 }
 
 function pantallaBriefing(n) {
@@ -457,6 +501,7 @@ function tarjetaEjercicio(nivel, ej, idx) {
   cabeza.appendChild(etiqueta);
   cabeza.appendChild(crear("span", "ejercicio-xp", ej.xp + " XP"));
   caja.appendChild(cabeza);
+  if (ej.titulo) caja.appendChild(crear("h3", "ejercicio-titulo", ej.titulo));
   caja.appendChild(crear("p", "enunciado", ej.pregunta || ej.instruccion));
 
   const cuerpo = crear("div", "cuerpo-ejercicio");
@@ -1621,6 +1666,8 @@ window.addEventListener("hashchange", enrutar);
 document.addEventListener("DOMContentLoaded", () => {
   $(".hud-titulo").textContent = CURSO.titulo;
   $(".hud-sonido").addEventListener("click", () => { estado.sonido = !estado.sonido; persistir(); pintarHud(); sonar("toque"); });
+  $(".hud-anterior").addEventListener("click", () => navegar(-1));
+  $(".hud-siguiente").addEventListener("click", () => navegar(1));
   $(".hud-mapa").addEventListener("click", () => { if (location.hash) location.hash = ""; else enrutar(); });
   $(".hud-referencias").addEventListener("click", () => { location.hash = "#referencias"; });
   $(".hud-reinicio").addEventListener("click", reiniciar);
