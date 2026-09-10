@@ -1,7 +1,7 @@
 # Curso QualCoder 4.0-Beta (Interactivo)
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.0-Beta.
-Está armado como un juego. Diez misiones en orden de trabajo real, sesenta y tres actividades, insignias,
+Está armado como un juego. Nueve misiones en orden de trabajo real, sesenta y tres lecciones, insignias,
 rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
 codificar texto. Son archivos estáticos, sin frameworks ni compilación, y se publica tal cual en GitHub
@@ -61,7 +61,7 @@ las que quedaron a medias muestran cuántas actividades llevan. El XP acumulado 
 campo a Oficio de campo. Todo el avance se guarda en el
 navegador de quien juega, sin cuentas ni servidor.
 
-### Las diez misiones
+### Las nueve misiones
 
 El orden propuesto sigue el del trabajo real, primero el programa, después el material, después la
 codificación y al final lo que devuelve resultados. Es una recomendación, no una barrera, cualquier misión se
@@ -70,16 +70,15 @@ comparación posible después.
 
 | Misión | Tema | Qué se practica |
 | --- | --- | --- |
-| 1 | Instalar QualCoder | Instructivos de descarga e instalación por sistema, los programas externos y cómo instalarlos, cómo resolver la advertencia de Windows y macOS, qué revisar cuando el audio no funciona, recorrido por los siete menús y comprobar la versión |
-| 2 | Qué es codificar | Vocabulario básico y un recorrido guiado por los siete menús, con la descripción y el consejo de uso de cada entrada |
-| 3 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
-| 4 | Casos y atributos | Gestión de casos, de atributos e importación de encuestas |
-| 5 | Codificar texto | Abrir el módulo, crear el primer código con el árbol vacío, marcar segmentos con Q y crear un código in vivo con V |
-| 6 | Anotar, memos y diario | Anotación con A, memo del código y de la codificación, diarios del proyecto |
-| 7 | El árbol de códigos | Categorías, fusionar un código en otro, mover un código a una categoría |
-| 8 | Recuperar y mirar | Recuperación de códigos, configurar la salida, frecuencias y gráficas |
-| 9 | Equipo y mantenimiento | Comparación de codificación, enlaces rotos, funciones especiales |
-| 10 | Prueba de campo | Entrevista nueva de principio a fin, recuperación y entrada de diario |
+| 1 | Instalar QualCoder | Instructivos de descarga e instalación por sistema, los programas externos, la advertencia de seguridad, qué revisar cuando el audio falla, recorrido por los siete menús, comprobar la versión y el registro de acciones |
+| 2 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
+| 3 | Casos y atributos | Gestión de casos, de atributos e importación de encuestas |
+| 4 | Codificar texto | Qué es un código, abrir el módulo, crear el primero con el árbol vacío, marcar con Q y crear un código in vivo con V |
+| 5 | Anotar, memos y diario | Anotación con A, memo del código y de la codificación, diarios del proyecto |
+| 6 | El árbol de códigos | Categorías, fusionar un código en otro, mover un código a una categoría |
+| 7 | Recuperar y mirar | Recuperación de códigos, configurar la salida, frecuencias y gráficos |
+| 8 | Equipo y mantenimiento | Comparación de codificación, vínculos rotos, funciones especiales |
+| 9 | Prueba de campo | Entrevista nueva de principio a fin, recuperación y entrada de diario |
 
 ### Las definiciones y sus fuentes
 
@@ -108,9 +107,10 @@ completa de referencias del curso para quien quiera verla toda.
 
 ### El índice lateral
 
-A la izquierda hay una barra con el contenido completo. Muestra las diez misiones con sus estrellas y, al
-entrar en una, la despliega en sus lecciones numeradas, con el tipo de cada una, sus estrellas y la actual
-resaltada. Desde ahí se salta a cualquier lección sin pasar por las anteriores, y las saltadas quedan
+A la izquierda hay una barra con el contenido completo. Muestra las nueve misiones con sus estrellas y, al
+entrar en una, la despliega en sus lecciones numeradas, cada una con su propio título, su tipo, sus estrellas
+y la actual resaltada. En la barra superior hay además botones de anterior y siguiente que recorren el curso
+lección por lección, y saltan de misión al llegar al final de una. Desde ahí se salta a cualquier lección sin pasar por las anteriores, y las saltadas quedan
 marcadas para volver. En pantallas estrechas se pliega detrás del botón Índice.
 
 ### Nombres de las capturas
@@ -193,6 +193,8 @@ Los instructivos se arman por bloques, cada uno con su título, su párrafo, su 
   boton: "Ya lo instalé, seguir",
   dice: "..." }
 ```
+
+Cada lección lleva su propio `titulo`, que es lo que aparece en el índice lateral y encabezando la tarjeta.
 
 Una misión se ve así.
 
@@ -285,7 +287,7 @@ Missaghieh-Poncet, Lorenzo Salomón y su comunidad de colaboradores.
 
 ## La constancia
 
-Al terminar las diez misiones se libera una constancia de participación con el nombre de quien la recibe, el
+Al terminar las nueve misiones se libera una constancia de participación con el nombre de quien la recibe, el
 número de misiones y actividades concluidas, los resultados obtenidos, la fecha de emisión, la firma del
 responsable del curso y la referencia para citarlo. El folio combina las iniciales de quien la recibe, la
 fecha estelar de emisión en formato TNG y cuatro caracteres aleatorios, de modo que no se repita. Se imprime o se guarda en PDF desde el propio navegador. Es un documento de
