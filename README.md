@@ -74,8 +74,8 @@ comparación posible después.
 | 2 | Qué es codificar | Vocabulario básico y un recorrido guiado por los siete menús, con la descripción y el consejo de uso de cada entrada |
 | 3 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
 | 4 | Casos y atributos | Gestión de casos, de atributos e importación de encuestas |
-| 5 | Codificar texto | Abrir el módulo, crear un código desde el árbol, marcar dos segmentos con Q |
-| 6 | En vivo, anotar y memos | Código in vivo con V, anotación con A, memo del código, diarios |
+| 5 | Codificar texto | Abrir el módulo, crear el primer código con el árbol vacío, marcar segmentos con Q y crear un código in vivo con V |
+| 6 | Anotar, memos y diario | Anotación con A, memo del código y de la codificación, diarios del proyecto |
 | 7 | El árbol de códigos | Categorías, fusionar un código en otro, mover un código a una categoría |
 | 8 | Recuperar y mirar | Recuperación de códigos, configurar la salida, frecuencias y gráficas |
 | 9 | Equipo y mantenimiento | Comparación de codificación, enlaces rotos, funciones especiales |
@@ -237,7 +237,13 @@ tomando los `id` definidos en `CURSO.interfaz.menus`. Una pestaña de la ventana
 nombre, por ejemplo `["codigo:Sentimiento de culpa", "fusionar"]`.
 
 En `dialogo`, cada campo puede ser `texto`, `select` o `casilla`. Para los de texto, `correcto` acepta un
-arreglo de fragmentos válidos o la palabra `cualquiera` cuando solo se pide que no quede vacío.
+arreglo de fragmentos válidos o la palabra `cualquiera` cuando solo se pide que no quede vacío. Un campo con
+`fijo` se muestra ya resuelto y no se valida, que es como se reproducen las ventanas largas del programa sin
+convertirlas en un examen de veinte casillas.
+
+En `interfaz`, cuando dos caminos del programa llevan al mismo sitio se usa `rutas` con las dos opciones en
+lugar de `ruta`. Y con `["arbol", "crear_codigo"]` la práctica ocurre sobre el árbol de códigos vacío, que es
+como se crea el primer código de un proyecto nuevo.
 
 En `explorar`, `meta` es cuántas entradas distintas hay que abrir para dar la actividad por cumplida. La
 ficha de la derecha sale de los propios menús, así que se enriquece editándolos.
