@@ -652,9 +652,9 @@ const CURSO = {
           titulo: "Recorrido por los menús",
           tipo: "explorar",
           xp: 20,
-          instruccion: "Antes de tocar nada en serio, recorre el programa. Toca las entradas de los menús y las pestañas que quieras, y lee a la derecha qué hace cada una.",
-          objetivo: "Recorrer la barra de menús",
-          dice: "Ya sabes dónde vive cada cosa. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados."
+          instruccion: "Antes de tocar nada en serio, recorre el programa. Toca las entradas de los menús y las pestañas que quieras, y lee debajo qué hace cada una.",
+          objetivo: "Recorrer la interfaz",
+          dice: "Ya sabes dónde se ubica cada módulo. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados."
         },
         /* 1.10 */ {
           titulo: "Ver la versión instalada",
