@@ -737,10 +737,10 @@ const CURSO = {
           tipo: "interfaz",
           xp: 10,
           instruccion: "Ya con el mapa en la cabeza. Abre la pestaña donde el programa deja sus mensajes, los avisos de respaldo y los resultados de algunos informes.",
-          objetivo: "Ver el registro de acciones",
-          ruta: ["pestana", "registro"],
-          pista: "Es la primera de las cinco pestañas de la ventana principal.",
-          dice: "Conviene mirarla después de abrir el proyecto y después de cualquier operación grande. Varios avisos aparecen ahí y en ningún otro lado."
+          objetivo: "Llegar al registro de acciones",
+          rutas: [["pestana", "registro"], ["proyecto", "resumen"]],
+          pista: "Es la primera de las cinco pestañas, y también la entrada Resumen del proyecto acaba ahí.",
+          dice: "Resumen del proyecto no abre ventana propia, vuelca su informe en el registro de acciones, así que las dos rutas llevan al mismo sitio y muestran lo mismo."
         },
         /* 2.4 */ {
           tipo: "parejas",
@@ -864,15 +864,24 @@ const CURSO = {
         /* 3.3 */ {
           tipo: "dialogo",
           xp: 15,
-          instruccion: "Se abrió Configuración. Déjala lista para trabajar en español y con tu firma.",
+          instruccion: "Se abrió Configuración. Déjala lista para trabajar en español, con tu firma y con la copia de seguridad puesta.",
           titulo: "Configuración",
           campos: [
-            { id: "idioma", etiqueta: "Idioma de la interfaz", tipo: "select", opciones: ["English", "Español", "Français", "Deutsch"], correcto: "Español" },
-            { id: "coder", etiqueta: "Nombre del codificador", tipo: "texto", marcador: "Escribe un nombre", correcto: "cualquiera" },
-            { id: "respaldo", etiqueta: "Copia de seguridad al abrir el proyecto", tipo: "casilla", correcto: true }
+            { id: "coder", etiqueta: "Codificador actual", tipo: "texto", marcador: "Escribe tu nombre", correcto: "cualquiera" },
+            { id: "idioma", etiqueta: "Idioma", tipo: "select", opciones: ["English en", "Español es", "Français fr", "Deutsch de"], correcto: "Español es" },
+            { id: "fuente", etiqueta: "Fuente y tamaño generales", tipo: "select", opciones: ["Noto Sans 12"], fijo: "Noto Sans 12" },
+            { id: "arbol", etiqueta: "Tamaño de fuente para el árbol de códigos", tipo: "select", opciones: ["12"], fijo: "12" },
+            { id: "contexto", etiqueta: "Caracteres antes y después en los informes con contexto", tipo: "select", opciones: ["100"], fijo: "100" },
+            { id: "franjas", etiqueta: "Vista de franjas de códigos", tipo: "casilla", fijo: true },
+            { id: "resaltado", etiqueta: "Estilo de resaltado de los códigos", tipo: "select", opciones: ["resaltador", "subrayado"], fijo: "resaltador" },
+            { id: "copias", etiqueta: "Copias de seguridad que se conservan", tipo: "select", opciones: ["3", "5", "10"], correcto: "5" },
+            { id: "respaldo", etiqueta: "Hacer copia de seguridad de la carpeta del proyecto cada vez que se abra", tipo: "casilla", correcto: true },
+            { id: "medios", etiqueta: "Incluir los archivos de audio y video en la copia de seguridad", tipo: "casilla", fijo: true }
           ],
-          boton: "Guardar",
-          dice: "El cambio de idioma pide reiniciar el programa. Y ojo, las copias automáticas rotan, por defecto se guardan cinco."
+          boton: "Aceptar",
+          dice: "El cambio de idioma pide reiniciar el programa. Y ojo con las copias, rotan, así que solo se conservan las últimas.",
+          consejo: "Si tus archivos de audio y video son grandes, desmarcar su inclusión acelera mucho la copia de seguridad, aunque entonces hay que respaldarlos aparte.",
+          consejoImagen: { src: "", titulo: "La ventana de Configuración completa", pie: "" }
         },
         /* 3.4 */ {
           tipo: "interfaz",
@@ -890,7 +899,7 @@ const CURSO = {
           objetivo: "Generar el resumen del proyecto",
           ruta: ["proyecto", "resumen"],
           pista: "Es una entrada del menú Proyecto y su resultado sale en el registro de acciones.",
-          dice: "El resumen lista recuentos de archivos, casos, códigos y atributos, y destaca los vínculos rotos. Conviene ejecutarlo al retomar un proyecto viejo."
+          dice: "El resumen no abre ventana propia, deja su informe en el registro de acciones, con los recuentos de archivos, casos, códigos y atributos y la lista de vínculos rotos. Es la misma vista que viste en la misión 2."
         },
         /* 3.6 */ {
           tipo: "secuencia",
@@ -1041,6 +1050,9 @@ const CURSO = {
       titulo: "Codificar texto",
       lema: "Seleccionar, elegir el código, marcar",
       definiciones: [
+        { termino: "Código in vivo",
+          texto: "Código basado en el lenguaje propio de la persona entrevistada. Saldaña recomienda escribirlo entre comillas, justamente para dejar claro que salió del registro de datos y no del vocabulario de quien analiza.",
+          cita: "Saldaña, 2011, pp. 99-100", clave: "saldana2011" },
         { termino: "Segmento",
           texto: "La porción de datos que recibe el código. Puede ir de una palabra a una frase, a una página entera o a un flujo de imágenes en movimiento, de modo que su tamaño es una decisión analítica y no un detalle técnico.",
           cita: "Saldaña, 2011, pp. 95-96", clave: "saldana2011" },
@@ -1108,6 +1120,17 @@ const CURSO = {
                 "Si te equivocaste, selecciona otra vez el tramo y pulsa U para desmarcar."
               ],
               img: { src: "", titulo: "Un segmento marcado con su franja en el margen", pie: "" }
+            },
+            {
+              titulo: "Código in vivo",
+              texto: "Crea un código nuevo cuyo nombre son las palabras exactas que seleccionaste.",
+              pasos: [
+                "Selecciona el fragmento cuya expresión quieres conservar.",
+                "Pulsa V, o usa clic derecho y elige Código in vivo.",
+                "El código aparece en el árbol con el texto seleccionado como nombre.",
+                "Conviene escribirlo entre comillas para distinguirlo de los códigos que redactaste tú."
+              ],
+              img: { src: "", titulo: "Un código in vivo recién creado en el árbol", pie: "" }
             }
           ],
           boton: "Listo, a practicar",
@@ -1125,24 +1148,24 @@ const CURSO = {
         /* 5.3 */ {
           tipo: "interfaz",
           xp: 15,
-          instruccion: "El árbol de códigos está vacío para este tema. Crea el código que vas a necesitar, sin colgarlo de ninguna categoría.",
-          objetivo: "Crear un código nuevo desde el árbol",
-          ruta: ["codigo:Culpa", "crear_codigo"],
-          pista: "El árbol de códigos se maneja con clic derecho sobre cualquiera de sus elementos.",
+          instruccion: "El proyecto es nuevo y todavía no hay ningún código. Crea el primero.",
+          objetivo: "Crear el primer código desde el árbol",
+          ruta: ["arbol", "crear_codigo"],
+          pista: "El árbol de códigos se maneja con clic derecho, y funciona igual cuando está vacío.",
           dice: "Crear un código nuevo lo pone en el nivel superior. Para colgarlo de una categoría existe Añadir un código nuevo a la categoría, y para hacerlo subcódigo, Añadir un subcódigo."
         },
         /* 5.4 */ {
           tipo: "dialogo",
           xp: 15,
-          instruccion: "Se abrió la ventana del código nuevo. Llámalo Abandono del empleo y déjalo listo para trabajar en equipo.",
-          titulo: "Añadir código nuevo",
+          instruccion: "Se abrió la ventana del código nuevo. Llámalo Abandono del empleo.",
+          titulo: "Añadir un código nuevo",
           campos: [
-            { id: "nombre", etiqueta: "Nombre del código", tipo: "texto", marcador: "Abandono del empleo", correcto: ["abandono"] },
-            { id: "color", etiqueta: "Color", tipo: "select", opciones: ["Sin color", "Coral", "Turquesa", "Violeta"], correcto: "Coral" },
-            { id: "memo", etiqueta: "Escribir ahora el memo del código", tipo: "casilla", correcto: true }
+            { id: "nombre", etiqueta: "Nombre del código", tipo: "texto", marcador: "Abandono del empleo", correcto: ["abandono"] }
           ],
-          boton: "Crear código",
-          dice: "El memo del código es lo que después aparece en la regla del código, con ejemplos reales debajo. Sin él, el acuerdo entre codificadores no tiene con qué sostenerse."
+          boton: "Aceptar",
+          dice: "La ventana solo pide el nombre. El color, el memo y la categoría se ajustan después desde el menú contextual del código, con F5, F3 y F6.",
+          consejo: "Escribe el memo del código el mismo día que lo creas, con F3. Un código sin memo es una etiqueta que en tres semanas ya no significa lo mismo.",
+          consejoImagen: { src: "", titulo: "La ventana Añadir un código nuevo", pie: "" }
         },
         /* 5.5 */ {
           tipo: "codificar",
@@ -1179,6 +1202,22 @@ const CURSO = {
             { id: "c2", nombre: "Diagnóstico médico", color: "turquesa" }
           ],
           solucion: { segmentos: [1, 2], codigo: "c3", accion: "marcar" }
+        },
+        /* 5.7 */ {
+          tipo: "codificar",
+          xp: 20,
+          instruccion: "Esta frase vale por cómo está dicha. Selecciónala y créale un código in vivo con la tecla V.",
+          pista: "El código in vivo no se elige del árbol, se crea con las palabras del texto seleccionado.",
+          texto: [
+            "Mis hermanos vienen los domingos,",
+            "pero el día a día es mío.",
+            "Yo no me quejo, cada quien tiene su vida."
+          ],
+          codigos: [
+            { id: "v2", nombre: "Reparto desigual", color: "turquesa" },
+            { id: "v3", nombre: "Naturalización del sacrificio", color: "violeta" }
+          ],
+          solucion: { segmentos: [1], accion: "invivo" }
         }
       ]
     },
@@ -1186,12 +1225,9 @@ const CURSO = {
     /* ============================ 6 ============================ */
     {
       id: "m06",
-      titulo: "En vivo, anotar y memos",
-      lema: "La voz del campo y la tuya",
+      titulo: "Anotar, memos y diario",
+      lema: "Lo que no cabe en un código",
       definiciones: [
-        { termino: "Código in vivo",
-          texto: "Código basado en el lenguaje propio de la persona entrevistada. Saldaña recomienda escribirlo entre comillas, justamente para dejar claro que salió del registro de datos y no del vocabulario de quien analiza.",
-          cita: "Saldaña, 2011, pp. 99-100", clave: "saldana2011" },
         { termino: "Memo analítico",
           texto: "Reflexión fechada y abierta sobre los datos y su análisis, con título propio para poder categorizarla después. No es el texto final, es el material del que ese texto acabará saliendo.",
           cita: "Saldaña, 2011, pp. 97-99", clave: "saldana2011" },
@@ -1215,8 +1251,6 @@ const CURSO = {
         asignar código, y no entra en ningún informe de codificación, sirve para lo que todavía no sabes cómo
         nombrar. <strong>El memo de la codificación</strong> documenta por qué aplicaste ese código a ese
         segmento concreto.</p>
-        <p>El código in vivo crea una etiqueta con las palabras exactas del texto seleccionado. Sirve cuando la
-        expresión dice algo que el vocabulario académico aplana, y estorba cuando se abusa.</p>
         <p>El módulo de diarios es el único que se abre en ventana aparte. Ahí va la bitácora fechada del
         proceso, que después es tu apartado de método.</p>
       `,
@@ -1224,19 +1258,8 @@ const CURSO = {
         /* 6.1 */ {
           tipo: "guia",
           xp: 10,
-          instruccion: "Tres operaciones que se parecen y no son lo mismo. Así se hace cada una.",
+          instruccion: "Anotar y escribir memos no es codificar, aunque se hagan en la misma ventana. Así se hace cada cosa.",
           bloques: [
-            {
-              titulo: "Código in vivo",
-              texto: "Crea un código nuevo cuyo nombre son las palabras exactas que seleccionaste.",
-              pasos: [
-                "Selecciona el fragmento cuya expresión quieres conservar.",
-                "Pulsa V, o usa clic derecho y elige Código in vivo.",
-                "El código aparece en el árbol con el texto seleccionado como nombre.",
-                "Conviene escribirlo entre comillas para distinguirlo de los códigos que redactaste tú."
-              ],
-              img: { src: "", titulo: "Un código in vivo recién creado en el árbol", pie: "" }
-            },
             {
               titulo: "Anotar",
               texto: "Deja una nota pegada a un punto del texto, sin asignar ningún código. No entra en los informes de codificación.",
@@ -1275,22 +1298,6 @@ const CURSO = {
         /* 6.2 */ {
           tipo: "codificar",
           xp: 20,
-          instruccion: "Esta frase vale por cómo está dicha. Selecciónala y créale un código in vivo con la tecla V.",
-          pista: "El código in vivo no se elige del árbol, se crea con las palabras del texto seleccionado.",
-          texto: [
-            "Mis hermanos vienen los domingos,",
-            "pero el día a día es mío.",
-            "Yo no me quejo, cada quien tiene su vida."
-          ],
-          codigos: [
-            { id: "v2", nombre: "Reparto desigual", color: "turquesa" },
-            { id: "v3", nombre: "Naturalización del sacrificio", color: "violeta" }
-          ],
-          solucion: { segmentos: [1], accion: "invivo" }
-        },
-        /* 6.3 */ {
-          tipo: "codificar",
-          xp: 20,
           instruccion: "Esta otra frase te llama la atención y todavía no sabes cómo nombrarla. Déjale una nota sin asignarle código.",
           pista: "Anotar y codificar son operaciones distintas. Una entra en los informes, la otra no.",
           texto: [
@@ -1303,7 +1310,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [2], accion: "anotar" }
         },
-        /* 6.4 */ {
+        /* 6.3 */ {
           tipo: "abierta",
           xp: 20,
           instruccion: "Escribe el memo del código Abandono del empleo. Tiene que quedar claro qué se marca con él y qué no.",
@@ -1315,7 +1322,7 @@ const CURSO = {
           ],
           modelo: "Abandono del empleo. Marca los fragmentos donde la persona relata haber dejado un trabajo remunerado a causa de la tarea de cuidado, sea por renuncia, liquidación o despido negociado. Entra \"pedí mi liquidación y me salí\". No entra la reducción de horas ni el cambio de turno, que van en Ajuste de jornada. Se confunde con Pérdida de ingresos, que se refiere al efecto económico y no a la salida del empleo."
         },
-        /* 6.5 */ {
+        /* 6.4 */ {
           tipo: "interfaz",
           xp: 15,
           instruccion: "Terminaste la sesión y quieres dejar por escrito qué decidiste y por qué.",
@@ -1324,7 +1331,7 @@ const CURSO = {
           pista: "Se gestionan junto con los archivos, los casos y los atributos.",
           dice: "Se pueden tener varios diarios, uno metodológico y otro de campo. Es el único módulo que se abre en ventana propia, así que puedes escribir mientras codificas."
         },
-        /* 6.6 */ {
+        /* 6.5 */ {
           tipo: "quiz",
           xp: 10,
           pregunta: "¿Qué diferencia hay entre el memo de un código y el memo de una codificación?",

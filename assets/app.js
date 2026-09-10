@@ -35,6 +35,14 @@ const persistir = () => guardado.escribir(estado);
 const xpTotal = CURSO.niveles.reduce((s, n) => s + n.ejercicios.reduce((t, e) => t + e.xp, 0), 0);
 const corto = (t, n) => t.length > n ? t.slice(0, n - 1).trim() + "…" : t;
 
+// True when the colour is light enough to need dark text over it.
+function claro(hex) {
+  const h = (hex || "#cccccc").replace("#", "");
+  const n = parseInt(h.length === 3 ? h.split("").map(c => c + c).join("") : h, 16);
+  const l = 0.299 * ((n >> 16) & 255) + 0.587 * ((n >> 8) & 255) + 0.114 * (n & 255);
+  return l > 150;
+}
+
 function tinte(hex, alfa) {
   const h = (hex || "#cccccc").replace("#", "");
   const n = parseInt(h.length === 3 ? h.split("").map(c => c + c).join("") : h, 16);
@@ -504,6 +512,10 @@ function tarjetaEjercicio(nivel, ej, idx) {
       if (barra) barra.replaceWith(barraMision(nivel));
       salidas.innerHTML = "";
       mostrarResultado(pie, mensaje || ej.dice, estrellas, nivel);
+      if (ej.tipo !== "quiz") {
+        const tip = bloqueConsejo(ej);
+        if (tip) pie.insertBefore(tip, pie.lastChild);
+      }
     }
   };
 
@@ -755,20 +767,23 @@ function listaDocumentos(archivos, activo) {
 function montarInterfaz(zona, ej, api) {
   let cerrado = false;
   const I = CURSO.interfaz;
-  const destinoCodigo = ej.ruta[0].indexOf("codigo:") === 0 ? ej.ruta[0].slice(7) : null;
-  const esPestana = ej.ruta[0] === "pestana";
-  const vista = destinoCodigo ? "codificar" : "principal";
+  const rutas = ej.rutas || [ej.ruta];
+  const principal = rutas[0];
+  const destinoCodigo = principal[0].indexOf("codigo:") === 0 ? principal[0].slice(7) : null;
+  const arbolVacio = principal[0] === "arbol";
+  const vista = (destinoCodigo || arbolVacio) ? "codificar" : "principal";
+  const coincide = (a, b) => rutas.some(r => r[0] === a && r[1] === b);
 
   const marco = ventanaQC({
     vista: vista,
     onMenu: (menuId, item) => {
       if (cerrado) return;
-      if (!destinoCodigo && !esPestana && menuId === ej.ruta[0] && item.id === ej.ruta[1]) return acertar();
+      if (coincide(menuId, item.id)) return acertar();
       api.fallo("Eso abre " + corto(item.t.split(" (")[0], 40) + ", no es lo que se pidió.");
     },
     onPestana: (p) => {
       if (cerrado) return;
-      if (esPestana && p.id === ej.ruta[1]) return acertar();
+      if (coincide("pestana", p.id)) return acertar();
       api.fallo("Esa es la pestaña " + p.t + ", revisa el objetivo.");
     }
   });
@@ -783,20 +798,32 @@ function montarInterfaz(zona, ej, api) {
   if (vista === "codificar") {
     const lateral = crear("div", "qc-lateral");
     lateral.appendChild(listaDocumentos(I.archivos, 0));
-    lateral.appendChild(arbolCodigos(I.codigos, (c, boton) => {
+
+    const menuArbol = (nombre, boton) => {
       if (cerrado) return;
       marco.cerrarMenus();
       abrirMenuContextual(
-        "Menú del código " + c.nombre,
-        "En QualCoder este menú se abre con clic derecho sobre el código, en el árbol de códigos.",
+        nombre ? "Menú del código " + nombre : "Menú del árbol de códigos",
+        "En QualCoder este menú se abre con clic derecho" + (nombre ? " sobre el código." : " sobre el árbol de códigos, aunque esté vacío."),
         I.contextual,
         item => {
           if (cerrado) return;
-          if (c.nombre !== destinoCodigo) return api.fallo("Estás operando sobre " + c.nombre + ", revisa sobre qué código hay que actuar.");
-          if (item.id !== ej.ruta[1]) return api.fallo(corto(item.t, 40) + " no resuelve lo que se pidió.");
+          if (destinoCodigo && nombre !== destinoCodigo) return api.fallo("Estás operando sobre " + nombre + ", revisa sobre qué código hay que actuar.");
+          if (!coincide(arbolVacio ? "arbol" : "codigo:" + nombre, item.id)) return api.fallo(corto(item.t, 40) + " no resuelve lo que se pidió.");
           acertar();
         });
-    }));
+    };
+
+    if (arbolVacio) {
+      const panel = arbolCodigos([], () => {}, "Name");
+      const vacio = crear("p", "qc-arbol-vacio", "Sin códigos todavía. Clic derecho aquí para crear el primero.");
+      vacio.addEventListener("click", ev => { ev.stopPropagation(); menuArbol(null); });
+      vacio.addEventListener("contextmenu", ev => { ev.preventDefault(); ev.stopPropagation(); menuArbol(null); });
+      panel.appendChild(vacio);
+      lateral.appendChild(panel);
+    } else {
+      lateral.appendChild(arbolCodigos(I.codigos, (c) => menuArbol(c.nombre)));
+    }
     cuerpo.appendChild(lateral);
     const doc = crear("div", "qc-doc");
     doc.appendChild(crear("div", "qc-doc-cabeza", I.archivos[0]));
@@ -810,10 +837,10 @@ function montarInterfaz(zona, ej, api) {
   marco.ventana.appendChild(cuerpo);
   marco.ventana.appendChild(crear("div", "qc-estado", "Objetivo, " + ej.objetivo));
 
-  zona.appendChild(marco.ventana);
-  if (destinoCodigo) zona.appendChild(crear("p", "nota-simulador", "El árbol de códigos se maneja con clic derecho. Aquí funciona con clic derecho y también con un toque."));
   const guia = cajaPasos(ej);
   if (guia) zona.appendChild(guia);
+  zona.appendChild(marco.ventana);
+  if (destinoCodigo || arbolVacio) zona.appendChild(crear("p", "nota-simulador", "El árbol de códigos se maneja con clic derecho. Aquí funciona con clic derecho y también con un toque."));
   if (ej.pista) zona.appendChild(cajaPista(ej.pista));
 }
 
@@ -942,6 +969,10 @@ function montarCodificar(zona, ej, api) {
   lateral.appendChild(listaDocumentos(I.archivos, 0));
   const arbol = arbolCodigos(ej.codigos, (c, boton) => {
     if (cerrado) return;
+    if (seleccion.size === 0) {
+      api.aviso("El orden habitual es al revés. Primero selecciona el tramo en el documento y después elige el código.");
+      return;
+    }
     arbol.querySelectorAll(".qc-codigo").forEach(x => x.classList.remove("elegido"));
     boton.classList.add("elegido");
     codigoSel = c;
@@ -951,11 +982,7 @@ function montarCodificar(zona, ej, api) {
 
   const doc = crear("div", "qc-doc");
 
-  const herramientas = crear("div", "qc-herramientas");
-  const codificador = crear("span", "qc-coder");
-  codificador.appendChild(crear("span", "qc-coder-icono", "👤"));
-  codificador.appendChild(crear("span", "qc-coder-campo", I.codificador));
-  herramientas.appendChild(codificador);
+  const herramientas = crear("div", "qc-herramientas qc-herramientas-pie");
   const acciones = ["marcar", "invivo", "anotar", "desmarcar", "memo"];
   I.contextual_texto.filter(x => acciones.indexOf(x.id) !== -1).forEach(item => {
     const b = crear("button", "qc-herramienta");
@@ -965,8 +992,13 @@ function montarCodificar(zona, ej, api) {
     b.addEventListener("click", ev => { ev.stopPropagation(); usar(item.id); });
     herramientas.appendChild(b);
   });
-  doc.appendChild(herramientas);
-  doc.appendChild(crear("div", "qc-doc-cabeza", "E01_Rosa.txt"));
+  const cabeza = crear("div", "qc-doc-cabeza");
+  const codificador = crear("span", "qc-coder");
+  codificador.appendChild(crear("span", "qc-coder-icono", "👤"));
+  codificador.appendChild(crear("span", "qc-coder-campo", I.codificador));
+  cabeza.appendChild(codificador);
+  cabeza.appendChild(crear("span", "qc-doc-nombre", "E01_Rosa.txt"));
+  doc.appendChild(cabeza);
 
   const rejilla = crear("div", "qc-lineas");
   const filas = [];
@@ -984,6 +1016,7 @@ function montarCodificar(zona, ej, api) {
     filas.push({ margen: margen, seg: seg });
   });
   doc.appendChild(rejilla);
+  doc.appendChild(herramientas);
   cuerpo.appendChild(doc);
   marco.ventana.appendChild(cuerpo);
   marco.ventana.appendChild(crear("div", "qc-estado", "Selecciona el tramo en el documento y aplica la acción"));
@@ -1002,7 +1035,8 @@ function montarCodificar(zona, ej, api) {
         f.margen.classList.add("con-codigo");
         if (i === Math.min.apply(null, ej.solucion.segmentos)) {
           const et = crear("span", "qc-etiqueta-margen", corto(etiqueta, 26));
-          et.style.color = color;
+          et.style.background = color;
+          et.style.color = claro(color) ? "#16263C" : "#fff";
           f.margen.appendChild(et);
         }
       }
@@ -1054,9 +1088,9 @@ function montarCodificar(zona, ej, api) {
     }
   }
 
-  zona.appendChild(marco.ventana);
   const guia = cajaPasos(ej);
   if (guia) zona.appendChild(guia);
+  zona.appendChild(marco.ventana);
   if (ej.pista) zona.appendChild(cajaPista(ej.pista));
 }
 
@@ -1086,11 +1120,18 @@ function montarDialogo(zona, ej, api) {
     } else if (campo.tipo === "casilla") {
       control = document.createElement("input");
       control.type = "checkbox";
+      if (campo.fijo !== undefined) control.checked = !!campo.fijo;
       fila.classList.add("campo-casilla");
     } else {
       control = document.createElement("input");
       control.type = "text";
       control.placeholder = campo.marcador || "";
+      if (campo.fijo !== undefined) control.value = campo.fijo;
+    }
+    if (campo.fijo !== undefined) {
+      if (campo.tipo === "select") control.value = campo.fijo;
+      control.disabled = true;
+      fila.classList.add("campo-fijo");
     }
     controles[campo.id] = control;
     fila.appendChild(control);
@@ -1105,6 +1146,7 @@ function montarDialogo(zona, ej, api) {
   aceptar.addEventListener("click", () => {
     if (aceptar.disabled) return;
     const malos = ej.campos.filter(campo => {
+      if (campo.fijo !== undefined || campo.correcto === undefined) return false;
       const c = controles[campo.id];
       if (campo.tipo === "casilla") return c.checked !== campo.correcto;
       if (campo.tipo === "select") return c.value !== campo.correcto;
@@ -1156,6 +1198,18 @@ function montarQuiz(zona, ej, api) {
   if (ej.pista) zona.appendChild(cajaPista(ej.pista));
 }
 
+// Practical tip with its optional screenshot, shared by every activity type.
+function bloqueConsejo(ej) {
+  if (!ej.consejo) return null;
+  const tip = crear("div", "repaso-consejo");
+  tip.appendChild(crear("h5", null, "Consejo práctico"));
+  tip.appendChild(crear("p", null, ej.consejo));
+  const img = imagenOpcional(ej.consejoImagen,
+    "Guarda la imagen en assets/img/ y escribe su ruta en el campo src de consejoImagen, dentro de assets/contenido.js");
+  if (img) tip.appendChild(img);
+  return tip;
+}
+
 // Shown once the question is answered: why each option works or not, plus the tip.
 function repaso(ej) {
   const caja = crear("div", "repaso");
@@ -1168,15 +1222,8 @@ function repaso(ej) {
     ul.appendChild(li);
   });
   caja.appendChild(ul);
-  if (ej.consejo) {
-    const tip = crear("div", "repaso-consejo");
-    tip.appendChild(crear("h5", null, "Consejo práctico"));
-    tip.appendChild(crear("p", null, ej.consejo));
-    const img = imagenOpcional(ej.consejoImagen,
-      "Guarda la imagen en assets/img/ y escribe su ruta en el campo src de consejoImagen, dentro de assets/contenido.js");
-    if (img) tip.appendChild(img);
-    caja.appendChild(tip);
-  }
+  const tip = bloqueConsejo(ej);
+  if (tip) caja.appendChild(tip);
   return caja;
 }
 
@@ -1302,7 +1349,6 @@ function montarAbierta(zona, ej, api) {
   caja.appendChild(modelo);
 
   ver.addEventListener("click", () => {
-    if (area.value.trim().length < 120) { api.aviso("Escribe tu versión primero, aunque salga tosca."); area.focus(); return; }
     modelo.hidden = false; ver.disabled = true; cobrar.hidden = false;
   });
   cobrar.addEventListener("click", () => { cobrar.disabled = true; api.resuelto("Escritura registrada."); });
@@ -1314,6 +1360,13 @@ function pasosDe(ej) {
   if (ej.pasos) return ej.pasos;
   const I = CURSO.interfaz;
   if (ej.tipo === "interfaz") {
+    if (ej.ruta && ej.ruta[0] === "arbol") {
+      const item = I.contextual.find(x => x.id === ej.ruta[1]) || {};
+      return ["Sitúate en el árbol de códigos, en el panel izquierdo.",
+              "Haz clic derecho sobre él, aunque esté vacío.",
+              "Elige " + (item.t || "") + (item.k ? ", atajo " + item.k : "") + "."];
+    }
+    if (!ej.ruta) return null;
     if (ej.ruta[0] === "pestana") {
       const p = I.pestanas.find(x => x.id === ej.ruta[1]);
       return ["Mira la fila de pestañas, debajo de la barra de menús.",
