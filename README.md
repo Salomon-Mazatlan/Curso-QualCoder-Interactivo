@@ -287,8 +287,9 @@ Missaghieh-Poncet, Lorenzo Salomón y su comunidad de colaboradores.
 
 ## La constancia
 
-Al terminar las nueve misiones se libera una constancia de participación con el nombre de quien la recibe, el
-número de misiones y actividades concluidas, los resultados obtenidos, la fecha de emisión, la firma del
-responsable del curso y la referencia para citarlo. El folio combina las iniciales de quien la recibe, la
+Al terminar las nueve misiones se libera una constancia de participación encabezada por el emblema del curso,
+con el nombre de quien la recibe, el
+número de misiones y actividades concluidas, los resultados obtenidos, la fecha de emisión, la firma del responsable del curso con su código QR
+a la credencial verificable, y la referencia para citarlo. El folio combina las iniciales de quien la recibe, la
 fecha estelar de emisión en formato TNG y cuatro caracteres aleatorios, de modo que no se repita. Se imprime o se guarda en PDF desde el propio navegador. Es un documento de
 autoformación, deja constancia del trabajo hecho y no constituye una acreditación institucional.
