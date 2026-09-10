@@ -38,19 +38,19 @@ const CURSO = {
       { id: "registro", t: "Registro de acciones",
         d: "Donde el programa habla. Versión y cita del software, avisos de copias de seguridad, mensajes de las operaciones y resultados de algunos informes.",
         tip: "Míralo después de abrir el proyecto y después de cualquier operación grande. Varios avisos aparecen ahí y en ningún otro sitio.",
-            img: { src: "assets/img/1_5_Registro_acciones.png", titulo: "Captura de Registro de acciones", pie: "" } },
+            img: { src: "assets/img/1_9_Registro_acciones.png", titulo: "Captura de Registro de acciones", pie: "" } },
       { id: "gestionar", t: "Gestionar",
         d: "Aloja los módulos de archivos, casos, atributos, diarios y referencias, y mientras no haya ninguno abierto muestra su panel de bienvenida.",
-            img: { src: "assets/img/1_5_Gestionar.png", titulo: "Captura de Gestionar", pie: "" } },
+            img: { src: "assets/img/1_9_Gestionar.png", titulo: "Captura de Gestionar", pie: "" } },
       { id: "codificar", t: "Codificación",
         d: "Aloja los módulos de codificación. Los módulos se abren dentro de la pestaña, no en ventanas flotantes.",
-            img: { src: "assets/img/1_5_Codificacion.png", titulo: "Captura de Codificar", pie: "" } },
+            img: { src: "assets/img/1_9_Codificacion.png", titulo: "Captura de Codificar", pie: "" } },
       { id: "informes", t: "Informes",
         d: "Aloja los módulos de reportes y visualización.",
-            img: { src: "assets/img/1_5_Informes.png", titulo: "Captura de Informes", pie: "" } },
+            img: { src: "assets/img/1_9_Informes.png", titulo: "Captura de Informes", pie: "" } },
       { id: "agente", t: "Agente de IA",
         d: "La conversación con el agente sobre el proyecto, cuando la IA está configurada.",
-            img: { src: "assets/img/1_5_Agente_IA.png", titulo: "Captura de Agente de IA", pie: "" } }
+            img: { src: "assets/img/1_9_Agente_IA.png", titulo: "Captura de Agente de IA", pie: "" } }
     ],
     menus: [
       {
@@ -488,7 +488,7 @@ const CURSO = {
                 "Descarga VLC desde videolan.org, que es su sitio oficial.",
                 "Instala la versión de la misma arquitectura que tu sistema, casi siempre 64 bits.",
                 "Reinicia QualCoder para que lo detecte.",
-                "En Fedora hay un problema conocido con VLC, ahí el material audiovisual no se puede usar."
+                "NOTA: En Fedora hay un problema conocido con VLC, ahí el material audiovisual no se puede usar."
               ],
               img: { src: "", titulo: "La descarga de VLC en videolan.org", pie: "" }
             },
