@@ -35,6 +35,12 @@ const persistir = () => guardado.escribir(estado);
 const xpTotal = CURSO.niveles.reduce((s, n) => s + n.ejercicios.reduce((t, e) => t + e.xp, 0), 0);
 const corto = (t, n) => t.length > n ? t.slice(0, n - 1).trim() + "…" : t;
 
+// Cada cambio de pantalla empieza arriba, no donde quedó la anterior.
+function subir() {
+  try { window.scrollTo({ top: 0, left: 0, behavior: "auto" }); }
+  catch (e) { window.scrollTo(0, 0); }
+}
+
 // True when the colour is light enough to need dark text over it.
 function claro(hex) {
   const h = (hex || "#cccccc").replace("#", "");
@@ -224,20 +230,17 @@ function navegar(dir) {
   if (mision.paso === "briefing") {
     if (dir > 0) { mision.paso = "ej"; mision.i = 0; pintarMision(); }
     else if (anterior) location.hash = "#" + anterior.id;
-    window.scrollTo(0, 0);
     return;
   }
   if (mision.paso === "fin") {
     if (dir > 0) location.hash = siguiente ? "#" + siguiente.id : "#constancia";
     else { mision.paso = "ej"; mision.i = n.ejercicios.length - 1; pintarMision(); }
-    window.scrollTo(0, 0);
     return;
   }
   const j = mision.i + dir;
-  if (j >= 0 && j < n.ejercicios.length) { mision.i = j; pintarMision(); window.scrollTo(0, 0); return; }
+  if (j >= 0 && j < n.ejercicios.length) { mision.i = j; pintarMision(); return; }
   if (dir > 0) location.hash = siguiente ? "#" + siguiente.id : "#constancia";
   else { mision.paso = "briefing"; pintarMision(); }
-  window.scrollTo(0, 0);
 }
 
 /* ---------- side navigation ---------- */
@@ -255,7 +258,6 @@ function irAActividad(idxNivel, idxEj) {
   mision.paso = "ej";
   location.hash = "#" + nivel.id;
   pintarMision();
-  window.scrollTo(0, 0);
 }
 
 function pintarNav() {
@@ -370,6 +372,7 @@ function pintarMapa() {
   zona.appendChild(cont);
   pintarHud();
   pintarNav();
+  subir();
 }
 
 /* ---------- mission ---------- */
@@ -387,8 +390,8 @@ function pintarMision() {
   const zona = $("#app");
   zona.innerHTML = "";
   const n = mision.nivel;
-  if (mision.paso === "briefing") { zona.appendChild(pantallaBriefing(n)); return pintarNav(); }
-  if (mision.paso === "fin") { zona.appendChild(pantallaFin(n)); return pintarNav(); }
+  if (mision.paso === "briefing") { zona.appendChild(pantallaBriefing(n)); pintarNav(); return subir(); }
+  if (mision.paso === "fin") { zona.appendChild(pantallaFin(n)); pintarNav(); return subir(); }
 
   const marco = crear("div", "mision");
   marco.appendChild(barraMision(n));
@@ -396,6 +399,7 @@ function pintarMision() {
   zona.appendChild(marco);
   pintarNav();
   pintarHud();
+  subir();
 }
 
 function pantallaBriefing(n) {
@@ -1696,6 +1700,7 @@ function pintarReferencias() {
   zona.appendChild(c);
   pintarHud();
   pintarNav();
+  subir();
 }
 
 /* ---------- routing ---------- */
@@ -1708,7 +1713,6 @@ function enrutar() {
   if (idx === -1) return pintarMapa();
   abrirMision(CURSO.niveles[idx], idx);
   pintarHud();
-  window.scrollTo(0, 0);
 }
 
 function reiniciar() {
