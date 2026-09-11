@@ -511,7 +511,7 @@ function barraMision(n) {
 const NOMBRE_TIPO = {
   quiz: "Decisión comentada", parejas: "Parejas", secuencia: "Secuencia", codificar: "Codificar texto",
   clasificar: "Clasificación", abierta: "Escritura", interfaz: "Simulador", dialogo: "Ventana",
-  explorar: "Exploración", guia: "Instructivo"
+  explorar: "Exploración", guia: "Instructivo", asistente: "Asistente"
 };
 
 function tarjetaEjercicio(nivel, ej, idx) {
@@ -591,7 +591,7 @@ function tarjetaEjercicio(nivel, ej, idx) {
   ({
     quiz: montarQuiz, parejas: montarParejas, secuencia: montarSecuencia, codificar: montarCodificar,
     clasificar: montarClasificar, abierta: montarAbierta, interfaz: montarInterfaz,
-    dialogo: montarDialogo, explorar: montarExplorar, guia: montarGuia
+    dialogo: montarDialogo, explorar: montarExplorar, guia: montarGuia, asistente: montarAsistente
   })[ej.tipo](cuerpo, ej, api);
 
   return caja;
@@ -1159,6 +1159,141 @@ function montarCodificar(zona, ej, api) {
   if (ej.pista) zona.appendChild(cajaPista(ej.pista));
 }
 
+/* ---------- activity: asistente ---------- */
+
+// Wizard with a column list and several destination boxes, like the survey import dialog.
+function montarAsistente(zona, ej, api) {
+  let elegido = null;
+  const ubicacion = {};
+  ej.columnas.forEach(c => ubicacion[c.t] = null);
+
+  const ventana = crear("div", "qc dialogo asistente");
+  const titulo = crear("div", "qc-titulo");
+  titulo.appendChild(logoQC());
+  titulo.appendChild(crear("span", "qc-nombre", ej.tituloVentana || "Asistente"));
+  titulo.appendChild(crear("span", "qc-controles", "✕"));
+  ventana.appendChild(titulo);
+
+  const cuerpo = crear("div", "asistente-cuerpo");
+
+  const izquierda = crear("div", "asistente-columnas");
+  izquierda.appendChild(crear("h4", null, "Columnas:"));
+  const lista = crear("ul", "asistente-lista");
+  izquierda.appendChild(lista);
+  cuerpo.appendChild(izquierda);
+
+  const derecha = crear("div", "asistente-destinos");
+  const cajas = {};
+  ej.destinos.forEach(d => {
+    const bloque = crear("div", "asistente-destino");
+    bloque.appendChild(crear("h4", null, d.t));
+    const fila = crear("div", "asistente-fila");
+    const flechas = crear("div", "asistente-flechas");
+    const meter = crear("button", "asistente-flecha", "›");
+    meter.title = "Mover la columna seleccionada a este grupo";
+    const sacar = crear("button", "asistente-flecha", "‹");
+    sacar.title = "Devolver la columna seleccionada a la lista";
+    flechas.appendChild(meter); flechas.appendChild(sacar);
+    const caja = crear("ul", "asistente-caja");
+    cajas[d.id] = caja;
+    meter.addEventListener("click", () => mover(d.id));
+    sacar.addEventListener("click", () => devolver(d.id));
+    caja.addEventListener("click", () => { if (elegido) mover(d.id); });
+    fila.appendChild(flechas); fila.appendChild(caja);
+    bloque.appendChild(fila);
+    derecha.appendChild(bloque);
+  });
+  cuerpo.appendChild(derecha);
+  ventana.appendChild(cuerpo);
+
+  function pintarLista() {
+    lista.innerHTML = "";
+    ej.columnas.forEach(c => {
+      if (ubicacion[c.t]) return;
+      const li = crear("li");
+      const b = crear("button", "asistente-col" + (elegido === c.t ? " elegido" : ""), c.t);
+      b.addEventListener("click", () => { elegido = c.t; pintarTodo(); });
+      li.appendChild(b);
+      lista.appendChild(li);
+    });
+  }
+
+  function pintarCajas() {
+    ej.destinos.forEach(d => {
+      cajas[d.id].innerHTML = "";
+      ej.columnas.forEach(c => {
+        if (ubicacion[c.t] !== d.id) return;
+        const li = crear("li");
+        const b = crear("button", "asistente-col" + (elegido === c.t ? " elegido" : ""), c.t);
+        b.addEventListener("click", ev => { ev.stopPropagation(); elegido = c.t; pintarTodo(); });
+        li.appendChild(b);
+        cajas[d.id].appendChild(li);
+      });
+    });
+  }
+
+  function pintarTodo() { pintarLista(); pintarCajas(); }
+
+  function mover(destino) {
+    if (!elegido) return api.aviso("Elige antes una columna en la lista de la izquierda.");
+    ubicacion[elegido] = destino;
+    elegido = null;
+    pintarTodo();
+  }
+
+  function devolver(destino) {
+    const dentro = ej.columnas.filter(c => ubicacion[c.t] === destino).map(c => c.t);
+    if (!dentro.length) return api.aviso("Ese grupo está vacío.");
+    const quitar = elegido && dentro.indexOf(elegido) !== -1 ? elegido : dentro[dentro.length - 1];
+    ubicacion[quitar] = null;
+    elegido = null;
+    pintarTodo();
+  }
+
+  const casillas = {};
+  if ((ej.casillas || []).length) {
+    const marco = crear("div", "asistente-casillas");
+    ej.casillas.forEach(c => {
+      const fila = crear("label", "campo campo-casilla");
+      fila.appendChild(crear("span", "campo-etiqueta", c.etiqueta));
+      const control = document.createElement("input");
+      control.type = "checkbox";
+      casillas[c.id] = control;
+      fila.appendChild(control);
+      marco.appendChild(fila);
+    });
+    ventana.appendChild(marco);
+  }
+
+  const pie = crear("div", "qc-botones");
+  const cancelar = crear("button", "qc-boton", "Cancelar");
+  cancelar.addEventListener("click", () => api.aviso("Cancelar cierra el asistente sin importar nada."));
+  const aceptar = crear("button", "qc-boton primario", ej.boton || "Aceptar");
+  aceptar.addEventListener("click", () => {
+    if (aceptar.disabled) return;
+    const sinUbicar = ej.columnas.filter(c => !ubicacion[c.t]);
+    if (sinUbicar.length) return api.fallo("Falta repartir " + corto(sinUbicar[0].t, 30) + ". Ninguna columna puede quedarse en la lista.");
+    const mal = ej.columnas.filter(c => ubicacion[c.t] !== c.destino);
+    if (mal.length) {
+      const d = ej.destinos.find(x => x.id === mal[0].destino) || {};
+      return api.fallo(corto(mal[0].t, 30) + " no va ahí. Piensa si describe a la persona, si es una variable o si es texto para codificar.");
+    }
+    const malCasilla = (ej.casillas || []).filter(c => casillas[c.id].checked !== c.correcto);
+    if (malCasilla.length) return api.fallo("Revisa la casilla, " + corto(malCasilla[0].etiqueta.toLowerCase(), 60) + ".");
+    aceptar.disabled = true; cancelar.disabled = true;
+    ventana.classList.add("qc-listo");
+    api.resuelto(ej.dice);
+  });
+  pie.appendChild(cancelar); pie.appendChild(aceptar);
+  ventana.appendChild(pie);
+
+  pintarTodo();
+  const guia = cajaPasos(ej);
+  if (guia) zona.appendChild(guia);
+  zona.appendChild(ventana);
+  if (ej.pista) zona.appendChild(cajaPista(ej.pista));
+}
+
 /* ---------- activity: dialogo ---------- */
 
 function montarDialogo(zona, ej, api) {
@@ -1457,6 +1592,12 @@ function pasosDe(ej) {
     const item = (menu.items || []).find(x => x.id === ej.ruta[1]) || {};
     return ["Abre el menú " + (menu.nombre || "") + " en la barra de menús.",
             "Elige " + (item.t || "") + "." + (item.k ? " El atajo es " + item.k + "." : "")];
+  }
+  if (ej.tipo === "asistente") {
+    return ["Selecciona una columna en la lista de la izquierda.",
+            "Pulsa la flecha del grupo al que pertenece, o toca su recuadro.",
+            "La flecha contraria devuelve una columna a la lista.",
+            "Reparte todas las columnas, marca las casillas que correspondan y pulsa Aceptar."];
   }
   if (ej.tipo === "codificar") {
     const accion = (ej.solucion || {}).accion || "marcar";

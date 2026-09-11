@@ -1075,15 +1075,16 @@ const CURSO = {
               img: { src: "assets/img/4_1_Boton_importar_encuesta.png", titulo: "El segundo botón de la barra, el de importar encuesta", pie: "" }
             },
             {
-              titulo: "Decidir qué es atributo y qué es texto",
-              texto: "Este es el paso que decide si la importación sirve de algo. Cada columna se marca como atributo, que es una variable, o como texto, que se convierte en archivo codificable.",
+              titulo: "Repartir las columnas en el asistente",
+              texto: "El asistente muestra a la izquierda todas las columnas del archivo y a la derecha tres grupos. Lo que decide si la importación sirve de algo es en cuál cae cada columna.",
               pasos: [
-                "Marca como atributo las columnas de respuesta cerrada, edad, sexo, municipio, escolaridad.",
-                "Marca como texto las columnas de respuesta abierta.",
-                "Confirma y revisa el resultado, un caso por fila y un archivo por respuesta abierta.",
-                "Comprueba en Gestionar y Atributos que las variables llegaron completas."
+                "Manda al grupo 1, Casos y participantes, la columna que identifica a cada persona, el ID o el nombre.",
+                "Manda al grupo 2, Atributos, las variables de perfil, edad, género, lugar de origen, escolaridad.",
+                "Manda al grupo 3, Textos cualitativos, las columnas de respuesta abierta, que son las que vas a codificar.",
+                "Marca Asignar los atributos a los casos si quieres comparar por persona, y Autocodificar los segmentos con el nombre de la columna para que cada respuesta entre etiquetada con su pregunta.",
+                "Acepta y comprueba el resultado, un caso por fila y un archivo por respuesta abierta."
               ],
-              img: { src: "assets/img/ejemplo.png", titulo: "La ventana de importación con las columnas ya clasificadas", pie: "" }
+              img: { src: "assets/img/ejemplo.png", titulo: "El asistente de importación de encuestas con sus tres grupos", pie: "" }
             }
           ],
           boton: "Listo, a practicar",
@@ -1106,22 +1107,33 @@ const CURSO = {
           consejoImagen: { src: "assets/img/4_1_Boton_importar_encuesta.png", titulo: "El botón de importar encuesta en la barra de herramientas", pie: "" }
         },
         /* 4.3 */ {
-          titulo: "La ventana de importación",
-          tipo: "dialogo",
-          xp: 15,
-          instruccion: "Se abrió la ventana de importación. Déjala lista para que cada fila sea un caso y las respuestas abiertas queden como archivos.",
-          titulo: "Importar encuesta",
-          campos: [
-            { id: "archivo", etiqueta: "Archivo", tipo: "texto", fijo: "respuestas_migracion.csv" },
-            { id: "separador", etiqueta: "Separador de columnas", tipo: "select", opciones: ["Coma", "Punto y coma", "Tabulador"], correcto: "Coma" },
-            { id: "encabezado", etiqueta: "La primera fila trae los nombres de las columnas", tipo: "casilla", correcto: true },
-            { id: "abiertas", etiqueta: "Columnas de respuesta abierta", tipo: "select", opciones: ["Ignorar", "Guardar como atributo de texto", "Crear un archivo de texto por respuesta"], correcto: "Crear un archivo de texto por respuesta" },
-            { id: "cerradas", etiqueta: "Columnas de respuesta cerrada", tipo: "select", opciones: ["Ignorar", "Guardar como atributo", "Crear un archivo por respuesta"], correcto: "Guardar como atributo" }
+          titulo: "El asistente de importación",
+          tipo: "asistente",
+          xp: 20,
+          instruccion: "Se abrió el asistente. Reparte cada columna del archivo en el grupo que le toca y deja marcadas las dos opciones de abajo.",
+          tituloVentana: "Asistente de importación de encuestas",
+          destinos: [
+            { id: "casos", t: "1. Casos / Participantes (p. ej., ID, Nombre)" },
+            { id: "atributos", t: "2. Atributos (p. ej., Edad, Género)" },
+            { id: "textos", t: "3. Textos cualitativos" }
+          ],
+          columnas: [
+            { t: "ID", destino: "casos" },
+            { t: "Edad", destino: "atributos" },
+            { t: "Género", destino: "atributos" },
+            { t: "Lugar o país de origen", destino: "atributos" },
+            { t: "Respuesta 1", destino: "textos" },
+            { t: "Yo pensé en 1, porque:", destino: "textos" }
+          ],
+          casillas: [
+            { id: "asignar", etiqueta: "Asignar los atributos a los casos (marcar) o a los archivos (desmarcar)", correcto: true },
+            { id: "autocodificar", etiqueta: "Autocodificar los segmentos de texto con el nombre de la columna", correcto: true }
           ],
           boton: "Aceptar",
-          dice: "Con eso quedan los casos, los atributos y un archivo por respuesta abierta, todo en una pasada.",
-          consejo: "Si una columna de respuesta abierta se importa como atributo, su contenido deja de ser codificable. Es el error más común de esta ventana y obliga a repetir la importación entera.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El resultado de la importación en la tabla de archivos", pie: "" }
+          pista: "La columna que identifica a cada persona va al primer grupo, las variables de perfil al segundo y las respuestas abiertas al tercero.",
+          dice: "Con los atributos asignados a los casos y la autocodificación activada, cada respuesta entra ya etiquetada con el nombre de su pregunta, y eso ahorra la primera vuelta de codificación entera.",
+          consejo: "La autocodificación por nombre de columna no sustituye tu análisis, solo separa las respuestas por pregunta. Es el andamio sobre el que después aplicas tus propios códigos.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El asistente con las columnas ya repartidas", pie: "" }
         },
         /* 4.4 */ {
           titulo: "Qué deja la importación",
