@@ -6,6 +6,26 @@ const CURSO = {
   subtitulo: "Diez misiones de práctica",
   duracion: "entre dos y tres horas y media",
   responsable: "Lorenzo Salomón Cárdenas",
+
+  // Mensaje de apoyo y enlace de comentarios. Cambia la dirección del formulario por la tuya.
+  apoyo: {
+    titulo: "El curso es gratuito",
+    texto: "Se mantiene con donativos voluntarios, nunca obligatorios, porque la formación en análisis cualitativo debería estar al alcance de cualquiera. Si te está sirviendo y puedes apoyar, se agradece. Si no, tomarlo y compartirlo ya es una forma de contribuir.",
+    breve: "Curso gratuito, sostenido con donativos voluntarios. Tomarlo y compartirlo ya es una forma de apoyar.",
+    enlaces: [
+      { t: "Gastos médicos personales", url: "https://gofund.me/5c133cc99" },
+      { t: "Asistencia humanitaria a migrantes y personas desplazadas", url: "https://www.paypal.com/paypalme/lorenzosalomon" },
+      { t: "Perfil de recaudación", url: "https://www.gofundme.com/u/lorenzo-salomon-cardenas" }
+    ]
+  },
+
+  // Formulario de comentarios. Pon aquí el enlace de tu formulario de Google.
+  comentarios: {
+    texto: "¿Algo que mejorar, un error, una duda? Cuéntamelo en el formulario de comentarios.",
+    etiqueta: "Abrir el formulario de comentarios",
+    url: ""
+  },
+
   emblema: { src: "assets/img/emblema_qualcoder.jpg", alt: "QualCoder, análisis cualitativo de datos, CAQDAS de código abierto" },
   firmaQR: { src: "assets/img/firma_qr.png", url: "https://www.credential.net/profile/lorenzosalomoncardenas560816/wallet" },
   cita: "Salomón Cárdenas, L. (2026). Curso QualCoder Interactivo [Curso en línea]. https://salomon-mazatlan.github.io/Curso-QualCoder-Interactivo",
