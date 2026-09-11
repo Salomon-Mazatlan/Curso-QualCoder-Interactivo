@@ -268,6 +268,24 @@ opcional.
   tip: "El consejo que quieres dar sobre ella." }
 ```
 
+## Donativos y comentarios dentro del curso
+
+El mensaje de apoyo aparece en dos sitios, discreto al pie del mapa de misiones y con sus enlaces completos
+al terminar cada misión. Junto a ese segundo se muestra el renglón del formulario de comentarios.
+
+Los dos se editan en `assets/contenido.js`, en los bloques `apoyo` y `comentarios`.
+
+```js
+comentarios: {
+  texto: "¿Algo que mejorar, un error, una duda? Cuéntamelo en el formulario de comentarios.",
+  etiqueta: "Abrir el formulario de comentarios",
+  url: "https://docs.google.com/forms/d/e/TU-FORMULARIO/viewform"
+}
+```
+
+Mientras `url` esté vacío, en su lugar aparece la instrucción para llenarlo. Ninguno de los dos bloques se
+imprime en la constancia.
+
 ## Cómo citar este curso
 
 Salomón Cárdenas, L. (2026). Curso QualCoder Interactivo [Curso en línea].
