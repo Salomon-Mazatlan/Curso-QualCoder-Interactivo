@@ -125,18 +125,36 @@ function abrirLupa(src, pie) {
 function abrirMenuContextual(titulo, nota, items, alClic) {
   const caja = crear("div", "menu-flotante");
   const cab = crear("div", "menu-flotante-cabeza");
-  cab.appendChild(crear("h4", null, titulo));
-  cab.appendChild(crear("p", null, nota));
+  const tit = crear("h4", null, titulo);
+  const sub = crear("p", null, nota);
+  cab.appendChild(tit); cab.appendChild(sub);
   caja.appendChild(cab);
   const lista = crear("div", "menu-flotante-lista");
-  items.forEach(item => {
-    const b = crear("button", "qc-item");
-    b.appendChild(crear("span", null, item.t));
-    if (item.k) b.appendChild(crear("span", "qc-tecla", item.k));
-    b.addEventListener("click", () => { cerrarLupa(); alClic(item); });
-    lista.appendChild(b);
-  });
   caja.appendChild(lista);
+
+  function pintar(nivel, ruta) {
+    lista.innerHTML = "";
+    tit.textContent = ruta ? ruta : titulo;
+    if (ruta) {
+      const atras = crear("button", "qc-item menu-atras", "‹ Volver");
+      atras.addEventListener("click", () => pintar(items, null));
+      lista.appendChild(atras);
+    }
+    nivel.forEach(item => {
+      const b = crear("button", "qc-item");
+      b.appendChild(crear("span", null, item.t));
+      if (item.k) b.appendChild(crear("span", "qc-tecla", item.k));
+      else if (item.sub) b.appendChild(crear("span", "qc-tecla qc-sub", "▸"));
+      b.addEventListener("click", () => {
+        if (item.items && item.items.length) return pintar(item.items, titulo + "  ›  " + item.t);
+        if (item.sub) return avisar("Ese submenú no hace falta para lo que se pidió.");
+        cerrarLupa();
+        alClic(item);
+      });
+      lista.appendChild(b);
+    });
+  }
+  pintar(items, null);
   abrirCapa(caja, "capa-menu", "Cerrar el menú");
 }
 
@@ -402,9 +420,9 @@ function pantallaBriefing(n) {
 }
 
 // Video and screenshot gallery shown before the lesson. Fill "medios" in contenido.js.
-function bloqueMedios(n) {
+function bloqueMedios(n, titulo) {
   const caja = crear("section", "medios");
-  caja.appendChild(crear("h2", null, "Videos y capturas"));
+  caja.appendChild(crear("h2", null, titulo || "Videos y capturas"));
   const rejilla = crear("div", "medios-rejilla");
 
   (n.medios || []).forEach(m => {
@@ -506,6 +524,8 @@ function tarjetaEjercicio(nivel, ej, idx) {
 
   const cuerpo = crear("div", "cuerpo-ejercicio");
   caja.appendChild(cuerpo);
+  if ((ej.medios || []).length) caja.appendChild(bloqueMedios(ej, "Video y capturas de esta lección"));
+
   const pie = crear("div", "pie-ejercicio");
   caja.appendChild(pie);
   const salidas = crear("div", "salidas");
@@ -1001,11 +1021,8 @@ function montarCodificar(zona, ej, api) {
 
   const marco = ventanaQC({
     vista: "codificar",
-    onMenu: (menuId, item) => {
-      if (cerrado) return;
-      api.aviso("Ahora toca codificar dentro del módulo, no cambiar de menú.");
-    },
-    onPestana: () => { if (!cerrado) api.aviso("Sigue en la pestaña Codificar."); }
+    onMenu: () => { if (!cerrado) api.aviso("Ahora toca codificar dentro del módulo, no cambiar de menú."); },
+    onPestana: () => { if (!cerrado) api.aviso("Sigue en la pestaña Codificación."); }
   });
 
   const cuerpo = crear("div", "qc-cuerpo");
@@ -1015,7 +1032,7 @@ function montarCodificar(zona, ej, api) {
   const arbol = arbolCodigos(ej.codigos, (c, boton) => {
     if (cerrado) return;
     if (seleccion.size === 0) {
-      api.aviso("El orden habitual es al revés. Primero selecciona el tramo en el documento y después elige el código.");
+      api.aviso("El orden es al revés. Primero selecciona el tramo en el documento y después elige el código.");
       return;
     }
     arbol.querySelectorAll(".qc-codigo").forEach(x => x.classList.remove("elegido"));
@@ -1026,24 +1043,7 @@ function montarCodificar(zona, ej, api) {
   cuerpo.appendChild(lateral);
 
   const doc = crear("div", "qc-doc");
-
-  const herramientas = crear("div", "qc-herramientas qc-herramientas-pie");
-  const acciones = ["marcar", "invivo", "anotar", "desmarcar", "memo"];
-  I.contextual_texto.filter(x => acciones.indexOf(x.id) !== -1).forEach(item => {
-    const b = crear("button", "qc-herramienta");
-    b.dataset.accion = item.id;
-    b.appendChild(crear("span", null, item.t));
-    b.appendChild(crear("span", "qc-tecla", item.k));
-    b.addEventListener("click", ev => { ev.stopPropagation(); usar(item.id); });
-    herramientas.appendChild(b);
-  });
-  const cabeza = crear("div", "qc-doc-cabeza");
-  const codificador = crear("span", "qc-coder");
-  codificador.appendChild(crear("span", "qc-coder-icono", "👤"));
-  codificador.appendChild(crear("span", "qc-coder-campo", I.codificador));
-  cabeza.appendChild(codificador);
-  cabeza.appendChild(crear("span", "qc-doc-nombre", "E01_Rosa.txt"));
-  doc.appendChild(cabeza);
+  doc.appendChild(crear("div", "qc-doc-cabeza", I.archivos[0]));
 
   const rejilla = crear("div", "qc-lineas");
   const filas = [];
@@ -1057,14 +1057,28 @@ function montarCodificar(zona, ej, api) {
       if (seleccion.has(i)) { seleccion.delete(i); seg.classList.remove("sel"); }
       else { seleccion.add(i); seg.classList.add("sel"); }
     });
+    seg.addEventListener("contextmenu", ev => {
+      ev.preventDefault(); ev.stopPropagation();
+      if (cerrado) return;
+      if (!seleccion.has(i)) { seleccion.add(i); seg.classList.add("sel"); }
+      abrirMenuTexto();
+    });
     rejilla.appendChild(num); rejilla.appendChild(margen); rejilla.appendChild(seg);
     filas.push({ margen: margen, seg: seg });
   });
   doc.appendChild(rejilla);
-  doc.appendChild(herramientas);
   cuerpo.appendChild(doc);
   marco.ventana.appendChild(cuerpo);
-  marco.ventana.appendChild(crear("div", "qc-estado", "Selecciona el tramo en el documento y aplica la acción"));
+  marco.ventana.appendChild(crear("div", "qc-estado", "Selecciona el tramo y abre el menú con clic derecho sobre él"));
+
+  function abrirMenuTexto() {
+    marco.cerrarMenus();
+    abrirMenuContextual(
+      "Menú del texto seleccionado",
+      "En QualCoder este menú se abre con clic derecho sobre el texto que acabas de seleccionar.",
+      I.contextual_texto,
+      item => usar(item.id));
+  }
 
   function tramoOk() {
     return ej.solucion.segmentos.length === seleccion.size && ej.solucion.segmentos.every(i => seleccion.has(i));
@@ -1087,13 +1101,14 @@ function montarCodificar(zona, ej, api) {
       }
     });
     marco.ventana.classList.add("qc-listo");
-    doc.querySelectorAll(".qc-herramienta").forEach(b => b.disabled = true);
   }
 
   function usar(accion) {
     if (cerrado) return;
-    if (accion === "desmarcar") return api.fallo("Desmarcar quita codificaciones existentes, aquí no hay ninguna todavía.");
-    if (accion === "memo") return api.fallo("El memo de la codificación se escribe sobre un segmento ya codificado.");
+    if (accion === "copiar" || accion === "copiar_meta") return api.fallo("Copiar saca el texto del programa, no lo codifica.");
+    if (accion === "marcador") return api.fallo("El marcador solo deja una señal para volver después a ese punto.");
+    if (accion === "ocultar") return api.fallo("Eso solo esconde la barra superior del módulo.");
+    if (accion === "nuevo") return api.fallo("Marcar con un código nuevo crea otro código sobre la marcha. Aquí la etiqueta que hace falta ya existe o sale del propio texto.");
     if (seleccion.size === 0) return api.aviso("Primero selecciona el tramo en el documento.");
 
     if (accion === "marcar") {
@@ -1136,6 +1151,7 @@ function montarCodificar(zona, ej, api) {
   const guia = cajaPasos(ej);
   if (guia) zona.appendChild(guia);
   zona.appendChild(marco.ventana);
+  zona.appendChild(crear("p", "nota-simulador", "Selecciona tocando las líneas y abre el menú con clic derecho sobre la selección. En pantalla táctil, un toque largo hace lo mismo."));
   if (ej.pista) zona.appendChild(cajaPista(ej.pista));
 }
 
@@ -1418,10 +1434,20 @@ function pasosDe(ej) {
               "Toca la pestaña " + (p ? p.t : "") + "."];
     }
     if (ej.ruta[0].indexOf("codigo:") === 0) {
-      const item = I.contextual.find(x => x.id === ej.ruta[1]) || {};
-      return ["Busca el código " + ej.ruta[0].slice(7) + " en el árbol de códigos, en el panel izquierdo.",
-              "En el programa se abre con clic derecho sobre el código. Aquí basta con tocarlo.",
-              "Elige " + (item.t || "") + (item.k ? ", atajo " + item.k : "") + "."];
+      let item = I.contextual.find(x => x.id === ej.ruta[1]);
+      let dentro = null;
+      if (!item) {
+        I.contextual.forEach(x => {
+          const hijo = (x.items || []).find(y => y.id === ej.ruta[1]);
+          if (hijo) { item = hijo; dentro = x.t; }
+        });
+      }
+      item = item || {};
+      const pasos = ["Busca el código " + ej.ruta[0].slice(7) + " en el árbol de códigos, en el panel izquierdo.",
+                     "En el programa se abre con clic derecho sobre el código. Aquí basta con tocarlo."];
+      if (dentro) pasos.push("Entra en el submenú " + dentro + ".");
+      pasos.push("Elige " + (item.t || "") + (item.k ? ", atajo " + item.k : "") + ".");
+      return pasos;
     }
     const menu = I.menus.find(m => m.id === ej.ruta[0]) || { items: [] };
     const item = (menu.items || []).find(x => x.id === ej.ruta[1]) || {};
@@ -1432,15 +1458,17 @@ function pasosDe(ej) {
     const accion = (ej.solucion || {}).accion || "marcar";
     if (accion === "invivo") {
       return ["Selecciona en el documento el tramo cuyas palabras quieres conservar.",
-              "Aplica Código in vivo, tecla V. El nombre del código sale del propio texto."];
+              "Haz clic derecho sobre la selección.",
+              "Elige Código in vivo, tecla V. El nombre del código sale del propio texto."];
     }
     if (accion === "anotar") {
       return ["Selecciona en el documento el tramo que quieres comentar.",
-              "Aplica Anotar, tecla A. No se asigna ningún código y no entra en los informes."];
+              "Haz clic derecho sobre la selección.",
+              "Elige Anotar, tecla A. No se asigna ningún código y no entra en los informes."];
     }
     return ["Selecciona en el documento el tramo que vas a codificar.",
-            "Elige el código en el árbol de códigos, en el panel izquierdo.",
-            "Aplica Marcar, tecla Q."];
+            "Elige después el código en el árbol de códigos, en el panel izquierdo.",
+            "Haz clic derecho sobre la selección y elige Marcar, tecla Q."];
   }
   return null;
 }
@@ -1570,7 +1598,7 @@ function pintarConstancia() {
   izq.appendChild(crear("span", "pie-etiqueta", "Fecha de emisión"));
   izq.appendChild(crear("span", "pie-valor", fechaLarga()));
   const der = crear("div");
-  der.appendChild(crear("span", "pie-etiqueta", "Folio"));
+  der.appendChild(crear("span", "pie-etiqueta", "Folio, fecha estelar"));
   const cifra = crear("span", "pie-valor pie-folio", folio(estado.nombre));
   der.appendChild(cifra);
   pie.appendChild(izq); pie.appendChild(der);
@@ -1626,6 +1654,8 @@ function pintarConstancia() {
     if (!nombre.value.trim()) { nombre.focus(); avisar("Escribe tu nombre antes de imprimir."); return; }
     window.print();
   });
+  hoja.appendChild(crear("p", "constancia-aviso",
+    "Al imprimir sale reducida al 70 por ciento y entra completa en una hoja tamaño carta, sin tocar la escala del navegador."));
   const mapa = crear("button", "accion fantasma", "Volver al mapa");
   mapa.addEventListener("click", () => { location.hash = ""; });
   fila.appendChild(imprimir); fila.appendChild(mapa);
