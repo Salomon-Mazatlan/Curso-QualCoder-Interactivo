@@ -1174,10 +1174,13 @@ function montarAsistente(zona, ej, api) {
   titulo.appendChild(crear("span", "qc-controles", "✕"));
   ventana.appendChild(titulo);
 
+  ventana.appendChild(crear("p", "asistente-guia",
+    "Selecciona una columna en la lista y pulsa la flecha del grupo al que pertenece. La flecha contraria la devuelve."));
+
   const cuerpo = crear("div", "asistente-cuerpo");
 
   const izquierda = crear("div", "asistente-columnas");
-  izquierda.appendChild(crear("h4", null, "Columnas:"));
+  izquierda.appendChild(crear("h4", null, "Columnas"));
   const lista = crear("ul", "asistente-lista");
   izquierda.appendChild(lista);
   cuerpo.appendChild(izquierda);
@@ -1191,8 +1194,10 @@ function montarAsistente(zona, ej, api) {
     const flechas = crear("div", "asistente-flechas");
     const meter = crear("button", "asistente-flecha", "›");
     meter.title = "Mover la columna seleccionada a este grupo";
+    meter.setAttribute("aria-label", "Mover a " + d.t);
     const sacar = crear("button", "asistente-flecha", "‹");
     sacar.title = "Devolver la columna seleccionada a la lista";
+    sacar.setAttribute("aria-label", "Quitar de " + d.t);
     flechas.appendChild(meter); flechas.appendChild(sacar);
     const caja = crear("ul", "asistente-caja");
     cajas[d.id] = caja;
@@ -1208,6 +1213,9 @@ function montarAsistente(zona, ej, api) {
 
   function pintarLista() {
     lista.innerHTML = "";
+    if (ej.columnas.every(c => ubicacion[c.t])) {
+      lista.appendChild(crear("li", "asistente-vacio", "Todas las columnas repartidas"));
+    }
     ej.columnas.forEach(c => {
       if (ubicacion[c.t]) return;
       const li = crear("li");
@@ -1221,6 +1229,11 @@ function montarAsistente(zona, ej, api) {
   function pintarCajas() {
     ej.destinos.forEach(d => {
       cajas[d.id].innerHTML = "";
+      const dentro = ej.columnas.filter(c => ubicacion[c.t] === d.id);
+      if (!dentro.length) {
+        const vacio = crear("li", "asistente-vacio", "Aquí van las columnas de este grupo");
+        cajas[d.id].appendChild(vacio);
+      }
       ej.columnas.forEach(c => {
         if (ubicacion[c.t] !== d.id) return;
         const li = crear("li");
