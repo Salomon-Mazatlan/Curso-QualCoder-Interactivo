@@ -23,10 +23,10 @@ const CURSO = {
   // Ranks unlocked by accumulated XP.
   rangos: [
     { xp: 0, nombre: "Aprendiz de campo" },
-    { xp: 180, nombre: "Libreta en mano" },
-    { xp: 430, nombre: "Codificación en marcha" },
-    { xp: 700, nombre: "Analista de corpus" },
-    { xp: 980, nombre: "Oficio de campo" }
+    { xp: 160, nombre: "Libreta en mano" },
+    { xp: 380, nombre: "Codificación en marcha" },
+    { xp: 620, nombre: "Analista de corpus" },
+    { xp: 870, nombre: "Oficio de campo" }
   ],
 
   // Simulated QualCoder 4 window used by the "interfaz" and "codificar" activities.
@@ -38,19 +38,19 @@ const CURSO = {
       { id: "registro", t: "Registro de acciones",
         d: "Donde el programa habla. Versión y cita del software, avisos de copias de seguridad, mensajes de las operaciones y resultados de algunos informes.",
         tip: "Míralo después de abrir el proyecto y después de cualquier operación grande. Varios avisos aparecen ahí y en ningún otro sitio.",
-            img: { src: "assets/img/1_5_Registro_acciones.png", titulo: "Captura de Registro de acciones", pie: "" } },
+            img: { src: "assets/img/1_9_Registro_acciones.png", titulo: "Captura de Registro de acciones", pie: "" } },
       { id: "gestionar", t: "Gestionar",
         d: "Aloja los módulos de archivos, casos, atributos, diarios y referencias, y mientras no haya ninguno abierto muestra su panel de bienvenida.",
-            img: { src: "assets/img/1_5_Gestionar.png", titulo: "Captura de Gestionar", pie: "" } },
+            img: { src: "assets/img/1_9_Gestionar.png", titulo: "Captura de Gestionar", pie: "" } },
       { id: "codificar", t: "Codificación",
         d: "Aloja los módulos de codificación. Los módulos se abren dentro de la pestaña, no en ventanas flotantes.",
-            img: { src: "assets/img/1_5_Codificacion.png", titulo: "Captura de Codificar", pie: "" } },
+            img: { src: "assets/img/1_9_Codificacion.png", titulo: "Captura de Codificar", pie: "" } },
       { id: "informes", t: "Informes",
         d: "Aloja los módulos de reportes y visualización.",
-            img: { src: "assets/img/1_5_Informes.png", titulo: "Captura de Informes", pie: "" } },
+            img: { src: "assets/img/1_9_Informes.png", titulo: "Captura de Informes", pie: "" } },
       { id: "agente", t: "Agente de IA",
         d: "La conversación con el agente sobre el proyecto, cuando la IA está configurada.",
-            img: { src: "assets/img/1_5_Agente_IA.png", titulo: "Captura de Agente de IA", pie: "" } }
+            img: { src: "assets/img/1_9_Agente_IA.png", titulo: "Captura de Agente de IA", pie: "" } }
     ],
     menus: [
       {
@@ -545,7 +545,9 @@ const CURSO = {
             { a: "Zotero", b: "Importación de referencias por su API" },
             { a: "Python", b: "Necesario solo para instalar desde el código fuente" },
             { a: "Entorno virtual", b: "Aísla las bibliotecas del programa de las del resto del sistema" }
-          ]
+          ],
+          consejo: "Instala VLC y ffmpeg aunque tu proyecto de hoy sea solo de texto. Cuando llegue la primera entrevista grabada no vas a querer detenerte a resolver instalaciones.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "VLC y ffmpeg ya instalados en el sistema", pie: "" }
         },
         /* 1.5 */ {
           titulo: "La advertencia del sistema, cómo se resuelve",
@@ -662,7 +664,9 @@ const CURSO = {
           xp: 20,
           instruccion: "Antes de tocar nada en serio, recorre el programa. Toca las entradas de los menús y las pestañas que quieras, y lee a la derecha qué hace cada una.",
           objetivo: "Recorrer la barra de menús",
-          dice: "Ya sabes dónde vive cada cosa. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados."
+          dice: "Ya sabes dónde vive cada cosa. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados.",
+          consejo: "Vuelve a este recorrido cuando lleves dos semanas usando el programa. Con proyecto real en la cabeza, la mitad de las entradas que hoy no dicen nada empiezan a tener sentido.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La barra de menús completa de QualCoder 4", pie: "" }
         },
         /* 1.10 */ {
           titulo: "Ver la versión instalada",
@@ -709,12 +713,14 @@ const CURSO = {
         /* 1.12 */ {
           titulo: "El registro de acciones",
           tipo: "interfaz",
-          xp: 10,
+          xp: 15,
           instruccion: "Ya con el mapa en la cabeza. Abre la pestaña donde el programa deja sus mensajes, los avisos de respaldo y los resultados de algunos informes.",
           objetivo: "Llegar al registro de acciones",
           rutas: [["pestana", "registro"], ["proyecto", "resumen"]],
           pista: "Es la primera de las cinco pestañas, y también la entrada Resumen del proyecto acaba ahí.",
-          dice: "Resumen del proyecto no abre ventana propia, vuelca su informe en el registro de acciones, así que las dos rutas llevan al mismo sitio y muestran lo mismo."
+          dice: "Resumen del proyecto no abre ventana propia, vuelca su informe en el registro de acciones, así que las dos rutas llevan al mismo sitio y muestran lo mismo.",
+          consejo: "Deja el registro de acciones abierto en segundo plano durante las primeras sesiones. Es el sitio donde aparecen los avisos que después explican por qué algo no salió como esperabas.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El registro de acciones con sus mensajes de sesión", pie: "" }
         }
       ]
     },
@@ -810,7 +816,9 @@ const CURSO = {
           objetivo: "Crear un proyecto nuevo",
           ruta: ["proyecto", "crear"],
           pista: "Todo lo que enmarca al proyecto completo cuelga del primer menú.",
-          dice: "QualCoder pide nombre y ubicación, y construye la carpeta .qda con sus subcarpetas y la base de datos vacía."
+          dice: "QualCoder pide nombre y ubicación, y construye la carpeta .qda con sus subcarpetas y la base de datos vacía.",
+          consejo: "Crea el proyecto en una carpeta local, no dentro de una carpeta sincronizada en la nube. La sincronización a mitad de una operación es una de las pocas maneras de corromper la base de datos.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El proyecto recién creado en el explorador de archivos", pie: "" }
         },
         /* 2.3 */ {
           titulo: "La ventana de Configuración",
@@ -843,7 +851,9 @@ const CURSO = {
           objetivo: "Abrir el gestor de archivos",
           ruta: ["gestionar", "archivos"],
           pista: "Archivos, casos, atributos, diarios y referencias viven en el mismo menú.",
-          dice: "Desde ahí se importa, se vincula, se renombra y se asignan atributos. Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos enlaces se rompen al cambiar de computadora."
+          dice: "Desde ahí se importa, se vincula, se renombra y se asignan atributos. Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos enlaces se rompen al cambiar de computadora.",
+          consejo: "Importa primero dos o tres archivos y revísalos antes de meter el corpus completo. Si la conversión sale mal, corregir tres archivos es una tarde y corregir cuarenta es una semana.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El gestor de archivos con las primeras importaciones", pie: "" }
         },
         /* 2.5 */ {
           titulo: "El resumen del proyecto",
@@ -853,7 +863,9 @@ const CURSO = {
           objetivo: "Generar el resumen del proyecto",
           ruta: ["proyecto", "resumen"],
           pista: "Es una entrada del menú Proyecto y su resultado sale en el registro de acciones.",
-          dice: "El resumen no abre ventana propia, deja su informe en el registro de acciones, con los recuentos de archivos, casos, códigos y atributos y la lista de vínculos rotos. Es la misma vista que viste al final de la primera misión."
+          dice: "El resumen no abre ventana propia, deja su informe en el registro de acciones, con los recuentos de archivos, casos, códigos y atributos y la lista de vínculos rotos. Es la misma vista que viste al final de la primera misión.",
+          consejo: "Ejecuta el resumen al empezar y al terminar cada etapa del proyecto, y pega el resultado en el diario. Ese par de capturas documenta el crecimiento del corpus mejor que cualquier descripción.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El resumen del proyecto recién ejecutado", pie: "" }
         },
         /* 2.6 */ {
           titulo: "El orden de arranque",
@@ -866,7 +878,9 @@ const CURSO = {
             "Importar los archivos desde el gestor de archivos",
             "Abrir cada archivo y revisar que el texto se lee bien",
             "Escribir en el diario qué decisiones tomaste hoy"
-          ]
+          ],
+          consejo: "Escribe este orden en tu diario la primera vez que montes un proyecto. Lo vas a repetir en cada investigación, y tenerlo por escrito evita descubrir a media codificación que olvidaste un paso.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diario con la lista de arranque anotada", pie: "" }
         }
       ]
     },
@@ -954,7 +968,9 @@ const CURSO = {
           objetivo: "Abrir la gestión de casos",
           ruta: ["gestionar", "casos"],
           pista: "Está en el mismo menú donde importaste los archivos.",
-          dice: "Un caso puede reunir archivos completos o tramos marcados dentro de un archivo."
+          dice: "Un caso puede reunir archivos completos o tramos marcados dentro de un archivo.",
+          consejo: "Nombra los casos con el mismo criterio que los archivos, por ejemplo E01 para el archivo y Rosa para el caso. Cuando el corpus crece, cualquier ambigüedad de nombres se paga en tiempo.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de casos con sus nombres y archivos", pie: "" }
         },
         /* 3.3 */ {
           titulo: "Abrir la gestión de atributos",
@@ -964,7 +980,9 @@ const CURSO = {
           objetivo: "Abrir la gestión de atributos",
           ruta: ["gestionar", "atributos"],
           pista: "Las variables descriptivas tienen su propia entrada en el menú Gestionar.",
-          dice: "Los atributos pueden ser de texto o numéricos y se aplican a archivos o a casos. Después filtran en casi todos los informes."
+          dice: "Los atributos pueden ser de texto o numéricos y se aplican a archivos o a casos. Después filtran en casi todos los informes.",
+          consejo: "Define pocos atributos y bien pensados. Veinte variables que nadie va a cruzar solo estorban, y las tres que de verdad separan grupos son las que sostienen los resultados.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de atributos del proyecto", pie: "" }
         },
         /* 3.4 */ {
           titulo: "Archivo, caso, atributo y diario",
@@ -977,7 +995,9 @@ const CURSO = {
             { a: "Atributo", b: "Variable que describe a un caso o a un archivo" },
             { a: "Diario", b: "Bitácora fechada del proceso de análisis" },
             { a: "Codificación", b: "Un código aplicado a un segmento concreto" }
-          ]
+          ],
+          consejo: "Si dudas de si algo es caso o atributo, pregúntate si habla de una persona entera o de un rasgo suyo. La persona es el caso, el rasgo es el atributo.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un caso con sus atributos asignados", pie: "" }
         },
         /* 3.5 */ {
           titulo: "Qué hace falta para comparar",
@@ -1000,6 +1020,14 @@ const CURSO = {
       id: "m04",
       titulo: "Encuestas y respuestas abiertas",
       lema: "Cientos de respuestas cortas, otro oficio",
+      definiciones: [
+        { termino: "Importación de un conjunto de datos",
+          texto: "Los programas cualitativos importan una hoja de cálculo y codifican de manera automática casos, atributos y respuestas a partir de las filas y las columnas. Bazeley señala que esa codificación automática resuelve la parte aburrida y rutinaria del trabajo, y deja tiempo para pensar el contenido.",
+          cita: "Bazeley, 2013, pp. 172-173", clave: "bazeley2013" },
+        { termino: "Comparación por respuesta cerrada",
+          texto: "Cada respuesta numérica o escalar de la encuesta se usa igual que un dato demográfico, como base para comparar las respuestas abiertas de esa misma encuesta. Cuando la variable es continua o tiene muchas categorías, hay que reagruparla en unas pocas antes de comparar.",
+          cita: "Bazeley, 2013, pp. 268-269", clave: "bazeley2013" }
+      ],
       insignia: { nombre: "Cuestionario", icono: "▣" },
       medios: [
         { tipo: "video", id: "p2pWR1IrKbg", titulo: "Encuestas y respuestas abiertas" },
@@ -1129,6 +1157,11 @@ const CURSO = {
       id: "m05",
       titulo: "Referencias y Zotero",
       lema: "El corpus también se cita",
+      definiciones: [
+        { termino: "Corpus documental",
+          texto: "Cuando los documentos son el dato, no se muestrean personas sino materiales, y se arma un archivo o corpus con ellos. Flick subraya que ahí la secuencia se invierte, primero está el material, después la selección y al final el método, y que el corpus puede rediseñarse según los huecos que aparezcan en el análisis.",
+          cita: "Flick, 2007, pp. 31-32", clave: "flick2007" }
+      ],
       insignia: { nombre: "Fichero bibliográfico", icono: "❐" },
       medios: [
         { tipo: "video", id: "p2pWR1IrKbg", titulo: "Referencias y Zotero" },
@@ -1197,10 +1230,6 @@ const CURSO = {
           objetivo: "Abrir la gestión de referencias",
           ruta: ["gestionar", "referencias"],
           pista: "Está en el mismo menú donde viven los archivos, los casos y los atributos.",
-          medios: [
-            { tipo: "video", id: "p2pWR1IrKbg", titulo: "Abrir el módulo de referencias" },
-            { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Abrir la gestión de referencias", pie: "" }
-          ],
           dice: "Desde ahí se importa el RIS, se conecta Zotero y se vinculan las referencias con los archivos del corpus.",
           consejo: "Si vas a hacer una revisión documental, importa primero las referencias y después los PDF. Así cada archivo encuentra su ficha en el momento de entrar y no hay que emparejarlos a mano después.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de referencias con sus vínculos", pie: "" }
@@ -1309,7 +1338,9 @@ const CURSO = {
             { a: "Memo", b: "Registro de por qué tomaste una decisión analítica" },
             { a: "Anotación", b: "Nota sobre un punto del texto, sin asignar código" },
             { a: "Subcódigo", b: "Código que cuelga de otro código y nombra un matiz suyo" }
-          ]
+          ],
+          consejo: "Escribe estas cinco definiciones con tus propias palabras en el memo del proyecto. Explicarlas a alguien más es la prueba de que las tienes claras, y ese texto sirve después para el apartado de método.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El memo del proyecto con las definiciones del vocabulario", pie: "" }
         },
         /* 6.3 */ {
           titulo: "Cómo se marca un segmento",
@@ -1373,7 +1404,9 @@ const CURSO = {
           objetivo: "Abrir Codificar texto",
           ruta: ["codificar", "texto"],
           pista: "Hay un módulo distinto para texto, PDF, imagen y audio o video.",
-          dice: "También se abre con Alt+T desde cualquier punto del programa. El módulo se aloja en la pestaña Codificar, no en una ventana aparte."
+          dice: "También se abre con Alt+T desde cualquier punto del programa. El módulo se aloja en la pestaña Codificar, no en una ventana aparte.",
+          consejo: "Ten a mano el atajo Alt+T. Vas a abrir este módulo docenas de veces, y el camino por el menú se vuelve lento a partir de la tercera sesión.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El módulo Codificar texto abierto en su pestaña", pie: "" }
         },
         /* 6.5 */ {
           titulo: "Crear el primer código",
@@ -1383,7 +1416,9 @@ const CURSO = {
           objetivo: "Crear el primer código desde el árbol",
           ruta: ["arbol", "crear_codigo"],
           pista: "El árbol de códigos se maneja con clic derecho, y funciona igual cuando está vacío.",
-          dice: "Crear un código nuevo lo pone en el nivel superior. Para colgarlo de una categoría existe Añadir un código nuevo a la categoría, y para hacerlo subcódigo, Añadir un subcódigo."
+          dice: "Crear un código nuevo lo pone en el nivel superior. Para colgarlo de una categoría existe Añadir un código nuevo a la categoría, y para hacerlo subcódigo, Añadir un subcódigo.",
+          consejo: "Crea pocos códigos al principio y créalos mientras lees, no antes. Un sistema inventado en el escritorio rara vez sobrevive al primer encuentro con los datos.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol con sus primeros códigos", pie: "" }
         },
         /* 6.6 */ {
           titulo: "La ventana del código nuevo",
@@ -1416,7 +1451,9 @@ const CURSO = {
             { id: "c2", nombre: "Diagnóstico médico", color: "turquesa" },
             { id: "c3", nombre: "Duración imprevista", color: "violeta" }
           ],
-          solucion: { segmentos: [1], codigo: "c1", accion: "marcar" }
+          solucion: { segmentos: [1], codigo: "c1", accion: "marcar" },
+          consejo: "Cuando dudes del tamaño del tramo, marca de más y no de menos. Recortar un segmento largo es fácil, recuperar el contexto que no marcaste obliga a volver al archivo.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un segmento marcado con su franja en el margen", pie: "" }
         },
         /* 6.8 */ {
           titulo: "Marcar un tramo de dos frases",
@@ -1435,7 +1472,9 @@ const CURSO = {
             { id: "c4", nombre: "Reparto desigual", color: "amarillo" },
             { id: "c2", nombre: "Diagnóstico médico", color: "turquesa" }
           ],
-          solucion: { segmentos: [1, 2], codigo: "c3", accion: "marcar" }
+          solucion: { segmentos: [1, 2], codigo: "c3", accion: "marcar" },
+          consejo: "Si el sentido de un fragmento necesita la frase anterior para entenderse, esa frase es parte del segmento. El informe va a mostrar solo lo que marcaste, sin nada alrededor.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un segmento de dos líneas con su código aplicado", pie: "" }
         },
         /* 6.9 */ {
           titulo: "Crear un código in vivo",
@@ -1452,7 +1491,9 @@ const CURSO = {
             { id: "v2", nombre: "Reparto desigual", color: "turquesa" },
             { id: "v3", nombre: "Naturalización del sacrificio", color: "violeta" }
           ],
-          solucion: { segmentos: [1], accion: "invivo" }
+          solucion: { segmentos: [1], accion: "invivo" },
+          consejo: "Usa el código in vivo con cuentagotas, dos o tres por entrevista como mucho. Si todas las etiquetas salen del habla de cada persona, no queda nada que comparar entre casos.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un código in vivo entre comillas en el árbol", pie: "" }
         }
       ]
     },
@@ -1545,7 +1586,9 @@ const CURSO = {
           codigos: [
             { id: "v1", nombre: "Reparto desigual", color: "turquesa" }
           ],
-          solucion: { segmentos: [2], accion: "anotar" }
+          solucion: { segmentos: [2], accion: "anotar" },
+          consejo: "Revisa tus anotaciones cada cierto tiempo. La mitad de ellas acaban convirtiéndose en códigos nuevos, y la otra mitad en preguntas para la siguiente entrevista.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Una anotación abierta sobre el texto", pie: "" }
         },
         /* 7.3 */ {
           titulo: "Escribir el memo de un código",
@@ -1558,7 +1601,9 @@ const CURSO = {
             "Un caso parecido que no entra y por qué",
             "Con qué otro código se podría confundir"
           ],
-          modelo: "Abandono del empleo. Marca los fragmentos donde la persona relata haber dejado un trabajo remunerado a causa de la tarea de cuidado, sea por renuncia, liquidación o despido negociado. Entra \"pedí mi liquidación y me salí\". No entra la reducción de horas ni el cambio de turno, que van en Ajuste de jornada. Se confunde con Pérdida de ingresos, que se refiere al efecto económico y no a la salida del empleo."
+          modelo: "Abandono del empleo. Marca los fragmentos donde la persona relata haber dejado un trabajo remunerado a causa de la tarea de cuidado, sea por renuncia, liquidación o despido negociado. Entra \"pedí mi liquidación y me salí\". No entra la reducción de horas ni el cambio de turno, que van en Ajuste de jornada. Se confunde con Pérdida de ingresos, que se refiere al efecto económico y no a la salida del empleo.",
+          consejo: "Guarda una copia del memo con fecha cada vez que lo cambies de forma importante. Ver cómo evolucionó la definición de un código es material de primera para explicar el proceso.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El memo de un código con su definición y sus ejemplos", pie: "" }
         },
         /* 7.4 */ {
           titulo: "Abrir los diarios del proyecto",
@@ -1568,7 +1613,9 @@ const CURSO = {
           objetivo: "Abrir los diarios del proyecto",
           ruta: ["gestionar", "diarios"],
           pista: "Se gestionan junto con los archivos, los casos y los atributos.",
-          dice: "Se pueden tener varios diarios, uno metodológico y otro de campo. Es el único módulo que se abre en ventana propia, así que puedes escribir mientras codificas."
+          dice: "Se pueden tener varios diarios, uno metodológico y otro de campo. Es el único módulo que se abre en ventana propia, así que puedes escribir mientras codificas.",
+          consejo: "Escribe en el diario aunque la sesión haya sido corta. Tres renglones con fecha valen más que una reconstrucción de memoria escrita seis meses después.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diario del proyecto con varias entradas fechadas", pie: "" }
         },
         /* 7.5 */ {
           titulo: "Memo del código o de la codificación",
@@ -1652,7 +1699,9 @@ const CURSO = {
             { t: "Culpa por sentir enojo", cat: "k3" },
             { t: "Gasto en pañales y medicinas", cat: "k1" },
             { t: "Grupo de WhatsApp de cuidadoras", cat: "k2" }
-          ]
+          ],
+          consejo: "Nombra las categorías con sustantivos, no con preguntas. Costos del cuidado organiza mejor que ¿Qué cuesta cuidar?, y se lee mejor en los informes.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol con sus categorías ya armadas", pie: "" }
         },
         /* 8.3 */ {
           titulo: "Cómo se mantiene el árbol de códigos",
@@ -1707,22 +1756,26 @@ const CURSO = {
         /* 8.4 */ {
           titulo: "Fusionar dos códigos",
           tipo: "interfaz",
-          xp: 20,
+          xp: 15,
           instruccion: "En el árbol tienes Culpa y Sentimiento de culpa diciendo lo mismo. Únelos sin perder ninguna codificación.",
           objetivo: "Fusionar Sentimiento de culpa en otro código",
           ruta: ["codigo:Sentimiento de culpa", "fusionar"],
           pista: "Las operaciones sobre un código salen de su menú contextual, no de la barra de menús.",
-          dice: "Las codificaciones del código que desaparece pasan al de destino. Si hubieras elegido Eliminar, se habrían borrado con él y sin deshacer."
+          dice: "Las codificaciones del código que desaparece pasan al de destino. Si hubieras elegido Eliminar, se habrían borrado con él y sin deshacer.",
+          consejo: "Antes de fusionar, abre la recuperación de los dos códigos y léelos juntos. Si al leerlos seguidos el conjunto tiene sentido, la fusión es correcta, y si chirría, es que nombraban cosas distintas.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diálogo de fusión con el código de destino elegido", pie: "" }
         },
         /* 8.5 */ {
           titulo: "Mover un código a una categoría",
           tipo: "interfaz",
-          xp: 20,
+          xp: 15,
           instruccion: "Ya creaste la categoría Costos del cuidado. Ahora mete ahí el código Abandono del empleo.",
           objetivo: "Mover Abandono del empleo a una categoría",
           ruta: ["codigo:Abandono del empleo", "mover"],
           pista: "Es otra entrada del mismo menú contextual, la que abre una lista jerárquica de destinos.",
-          dice: "La lista deja elegir entre el nivel superior, una categoría o incluso otro código, que lo convertiría en subcódigo."
+          dice: "La lista deja elegir entre el nivel superior, una categoría o incluso otro código, que lo convertiría en subcódigo.",
+          consejo: "Mueve códigos en bloque cuando reorganices, y hazlo en una sola sesión. Un árbol a medio reordenar confunde más que uno desordenado, sobre todo si codifica otra persona.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol después de mover el código a su categoría", pie: "" }
         },
         /* 8.6 */ {
           titulo: "Un código con una sola codificación",
@@ -1822,12 +1875,14 @@ const CURSO = {
           objetivo: "Abrir la recuperación de códigos",
           ruta: ["analisis", "recuperacion"],
           pista: "No está en Informes. Lo que devuelve segmentos para leer cuelga del menú Análisis.",
-          dice: "También se abre con Alt+K. Devuelve los segmentos con su archivo de origen y permite filtrar por códigos, archivos, casos y atributos."
+          dice: "También se abre con Alt+K. Devuelve los segmentos con su archivo de origen y permite filtrar por códigos, archivos, casos y atributos.",
+          consejo: "Recupera cada dos o tres archivos nuevos, no al final. Descubrir en la entrevista veinte que un código traía dos cosas dentro obliga a revisar todo lo anterior.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La recuperación con sus segmentos y su origen", pie: "" }
         },
         /* 9.3 */ {
           titulo: "Configurar la recuperación",
           tipo: "dialogo",
-          xp: 20,
+          xp: 15,
           instruccion: "Configura la recuperación para revisar el código con contexto y llevártela a tu procesador de textos.",
           titulo: "Recuperación de códigos (Code retrieval)",
           campos: [
@@ -1837,7 +1892,9 @@ const CURSO = {
             { id: "formato", etiqueta: "Formato de exportación", tipo: "select", opciones: ["ODT", "HTML", "CSV", "Portapapeles"], correcto: "ODT" }
           ],
           boton: "Ejecutar",
-          dice: "Sin el archivo de origen los fragmentos pierden el rastro y ya no se puede volver a la entrevista completa."
+          dice: "Sin el archivo de origen los fragmentos pierden el rastro y ya no se puede volver a la entrevista completa.",
+          consejo: "Exporta la recuperación con fecha en el nombre del archivo. Cuando vuelvas a exportarla semanas después vas a querer comparar las dos versiones, y sin fecha no se sabe cuál es cuál.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El informe de recuperación exportado", pie: "" }
         },
         /* 9.4 */ {
           titulo: "Abrir las frecuencias de códigos",
@@ -1847,7 +1904,9 @@ const CURSO = {
           objetivo: "Abrir las frecuencias de códigos",
           ruta: ["informes", "frecuencias"],
           pista: "Las cuentas están en el menú Informes, no en Análisis.",
-          dice: "Muestra el total por código y el desglose por codificador. Para ver cómo se reparte entre archivos o casos está Conteos por archivo o caso."
+          dice: "Muestra el total por código y el desglose por codificador. Para ver cómo se reparte entre archivos o casos está Conteos por archivo o caso.",
+          consejo: "Mira siempre la columna de archivos además de la de total. Un código con cuarenta apariciones en un solo archivo no describe el corpus, describe a una persona.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de frecuencias con su desglose", pie: "" }
         },
         /* 9.5 */ {
           titulo: "Abrir los gráficos",
@@ -1857,7 +1916,9 @@ const CURSO = {
           objetivo: "Abrir los gráficos",
           ruta: ["informes", "graficas"],
           pista: "Está en Informes, con atajo Alt+U.",
-          dice: "Los gráficos cuentan por frecuencia, por caracteres codificados o por área de imagen, y no es lo mismo. Elige la unidad según lo que quieras mostrar."
+          dice: "Los gráficos cuentan por frecuencia, por caracteres codificados o por área de imagen, y no es lo mismo. Elige la unidad según lo que quieras mostrar.",
+          consejo: "Guarda el gráfico y también la tabla que lo generó. En la defensa te van a preguntar por los números exactos, y una figura sin su tabla detrás deja mal parado a cualquiera.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un gráfico con su tabla de datos", pie: "" }
         },
         /* 9.6 */ {
           titulo: "Cuando un código junta dos cosas",
@@ -1880,6 +1941,14 @@ const CURSO = {
       id: "m10",
       titulo: "Grafos y mapas visuales",
       lema: "Ver el sistema completo de un vistazo",
+      definiciones: [
+        { termino: "Visualización analítica",
+          texto: "Intentar poner las ideas en un diagrama obliga a pensar las relaciones entre conceptos y empuja hacia la integración teórica. Miles y Huberman lo describen como un ciclo, el gráfico ayuda a ver temas y patrones, el texto analítico que se escribe a partir de él sugiere nuevas comparaciones, y esas comparaciones obligan a rehacer el gráfico.",
+          cita: "Miles y Huberman, 1994, en Bazeley, 2013, p. 225", clave: "bazeley2013" },
+        { termino: "Matriz de co-ocurrencia",
+          texto: "Tabla que muestra en cuántas fuentes se cruzan dos códigos. Su interpretación pasa por mirar la frecuencia y el patrón, y también por leer el texto asociado a cada celda, porque el número solo dice que hubo cruce, no qué clase de cruce fue.",
+          cita: "Bazeley, 2013, pp. 300-301", clave: "bazeley2013" }
+      ],
       insignia: { nombre: "Cartógrafo", icono: "◈" },
       medios: [
         { tipo: "video", id: "p2pWR1IrKbg", titulo: "Grafos y mapas visuales" },
@@ -1947,10 +2016,6 @@ const CURSO = {
           objetivo: "Abrir el grafo del proyecto",
           ruta: ["analisis", "grafo"],
           pista: "Está en el menú Análisis, junto a la recuperación y las co-ocurrencias, con atajo Alt+G.",
-          medios: [
-            { tipo: "video", id: "p2pWR1IrKbg", titulo: "Abrir el grafo" },
-            { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Abrir el grafo del proyecto", pie: "" }
-          ],
           dice: "En el lienzo puedes traer códigos, categorías, casos, archivos y memos, y moverlos hasta que la disposición diga algo.",
           consejo: "Empieza por una rama, no por el sistema entero. Con cien nodos en pantalla el grafo deja de mostrar nada y se vuelve una maraña bonita.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El grafo con una sola rama de códigos", pie: "" }
@@ -2066,7 +2131,9 @@ const CURSO = {
           objetivo: "Abrir la comparación de codificación",
           ruta: ["informes", "comparacion"],
           pista: "Es un informe y tiene atajo Alt+L.",
-          dice: "Compara dos codificadores en todo el corpus. Si quieres verlo dentro de un archivo concreto, existe Comparación por archivo."
+          dice: "Compara dos codificadores en todo el corpus. Si quieres verlo dentro de un archivo concreto, existe Comparación por archivo.",
+          consejo: "Haz la comparación pronto, con dos o tres archivos, no al final del proyecto. Corregir definiciones a tiempo evita recodificar cuarenta entrevistas.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de acuerdo entre dos codificadores", pie: "" }
         },
         /* 11.3 */ {
           titulo: "Reparar los vínculos rotos",
@@ -2076,7 +2143,9 @@ const CURSO = {
           objetivo: "Abrir los vínculos rotos a archivos",
           ruta: ["gestionar", "enlaces"],
           pista: "Los archivos vinculados se gestionan en el menú Gestionar, en la última entrada.",
-          dice: "El resumen del proyecto los detecta y este módulo los repara. Con archivos copiados en vez de vinculados el problema no existe."
+          dice: "El resumen del proyecto los detecta y este módulo los repara. Con archivos copiados en vez de vinculados el problema no existe.",
+          consejo: "Si trabajas con audio y video, guarda todo el material en una carpeta junto al proyecto y usa siempre la misma estructura. Los vínculos rotos casi siempre nacen de mover archivos sin avisar al proyecto.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El módulo de vínculos rotos con una ruta restablecida", pie: "" }
         },
         /* 11.4 */ {
           titulo: "Abrir las funciones especiales",
@@ -2086,7 +2155,9 @@ const CURSO = {
           objetivo: "Abrir las funciones especiales",
           ruta: ["ayuda", "especiales"],
           pista: "No están en Proyecto. Cuelgan del menú Ayuda, con atajo Alt+Z.",
-          dice: "Ahí viven fusionar proyectos, sustituir el texto de un archivo y desplazar posiciones de codificación. Copia la carpeta a mano antes de usarlas."
+          dice: "Ahí viven fusionar proyectos, sustituir el texto de un archivo y desplazar posiciones de codificación. Copia la carpeta a mano antes de usarlas.",
+          consejo: "Antes de fusionar dos proyectos, comprueba que los nombres de codificador coinciden. Si en uno firmaste como default y en el otro con tu nombre, la fusión duplica codificadores y la comparación deja de servir.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El menú de funciones especiales abierto", pie: "" }
         },
         /* 11.5 */ {
           titulo: "Cuando dos personas no coinciden",
@@ -2112,7 +2183,9 @@ const CURSO = {
             { a: "Los códigos sueltos no se entienden juntos", b: "Crear categorías y mover los códigos" },
             { a: "Un archivo vinculado ya no abre", b: "Abrir vínculos rotos a archivos" },
             { a: "Hay que unir el proyecto de dos personas", b: "Funciones especiales, fusionar proyectos" }
-          ]
+          ],
+          consejo: "Cuando una operación no aparezca donde la buscas, prueba el menú contextual del elemento. En QualCoder casi todo lo que afecta a un código, un archivo o un caso sale de su clic derecho.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El menú contextual con las operaciones de mantenimiento", pie: "" }
         }
       ]
     },
@@ -2171,12 +2244,14 @@ const CURSO = {
           instruccion: "Llegó la entrevista E04_Marta y ya está importada. Abre donde vas a marcarla.",
           objetivo: "Abrir Codificar texto",
           ruta: ["codificar", "texto"],
-          dice: "De memoria y sin pista, que es como se trabaja."
+          dice: "De memoria y sin pista, que es como se trabaja.",
+          consejo: "Al retomar un proyecto después de semanas, abre primero el diario y luego el módulo. Leer tus propias notas antes de codificar evita cambiar de criterio sin darte cuenta.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El módulo abierto con el archivo nuevo cargado", pie: "" }
         },
         /* 12.3 */ {
           titulo: "Marcar el costo físico del cuidado",
           tipo: "codificar",
-          xp: 25,
+          xp: 20,
           instruccion: "Marca el tramo donde aparece el costo físico del cuidado y aplícale su código.",
           pista: "El costo físico no es lo mismo que el cansancio de ánimo.",
           texto: [
@@ -2190,12 +2265,14 @@ const CURSO = {
             { id: "m2", nombre: "Naturalización del sacrificio", color: "verde" },
             { id: "m3", nombre: "Límite económico", color: "amarillo" }
           ],
-          solucion: { segmentos: [1], codigo: "m1", accion: "marcar" }
+          solucion: { segmentos: [1], codigo: "m1", accion: "marcar" },
+          consejo: "En entrevistas sobre cuidado o salud, separa siempre lo que le pasa al cuerpo de lo que le pasa al ánimo. Mezclarlo en un código produce un cajón enorme del que después no sale ningún hallazgo.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El segmento del costo físico ya codificado", pie: "" }
         },
         /* 12.4 */ {
           titulo: "Un código in vivo de Marta",
           tipo: "codificar",
-          xp: 25,
+          xp: 20,
           instruccion: "La frase que cierra el tema sin quejarse merece quedar con las palabras de Marta. Créale un código in vivo.",
           pista: "Se selecciona y se usa la tecla V, no el árbol.",
           texto: [
@@ -2207,7 +2284,9 @@ const CURSO = {
             { id: "m3", nombre: "Límite económico", color: "amarillo" },
             { id: "m1", nombre: "Deterioro de la salud propia", color: "coral" }
           ],
-          solucion: { segmentos: [1], accion: "invivo" }
+          solucion: { segmentos: [1], accion: "invivo" },
+          consejo: "Cuando una frase te sorprenda por cómo está dicha, márcala en vivo aunque todavía no sepas qué hacer con ella. Esas expresiones suelen acabar siendo el título del artículo.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El código in vivo creado desde la frase de la participante", pie: "" }
         },
         /* 12.5 */ {
           titulo: "Acomodar los códigos de Marta",
@@ -2224,7 +2303,9 @@ const CURSO = {
             { t: "Naturalización del sacrificio", cat: "k3" },
             { t: "Límite económico", cat: "k1" },
             { t: "Hija que sugiere contratar ayuda", cat: "k2" }
-          ]
+          ],
+          consejo: "Al cerrar el análisis, revisa que cada categoría tenga al menos tres códigos y que ninguna tenga más de diez. Fuera de ese rango, casi siempre conviene dividir o fusionar.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol completo con sus categorías equilibradas", pie: "" }
         },
         /* 12.6 */ {
           titulo: "Recuperar antes de cerrar",
@@ -2233,12 +2314,14 @@ const CURSO = {
           instruccion: "Antes de cerrar quieres releer juntos todos los segmentos del código que más creció.",
           objetivo: "Abrir la recuperación de códigos",
           ruta: ["analisis", "recuperacion"],
-          dice: "Recuperar cada dos o tres archivos nuevos es lo que evita descubrir a los seis meses que un código traía dos cosas dentro."
+          dice: "Recuperar cada dos o tres archivos nuevos es lo que evita descubrir a los seis meses que un código traía dos cosas dentro.",
+          consejo: "Recupera también los códigos que casi no usaste. Ahí viven los casos negativos, que son los que dan credibilidad a un análisis cuando se discuten en los resultados.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La recuperación de un código poco frecuente", pie: "" }
         },
         /* 12.7 */ {
           titulo: "La entrada de diario final",
           tipo: "abierta",
-          xp: 25,
+          xp: 20,
           instruccion: "Cierra la sesión con una entrada de diario. Cuenta qué hiciste y qué queda pendiente.",
           guia: [
             "Qué archivos tocaste",
@@ -2246,7 +2329,9 @@ const CURSO = {
             "Qué duda te quedó abierta",
             "Qué vas a hacer en la próxima sesión"
           ],
-          modelo: "Sesión del 8 de septiembre. Codifiqué E04_Marta completa. Creé Deterioro de la salud propia y el código in vivo \"uno se acostumbra, ni modo\". Fusioné Sentimiento de culpa en Culpa y moví Abandono del empleo bajo Costos del cuidado. Me quedó la duda de si Naturalización del sacrificio se solapa con \"es mi deber de hija\", de E01. La próxima sesión recupero los segmentos de ambos y decido si fusiono."
+          modelo: "Sesión del 8 de septiembre. Codifiqué E04_Marta completa. Creé Deterioro de la salud propia y el código in vivo \"uno se acostumbra, ni modo\". Fusioné Sentimiento de culpa en Culpa y moví Abandono del empleo bajo Costos del cuidado. Me quedó la duda de si Naturalización del sacrificio se solapa con \"es mi deber de hija\", de E01. La próxima sesión recupero los segmentos de ambos y decido si fusiono.",
+          consejo: "Cierra siempre la sesión escribiendo, aunque sean dos renglones. Ese diario acumulado es lo que después convierte tu apartado de método en algo que se puede defender.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La entrada final del diario del proyecto", pie: "" }
         }
       ]
     }
