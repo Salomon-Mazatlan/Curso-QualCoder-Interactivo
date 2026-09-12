@@ -71,8 +71,8 @@ comparación posible después.
 | Misión | Tema | Qué se practica |
 | --- | --- | --- |
 | 1 | Instalar QualCoder | Instructivos de descarga e instalación por sistema, los programas externos, la advertencia de seguridad, qué revisar cuando el audio falla, recorrido por los siete menús, comprobar la versión y el registro de acciones |
-| 2 | Abrir el proyecto | Crear proyecto, Configuración con el nombre del codificador, gestor de archivos, resumen del proyecto |
-| 3 | Casos y atributos | Gestión de casos y de atributos, y para qué sirven al comparar |
+| 2 | Abrir el proyecto | Crear proyecto, llegar a Configuración por sus dos caminos, dejar el nombre del codificador y el resumen del proyecto |
+| 3 | Archivos, casos y atributos | Abrir el gestor, importar archivos desde su barra de herramientas, copiar o vincular, y después casos y atributos |
 | 4 | Encuestas y respuestas abiertas | Importar un CSV desde el gestor de archivos, clasificar columnas entre atributo y texto, y qué queda en el proyecto |
 | 5 | Referencias y Zotero | Importar RIS, conectar la clave de API de Zotero y vincular cada archivo con su ficha |
 | 6 | Codificar texto | Qué es un código, abrir el módulo, crear el primero con el árbol vacío, marcar con Q y crear un código in vivo con V |
@@ -183,6 +183,8 @@ definiciones: [
 ```
 
 Los instructivos se arman por bloques, cada uno con su título, su párrafo, su lista de pasos y su captura.
+Cuando un bloque tiene dos caminos alternativos, por ejemplo un instalador y una versión portable, se usa
+`caminos` en vez de `pasos`, y cada camino lleva su propio rótulo y su numeración desde uno.
 
 ```js
 { tipo: "guia", xp: 10,
@@ -236,10 +238,11 @@ cero, `solucion.codigo` el `id` del código correcto y `solucion.accion` la oper
 `marcar`, `invivo` o `anotar`. Con `invivo` el nombre del código lo genera el propio texto seleccionado, así
 que no hace falta `solucion.codigo`.
 
-En `interfaz`, `ruta` acepta tres formas. El par menú e ítem, por ejemplo `["gestionar", "archivos"]`,
+En `interfaz`, `ruta` acepta varias formas. El par menú e ítem, por ejemplo `["gestionar", "archivos"]`,
 tomando los `id` definidos en `CURSO.interfaz.menus`. Una pestaña de la ventana principal, con
-`["pestana", "registro"]`. Y el menú contextual de un código del árbol, escribiendo `codigo:` seguido del
-nombre, por ejemplo `["codigo:Sentimiento de culpa", "fusionar"]`.
+`["pestana", "registro"]`. El menú contextual de un código del árbol, escribiendo `codigo:` seguido del
+nombre, por ejemplo `["codigo:Sentimiento de culpa", "fusionar"]`. Y un botón de la barra de herramientas del
+gestor de archivos, con `["archivos", "importar"]`, tomando los `id` de `CURSO.interfaz.barra_archivos`.
 
 En `dialogo`, cada campo puede ser `texto`, `select` o `casilla`. Para los de texto, `correcto` acepta un
 arreglo de fragmentos válidos o la palabra `cualquiera` cuando solo se pide que no quede vacío. Un campo con
@@ -267,6 +270,24 @@ opcional.
   d: "Qué hace esta entrada.",
   tip: "El consejo que quieres dar sobre ella." }
 ```
+
+## Donativos y comentarios dentro del curso
+
+El mensaje de apoyo aparece en dos sitios, discreto al pie del mapa de misiones y con sus enlaces completos
+al terminar cada misión. Junto a ese segundo se muestra el renglón del formulario de comentarios.
+
+Los dos se editan en `assets/contenido.js`, en los bloques `apoyo` y `comentarios`.
+
+```js
+comentarios: {
+  texto: "¿Algo que mejorar, un error, una duda? Cuéntamelo en el formulario de comentarios.",
+  etiqueta: "Abrir el formulario de comentarios",
+  url: "https://docs.google.com/forms/d/e/TU-FORMULARIO/viewform"
+}
+```
+
+Mientras `url` esté vacío, en su lugar aparece la instrucción para llenarlo. Ninguno de los dos bloques se
+imprime en la constancia.
 
 ## Cómo citar este curso
 
