@@ -485,7 +485,7 @@ const CURSO = {
           titulo: "La advertencia del sistema, cómo se resuelve",
           tipo: "guia",
           xp: 10,
-          instruccion: "La primera vez que lo abras, el sistema va a protestar. Así se resuelve, y solo hace falta hacerlo una vez.",
+          instruccion: "La primera vez que lo abras, el sistema va a mostrar una advertencia. Así se resuelve, y solo hace falta hacerlo una vez.",
           bloques: [
             {
               titulo: "Qué está pasando",
@@ -505,18 +505,7 @@ const CURSO = {
               img: { src: "assets/img/ejemplo.png", titulo: "El enlace Más información y el botón Ejecutar de todas formas", pie: "" }
             },
             {
-              titulo: "macOS, Gatekeeper",
-              texto: "El sistema dice que no puede comprobar el desarrollador y cierra la aplicación. La autorización se da desde los ajustes del sistema.",
-              pasos: [
-                "Intenta abrir QualCoder una primera vez y acepta el aviso.",
-                "Abre Ajustes del sistema, Privacidad y seguridad.",
-                "Al final de la sección Seguridad aparece el aviso de que se impidió abrir QualCoder, con el botón Abrir de todos modos.",
-                "Confirma con tu contraseña. Solo hace falta la primera vez."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "Privacidad y seguridad en macOS con el botón Abrir de todos modos", pie: "" }
-            },
-            {
-              titulo: "Si prefieres no saltarte el aviso",
+              titulo: "Si prefieres evitar el aviso",
               texto: "La alternativa que proponen los propios desarrolladores es instalar desde el código fuente. Se descarga el código, se ve lo que se ejecuta y no hay ningún binario sin firmar de por medio. Es la ventaja del software abierto, y en este caso no es retórica.",
               pasos: [],
               img: { src: "assets/img/ejemplo.png", titulo: "", pie: "" }
