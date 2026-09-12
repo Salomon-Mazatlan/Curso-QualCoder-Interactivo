@@ -457,13 +457,23 @@ const CURSO = {
             },
             {
               titulo: "Windows",
-              texto: "Hay dos archivos, el instalador (1a) y el portable (1b). El portable arranca sin instalar nada, tarda unos segundos la primera vez porque descomprime en memoria. El instalador deja el acceso directo y la entrada en el menú de inicio.",
-              pasos: [
-                "1a. Descarga el archivo Win_Qualcoder-4.0-beta_INSTALLER.exe",
-                "2a. Ejecútalo y sigue los pasos de instalación. (Si aparece la pantalla azul de Windows, la resolvemos en la lección siguiente.)",
-                "3a. Finalizada la instalación, puedes iniciar el programa desde el acceso directo o en menú de Windows.",
-                "1b. Descarga el archivo Win_Qualcoder-4.0-beta_PORTABLE.exe",
-                "2b. Ejecútalo, la primera vez suele tardar unos segundos adicionales."
+              texto: "Hay dos archivos y basta con uno. El instalador deja el acceso directo y la entrada en el menú de inicio. El portable arranca sin instalar nada, útil si no tienes permisos de administrador o si lo llevas en una memoria USB.",
+              caminos: [
+                {
+                  titulo: "Opción A, el instalador",
+                  pasos: [
+                    "Descarga Win_Qualcoder-4.0-beta_INSTALLER.exe",
+                    "Ejecútalo y sigue los pasos de instalación. Si aparece la pantalla azul de Windows, la resolvemos en la lección siguiente.",
+                    "Al terminar, abre el programa desde el acceso directo o desde el menú de Windows."
+                  ]
+                },
+                {
+                  titulo: "Opción B, el portable",
+                  pasos: [
+                    "Descarga Win_Qualcoder-4.0-beta_PORTABLE.exe",
+                    "Ejecútalo tal cual, sin instalar nada. La primera apertura tarda unos segundos de más porque descomprime en memoria."
+                  ]
+                }
               ],
               img: { src: "assets/img/1_1_Instalar_Abrir.png", titulo: "Los archivos de la versión para Windows", pie: "" }
             }
