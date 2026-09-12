@@ -550,6 +550,16 @@ const CURSO = {
           consejoImagen: { src: "assets/img/1_3_Sistema.png", titulo: "El repositorio oficial y su sección de versiones", pie: "" }
         },
         /* 1.4 */ {
+          titulo: "Recorrido por los menús",
+          tipo: "explorar",
+          xp: 20,
+          instruccion: "Antes de tocar nada en serio, recorre el programa. Toca las entradas de los menús y las pestañas que quieras, y lee a la derecha qué hace cada una.",
+          objetivo: "Recorrer la barra de menús",
+          dice: "Ya sabes dónde vive cada cosa. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados.",
+          consejo: "Vuelve a este recorrido cuando lleves dos semanas usando el programa. Con proyecto real en la cabeza, la mitad de las entradas que hoy no dicen nada empiezan a tener sentido.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La barra de menús completa de QualCoder 4", pie: "" }
+        },
+        /* 1.5 */ {
           titulo: "VLC, ffmpeg y Zotero, cómo se instalan",
           tipo: "guia",
           xp: 10,
@@ -564,7 +574,7 @@ const CURSO = {
                 "Reinicia QualCoder para que lo detecte.",
                 "En Fedora hay un problema conocido con VLC, ahí el material audiovisual no se puede usar."
               ],
-              img: { src: "assets/img/ejemplo.png", titulo: "La descarga de VLC en videolan.org", pie: "" }
+              video: "p2pWR1IrKbg", pieVideo: "La descarga de VLC en videolan.org"
             },
             {
               titulo: "ffmpeg, para la forma de onda",
@@ -574,7 +584,7 @@ const CURSO = {
                 "En Windows hay que añadir su carpeta bin a la variable PATH para que otros programas lo encuentren.",
                 "Reinicia QualCoder y vuelve a abrir el archivo de audio."
               ],
-              img: { src: "assets/img/ejemplo.png", titulo: "La forma de onda ya generada en QualCoder", pie: "" }
+              video: "p2pWR1IrKbg", pieVideo: "La forma de onda ya generada en QualCoder"
             },
             {
               titulo: "Zotero, para las referencias",
@@ -584,7 +594,7 @@ const CURSO = {
                 "Obtén una clave de API desde tu perfil, en la sección de ajustes de seguridad.",
                 "Pega la clave en el módulo de referencias de QualCoder."
               ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El módulo de referencias de QualCoder", pie: "" }
+              video: "p2pWR1IrKbg", pieVideo: "El módulo de referencias de QualCoder"
             },
             {
               titulo: "Python y el entorno virtual",
@@ -594,13 +604,13 @@ const CURSO = {
                 "Sin él, la instalación puede alterar las bibliotecas de otros programas de Python que ya tengas.",
                 "Los guiones del repositorio lo crean por ti."
               ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El entorno virtual creado en la carpeta del proyecto", pie: "" }
+              video: "p2pWR1IrKbg", pieVideo: "El entorno virtual creado en la carpeta del proyecto"
             }
           ],
           boton: "Entendido, seguir",
           dice: "Con eso queda claro qué enciende cada pieza. Ahora comprueba si te quedó el mapa completo."
         },
-        /* 1.5 */ {
+        /* 1.6 */ {
           titulo: "Para qué sirve cada programa externo",
           tipo: "parejas",
           xp: 15,
@@ -615,7 +625,7 @@ const CURSO = {
           consejo: "Instala VLC y ffmpeg aunque tu proyecto de hoy sea solo de texto. Cuando llegue la primera entrevista grabada no vas a querer detenerte a resolver instalaciones.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "VLC y ffmpeg ya instalados en el sistema", pie: "" }
         },
-        /* 1.6 */ {
+        /* 1.7 */ {
           titulo: "Qué significa esa advertencia",
           tipo: "quiz",
           xp: 10,
@@ -627,45 +637,6 @@ const CURSO = {
           ],
           consejo: "Descarga siempre desde la página de versiones del repositorio oficial. Cuando el archivo viene de otro sitio, el aviso del sistema sí merece que te detengas.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La dirección del repositorio oficial en la barra del navegador", pie: "" }
-        },
-        /* 1.7 */ {
-          titulo: "Cuando el audio no funciona",
-          tipo: "guia",
-          xp: 10,
-          instruccion: "El problema más común después de instalar es que el audio y el video no funcionan. Casi siempre son estas tres cosas.",
-          bloques: [
-            {
-              titulo: "No se reproduce nada",
-              texto: "Si el archivo se importó pero al darle a reproducir no pasa nada, lo que falta es VLC. QualCoder se apoya en él para todo el audio y el video.",
-              pasos: [
-                "Comprueba si VLC está instalado y si abre el archivo por su cuenta.",
-                "Si abre en VLC pero no en QualCoder, revisa la arquitectura. Mezclar VLC de 32 bits con un programa de 64 es una causa habitual.",
-                "Reinstala VLC en la arquitectura correcta y reinicia QualCoder."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El módulo de codificar audio y video con el archivo cargado", pie: "" }
-            },
-            {
-              titulo: "Suena, pero no aparece la forma de onda",
-              texto: "Ahí el que falta es ffmpeg. La reproducción funciona porque la hace VLC, pero el dibujo del sonido lo genera ffmpeg.",
-              pasos: [
-                "Instala ffmpeg y, en Windows, añade su carpeta bin al PATH.",
-                "Cierra y vuelve a abrir QualCoder.",
-                "Abre otra vez el archivo, la forma de onda se genera la primera vez y queda guardada."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "La forma de onda del audio ya visible", pie: "" }
-            },
-            {
-              titulo: "Estás en Fedora",
-              texto: "Es una limitación conocida y documentada por los propios desarrolladores. En Fedora, VLC hace que el programa se cierre, así que el material audiovisual no se puede usar en esa distribución.",
-              pasos: [
-                "Trabaja el material audiovisual desde otra distribución o desde otro equipo.",
-                "O transcribe fuera y codifica solo la transcripción, que sí funciona."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "", pie: "" }
-            }
-          ],
-          boton: "Entendido, seguir",
-          dice: "Con esas tres revisiones se resuelve casi todo lo que falla con el audio."
         },
         /* 1.8 */ {
           titulo: "Diagnóstico del audio",
@@ -681,16 +652,6 @@ const CURSO = {
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La versión y la arquitectura de VLC en su ventana Acerca de", pie: "" }
         },
         /* 1.9 */ {
-          titulo: "Recorrido por los menús",
-          tipo: "explorar",
-          xp: 20,
-          instruccion: "Antes de tocar nada en serio, recorre el programa. Toca las entradas de los menús y las pestañas que quieras, y lee a la derecha qué hace cada una.",
-          objetivo: "Recorrer la barra de menús",
-          dice: "Ya sabes dónde vive cada cosa. Los cinco menús de trabajo siguen un orden, primero el proyecto, luego el material, luego la codificación, y al final lo que devuelve resultados.",
-          consejo: "Vuelve a este recorrido cuando lleves dos semanas usando el programa. Con proyecto real en la cabeza, la mitad de las entradas que hoy no dicen nada empiezan a tener sentido.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La barra de menús completa de QualCoder 4", pie: "" }
-        },
-        /* 1.10 */ {
           titulo: "Ver la versión instalada",
           tipo: "interfaz",
           xp: 15,
@@ -702,37 +663,7 @@ const CURSO = {
           consejo: "Apunta la versión exacta antes de empezar a codificar. Si a mitad del proyecto actualizas el programa, tu apartado de método tiene que decir con cuál trabajaste, y de memoria nunca sale bien.",
           consejoImagen: { src: "assets/img/1_10_Acerca_de.png", titulo: "La ventana Acerca de con el número de versión", pie: "" }
         },
-        /* 1.11 */ {
-          titulo: "Cómo se mueve uno por la ventana",
-          tipo: "guia",
-          xp: 10,
-          instruccion: "Antes de tocar el simulador, así se mueve uno por la ventana de QualCoder.",
-          bloques: [
-            {
-              titulo: "Los módulos se abren dentro de las pestañas",
-              texto: "QualCoder no abre ventanas flotantes para cada módulo, salvo los diarios. Todo ocurre dentro de las cinco pestañas de la ventana principal, así que abrir un módulo es elegirlo en el menú y verlo aparecer en su pestaña.",
-              pasos: [
-                "Fíjate en la fila de pestañas, justo debajo de la barra de menús.",
-                "Toca la pestaña para cambiar de espacio de trabajo.",
-                "Cuando no hay ningún módulo abierto, la pestaña muestra su panel de bienvenida."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "Las cinco pestañas de la ventana principal", pie: "" }
-            },
-            {
-              titulo: "El registro de acciones",
-              texto: "Es la primera pestaña y funciona como la voz del programa. Ahí aparecen la versión y su cita, los avisos de copia de seguridad, los mensajes de cada operación y los resultados de varios informes.",
-              pasos: [
-                "Abre la pestaña Registro de acciones.",
-                "Léela después de abrir el proyecto y después de cualquier operación grande.",
-                "Si un informe no abre ventana propia, su resultado casi siempre cayó ahí."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El registro de acciones con el aviso de copia de seguridad", pie: "" }
-            }
-          ],
-          boton: "Entendido, seguir",
-          dice: "Con eso ya sabes dónde mirar cuando el programa te habla."
-        },
-        /* 1.12 */ {
+        /* 1.10 */ {
           titulo: "El registro de acciones",
           tipo: "interfaz",
           xp: 15,
@@ -750,7 +681,7 @@ const CURSO = {
     /* ============================ 2 ============================ */
     {
       id: "m02",
-      titulo: "Abrir el proyecto",
+      titulo: "Proyectos",
       lema: "Media hora aquí ahorra semanas después",
       definiciones: [
         { termino: "Diseño de investigación",
@@ -872,7 +803,7 @@ const CURSO = {
           xp: 15,
           instruccion: "Antes de empezar quieres ver qué hay dentro del proyecto y si algún archivo vinculado se perdió.",
           objetivo: "Generar el resumen del proyecto",
-          ruta: ["proyecto", "resumen"],
+          rutas: [["proyecto", "resumen"], ["pestana", "registro"]],
           pista: "Es una entrada del menú Proyecto y su resultado sale en el registro de acciones.",
           dice: "El resumen no abre ventana propia, deja su informe en el registro de acciones, con los recuentos de archivos, casos, códigos y atributos y la lista de vínculos rotos. Es la misma vista que viste al final de la primera misión.",
           consejo: "Ejecuta el resumen al empezar y al terminar cada etapa del proyecto, y pega el resultado en el diario. Ese par de capturas documenta el crecimiento del corpus mejor que cualquier descripción.",
@@ -1213,34 +1144,35 @@ const CURSO = {
           dice: "Una encuesta bien importada trae su propio sistema de comparación puesto desde el primer día."
         },
         /* 4.2 */ {
-          titulo: "Abrir el gestor de archivos",
+          titulo: "El botón de importar encuestas",
           tipo: "interfaz",
           xp: 15,
-          instruccion: "Te llegó un CSV con trescientas respuestas y ocho variables de perfil. Abre el módulo por donde entra al proyecto.",
-          objetivo: "Abrir el gestor de archivos para importar la encuesta",
-          ruta: ["gestionar", "archivos"],
-          pista: "No está en el menú Proyecto, la importación de encuestas vive dentro del gestor de archivos.",
+          instruccion: "Te llegó un CSV con trescientas respuestas y ocho variables de perfil. Ya estás dentro del gestor de archivos, así que lanza la importación.",
+          objetivo: "Importar una encuesta al proyecto",
+          ruta: ["archivos", "encuesta"],
+          pista: "Es el segundo botón de la barra de herramientas, el del portapapeles. El primero, el de la hoja con flecha, importa archivos sueltos.",
           medios: [
             { tipo: "video", id: "p2pWR1IrKbg", titulo: "Abrir el gestor de archivos" },
             { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Abrir el gestor de archivos para importar la encuesta", pie: "" }
           ],
-          dice: "Ya dentro, la importación es el segundo botón de la barra de herramientas, el del portapapeles con clip.",
+          dice: "Se abre el asistente de importación de encuestas, que es donde se reparte cada columna del archivo.",
           consejo: "Antes de importar, guarda una copia del CSV original tal como salió de la plataforma. Si la importación queda mal, el arreglo casi siempre es corregir el archivo y volver a importar, y conviene tener el punto de partida intacto.",
           consejoImagen: { src: "assets/img/4_1_Boton_importar_encuesta.png", titulo: "El botón de importar encuesta en la barra de herramientas", pie: "" }
         },
         /* 4.3 */ {
           titulo: "El asistente de importación",
+          guiado: true,
           tipo: "asistente",
           xp: 20,
           instruccion: "Se abrió el asistente. Reparte cada columna del archivo en el grupo que le toca y deja marcadas las dos opciones de abajo.",
           tituloVentana: "Asistente de importación de encuestas",
           destinos: [
-            { id: "casos", t: "1. Casos / Participantes (p. ej., ID, Nombre)" },
+            { id: "casos", t: "1. Casos / Participantes (p. ej., Participante, Nombre)" },
             { id: "atributos", t: "2. Atributos (p. ej., Edad, Género)" },
             { id: "textos", t: "3. Textos cualitativos" }
           ],
           columnas: [
-            { t: "ID", destino: "casos" },
+            { t: "Participante", destino: "casos" },
             { t: "Edad", destino: "atributos" },
             { t: "Género", destino: "atributos" },
             { t: "Lugar o país de origen", destino: "atributos" },
@@ -1254,7 +1186,7 @@ const CURSO = {
           boton: "Aceptar",
           pista: "La columna que identifica a cada persona va al primer grupo, las variables de perfil al segundo y las respuestas abiertas al tercero.",
           dice: "Con los atributos asignados a los casos y la autocodificación activada, cada respuesta entra ya etiquetada con el nombre de su pregunta, y eso ahorra la primera vuelta de codificación entera.",
-          consejo: "La autocodificación por nombre de columna no sustituye tu análisis, solo separa las respuestas por pregunta. Es el andamio sobre el que después aplicas tus propios códigos.",
+          consejo: "Antes de importar, anonimiza el archivo. Sustituye nombres, teléfonos y direcciones por seudónimos en la propia hoja de cálculo, sobre todo si después vas a usar las funciones de inteligencia artificial, porque ese material puede salir de tu computadora hacia el servidor del proveedor. Y la autocodificación por nombre de columna no sustituye tu análisis, solo separa las respuestas por pregunta.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El asistente con las columnas ya repartidas", pie: "" }
         },
         /* 4.4 */ {
@@ -1450,33 +1382,16 @@ const CURSO = {
           titulo: "Qué etiqueta funciona como código",
           tipo: "quiz",
           xp: 10,
-          pregunta: "Lees esta línea de una entrevista. \"Ya van cuatro años y yo pensaba que eran unos meses.\" ¿Cuál etiqueta funciona mejor como código?",
+          pregunta: "Una cuidadora dice \"dejé mi trabajo para cuidar a mi mamá\". ¿Qué etiqueta le pondrías a ese fragmento?",
           opciones: [
-            { t: "Duración imprevista del cuidado", ok: true, dice: "Corto, nombra el fenómeno y sirve para comparar con otras entrevistas." },
-            { t: "La señora lleva cuatro años cuidando a su mamá y no lo esperaba", ok: false, dice: "Eso es una paráfrasis. Un código cabe en una etiqueta, no en un renglón." },
-            { t: "Tiempo", ok: false, dice: "Demasiado ancho. Bajo esa etiqueta va a caer medio corpus." },
-            { t: "Cuatro años", ok: false, dice: "Es un dato del caso, no un concepto. No se repite en otras entrevistas." }
+            { t: "Abandono del empleo", ok: true, dice: "Corta, nombra el fenómeno y va a servir para juntar los fragmentos parecidos de otras entrevistas." },
+            { t: "Dejó su trabajo porque su mamá se enfermó y ahora la cuida todo el día", ok: false, dice: "Eso repite lo que dice el fragmento. Un código no cuenta la historia, la nombra." },
+            { t: "Trabajo", ok: false, dice: "Demasiado ancho. Bajo esa etiqueta va a caer cualquier mención al empleo y después no vas a poder distinguir nada." }
           ],
-          consejo: "Cuando dudes entre dos nombres para un código, escribe primero su memo. Si al definirlo te salen dos definiciones, es que hacían falta dos códigos.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
+          consejo: "Una prueba rápida, si la etiqueta sirve para más de una persona del corpus, es un código. Si solo describe a esta, es un resumen.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El código aplicado en el árbol", pie: "" }
         },
         /* 6.2 */ {
-          titulo: "Código, categoría, segmento y memo",
-          tipo: "parejas",
-          xp: 15,
-          instruccion: "Une cada pieza con lo que hace. Toca una tarjeta de la izquierda y luego su definición.",
-          pares: [
-            { a: "Código", b: "Etiqueta que se aplica a un fragmento de datos" },
-            { a: "Categoría", b: "Agrupa códigos que comparten un sentido" },
-            { a: "Segmento", b: "El trozo de texto marcado dentro del archivo" },
-            { a: "Memo", b: "Registro de por qué tomaste una decisión analítica" },
-            { a: "Anotación", b: "Nota sobre un punto del texto, sin asignar código" },
-            { a: "Subcódigo", b: "Código que cuelga de otro código y nombra un matiz suyo" }
-          ],
-          consejo: "Escribe estas cinco definiciones con tus propias palabras en el memo del proyecto. Explicarlas a alguien más es la prueba de que las tienes claras, y ese texto sirve después para el apartado de método.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El memo del proyecto con las definiciones del vocabulario", pie: "" }
-        },
-        /* 6.3 */ {
           titulo: "Cómo se marca un segmento",
           tipo: "guia",
           xp: 10,
@@ -1530,7 +1445,7 @@ const CURSO = {
           boton: "Listo, a practicar",
           dice: "Seleccionar, elegir el código, marcar. Ese ciclo se repite miles de veces en un proyecto."
         },
-        /* 6.4 */ {
+        /* 6.3 */ {
           titulo: "Abrir Codificar texto",
           tipo: "interfaz",
           xp: 15,
@@ -1542,7 +1457,7 @@ const CURSO = {
           consejo: "Ten a mano el atajo Alt+T. Vas a abrir este módulo docenas de veces, y el camino por el menú se vuelve lento a partir de la tercera sesión.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El módulo Codificar texto abierto en su pestaña", pie: "" }
         },
-        /* 6.5 */ {
+        /* 6.4 */ {
           titulo: "Crear el primer código",
           tipo: "interfaz",
           xp: 15,
@@ -1554,7 +1469,7 @@ const CURSO = {
           consejo: "Crea pocos códigos al principio y créalos mientras lees, no antes. Un sistema inventado en el escritorio rara vez sobrevive al primer encuentro con los datos.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol con sus primeros códigos", pie: "" }
         },
-        /* 6.6 */ {
+        /* 6.5 */ {
           titulo: "La ventana del código nuevo",
           tipo: "dialogo",
           xp: 15,
@@ -1568,8 +1483,9 @@ const CURSO = {
           consejo: "Escribe el memo del código el mismo día que lo creas, con F3. Un código sin memo es una etiqueta que en tres semanas ya no significa lo mismo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La ventana Añadir un código nuevo", pie: "" }
         },
-        /* 6.7 */ {
+        /* 6.6 */ {
           titulo: "Marcar el abandono del empleo",
+          guiado: true,
           tipo: "codificar",
           xp: 20,
           instruccion: "Entrevista E01_Rosa. Marca el fragmento donde deja el empleo. Selecciona el tramo, elige el código en el árbol y usa Marcar (Q).",
@@ -1589,8 +1505,9 @@ const CURSO = {
           consejo: "Cuando dudes del tamaño del tramo, marca de más y no de menos. Recortar un segmento largo es fácil, recuperar el contexto que no marcaste obliga a volver al archivo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un segmento marcado con su franja en el margen", pie: "" }
         },
-        /* 6.8 */ {
+        /* 6.7 */ {
           titulo: "Marcar un tramo de dos frases",
+          guiado: true,
           tipo: "codificar",
           xp: 20,
           instruccion: "Sigue en la misma entrevista. Marca el tramo que muestra que el cuidado duró mucho más de lo previsto.",
@@ -1610,8 +1527,9 @@ const CURSO = {
           consejo: "Si el sentido de un fragmento necesita la frase anterior para entenderse, esa frase es parte del segmento. El informe va a mostrar solo lo que marcaste, sin nada alrededor.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un segmento de dos líneas con su código aplicado", pie: "" }
         },
-        /* 6.9 */ {
+        /* 6.8 */ {
           titulo: "Crear un código in vivo",
+          guiado: true,
           tipo: "codificar",
           xp: 20,
           instruccion: "Esta frase vale por cómo está dicha. Selecciónala y créale un código in vivo con la tecla V.",
@@ -1628,7 +1546,23 @@ const CURSO = {
           solucion: { segmentos: [1], accion: "invivo" },
           consejo: "Usa el código in vivo con cuentagotas, dos o tres por entrevista como mucho. Si todas las etiquetas salen del habla de cada persona, no queda nada que comparar entre casos.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un código in vivo entre comillas en el árbol", pie: "" }
-        }
+        },
+        /* 6.9 */ {
+          titulo: "Código, categoría, segmento y memo",
+          tipo: "parejas",
+          xp: 15,
+          instruccion: "Une cada pieza con lo que hace. Toca una tarjeta de la izquierda y luego su definición.",
+          pares: [
+            { a: "Código", b: "Etiqueta que se aplica a un fragmento de datos" },
+            { a: "Categoría", b: "Agrupa códigos que comparten un sentido" },
+            { a: "Segmento", b: "El trozo de texto marcado dentro del archivo" },
+            { a: "Memo", b: "Registro de por qué tomaste una decisión analítica" },
+            { a: "Anotación", b: "Nota sobre un punto del texto, sin asignar código" },
+            { a: "Subcódigo", b: "Código que cuelga de otro código y nombra un matiz suyo" }
+          ],
+          consejo: "Escribe estas cinco definiciones con tus propias palabras en el memo del proyecto. Explicarlas a alguien más es la prueba de que las tienes claras, y ese texto sirve después para el apartado de método.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El memo del proyecto con las definiciones del vocabulario", pie: "" }
+        },
       ]
     },
 
@@ -1698,6 +1632,7 @@ const CURSO = {
         },
         /* 7.2 */ {
           titulo: "Anotar sin asignar código",
+          guiado: true,
           tipo: "codificar",
           xp: 20,
           instruccion: "Esta otra frase te llama la atención y todavía no sabes cómo nombrarla. Déjale una nota sin asignarle código.",
@@ -1710,11 +1645,25 @@ const CURSO = {
           codigos: [
             { id: "v1", nombre: "Reparto desigual", color: "turquesa" }
           ],
-          solucion: { segmentos: [2], accion: "anotar" },
+          solucion: { segmentos: [2], accion: "anotar", libre: true },
           consejo: "Revisa tus anotaciones cada cierto tiempo. La mitad de ellas acaban convirtiéndose en códigos nuevos, y la otra mitad en preguntas para la siguiente entrevista.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Una anotación abierta sobre el texto", pie: "" }
         },
         /* 7.3 */ {
+          titulo: "Abrir el memo de un código",
+          tipo: "interfaz",
+          xp: 15,
+          guiado: true,
+          codigoLibre: true,
+          instruccion: "El memo de un código se escribe desde su propio menú contextual. Ábrelo para el código que quieras.",
+          objetivo: "Abrir el memo de un código desde el árbol",
+          ruta: ["codigo:Culpa", "memo"],
+          pista: "Clic derecho sobre el código, y dentro del submenú Modificar está Ver o editar memo, con atajo F3.",
+          dice: "Cualquier código del árbol sirve, lo que importa es la ruta. Clic derecho, Modificar, Ver o editar memo. El atajo F3 hace lo mismo con el código seleccionado.",
+          consejo: "Escribe el memo el día que creas el código y vuelve a él cada vez que dudes al aplicarlo. Ese texto es el que después permite que otra persona codifique igual que tú.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El memo de un código abierto desde el árbol", pie: "" }
+        },
+        /* 7.4 */ {
           titulo: "Escribir el memo de un código",
           tipo: "abierta",
           xp: 20,
@@ -1729,7 +1678,7 @@ const CURSO = {
           consejo: "Guarda una copia del memo con fecha cada vez que lo cambies de forma importante. Ver cómo evolucionó la definición de un código es material de primera para explicar el proceso.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El memo de un código con su definición y sus ejemplos", pie: "" }
         },
-        /* 7.4 */ {
+        /* 7.5 */ {
           titulo: "Memo del código o de la codificación",
           tipo: "quiz",
           xp: 10,
@@ -1794,6 +1743,7 @@ const CURSO = {
         },
         /* 8.2 */ {
           titulo: "Agrupar ocho códigos en tres categorías",
+          guiado: true,
           tipo: "clasificar",
           xp: 25,
           instruccion: "Estos códigos salieron de cuatro entrevistas a cuidadoras. Toca un código y luego la categoría donde va.",
@@ -1803,14 +1753,14 @@ const CURSO = {
             { id: "k3", nombre: "Sentidos del cuidar" }
           ],
           items: [
-            { t: "Abandono del empleo", cat: "k1" },
-            { t: "Dolor de espalda crónico", cat: "k1" },
-            { t: "Hermanos que ayudan los domingos", cat: "k2" },
-            { t: "Vecina que se queda un rato", cat: "k2" },
-            { t: "\"es mi deber de hija\"", cat: "k3" },
-            { t: "Culpa por sentir enojo", cat: "k3" },
-            { t: "Gasto en pañales y medicinas", cat: "k1" },
-            { t: "Grupo de WhatsApp de cuidadoras", cat: "k2" }
+            { t: "Abandono del empleo", cat: "k1", porque: "Dejar el trabajo es lo que cuesta el cuidado, en dinero y en trayectoria." },
+            { t: "Dolor de espalda crónico", cat: "k1", porque: "El cuerpo también paga, y ese desgaste es un costo tan real como el económico." },
+            { t: "Hermanos que ayudan los domingos", cat: "k2", porque: "Es ayuda que llega de otros, aunque sea intermitente." },
+            { t: "Vecina que se queda un rato", cat: "k2", porque: "Apoyo informal fuera de la familia, típico de las redes de barrio." },
+            { t: "\"es mi deber de hija\"", cat: "k3", porque: "Explica por qué cuida, no qué le cuesta ni quién la ayuda." },
+            { t: "Culpa por sentir enojo", cat: "k3", porque: "Habla del significado moral del cuidar, no de sus gastos." },
+            { t: "Gasto en pañales y medicinas", cat: "k1", porque: "Costo económico directo, del bolsillo de quien cuida." },
+            { t: "Grupo de WhatsApp de cuidadoras", cat: "k2", porque: "Red de apoyo, aunque sea a distancia y entre desconocidas." }
           ],
           consejo: "Nombra las categorías con sustantivos, no con preguntas. Costos del cuidado organiza mejor que ¿Qué cuesta cuidar?, y se lee mejor en los informes.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol con sus categorías ya armadas", pie: "" }
@@ -1822,11 +1772,12 @@ const CURSO = {
           instruccion: "El mantenimiento del árbol se hace con el menú contextual. Así se hace cada operación.",
           bloques: [
             {
-              titulo: "Crear categorías",
-              texto: "Las categorías son las carpetas que agrupan códigos. Se crean desde el mismo menú contextual.",
+              titulo: "Crear categorías y subcódigos",
+              texto: "Las categorías son las carpetas que agrupan códigos y los subcódigos son matices que cuelgan de un código. Las dos cosas salen del mismo menú contextual.",
               pasos: [
                 "Haz clic derecho sobre el árbol de códigos.",
                 "Elige Crear una categoría nueva y dale nombre.",
+                "Para un matiz dentro de un código, elige Añadir un subcódigo nuevo al código.",
                 "Una categoría también puede colgar de otra, aunque más de dos o tres niveles se vuelve inmanejable."
               ],
               img: { src: "assets/img/ejemplo.png", titulo: "El árbol con categorías y códigos colgando", pie: "" }
@@ -1866,30 +1817,50 @@ const CURSO = {
           dice: "Fusionar conserva, eliminar tira. Es la diferencia que más caro cuesta aprender por las malas."
         },
         /* 8.4 */ {
-          titulo: "Fusionar dos códigos",
+          titulo: "Crear un subcódigo",
           tipo: "interfaz",
           xp: 15,
-          instruccion: "En el árbol tienes Culpa y Sentimiento de culpa diciendo lo mismo. Únelos sin perder ninguna codificación.",
-          objetivo: "Fusionar Sentimiento de culpa en otro código",
-          ruta: ["codigo:Sentimiento de culpa", "fusionar"],
-          pista: "Las operaciones sobre un código salen de su menú contextual, no de la barra de menús.",
-          dice: "Las codificaciones del código que desaparece pasan al de destino. Si hubieras elegido Eliminar, se habrían borrado con él y sin deshacer.",
-          consejo: "Antes de fusionar, abre la recuperación de los dos códigos y léelos juntos. Si al leerlos seguidos el conjunto tiene sentido, la fusión es correcta, y si chirría, es que nombraban cosas distintas.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diálogo de fusión con el código de destino elegido", pie: "" }
+          guiado: true,
+          codigoLibre: true,
+          instruccion: "Un matiz dentro de un código se guarda como subcódigo, colgando de él. Créale uno al código que quieras.",
+          objetivo: "Añadir un subcódigo a un código",
+          ruta: ["codigo:Culpa", "subcodigo"],
+          pista: "Está en el primer tramo del menú contextual del código, junto a crear código y crear categoría.",
+          dice: "El subcódigo queda colgando del código elegido. Sirve para separar matices sin perder el paraguas común, y en los informes se puede pedir el código con todos sus subcódigos o cada uno por separado.",
+          consejo: "No bajes más de dos o tres niveles. A partir de ahí nadie recuerda dónde puso las cosas, y menos si codifican varias personas.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un subcódigo colgando de su código", pie: "" }
         },
         /* 8.5 */ {
           titulo: "Mover un código a una categoría",
+          guiado: true,
+          codigoLibre: true,
           tipo: "interfaz",
           xp: 15,
           instruccion: "Ya creaste la categoría Costos del cuidado. Ahora mete ahí el código Abandono del empleo.",
           objetivo: "Mover Abandono del empleo a una categoría",
           ruta: ["codigo:Abandono del empleo", "mover"],
           pista: "Es otra entrada del mismo menú contextual, la que abre una lista jerárquica de destinos.",
-          dice: "La lista deja elegir entre el nivel superior, una categoría o incluso otro código, que lo convertiría en subcódigo.",
+          dice: "Aquí da igual qué código muevas, lo que se practica es dónde está la función. La lista deja elegir entre el nivel superior, una categoría o incluso otro código, que lo convertiría en subcódigo.",
           consejo: "Mueve códigos en bloque cuando reorganices, y hazlo en una sola sesión. Un árbol a medio reordenar confunde más que uno desordenado, sobre todo si codifica otra persona.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol después de mover el código a su categoría", pie: "" }
         },
         /* 8.6 */ {
+          titulo: "Fusionar dos códigos",
+          guiado: true,
+          codigoLibre: true,
+          guiado: true,
+          codigoLibre: true,
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "En el árbol tienes Culpa y Sentimiento de culpa diciendo lo mismo. Únelos sin perder ninguna codificación.",
+          objetivo: "Fusionar Sentimiento de culpa en otro código",
+          ruta: ["codigo:Sentimiento de culpa", "fusionar"],
+          pista: "Las operaciones sobre un código salen de su menú contextual, no de la barra de menús.",
+          dice: "Cualquier código sirve para practicar la ruta. Al fusionar, las codificaciones del código que desaparece pasan al de destino, y si hubieras elegido Eliminar se habrían borrado con él, sin deshacer.",
+          consejo: "Antes de fusionar, abre la recuperación de los dos códigos y léelos juntos. Si al leerlos seguidos el conjunto tiene sentido, la fusión es correcta, y si chirría, es que nombraban cosas distintas.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diálogo de fusión con el código de destino elegido", pie: "" }
+        },
+        /* 8.7 */ {
           titulo: "Un código con una sola codificación",
           tipo: "quiz",
           xp: 10,
@@ -1908,7 +1879,7 @@ const CURSO = {
     /* ============================ 9 ============================ */
     {
       id: "m09",
-      titulo: "Recuperar y mirar",
+      titulo: "Análisis e informes",
       lema: "El informe no piensa por ti",
       definiciones: [
         { termino: "Recuperación",
@@ -2377,7 +2348,7 @@ const CURSO = {
             { id: "m2", nombre: "Naturalización del sacrificio", color: "verde" },
             { id: "m3", nombre: "Límite económico", color: "amarillo" }
           ],
-          solucion: { segmentos: [1], codigo: "m1", accion: "marcar" },
+          solucion: { segmentos: [1], codigo: "m1", accion: "marcar", libre: true },
           consejo: "En entrevistas sobre cuidado o salud, separa siempre lo que le pasa al cuerpo de lo que le pasa al ánimo. Mezclarlo en un código produce un cajón enorme del que después no sale ningún hallazgo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El segmento del costo físico ya codificado", pie: "" }
         },
@@ -2396,12 +2367,13 @@ const CURSO = {
             { id: "m3", nombre: "Límite económico", color: "amarillo" },
             { id: "m1", nombre: "Deterioro de la salud propia", color: "coral" }
           ],
-          solucion: { segmentos: [1], accion: "invivo" },
+          solucion: { segmentos: [1], accion: "invivo", libre: true },
           consejo: "Cuando una frase te sorprenda por cómo está dicha, márcala en vivo aunque todavía no sepas qué hacer con ella. Esas expresiones suelen acabar siendo el título del artículo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El código in vivo creado desde la frase de la participante", pie: "" }
         },
         /* 12.5 */ {
           titulo: "Acomodar los códigos de Marta",
+          guiado: true,
           tipo: "clasificar",
           xp: 25,
           instruccion: "Acomoda los códigos de Marta en el sistema que ya venías armando.",
@@ -2411,10 +2383,10 @@ const CURSO = {
             { id: "k3", nombre: "Sentidos del cuidar" }
           ],
           items: [
-            { t: "Deterioro de la salud propia", cat: "k1" },
-            { t: "Naturalización del sacrificio", cat: "k3" },
-            { t: "Límite económico", cat: "k1" },
-            { t: "Hija que sugiere contratar ayuda", cat: "k2" }
+            { t: "Deterioro de la salud propia", cat: "k1", porque: "Lo que el cuidado le quita al cuerpo de quien cuida." },
+            { t: "Naturalización del sacrificio", cat: "k3", porque: "Es una manera de dar sentido a lo que se vive, no un costo ni una ayuda." },
+            { t: "Límite económico", cat: "k1", porque: "Contratar ayuda no se puede pagar, así que el costo se vuelve trabajo propio." },
+            { t: "Hija que sugiere contratar ayuda", cat: "k2", porque: "Alguien del entorno que interviene, aunque sea solo con consejo." }
           ],
           consejo: "Al cerrar el análisis, revisa que cada categoría tenga al menos tres códigos y que ninguna tenga más de diez. Fuera de ese rango, casi siempre conviene dividir o fusionar.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol completo con sus categorías equilibradas", pie: "" }

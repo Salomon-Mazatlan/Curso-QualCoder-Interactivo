@@ -128,7 +128,7 @@ function abrirLupa(src, pie) {
 }
 
 // Right-click menu shown as a card, so it never gets cut off by the window edge.
-function abrirMenuContextual(titulo, nota, items, alClic) {
+function abrirMenuContextual(titulo, nota, items, alClic, destacar) {
   const caja = crear("div", "menu-flotante");
   const cab = crear("div", "menu-flotante-cabeza");
   const tit = crear("h4", null, titulo);
@@ -148,6 +148,7 @@ function abrirMenuContextual(titulo, nota, items, alClic) {
     }
     nivel.forEach(item => {
       const b = crear("button", "qc-item");
+      if (destacar && (item.id === destacar || (item.items || []).some(x => x.id === destacar))) b.classList.add("pista-foco");
       b.appendChild(crear("span", null, item.t));
       if (item.k) b.appendChild(crear("span", "qc-tecla", item.k));
       else if (item.sub) b.appendChild(crear("span", "qc-tecla qc-sub", "▸"));
@@ -540,7 +541,9 @@ function tarjetaEjercicio(nivel, ej, idx) {
 
   let errores = 0, cerrado = false;
 
-  const reiniciar = crear("button", "salida", "Reiniciar lección");
+  const repetir = crear("button", "salida", "Repetir esta lección");
+  repetir.addEventListener("click", () => { sonar("toque"); pintarMision(); });
+  const reiniciar = crear("button", "salida", "Reiniciar la misión");
   reiniciar.addEventListener("click", () => { sonar("toque"); abrirMision(nivel, mision.idx, false, true); });
   const saltar = crear("button", "salida", "Saltar");
   saltar.addEventListener("click", () => {
@@ -552,6 +555,7 @@ function tarjetaEjercicio(nivel, ej, idx) {
     avisar("Actividad saltada, sin XP. Puedes volver a ella cuando quieras desde el índice.");
     avanzar(nivel);
   });
+  salidas.appendChild(repetir);
   salidas.appendChild(reiniciar);
   salidas.appendChild(saltar);
 
@@ -757,6 +761,7 @@ function ventanaQC(opciones) {
     }, 0);
     items.forEach(item => {
       const b = crear("button", "qc-item");
+      if (anclaje.destacar && item.id === anclaje.destacar) b.classList.add("pista-foco");
       b.appendChild(crear("span", null, item.t));
       if (item.k) b.appendChild(crear("span", "qc-tecla", item.k));
       else if (item.sub) b.appendChild(crear("span", "qc-tecla qc-sub", "▸"));
@@ -954,10 +959,12 @@ function montarInterfaz(zona, ej, api) {
         I.contextual,
         item => {
           if (cerrado) return;
-          if (destinoCodigo && nombre !== destinoCodigo) return api.fallo("Estás operando sobre " + nombre + ", revisa sobre qué código hay que actuar.");
-          if (!coincide(arbolVacio ? "arbol" : "codigo:" + nombre, item.id)) return api.fallo(corto(item.t, 40) + " no resuelve lo que se pidió.");
+          if (destinoCodigo && !ej.codigoLibre && nombre !== destinoCodigo) return api.fallo("Estás operando sobre " + nombre + ", revisa sobre qué código hay que actuar.");
+          const clave = arbolVacio ? "arbol" : "codigo:" + (ej.codigoLibre ? destinoCodigo : nombre);
+          if (!coincide(clave, item.id)) return api.fallo(corto(item.t, 40) + " no resuelve lo que se pidió.");
           acertar();
-        });
+        },
+        ej.guiado ? principal[1] : null);
     };
 
     if (arbolVacio) {
@@ -1018,7 +1025,18 @@ function montarGuia(zona, ej, api) {
       via.appendChild(ol);
       sec.appendChild(via);
     });
-    if (b.img && (b.img.src || b.img.titulo)) {
+    if (b.video) {
+      const marco = crear("div", "video-marco");
+      const ifr = document.createElement("iframe");
+      ifr.src = "https://www.youtube-nocookie.com/embed/" + b.video;
+      ifr.title = b.titulo || "";
+      ifr.allowFullscreen = true; ifr.loading = "lazy";
+      marco.appendChild(ifr);
+      const fig = crear("figure", "medio medio-suelto");
+      fig.appendChild(marco);
+      if (b.pieVideo) fig.appendChild(crear("figcaption", null, b.pieVideo));
+      sec.appendChild(fig);
+    } else if (b.img && (b.img.src || b.img.titulo)) {
       const img = imagenOpcional(b.img,
         "Guarda la imagen en assets/img/ y escribe su ruta en el campo src de este bloque, dentro de assets/contenido.js");
       if (img) sec.appendChild(img);
@@ -1125,6 +1143,7 @@ function montarCodificar(zona, ej, api) {
 
   const lateral = crear("div", "qc-lateral");
   lateral.appendChild(listaDocumentos(I.archivos, 0));
+  const libre = !!(ej.solucion && ej.solucion.libre);
   const arbol = arbolCodigos(ej.codigos, (c, boton) => {
     if (cerrado) return;
     if (seleccion.size === 0) {
@@ -1134,6 +1153,7 @@ function montarCodificar(zona, ej, api) {
     arbol.querySelectorAll(".qc-codigo").forEach(x => x.classList.remove("elegido"));
     boton.classList.add("elegido");
     codigoSel = c;
+    refrescarFoco();
   });
   lateral.appendChild(arbol);
   cuerpo.appendChild(lateral);
@@ -1152,6 +1172,7 @@ function montarCodificar(zona, ej, api) {
       if (cerrado) return;
       if (seleccion.has(i)) { seleccion.delete(i); seg.classList.remove("sel"); }
       else { seleccion.add(i); seg.classList.add("sel"); }
+      refrescarFoco();
     });
     seg.addEventListener("contextmenu", ev => {
       ev.preventDefault(); ev.stopPropagation();
@@ -1173,11 +1194,25 @@ function montarCodificar(zona, ej, api) {
       "Menú del texto seleccionado",
       "En QualCoder este menú se abre con clic derecho sobre el texto que acabas de seleccionar.",
       I.contextual_texto,
-      item => usar(item.id));
+      item => usar(item.id),
+      ej.guiado ? (ej.solucion.accion || "marcar") : null);
   }
 
   function tramoOk() {
+    if (libre) return seleccion.size > 0;
     return ej.solucion.segmentos.length === seleccion.size && ej.solucion.segmentos.every(i => seleccion.has(i));
+  }
+
+  // En las lecciones guiadas se resalta el siguiente elemento que hay que tocar.
+  function refrescarFoco() {
+    if (!ej.guiado || cerrado) return;
+    filas.forEach((f, i) => f.seg.classList.toggle("pista-foco",
+      !tramoOk() && !libre && ej.solucion.segmentos.indexOf(i) !== -1 && !seleccion.has(i)));
+    arbol.querySelectorAll(".qc-codigo").forEach(b => {
+      const toca = tramoOk() && !codigoSel && (ej.solucion.accion || "marcar") === "marcar" &&
+        (libre || b.dataset.nombre === (ej.codigos.find(c => c.id === ej.solucion.codigo) || {}).nombre);
+      b.classList.toggle("pista-foco", !!toca);
+    });
   }
 
   function pintar(color, etiqueta) {
@@ -1188,7 +1223,7 @@ function montarCodificar(zona, ej, api) {
         f.seg.style.background = tinte(color, .5);
         f.margen.style.background = color;
         f.margen.classList.add("con-codigo");
-        if (i === Math.min.apply(null, ej.solucion.segmentos)) {
+        if (i === Math.min.apply(null, Array.from(seleccion))) {
           const et = crear("span", "qc-etiqueta-margen", corto(etiqueta, 26));
           et.style.background = color;
           et.style.color = claro(color) ? "#16263C" : "#fff";
@@ -1213,7 +1248,7 @@ function montarCodificar(zona, ej, api) {
         : "Marcar asigna un código. Aquí se pedía dejar una nota sin código.");
       if (!codigoSel) return api.aviso("Elige antes el código en el árbol, es el que se aplica al marcar.");
       if (!tramoOk()) return api.fallo("Revisa el tramo, el sentido queda incompleto o de más.");
-      if (codigoSel.id !== ej.solucion.codigo) return api.fallo("El tramo está bien elegido, el código no.");
+      if (!libre && codigoSel.id !== ej.solucion.codigo) return api.fallo("El tramo está bien elegido, el código no.");
       cerrado = true;
       pintar(CURSO.paleta[codigoSel.color] || codigoSel.color, codigoSel.nombre);
       return api.resuelto("Segmento codificado. En el margen queda la franja del color del código, como en el programa.");
@@ -1223,7 +1258,8 @@ function montarCodificar(zona, ej, api) {
       if (accionEsperada !== "invivo") return api.fallo("El código in vivo crea una etiqueta nueva con el texto seleccionado. Aquí se pedía otra acción.");
       if (!tramoOk()) return api.fallo("Revisa el tramo. El nombre del código va a ser exactamente lo que selecciones.");
       cerrado = true;
-      const nombre = "\"" + ej.texto[ej.solucion.segmentos[0]].replace(/^[,;\s]+|[.,;\s]+$/g, "") + "\"";
+      const primero = libre ? Math.min.apply(null, Array.from(seleccion)) : ej.solucion.segmentos[0];
+      const nombre = "\"" + ej.texto[primero].replace(/^[,;\s]+|[.,;\s]+$/g, "") + "\"";
       pintar(CURSO.paleta.amarillo, nombre);
       const li = crear("li");
       const b = crear("button", "qc-codigo elegido");
@@ -1251,6 +1287,7 @@ function montarCodificar(zona, ej, api) {
     }
   }
 
+  refrescarFoco();
   const guia = cajaPasos(ej);
   if (guia) zona.appendChild(guia);
   zona.appendChild(marco.ventana);
@@ -1310,6 +1347,11 @@ function montarAsistente(zona, ej, api) {
   cuerpo.appendChild(derecha);
   ventana.appendChild(cuerpo);
 
+  function siguienteColumna() {
+    const pendiente = ej.columnas.filter(c => !ubicacion[c.t]);
+    return pendiente.length ? pendiente[0] : null;
+  }
+
   function pintarLista() {
     lista.innerHTML = "";
     if (ej.columnas.every(c => ubicacion[c.t])) {
@@ -1319,6 +1361,8 @@ function montarAsistente(zona, ej, api) {
       if (ubicacion[c.t]) return;
       const li = crear("li");
       const b = crear("button", "asistente-col" + (elegido === c.t ? " elegido" : ""), c.t);
+      const toca = siguienteColumna();
+      if (ej.guiado && !elegido && toca && toca.t === c.t) b.classList.add("pista-foco");
       b.addEventListener("click", () => { elegido = c.t; pintarTodo(); });
       li.appendChild(b);
       lista.appendChild(li);
@@ -1327,6 +1371,8 @@ function montarAsistente(zona, ej, api) {
 
   function pintarCajas() {
     ej.destinos.forEach(d => {
+      const col = elegido ? ej.columnas.find(c => c.t === elegido) : null;
+      cajas[d.id].classList.toggle("pista-foco", !!(ej.guiado && col && col.destino === d.id));
       cajas[d.id].innerHTML = "";
       const dentro = ej.columnas.filter(c => ubicacion[c.t] === d.id);
       if (!dentro.length) {
@@ -1607,23 +1653,31 @@ function montarClasificar(zona, ej, api) {
   revolver(ej.items.slice()).forEach(item => {
     const b = crear("button", "chip", item.t);
     b.dataset.cat = item.cat;
+    if (item.porque) b.dataset.porque = item.porque;
     b.addEventListener("click", () => {
       banco.querySelectorAll(".chip").forEach(x => x.classList.remove("elegido"));
       b.classList.add("elegido"); elegido = b;
-      tablero.querySelectorAll(".categoria").forEach(c => c.classList.add("destino"));
+      tablero.querySelectorAll(".categoria").forEach(c => {
+        c.classList.add("destino");
+        c.classList.toggle("pista-foco", !!(ej.guiado && c.dataset.cat === item.cat));
+      });
     });
     banco.appendChild(b);
   });
   ej.categorias.forEach(cat => {
     const caja = crear("div", "categoria");
+    caja.dataset.cat = cat.id;
     caja.appendChild(crear("h3", null, cat.nombre));
     const lista = crear("ul"); caja.appendChild(lista);
     caja.addEventListener("click", () => {
       if (!elegido) return;
       if (elegido.dataset.cat === cat.id) {
-        lista.appendChild(crear("li", null, elegido.textContent));
+        const li = crear("li");
+        li.appendChild(crear("span", "item-texto", elegido.textContent));
+        if (elegido.dataset.porque) li.appendChild(crear("span", "item-porque", elegido.dataset.porque));
+        lista.appendChild(li);
         elegido.remove(); elegido = null; colocados++;
-        tablero.querySelectorAll(".categoria").forEach(c => c.classList.remove("destino"));
+        tablero.querySelectorAll(".categoria").forEach(c => { c.classList.remove("destino"); c.classList.remove("pista-foco"); });
         if (colocados === ej.items.length) api.resuelto("Sistema armado. Así se vería el árbol con sus categorías.");
       } else {
         caja.classList.add("mal"); setTimeout(() => caja.classList.remove("mal"), 500);
@@ -1632,6 +1686,8 @@ function montarClasificar(zona, ej, api) {
     });
     tablero.appendChild(caja);
   });
+  const guia = cajaPasos(ej);
+  if (guia) zona.appendChild(guia);
   zona.appendChild(banco); zona.appendChild(tablero);
 }
 
@@ -1723,6 +1779,12 @@ function pasosDe(ej) {
     });
     return pasos;
   }
+  if (ej.tipo === "clasificar") {
+    return ["Toca un código en la lista de arriba.",
+            "Toca después la categoría donde crees que encaja.",
+            "Si acierta, el código se coloca dentro y aparece el porqué debajo de su nombre.",
+            "Repite hasta que la lista quede vacía."];
+  }
   if (ej.tipo === "asistente") {
     return ["Selecciona una columna en la lista de la izquierda.",
             "Pulsa la flecha del grupo al que pertenece, o toca su recuadro.",
@@ -1749,13 +1811,13 @@ function pasosDe(ej) {
 }
 
 function cajaPasos(ej) {
-  const pasos = pasosDe(ej);
+  const pasos = ej.pasosGuiados || pasosDe(ej);
   if (!pasos || !pasos.length) return null;
-  const cont = crear("div", "instructivo");
-  const btn = crear("button", "instructivo-btn", "Ver los pasos");
+  const cont = crear("div", "instructivo" + (ej.guiado ? " instructivo-abierto" : ""));
+  const btn = crear("button", "instructivo-btn", ej.guiado ? "Ocultar los pasos" : "Ver los pasos");
   const lista = crear("ol", "instructivo-lista");
   pasos.forEach(t => lista.appendChild(crear("li", null, t)));
-  lista.hidden = true;
+  lista.hidden = !ej.guiado;
   btn.addEventListener("click", () => {
     lista.hidden = !lista.hidden;
     btn.textContent = lista.hidden ? "Ver los pasos" : "Ocultar los pasos";
