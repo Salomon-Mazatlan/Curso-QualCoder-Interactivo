@@ -525,7 +525,7 @@ const CURSO = {
             { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en el repositorio oficial de QualCoder." }
           ],
           consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel.",
-          consejoImagen: { src: "assets/img/1_2_Sistema.png", titulo: "Verificar Sistema en Windows", pie: "" }
+          consejoImagen: { src: "assets/img/1_3_Descarga.png", titulo: "El repositorio oficial y su sección de versiones", pie: "" }
         },
         /* 1.4 */ {
           titulo: "VLC, ffmpeg y Zotero, cómo se instalan",
