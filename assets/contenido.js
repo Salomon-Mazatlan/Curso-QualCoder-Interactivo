@@ -1538,7 +1538,7 @@ const CURSO = {
             { id: "v3", nombre: "Naturalización del sacrificio", color: "violeta" }
           ],
           solucion: { segmentos: [1], accion: "invivo" },
-          consejo: "Usa el código in vivo con cuentagotas, dos o tres por entrevista como mucho. Si todas las etiquetas salen del habla de cada persona, no queda nada que comparar entre casos.",
+          consejo: "Utiliza los códigos In Vivo en la fase inicial del análisis cuando necesites priorizar y honrar la voz directa de los participantes, capturando sus palabras exactas, jerga o expresiones evocadoras sin imponer teorías o sesgos del investigador (Adu, 2019; Charmaz, 2014; Miles et al., 2014; Saldaña, 2021).",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un código in vivo entre comillas en el árbol", pie: "" }
         },
         /* 6.8 */ {
