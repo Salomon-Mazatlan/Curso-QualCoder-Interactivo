@@ -460,9 +460,9 @@ const CURSO = {
               texto: "Hay dos archivos, el instalador (1a) y el portable (1b). El portable arranca sin instalar nada, tarda unos segundos la primera vez porque descomprime en memoria. El instalador deja el acceso directo y la entrada en el menú de inicio.",
               pasos: [
                 "1a. Descarga el archivo Win_Qualcoder-4.0-beta_INSTALLER.exe",
-                "2a. Ejecútalo y sige los pasos de instalación. (Si aparece la pantalla azul de Windows, la resolvemos en la lección 1.5.)",
+                "2a. Ejecútalo y sigue los pasos de instalación. (Si aparece la pantalla azul de Windows, la resolvemos en la lección siguiente.)",
                 "3a. Finalizada la instalación, puedes iniciar el programa desde el acceso directo o en menú de Windows.",
-                "1b. Descarga el archivo Win_Qualcoder-4.0-beta_PORTABLE.exe"
+                "1b. Descarga el archivo Win_Qualcoder-4.0-beta_PORTABLE.exe",
                 "2b. Ejecútalo, la primera vez suele tardar unos segundos adicionales."
               ],
               img: { src: "assets/img/1_1_Instalar_Abrir.png", titulo: "Los archivos de la versión para Windows", pie: "" }
@@ -472,6 +472,50 @@ const CURSO = {
           dice: "Con el programa abierto ya se puede trabajar. Lo que sigue es entender qué descargaste y qué le falta para el material audiovisual."
         },
         /* 1.2 */ {
+          titulo: "La advertencia del sistema, cómo se resuelve",
+          tipo: "guia",
+          xp: 10,
+          instruccion: "La primera vez que lo abras, el sistema va a protestar. Así se resuelve, y solo hace falta hacerlo una vez.",
+          bloques: [
+            {
+              titulo: "Qué está pasando",
+              texto: "Windows y macOS revisan si el programa viene firmado con un certificado de desarrollador. Esos certificados cuestan dinero cada año y un proyecto libre mantenido por voluntarios no los paga, así que el sistema avisa de que no reconoce a quien lo hizo. El aviso habla del certificado, no del contenido.",
+              pasos: [],
+              img: { src: "assets/img/ejemplo.png", titulo: "La pantalla azul de Windows protegió tu PC", pie: "" }
+            },
+            {
+              titulo: "Windows, la pantalla azul de SmartScreen",
+              texto: "Aparece un recuadro azul que dice que Windows protegió tu PC y a primera vista solo ofrece el botón No ejecutar. El botón que hace falta está escondido.",
+              pasos: [
+                "En el recuadro azul, haz clic en Más información.",
+                "Se despliega el nombre del archivo y aparece el botón Ejecutar de todas formas.",
+                "Haz clic en ese botón. La próxima vez ya no vuelve a preguntar.",
+                "Si el antivirus lo bloquea antes, añade la carpeta de QualCoder a sus excepciones."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "El enlace Más información y el botón Ejecutar de todas formas", pie: "" }
+            },
+            {
+              titulo: "macOS, Gatekeeper",
+              texto: "El sistema dice que no puede comprobar el desarrollador y cierra la aplicación. La autorización se da desde los ajustes del sistema.",
+              pasos: [
+                "Intenta abrir QualCoder una primera vez y acepta el aviso.",
+                "Abre Ajustes del sistema, Privacidad y seguridad.",
+                "Al final de la sección Seguridad aparece el aviso de que se impidió abrir QualCoder, con el botón Abrir de todos modos.",
+                "Confirma con tu contraseña. Solo hace falta la primera vez."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "Privacidad y seguridad en macOS con el botón Abrir de todos modos", pie: "" }
+            },
+            {
+              titulo: "Si prefieres no saltarte el aviso",
+              texto: "La alternativa que proponen los propios desarrolladores es instalar desde el código fuente. Se descarga el código, se ve lo que se ejecuta y no hay ningún binario sin firmar de por medio. Es la ventaja del software abierto, y en este caso no es retórica.",
+              pasos: [],
+              img: { src: "assets/img/ejemplo.png", titulo: "", pie: "" }
+            }
+          ],
+          boton: "Listo, seguir",
+          dice: "Ese aviso es el trámite de entrada de casi todo el software libre de escritorio."
+        },
+        /* 1.3 */ {
           titulo: "Qué paquete elegir",
           tipo: "quiz",
           xp: 10,
@@ -484,7 +528,7 @@ const CURSO = {
           consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits y, en Mac, si el procesador es Apple Silicon o Intel.",
           consejoImagen: { src: "assets/img/1_2_Sistema.png", titulo: "Verificar Sistema en Windows", pie: "" }
         },
-        /* 1.3 */ {
+        /* 1.4 */ {
           titulo: "VLC, ffmpeg y Zotero, cómo se instalan",
           tipo: "guia",
           xp: 10,
@@ -535,7 +579,7 @@ const CURSO = {
           boton: "Entendido, seguir",
           dice: "Con eso queda claro qué enciende cada pieza. Ahora comprueba si te quedó el mapa completo."
         },
-        /* 1.4 */ {
+        /* 1.5 */ {
           titulo: "Para qué sirve cada programa externo",
           tipo: "parejas",
           xp: 15,
@@ -549,50 +593,6 @@ const CURSO = {
           ],
           consejo: "Instala VLC y ffmpeg aunque tu proyecto de hoy sea solo de texto. Cuando llegue la primera entrevista grabada no vas a querer detenerte a resolver instalaciones.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "VLC y ffmpeg ya instalados en el sistema", pie: "" }
-        },
-        /* 1.5 */ {
-          titulo: "La advertencia del sistema, cómo se resuelve",
-          tipo: "guia",
-          xp: 10,
-          instruccion: "La primera vez que lo abras, el sistema va a protestar. Así se resuelve, y solo hace falta hacerlo una vez.",
-          bloques: [
-            {
-              titulo: "Qué está pasando",
-              texto: "Windows y macOS revisan si el programa viene firmado con un certificado de desarrollador. Esos certificados cuestan dinero cada año y un proyecto libre mantenido por voluntarios no los paga, así que el sistema avisa de que no reconoce a quien lo hizo. El aviso habla del certificado, no del contenido.",
-              pasos: [],
-              img: { src: "assets/img/ejemplo.png", titulo: "La pantalla azul de Windows protegió tu PC", pie: "" }
-            },
-            {
-              titulo: "Windows, la pantalla azul de SmartScreen",
-              texto: "Aparece un recuadro azul que dice que Windows protegió tu PC y a primera vista solo ofrece el botón No ejecutar. El botón que hace falta está escondido.",
-              pasos: [
-                "En el recuadro azul, haz clic en Más información.",
-                "Se despliega el nombre del archivo y aparece el botón Ejecutar de todas formas.",
-                "Haz clic en ese botón. La próxima vez ya no vuelve a preguntar.",
-                "Si el antivirus lo bloquea antes, añade la carpeta de QualCoder a sus excepciones."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El enlace Más información y el botón Ejecutar de todas formas", pie: "" }
-            },
-            {
-              titulo: "macOS, Gatekeeper",
-              texto: "El sistema dice que no puede comprobar el desarrollador y cierra la aplicación. La autorización se da desde los ajustes del sistema.",
-              pasos: [
-                "Intenta abrir QualCoder una primera vez y acepta el aviso.",
-                "Abre Ajustes del sistema, Privacidad y seguridad.",
-                "Al final de la sección Seguridad aparece el aviso de que se impidió abrir QualCoder, con el botón Abrir de todos modos.",
-                "Confirma con tu contraseña. Solo hace falta la primera vez."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "Privacidad y seguridad en macOS con el botón Abrir de todos modos", pie: "" }
-            },
-            {
-              titulo: "Si prefieres no saltarte el aviso",
-              texto: "La alternativa que proponen los propios desarrolladores es instalar desde el código fuente. Se descarga el código, se ve lo que se ejecuta y no hay ningún binario sin firmar de por medio. Es la ventaja del software abierto, y en este caso no es retórica.",
-              pasos: [],
-              img: { src: "assets/img/ejemplo.png", titulo: "", pie: "" }
-            }
-          ],
-          boton: "Listo, seguir",
-          dice: "Ese aviso es el trámite de entrada de casi todo el software libre de escritorio."
         },
         /* 1.6 */ {
           titulo: "Qué significa esa advertencia",
