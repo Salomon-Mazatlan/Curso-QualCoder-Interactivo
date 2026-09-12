@@ -728,3 +728,29 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 }
 .asistente-casillas .campo-etiqueta{color:var(--tinta);line-height:1.35}
 .asistente-casillas input{margin-top:2px}
+
+/* ---------- support and feedback ---------- */
+
+.apoyo-amplio{
+  margin-top:26px;padding:18px 20px;border:1px solid var(--linea);border-radius:var(--radio);
+  background:var(--papel);text-align:left;
+}
+.apoyo-amplio h3{margin:0 0 6px;font-size:.95rem;font-weight:600}
+.apoyo-amplio .apoyo-texto{margin:0 0 10px;font-size:.9rem;line-height:1.5;color:var(--tinta-media);max-width:64ch}
+.apoyo-enlaces{display:flex;flex-wrap:wrap;gap:8px 16px}
+.apoyo-enlace{font-size:.86rem;color:var(--turquesa)}
+.apoyo-enlace:hover{color:var(--tinta)}
+
+.apoyo-breve{
+  margin-top:18px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;
+  font-size:.84rem;color:var(--tinta-media);line-height:1.45;
+}
+.apoyo-breve .apoyo-enlace{white-space:nowrap}
+
+.comentarios{
+  margin:12px 0 0;font-size:.86rem;color:var(--tinta-media);line-height:1.5;text-align:left;
+}
+.comentarios a{color:var(--turquesa)}
+.comentarios-vacio{font-style:italic;opacity:.8}
+
+@media print{ .apoyo, .comentarios{display:none} }

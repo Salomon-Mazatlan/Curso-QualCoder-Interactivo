@@ -369,6 +369,9 @@ function pintarMapa() {
   }
   cont.appendChild(final);
 
+  const apoyo = bloqueApoyo(false);
+  if (apoyo) cont.appendChild(apoyo);
+
   zona.appendChild(cont);
   pintarHud();
   pintarNav();
@@ -677,6 +680,11 @@ function pantallaFin(n) {
   mapa.addEventListener("click", () => { location.hash = ""; });
   fila.appendChild(otra); fila.appendChild(mapa);
   c.appendChild(fila);
+
+  const apoyo = bloqueApoyo(true);
+  if (apoyo) c.appendChild(apoyo);
+  const comentarios = bloqueComentarios();
+  if (comentarios) c.appendChild(comentarios);
   return c;
 }
 
@@ -1821,6 +1829,58 @@ function pintarConstancia() {
 
   zona.appendChild(hoja);
   pintarHud();
+}
+
+/* ---------- support and feedback ---------- */
+
+// Invitación a apoyar el curso. "amplio" para el resumen de misión, corto para el mapa.
+function bloqueApoyo(amplio) {
+  const a = CURSO.apoyo;
+  if (!a) return null;
+  const caja = crear("section", "apoyo" + (amplio ? " apoyo-amplio" : " apoyo-breve"));
+  if (amplio) {
+    caja.appendChild(crear("h3", null, a.titulo));
+    caja.appendChild(crear("p", "apoyo-texto", a.texto));
+    if ((a.enlaces || []).length) {
+      const fila = crear("div", "apoyo-enlaces");
+      a.enlaces.forEach(e => {
+        const enlace = document.createElement("a");
+        enlace.href = e.url; enlace.target = "_blank"; enlace.rel = "noopener";
+        enlace.className = "apoyo-enlace";
+        enlace.textContent = e.t;
+        fila.appendChild(enlace);
+      });
+      caja.appendChild(fila);
+    }
+  } else {
+    caja.appendChild(crear("span", "apoyo-texto", a.breve || a.texto));
+    if ((a.enlaces || []).length) {
+      const enlace = document.createElement("a");
+      enlace.href = a.enlaces[0].url; enlace.target = "_blank"; enlace.rel = "noopener";
+      enlace.className = "apoyo-enlace";
+      enlace.textContent = "Cómo apoyar";
+      caja.appendChild(enlace);
+    }
+  }
+  return caja;
+}
+
+// Renglón con el formulario de comentarios.
+function bloqueComentarios() {
+  const c = CURSO.comentarios;
+  if (!c) return null;
+  const caja = crear("p", "comentarios");
+  caja.appendChild(crear("span", null, c.texto + " "));
+  if (c.url) {
+    const enlace = document.createElement("a");
+    enlace.href = c.url; enlace.target = "_blank"; enlace.rel = "noopener";
+    enlace.textContent = c.etiqueta || "Abrir el formulario";
+    caja.appendChild(enlace);
+  } else {
+    caja.appendChild(crear("span", "comentarios-vacio",
+      "Pon aquí el enlace de tu formulario de Google, en el campo comentarios.url de assets/contenido.js"));
+  }
+  return caja;
 }
 
 /* ---------- references ---------- */
