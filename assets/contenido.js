@@ -440,7 +440,7 @@ const CURSO = {
       `,
       ejercicios: [
         /* 1.1 */ {
-          titulo: "Cómo se descarga e instala",
+          titulo: "Cómo se descarga e instala (Windows)",
           tipo: "guia",
           xp: 10,
           instruccion: "Antes de decidir nada, así se instala. Sigue los pasos que correspondan a tu sistema y vuelve aquí cuando lo tengas abierto.",
@@ -464,28 +464,6 @@ const CURSO = {
                 "La primera apertura tarda unos veinte segundos, es normal."
               ],
               img: { src: "assets/img/ejemplo.png", titulo: "Los archivos de la versión para Windows", pie: "" }
-            },
-            {
-              titulo: "macOS",
-              texto: "Hay dos paquetes distintos y hay que bajar el del procesador correcto. Apple Silicon son los chips M, Intel son los equipos anteriores a 2020 y algunos posteriores.",
-              pasos: [
-                "Comprueba tu procesador en el menú Apple, Acerca de este Mac.",
-                "Descarga el paquete arm64 si es Apple Silicon, o el x86_64 si es Intel.",
-                "Arrastra QualCoder a la carpeta Aplicaciones y ábrelo desde ahí."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El paquete de macOS y la carpeta Aplicaciones", pie: "" }
-            },
-            {
-              titulo: "Linux, desde el código fuente",
-              texto: "No hay paquete precompilado, se instala con Python. Los guiones del repositorio hacen el trabajo pesado, crean el entorno virtual e instalan las dependencias.",
-              pasos: [
-                "Instala Python en una versión reciente desde el gestor de paquetes de tu distribución.",
-                "Descarga el código del repositorio y descomprímelo en una carpeta.",
-                "Abre la terminal en esa carpeta y ejecuta el guion de instalación que trae el proyecto.",
-                "La instalación de dependencias tarda unos diez minutos, las bibliotecas de la capa de IA son grandes.",
-                "Entra en la subcarpeta del código y ejecuta el programa."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "La terminal durante la instalación", pie: "" }
             }
           ],
           boton: "Ya lo instalé, seguir",
