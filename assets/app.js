@@ -701,9 +701,14 @@ function cerrarMenuAbierto() {
 }
 
 function logoQC() {
-  const caja = crear("span", "qc-icono");
-  caja.appendChild(crear("b", "qc-icono-q", "Q"));
-  caja.appendChild(crear("b", "qc-icono-c", "C"));
+  const caja = crear("span", "qc-logo");
+  caja.innerHTML =
+    '<svg viewBox="0 0 34 22" width="26" height="17" role="img" aria-label="QualCoder">' +
+    '<rect x="1" y="1" width="32" height="20" rx="4" fill="#ffffff" stroke="#D6006E" stroke-width="2"/>' +
+    '<text x="10" y="16" text-anchor="middle" font-family="Familjen Grotesk, Segoe UI, sans-serif" ' +
+    'font-size="14" font-weight="700" fill="#101010">Q</text>' +
+    '<text x="23.5" y="16" text-anchor="middle" font-family="Familjen Grotesk, Segoe UI, sans-serif" ' +
+    'font-size="14" font-weight="700" fill="#D6006E">C</text></svg>';
   return caja;
 }
 
@@ -1154,6 +1159,7 @@ function montarCodificar(zona, ej, api) {
     boton.classList.add("elegido");
     codigoSel = c;
     refrescarFoco();
+    if ((ej.solucion.accion || "marcar") === "marcar") usar("marcar");
   });
   lateral.appendChild(arbol);
   cuerpo.appendChild(lateral);
@@ -1246,7 +1252,7 @@ function montarCodificar(zona, ej, api) {
       if (accionEsperada !== "marcar") return api.fallo(accionEsperada === "invivo"
         ? "Marcar aplica un código del árbol. Aquí se pedía crear la etiqueta con las palabras del texto."
         : "Marcar asigna un código. Aquí se pedía dejar una nota sin código.");
-      if (!codigoSel) return api.aviso("Elige antes el código en el árbol, es el que se aplica al marcar.");
+      if (!codigoSel) return api.aviso("Toca el código en el árbol, es el que se aplica al marcar.");
       if (!tramoOk()) return api.fallo("Revisa el tramo, el sentido queda incompleto o de más.");
       if (!libre && codigoSel.id !== ej.solucion.codigo) return api.fallo("El tramo está bien elegido, el código no.");
       cerrado = true;
@@ -1804,8 +1810,8 @@ function pasosDe(ej) {
               "Elige Anotar, tecla A. No se asigna ningún código y no entra en los informes."];
     }
     return ["Selecciona en el documento el tramo que vas a codificar.",
-            "Elige después el código en el árbol de códigos, en el panel izquierdo.",
-            "Haz clic derecho sobre la selección y elige Marcar, tecla Q."];
+            "Toca después el código en el árbol de códigos, a la izquierda. Con eso queda marcado.",
+            "En QualCoder ese segundo paso se confirma con la tecla Q, o con clic derecho sobre la selección y Marcar."];
   }
   return null;
 }

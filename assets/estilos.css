@@ -201,13 +201,8 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 }
 .qc-listo{border-color:var(--verde);box-shadow:0 0 0 2px rgba(95,160,90,.28)}
 .qc-titulo{background:#E3E9EE;border-radius:4px 4px 0 0;padding:6px 10px;font-size:.82rem;display:flex;align-items:center;gap:9px;border-bottom:1px solid #C0CCD6}
-.qc-icono{
-  display:inline-flex;align-items:center;justify-content:center;gap:0;
-  background:#fff;border:1.5px solid var(--magenta);border-radius:3px;
-  font-size:.66rem;font-weight:700;padding:2px 4px;letter-spacing:.5px;line-height:1;
-}
-.qc-icono-q{color:#101010}
-.qc-icono-c{color:var(--magenta)}
+.qc-logo{display:inline-flex;align-items:center;line-height:0;flex:0 0 auto}
+.qc-logo svg{display:block}
 .qc-nombre{flex:1}
 .qc-controles{color:#8A9AA8;letter-spacing:3px;font-size:.72rem}
 
