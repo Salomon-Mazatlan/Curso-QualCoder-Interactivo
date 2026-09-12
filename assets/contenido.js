@@ -449,16 +449,15 @@ const CURSO = {
         caminos. El <strong>paquete precompilado</strong>, que es un archivo listo para ejecutar y es la opción
         recomendada, y la <strong>instalación desde el código fuente</strong>, para quien necesite la versión de
         desarrollo, quiera contribuir o use un sistema sin paquete disponible.</p>
-        <p>En Windows hay ejecutable e instalador. En macOS hay dos paquetes, uno para Apple Silicon y otro
-        para Intel, y hay que bajar el que corresponde al procesador. En Linux la vía es el código fuente, con
-        instrucciones para Debian y derivadas, Fedora y Arch.</p>
+        <p>En Windows hay ejecutable portable e instalador. En macOS hay dos paquetes, uno para Apple Silicon y otro
+        para Intel, y hay que bajar el que corresponde al procesador.</p>
         <p>Tanto Windows como macOS avisan de que el programa viene de un desarrollador no identificado. No
-        indica ningún problema, los certificados que evitan ese aviso cuestan dinero y un proyecto mantenido
-        por voluntarios no los paga. En macOS se autoriza a mano desde los ajustes de privacidad y seguridad,
+        indica ningún problema, los certificados que evitan ese aviso cuestan dinero y QualCoder es un proyecto mantenido
+        por voluntarios. En macOS se autoriza a mano desde los ajustes de privacidad y seguridad,
         y solo la primera vez.</p>
         <p>Tres programas externos son opcionales y conviene tenerlos si vas a trabajar con audio y video.
-        VLC para reproducir, ffmpeg para la forma de onda y Zotero si vas a importar referencias por su API.
-        Sin ellos el programa funciona, solo se apagan esas funciones.</p>
+        VLC para reproducir (opcional), ffmpeg para la forma de onda y Zotero si vas a importar referencias directamente.
+        Sin ellos el programa funciona.</p>
       `,
       ejercicios: [
         /* 1.1 */ {
@@ -2318,7 +2317,7 @@ const CURSO = {
           titulo: "Abrir Codificar texto sin pistas",
           tipo: "interfaz",
           xp: 15,
-          instruccion: "Llegó la entrevista E04_Marta y ya está importada. Abre donde vas a marcarla.",
+          instruccion: "Llegó la entrevista E04_Marta y ya está importada. Abre donde vas a codificarla.",
           objetivo: "Abrir Codificar texto",
           ruta: ["codificar", "texto"],
           dice: "De memoria y sin pista, que es como se trabaja.",
