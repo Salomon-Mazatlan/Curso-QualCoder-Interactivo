@@ -782,7 +782,8 @@ function ventanaQC(opciones) {
 
   const pestanas = crear("div", "qc-pestanas-principales");
   I.pestanas.forEach(p => {
-    const activa = p.id === (opciones.pestana || (opciones.vista === "codificar" ? "codificar" : "registro"));
+    const porVista = { codificar: "codificar", gestionar: "gestionar" }[opciones.vista] || "registro";
+    const activa = p.id === (opciones.pestana || porVista);
     const b = crear("button", "qc-pestana-p" + (activa ? " activa" : ""), p.t);
     b.addEventListener("click", ev => {
       ev.stopPropagation(); cerrarMenus();
@@ -805,6 +806,38 @@ function panelBienvenida(texto) {
   return p;
 }
 
+// Iconos de línea para la barra del gestor de archivos.
+const ICONOS = {
+  doc: '<path d="M4 1.5h5l3 3v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1z"/><path d="M9 1.5v3h3"/>',
+  importar: '<path d="M4 1.5h5l3 3v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-11a1 1 0 0 1 1-1z"/><path d="M9 1.5v3h3"/><path d="M7.5 7v4"/><path d="M5.8 9.3 7.5 11l1.7-1.7"/>',
+  portapapeles: '<rect x="3.5" y="2.5" width="9" height="12" rx="1"/><rect x="6" y="1" width="4" height="2.6" rx=".6"/><path d="M5.8 7h4.4M5.8 9.5h4.4M5.8 12h2.6"/>',
+  lapiz: '<path d="M2.8 13.2 3.4 10.6 10.6 3.4l2 2-7.2 7.2z"/><path d="M9.6 4.4l2 2"/>',
+  enlace: '<path d="M6.5 9.5a3 3 0 0 0 4.2 0l1.6-1.6a3 3 0 0 0-4.2-4.2l-.8.8"/><path d="M9.5 6.5a3 3 0 0 0-4.2 0L3.7 8.1a3 3 0 0 0 4.2 4.2l.8-.8"/>',
+  enlace_roto: '<path d="M6.5 9.5a3 3 0 0 0 3 .7"/><path d="M9.5 6.5a3 3 0 0 0-3-.7"/><path d="M11 4.5l1.5-1.5M12.5 6h2M10 2.5v-2"/><path d="M4.5 11l-1.5 1.5M3 9.5H1M5.5 13v2"/>',
+  persona: '<circle cx="8" cy="5.5" r="2.5"/><path d="M3.5 13.5c0-2.5 2-4 4.5-4s4.5 1.5 4.5 4"/>',
+  lupa: '<circle cx="7" cy="7" r="4"/><path d="M10 10l3.5 3.5"/>',
+  variable: '<path d="M4.5 4.5l7 7M11.5 4.5l-7 7"/><path d="M2 2.5v11M14 2.5v11"/>',
+  pin: '<path d="M9.5 1.5 14 6l-2.5 1-2 4-4-4-4 2 1-4.5z"/>',
+  bajar: '<path d="M8 2.5v8"/><path d="M5 8l3 3 3-3"/><path d="M3 13.5h10"/>',
+  subir: '<path d="M8 13.5v-8"/><path d="M5 8l3-3 3 3"/><path d="M3 2.5h10"/>',
+  lista: '<path d="M3 4h10M3 8h7M3 12h4"/>',
+  tabla: '<rect x="2.5" y="3" width="11" height="10" rx="1"/><path d="M2.5 6.5h11M6.5 6.5v6.5"/>',
+  columnas: '<rect x="2.5" y="3" width="11" height="10" rx="1"/><path d="M6.5 3v10M10 3v10"/>',
+  copiar: '<rect x="5" y="5" width="8.5" height="9" rx="1"/><path d="M11 5V3a1 1 0 0 0-1-1H3.5a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h1.5"/>',
+  deshacer: '<path d="M4 7.5h6a3 3 0 0 1 0 6H6"/><path d="M6.5 5 4 7.5 6.5 10"/>',
+  basura: '<path d="M3.5 4.5h9"/><path d="M5.5 4.5V3a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v1.5"/><path d="M4.5 4.5l.7 9a1 1 0 0 0 1 .9h3.6a1 1 0 0 0 1-.9l.7-9"/>',
+  ayuda: '<circle cx="8" cy="8" r="6"/><path d="M6.3 6.3a1.8 1.8 0 1 1 2.2 2.2c-.4.2-.5.5-.5 1"/><path d="M8 11.8v.1"/>'
+};
+
+function iconoBarra(nombre) {
+  const trazo = ICONOS[nombre] || ICONOS.doc;
+  const env = document.createElement("span");
+  env.className = "qc-icono";
+  env.innerHTML = '<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" ' +
+    'stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">' + trazo + '</svg>';
+  return env;
+}
+
 // Módulo Gestionar archivos, con su barra de herramientas y su tabla.
 function panelArchivos(I, alClic) {
   const caja = crear("div", "qc-archivos");
@@ -812,7 +845,8 @@ function panelArchivos(I, alClic) {
   const barra = crear("div", "qc-barra-archivos");
   (I.barra_archivos || []).forEach(item => {
     if (item.grupo) barra.appendChild(crear("span", "qc-separador"));
-    const b = crear("button", "qc-herramienta-icono", item.icono);
+    const b = crear("button", "qc-herramienta-icono");
+    b.appendChild(iconoBarra(item.icono));
     b.title = item.t;
     b.setAttribute("aria-label", item.t);
     b.addEventListener("click", ev => { ev.stopPropagation(); alClic(item); });
@@ -827,7 +861,12 @@ function panelArchivos(I, alClic) {
 
   const tabla = crear("div", "qc-tabla");
   const cabecera = crear("div", "qc-tabla-cabecera");
-  ["Nombre", "Memo", "Fecha", "Caso"].forEach(c => cabecera.appendChild(crear("span", null, c + " ▽")));
+  ["Nombre", "Memo", "Fecha", "Caso"].forEach(c => {
+    const celda = crear("span");
+    celda.appendChild(crear("span", null, c));
+    celda.appendChild(crear("span", "qc-filtro", "▽"));
+    cabecera.appendChild(celda);
+  });
   tabla.appendChild(cabecera);
   tabla.appendChild(crear("div", "qc-tabla-vacia", "Todavía no hay ningún archivo en el proyecto."));
   caja.appendChild(tabla);

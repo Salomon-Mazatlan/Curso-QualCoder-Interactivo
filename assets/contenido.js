@@ -337,25 +337,25 @@ const CURSO = {
     ],
     // Barra de herramientas del gestor de archivos, de izquierda a derecha.
     barra_archivos: [
-      { id: "importar", icono: "🗎", t: "Importar archivos" },
-      { id: "encuesta", icono: "📋", t: "Importar encuesta" },
-      { id: "crear", icono: "✎", t: "Crear un archivo de texto nuevo" },
-      { id: "vincular", icono: "🔗", t: "Vincular un archivo externo" },
-      { id: "atributos", icono: "👤", t: "Asignar atributos" },
-      { id: "buscar", icono: "🔍", t: "Buscar dentro de los archivos" },
-      { id: "ver_vinculo", icono: "⛓", t: "Ver el vínculo del archivo" },
-      { id: "romper", icono: "⛓✕", t: "Romper el vínculo del archivo" },
-      { id: "variables", icono: "(x)", t: "Gestionar las variables de los archivos" },
-      { id: "fijar", icono: "📌", t: "Fijar la selección" },
-      { id: "exportar", icono: "⭳", t: "Exportar el archivo seleccionado", grupo: true },
-      { id: "salida", icono: "⭱", t: "Sacar el archivo del proyecto" },
-      { id: "orden", icono: "≡", t: "Ordenar la tabla", grupo: true },
-      { id: "columnas", icono: "▦", t: "Mostrar u ocultar columnas" },
-      { id: "anchos", icono: "▤", t: "Ajustar los anchos de columna" },
-      { id: "copiar", icono: "⧉", t: "Copiar la tabla", grupo: true },
-      { id: "deshacer", icono: "↶", t: "Deshacer" },
-      { id: "eliminar", icono: "🗑", t: "Eliminar el archivo del proyecto" },
-      { id: "ayuda", icono: "?", t: "Ayuda del módulo", grupo: true }
+      { id: "importar", icono: "importar", t: "Importar archivos" },
+      { id: "encuesta", icono: "portapapeles", t: "Importar encuesta" },
+      { id: "crear", icono: "lapiz", t: "Crear un archivo de texto nuevo" },
+      { id: "vincular", icono: "enlace", t: "Vincular un archivo externo" },
+      { id: "atributos", icono: "persona", t: "Asignar atributos" },
+      { id: "buscar", icono: "lupa", t: "Buscar dentro de los archivos" },
+      { id: "ver_vinculo", icono: "enlace", t: "Ver el vínculo del archivo" },
+      { id: "romper", icono: "enlace_roto", t: "Romper el vínculo del archivo" },
+      { id: "variables", icono: "variable", t: "Gestionar las variables de los archivos" },
+      { id: "fijar", icono: "pin", t: "Fijar la selección" },
+      { id: "exportar", icono: "bajar", t: "Exportar el archivo seleccionado", grupo: true },
+      { id: "salida", icono: "subir", t: "Sacar el archivo del proyecto" },
+      { id: "orden", icono: "lista", t: "Ordenar la tabla", grupo: true },
+      { id: "columnas", icono: "tabla", t: "Mostrar u ocultar columnas" },
+      { id: "anchos", icono: "columnas", t: "Ajustar los anchos de columna" },
+      { id: "copiar", icono: "copiar", t: "Copiar la tabla", grupo: true },
+      { id: "deshacer", icono: "deshacer", t: "Deshacer" },
+      { id: "eliminar", icono: "basura", t: "Eliminar el archivo del proyecto" },
+      { id: "ayuda", icono: "ayuda", t: "Ayuda del módulo", grupo: true }
     ],
     // Right-click menu over a code in the code tree.
     contextual: [
@@ -899,7 +899,7 @@ const CURSO = {
     /* ============================ 3 ============================ */
     {
       id: "m03",
-      titulo: "Archivos, casos y atributos",
+      titulo: "Archivos, casos, atributos y diarios",
       lema: "Primero el material, después cómo se ordena",
       definiciones: [
         { termino: "Caso",
@@ -1022,7 +1022,7 @@ const CURSO = {
           titulo: "Cómo se arman casos y atributos",
           tipo: "guia",
           xp: 10,
-          instruccion: "Casos y atributos se arman antes de codificar en serio. Así se hace.",
+          instruccion: "Casos, atributos y diarios se preparan antes de codificar en serio. Así se hace cada cosa.",
           bloques: [
             {
               titulo: "Crear un caso",
@@ -1055,6 +1055,16 @@ const CURSO = {
                 "Al terminar tendrás casos, atributos y un archivo por respuesta."
               ],
               img: { src: "assets/img/ejemplo.png", titulo: "El asistente de importación de encuestas", pie: "" }
+            },
+            {
+              titulo: "El diario del proyecto",
+              texto: "Es el único módulo que se abre en ventana propia, así que se puede escribir mientras se codifica.",
+              pasos: [
+                "Abre Gestionar y elige Diarios, atajo Alt+J.",
+                "Crea un diario metodológico y, si quieres, otro de campo.",
+                "Escribe la entrada del día con lo que decidiste y por qué."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "Un diario con una entrada fechada", pie: "" }
             }
           ],
           boton: "Entendido, seguir",
@@ -1085,6 +1095,18 @@ const CURSO = {
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de atributos del proyecto", pie: "" }
         },
         /* 3.8 */ {
+          titulo: "Abrir los diarios del proyecto",
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Terminaste la sesión y quieres dejar por escrito qué decidiste y por qué.",
+          objetivo: "Abrir los diarios del proyecto",
+          ruta: ["gestionar", "diarios"],
+          pista: "Se gestionan junto con los archivos, los casos y los atributos.",
+          dice: "Se pueden tener varios diarios, uno metodológico y otro de campo. Es el único módulo que se abre en ventana propia, así que puedes escribir mientras codificas.",
+          consejo: "Escribe en el diario aunque la sesión haya sido corta. Tres renglones con fecha valen más que una reconstrucción de memoria escrita seis meses después.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diario del proyecto con varias entradas fechadas", pie: "" }
+        },
+        /* 3.9 */ {
           titulo: "Archivo, caso, atributo y diario",
           tipo: "parejas",
           xp: 15,
@@ -1099,7 +1121,7 @@ const CURSO = {
           consejo: "Si dudas de si algo es caso o atributo, pregúntate si habla de una persona entera o de un rasgo suyo. La persona es el caso, el rasgo es el atributo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un caso con sus atributos asignados", pie: "" }
         },
-        /* 3.9 */ {
+        /* 3.10 */ {
           titulo: "Qué hace falta para comparar",
           tipo: "quiz",
           xp: 10,
@@ -1613,7 +1635,7 @@ const CURSO = {
     /* ============================ 7 ============================ */
     {
       id: "m07",
-      titulo: "Anotar, memos y diario",
+      titulo: "Anotar y memos",
       lema: "Lo que no cabe en un código",
       definiciones: [
         { termino: "Memo analítico",
@@ -1669,16 +1691,6 @@ const CURSO = {
                 "Escribe la razón de la decisión mientras la tienes fresca."
               ],
               img: { src: "assets/img/ejemplo.png", titulo: "El memo de una codificación", pie: "" }
-            },
-            {
-              titulo: "El diario del proyecto",
-              texto: "Es el único módulo que se abre en ventana propia, así que se puede escribir mientras se codifica.",
-              pasos: [
-                "Abre Gestionar y elige Diarios, atajo Alt+J.",
-                "Crea un diario metodológico y, si quieres, otro de campo.",
-                "Escribe la entrada del día con lo que decidiste y por qué."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "Un diario con una entrada fechada", pie: "" }
             }
           ],
           boton: "Entendido, seguir",
@@ -1718,18 +1730,6 @@ const CURSO = {
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El memo de un código con su definición y sus ejemplos", pie: "" }
         },
         /* 7.4 */ {
-          titulo: "Abrir los diarios del proyecto",
-          tipo: "interfaz",
-          xp: 15,
-          instruccion: "Terminaste la sesión y quieres dejar por escrito qué decidiste y por qué.",
-          objetivo: "Abrir los diarios del proyecto",
-          ruta: ["gestionar", "diarios"],
-          pista: "Se gestionan junto con los archivos, los casos y los atributos.",
-          dice: "Se pueden tener varios diarios, uno metodológico y otro de campo. Es el único módulo que se abre en ventana propia, así que puedes escribir mientras codificas.",
-          consejo: "Escribe en el diario aunque la sesión haya sido corta. Tres renglones con fecha valen más que una reconstrucción de memoria escrita seis meses después.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diario del proyecto con varias entradas fechadas", pie: "" }
-        },
-        /* 7.5 */ {
           titulo: "Memo del código o de la codificación",
           tipo: "quiz",
           xp: 10,
