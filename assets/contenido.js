@@ -24,7 +24,7 @@ const CURSO = {
   comentarios: {
     texto: "¿Algo que mejorar, un error, una duda? Cuéntamelo en el formulario de comentarios.",
     etiqueta: "Abrir el formulario",
-    url: "https://forms.gle/jF4ahFLY3kwsA4BQ9"
+    url: "https://docs.google.com/forms/d/e/1FAIpQLScumCP4UT7oguOUyNmksELmtQKHoB7I9rWA0i2ehmrR8RwCCQ/viewform"
   },
 
   emblema: { src: "assets/img/emblema_qualcoder.jpg", alt: "QualCoder, análisis cualitativo de datos, CAQDAS de código abierto" },
