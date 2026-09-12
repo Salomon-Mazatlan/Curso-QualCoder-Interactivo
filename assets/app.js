@@ -165,6 +165,46 @@ function abrirMenuContextual(titulo, nota, items, alClic, destacar) {
   abrirCapa(caja, "capa-menu", "Cerrar el menú");
 }
 
+// Ventana emergente con un solo campo, para continuar una acción del simulador.
+function abrirVentanaCampo(config, alAceptar, alFallar) {
+  const caja = crear("div", "qc dialogo ventana-flotante");
+  const titulo = crear("div", "qc-titulo");
+  titulo.appendChild(logoQC());
+  titulo.appendChild(crear("span", "qc-nombre", config.titulo || ""));
+  titulo.appendChild(crear("span", "qc-controles", "✕"));
+  caja.appendChild(titulo);
+
+  const cuerpo = crear("div", "qc-formulario");
+  const fila = crear("label", "campo");
+  fila.appendChild(crear("span", "campo-etiqueta", config.etiqueta || ""));
+  const campo = document.createElement("input");
+  campo.type = "text";
+  campo.placeholder = config.marcador || "";
+  fila.appendChild(campo);
+  cuerpo.appendChild(fila);
+  caja.appendChild(cuerpo);
+
+  const pie = crear("div", "qc-botones");
+  const cancelar = crear("button", "qc-boton", "Cancelar");
+  cancelar.addEventListener("click", () => { cerrarLupa(); if (alFallar) alFallar("cancelar"); });
+  const aceptar = crear("button", "qc-boton primario", config.boton || "Aceptar");
+  aceptar.addEventListener("click", () => {
+    const valor = campo.value.trim();
+    if (valor.length < 2) { campo.focus(); return avisar("Escribe el nombre del código."); }
+    if (config.correcto && !config.correcto.some(x => valor.toLowerCase().indexOf(x) !== -1)) {
+      campo.focus();
+      if (alFallar) alFallar("nombre");
+      return;
+    }
+    cerrarLupa();
+    alAceptar(valor);
+  });
+  pie.appendChild(cancelar); pie.appendChild(aceptar);
+  caja.appendChild(pie);
+  abrirCapa(caja, "capa-ventana", "Cerrar la ventana");
+  setTimeout(() => campo.focus(), 0);
+}
+
 // Small card with the full reference, so nobody loses their place in the mission.
 function abrirReferencia(clave, cita) {
   const caja = crear("div", "tarjeta-ref");
@@ -944,10 +984,36 @@ function montarInterfaz(zona, ej, api) {
     }
   });
 
+  let arbolLista = null;
+
   function acertar() {
+    if (ej.ventanaTras) return abrirVentanaTras();
     cerrado = true;
     marco.ventana.classList.add("qc-listo");
     api.resuelto(ej.dice);
+  }
+
+  function abrirVentanaTras() {
+    abrirVentanaCampo(ej.ventanaTras, nombre => {
+      cerrado = true;
+      if (arbolLista) {
+        const li = crear("li");
+        const b = crear("button", "qc-codigo elegido");
+        const punto = crear("span", "punto");
+        punto.style.background = CURSO.paleta[ej.ventanaTras.color] || CURSO.paleta.coral;
+        b.appendChild(punto);
+        b.appendChild(crear("span", null, nombre));
+        li.appendChild(b);
+        arbolLista.appendChild(li);
+        const vacio = marco.ventana.querySelector(".qc-arbol-vacio");
+        if (vacio) vacio.remove();
+      }
+      marco.ventana.classList.add("qc-listo");
+      api.resuelto((ej.dice || "") + " El código ya aparece en el árbol, listo para aplicarlo.");
+    }, motivo => {
+      if (motivo === "cancelar") api.fallo("Cancelar cierra la ventana sin crear el código. Vuelve a abrir el menú contextual.");
+      else api.fallo("Ese nombre no es el que pedía la lección. Revisa el enunciado.");
+    });
   }
 
   const cuerpo = crear("div", "qc-cuerpo");
@@ -974,6 +1040,7 @@ function montarInterfaz(zona, ej, api) {
 
     if (arbolVacio) {
       const panel = arbolCodigos([], () => {}, "Name");
+      arbolLista = panel.querySelector(".qc-arbol");
       const vacio = crear("p", "qc-arbol-vacio", "Sin códigos todavía. Clic derecho aquí para crear el primero.");
       vacio.addEventListener("click", ev => { ev.stopPropagation(); menuArbol(null); });
       vacio.addEventListener("contextmenu", ev => { ev.preventDefault(); ev.stopPropagation(); menuArbol(null); });

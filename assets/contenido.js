@@ -1461,29 +1461,23 @@ const CURSO = {
           titulo: "Crear el primer código",
           tipo: "interfaz",
           xp: 15,
-          instruccion: "El proyecto es nuevo y todavía no hay ningún código. Crea el primero.",
+          instruccion: "El proyecto es nuevo y todavía no hay ningún código. Crea el primero y llámalo Abandono del empleo.",
           objetivo: "Crear el primer código desde el árbol",
           ruta: ["arbol", "crear_codigo"],
           pista: "El árbol de códigos se maneja con clic derecho, y funciona igual cuando está vacío.",
-          dice: "Crear un código nuevo lo pone en el nivel superior. Para colgarlo de una categoría existe Añadir un código nuevo a la categoría, y para hacerlo subcódigo, Añadir un subcódigo.",
-          consejo: "Crea pocos códigos al principio y créalos mientras lees, no antes. Un sistema inventado en el escritorio rara vez sobrevive al primer encuentro con los datos.",
+          ventanaTras: {
+            titulo: "Añadir un código nuevo",
+            etiqueta: "Nombre del código",
+            marcador: "Abandono del empleo",
+            correcto: ["abandono"],
+            boton: "Aceptar",
+            color: "coral"
+          },
+          dice: "Crear un código nuevo lo pone en el nivel superior, y la ventana solo pide el nombre. El color, el memo y la categoría se ajustan después desde el mismo menú contextual, con F5, F3 y F6.",
+          consejo: "Crea pocos códigos al principio y créalos mientras lees, no antes. Y escribe su memo el mismo día, con F3, porque un código sin memo es una etiqueta que en tres semanas ya no significa lo mismo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol con sus primeros códigos", pie: "" }
         },
         /* 6.5 */ {
-          titulo: "La ventana del código nuevo",
-          tipo: "dialogo",
-          xp: 15,
-          instruccion: "Se abrió la ventana del código nuevo. Llámalo Abandono del empleo.",
-          tituloVentana: "Añadir un código nuevo",
-          campos: [
-            { id: "nombre", etiqueta: "Nombre del código", tipo: "texto", marcador: "Abandono del empleo", correcto: ["abandono"] }
-          ],
-          boton: "Aceptar",
-          dice: "La ventana solo pide el nombre. El color, el memo y la categoría se ajustan después desde el menú contextual del código, con F5, F3 y F6.",
-          consejo: "Escribe el memo del código el mismo día que lo creas, con F3. Un código sin memo es una etiqueta que en tres semanas ya no significa lo mismo.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La ventana Añadir un código nuevo", pie: "" }
-        },
-        /* 6.6 */ {
           titulo: "Marcar el abandono del empleo",
           guiado: true,
           tipo: "codificar",
@@ -1505,7 +1499,7 @@ const CURSO = {
           consejo: "Cuando dudes del tamaño del tramo, marca de más y no de menos. Recortar un segmento largo es fácil, recuperar el contexto que no marcaste obliga a volver al archivo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un segmento marcado con su franja en el margen", pie: "" }
         },
-        /* 6.7 */ {
+        /* 6.6 */ {
           titulo: "Marcar un tramo de dos frases",
           guiado: true,
           tipo: "codificar",
@@ -1527,7 +1521,7 @@ const CURSO = {
           consejo: "Si el sentido de un fragmento necesita la frase anterior para entenderse, esa frase es parte del segmento. El informe va a mostrar solo lo que marcaste, sin nada alrededor.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un segmento de dos líneas con su código aplicado", pie: "" }
         },
-        /* 6.8 */ {
+        /* 6.7 */ {
           titulo: "Crear un código in vivo",
           guiado: true,
           tipo: "codificar",
@@ -1547,7 +1541,7 @@ const CURSO = {
           consejo: "Usa el código in vivo con cuentagotas, dos o tres por entrevista como mucho. Si todas las etiquetas salen del habla de cada persona, no queda nada que comparar entre casos.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un código in vivo entre comillas en el árbol", pie: "" }
         },
-        /* 6.9 */ {
+        /* 6.8 */ {
           titulo: "Código, categoría, segmento y memo",
           tipo: "parejas",
           xp: 15,
