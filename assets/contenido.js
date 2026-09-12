@@ -453,7 +453,7 @@ const CURSO = {
                 "Localiza la versión más reciente, la que aparece marcada como Latest.",
                 "Despliega Assets para ver la lista de archivos de esa versión."
               ],
-              img: { src: "assets/img/1_0_Repositorio_oficial.png", titulo: "El repositorio oficial y su sección de versiones", pie: "" }
+              img: { src: "assets/img/1_1_Descarga.png", titulo: "El repositorio oficial y su sección de versiones", pie: "" }
             },
             {
               titulo: "Windows",
