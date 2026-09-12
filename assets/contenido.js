@@ -524,8 +524,8 @@ const CURSO = {
             { t: "El código fuente, para tener la versión de desarrollo", ok: false, dice: "Requiere Python, línea de comandos y entornos virtuales. Tiene sentido si vas a contribuir o probar la versión en desarrollo." },
             { t: "Esperar a que salga en la tienda de aplicaciones del sistema", ok: false, dice: "No se distribuye por ahí. Los paquetes están en el repositorio oficial de QualCoder." }
           ],
-          consejo: "Antes de descargar comprueba dos cosas, si tu sistema es de 32 o 64 bits, esto será de utilidad si requieres trabajar con archivos de audio y video (para instalar VLC Player ver siguiente lección).",
-          consejoImagen: { src: "assets/img/1_3_Descarga.png", titulo: "El repositorio oficial y su sección de versiones", pie: "" }
+          consejo: "Antes de descargar comprueba si tu sistema es de 32 o 64 bits, esto será de utilidad si requieres trabajar con archivos de audio y video (para instalar VLC Player ver siguiente lección).",
+          consejoImagen: { src: "assets/img/1_3_Sistema.png", titulo: "El repositorio oficial y su sección de versiones", pie: "" }
         },
         /* 1.4 */ {
           titulo: "VLC, ffmpeg y Zotero, cómo se instalan",
