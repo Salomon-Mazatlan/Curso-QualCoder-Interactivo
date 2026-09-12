@@ -805,6 +805,35 @@ function panelBienvenida(texto) {
   return p;
 }
 
+// Módulo Gestionar archivos, con su barra de herramientas y su tabla.
+function panelArchivos(I, alClic) {
+  const caja = crear("div", "qc-archivos");
+
+  const barra = crear("div", "qc-barra-archivos");
+  (I.barra_archivos || []).forEach(item => {
+    if (item.grupo) barra.appendChild(crear("span", "qc-separador"));
+    const b = crear("button", "qc-herramienta-icono", item.icono);
+    b.title = item.t;
+    b.setAttribute("aria-label", item.t);
+    b.addEventListener("click", ev => { ev.stopPropagation(); alClic(item); });
+    barra.appendChild(b);
+  });
+  caja.appendChild(barra);
+
+  const busca = crear("div", "qc-busca-archivos");
+  busca.appendChild(crear("span", "qc-campo-busca", "Buscar archivos"));
+  busca.appendChild(crear("span", "qc-cuenta-archivos", "0 Archivos"));
+  caja.appendChild(busca);
+
+  const tabla = crear("div", "qc-tabla");
+  const cabecera = crear("div", "qc-tabla-cabecera");
+  ["Nombre", "Memo", "Fecha", "Caso"].forEach(c => cabecera.appendChild(crear("span", null, c + " ▽")));
+  tabla.appendChild(cabecera);
+  tabla.appendChild(crear("div", "qc-tabla-vacia", "Todavía no hay ningún archivo en el proyecto."));
+  caja.appendChild(tabla);
+  return caja;
+}
+
 // Code tree panel, shared by the interface and coding activities.
 function arbolCodigos(codigos, alClic, titulo) {
   const panel = crear("div", "qc-arbol-caja");
@@ -848,7 +877,8 @@ function montarInterfaz(zona, ej, api) {
   const principal = rutas[0];
   const destinoCodigo = principal[0].indexOf("codigo:") === 0 ? principal[0].slice(7) : null;
   const arbolVacio = principal[0] === "arbol";
-  const vista = (destinoCodigo || arbolVacio) ? "codificar" : "principal";
+  const enArchivos = principal[0] === "archivos";
+  const vista = enArchivos ? "gestionar" : ((destinoCodigo || arbolVacio) ? "codificar" : "principal");
   const coincide = (a, b) => rutas.some(r => r[0] === a && r[1] === b);
 
   const marco = ventanaQC({
@@ -908,6 +938,12 @@ function montarInterfaz(zona, ej, api) {
     I.fragmento.forEach(f => texto.appendChild(crear("p", null, f)));
     doc.appendChild(texto);
     cuerpo.appendChild(doc);
+  } else if (enArchivos) {
+    cuerpo.appendChild(panelArchivos(I, item => {
+      if (cerrado) return;
+      if (coincide("archivos", item.id)) return acertar();
+      api.fallo("Ese es " + corto(item.t.toLowerCase(), 42) + ", no es lo que se pidió.");
+    }));
   } else {
     cuerpo.appendChild(panelBienvenida(ej.panel));
   }
@@ -934,6 +970,15 @@ function montarGuia(zona, ej, api) {
       b.pasos.forEach(t => ol.appendChild(crear("li", null, t)));
       sec.appendChild(ol);
     }
+    (b.caminos || []).forEach(c => {
+      const via = crear("div", "guia-camino");
+      if (c.titulo) via.appendChild(crear("h5", null, c.titulo));
+      if (c.texto) via.appendChild(crear("p", "guia-camino-texto", c.texto));
+      const ol = crear("ol", "guia-pasos");
+      (c.pasos || []).forEach(t => ol.appendChild(crear("li", null, t)));
+      via.appendChild(ol);
+      sec.appendChild(via);
+    });
     if (b.img && (b.img.src || b.img.titulo)) {
       const img = imagenOpcional(b.img,
         "Guarda la imagen en assets/img/ y escribe su ruta en el campo src de este bloque, dentro de assets/contenido.js");
@@ -1597,6 +1642,12 @@ function pasosDe(ej) {
         return ["Sitúate en el árbol de códigos, en el panel izquierdo.",
                 "Haz clic derecho sobre él, aunque esté vacío.",
                 "Elige " + (item.t || "") + (item.k ? ", atajo " + item.k : "") + "."];
+      }
+      if (ruta[0] === "archivos") {
+        const item = (I.barra_archivos || []).find(x => x.id === ruta[1]) || {};
+        return ["Ya estás dentro del gestor de archivos, en la pestaña Gestionar.",
+                "Mira la barra de herramientas, arriba de la tabla.",
+                "Pulsa el botón " + (item.t || "") + ". Los botones no tienen texto, el nombre aparece al dejar el puntero encima."];
       }
       if (ruta[0] === "pestana") {
         const p = I.pestanas.find(x => x.id === ruta[1]);

@@ -335,6 +335,28 @@ const CURSO = {
         ]
       }
     ],
+    // Barra de herramientas del gestor de archivos, de izquierda a derecha.
+    barra_archivos: [
+      { id: "importar", icono: "🗎", t: "Importar archivos" },
+      { id: "encuesta", icono: "📋", t: "Importar encuesta" },
+      { id: "crear", icono: "✎", t: "Crear un archivo de texto nuevo" },
+      { id: "vincular", icono: "🔗", t: "Vincular un archivo externo" },
+      { id: "atributos", icono: "👤", t: "Asignar atributos" },
+      { id: "buscar", icono: "🔍", t: "Buscar dentro de los archivos" },
+      { id: "ver_vinculo", icono: "⛓", t: "Ver el vínculo del archivo" },
+      { id: "romper", icono: "⛓✕", t: "Romper el vínculo del archivo" },
+      { id: "variables", icono: "(x)", t: "Gestionar las variables de los archivos" },
+      { id: "fijar", icono: "📌", t: "Fijar la selección" },
+      { id: "exportar", icono: "⭳", t: "Exportar el archivo seleccionado", grupo: true },
+      { id: "salida", icono: "⭱", t: "Sacar el archivo del proyecto" },
+      { id: "orden", icono: "≡", t: "Ordenar la tabla", grupo: true },
+      { id: "columnas", icono: "▦", t: "Mostrar u ocultar columnas" },
+      { id: "anchos", icono: "▤", t: "Ajustar los anchos de columna" },
+      { id: "copiar", icono: "⧉", t: "Copiar la tabla", grupo: true },
+      { id: "deshacer", icono: "↶", t: "Deshacer" },
+      { id: "eliminar", icono: "🗑", t: "Eliminar el archivo del proyecto" },
+      { id: "ayuda", icono: "?", t: "Ayuda del módulo", grupo: true }
+    ],
     // Right-click menu over a code in the code tree.
     contextual: [
       { id: "crear_codigo", t: "Crear un código nuevo" },
@@ -757,7 +779,7 @@ const CURSO = {
       `,
       ejercicios: [
         /* 2.1 */ {
-          titulo: "Cómo se crea el proyecto y entra el material",
+          titulo: "Cómo se crea y se configura el proyecto",
           tipo: "guia",
           xp: 10,
           instruccion: "Esto es lo que vas a practicar en el simulador. Los mismos pasos sirven en el programa real.",
@@ -782,17 +804,6 @@ const CURSO = {
                 "Si cambias el idioma, hay que reiniciar el programa."
               ],
               img: { src: "assets/img/ejemplo.png", titulo: "La ventana de Configuración con el nombre del codificador", pie: "" }
-            },
-            {
-              titulo: "Importar los archivos",
-              texto: "El material entra por el gestor de archivos, que admite texto, PDF, imágenes, audio y video.",
-              pasos: [
-                "Abre Gestionar y elige Archivos, atajo Alt+F.",
-                "Usa el botón de importar y selecciona tus transcripciones.",
-                "Decide entre copiar al proyecto, que lo deja autónomo, o vincular, que deja los archivos fuera.",
-                "Abre cada archivo importado y comprueba que el texto se lee bien."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El gestor de archivos con las entrevistas importadas", pie: "" }
             },
             {
               titulo: "Comprobar cómo quedó",
@@ -856,18 +867,6 @@ const CURSO = {
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La ventana de Configuración completa", pie: "" }
         },
         /* 2.5 */ {
-          titulo: "Abrir el gestor de archivos",
-          tipo: "interfaz",
-          xp: 15,
-          instruccion: "El proyecto está vacío. Abre el módulo por donde entra todo el material al proyecto.",
-          objetivo: "Abrir el gestor de archivos",
-          ruta: ["gestionar", "archivos"],
-          pista: "Archivos, casos, atributos, diarios y referencias viven en el mismo menú.",
-          dice: "Desde ahí se importa, se vincula, se renombra y se asignan atributos. Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos enlaces se rompen al cambiar de computadora.",
-          consejo: "Importa primero dos o tres archivos y revísalos antes de meter el corpus completo. Si la conversión sale mal, corregir tres archivos es una tarde y corregir cuarenta es una semana.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El gestor de archivos con las primeras importaciones", pie: "" }
-        },
-        /* 2.6 */ {
           titulo: "El resumen del proyecto",
           tipo: "interfaz",
           xp: 15,
@@ -879,7 +878,7 @@ const CURSO = {
           consejo: "Ejecuta el resumen al empezar y al terminar cada etapa del proyecto, y pega el resultado en el diario. Ese par de capturas documenta el crecimiento del corpus mejor que cualquier descripción.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El resumen del proyecto recién ejecutado", pie: "" }
         },
-        /* 2.7 */ {
+        /* 2.6 */ {
           titulo: "El orden de arranque",
           tipo: "secuencia",
           xp: 15,
@@ -900,8 +899,8 @@ const CURSO = {
     /* ============================ 3 ============================ */
     {
       id: "m03",
-      titulo: "Casos y atributos",
-      lema: "Para comparar hay que poder separar",
+      titulo: "Archivos, casos y atributos",
+      lema: "Primero el material, después cómo se ordena",
       definiciones: [
         { termino: "Caso",
           texto: "La unidad de análisis muestreada, sea una persona, una organización, un lugar o un evento, con los detalles que después harán falta para comparar e interpretar.",
@@ -931,6 +930,95 @@ const CURSO = {
       `,
       ejercicios: [
         /* 3.1 */ {
+          titulo: "Cómo entran los archivos al proyecto",
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Antes de los casos hay que meter el material. Todo entra por el gestor de archivos, y de ahí depende lo demás.",
+          bloques: [
+            {
+              titulo: "Abrir el gestor",
+              texto: "El módulo vive en el menú Gestionar y se abre dentro de la pestaña del mismo nombre. Arriba tiene su barra de herramientas y debajo la tabla, con una columna por atributo.",
+              pasos: [
+                "Abre el menú Gestionar y elige Archivos, atajo Alt+F.",
+                "Fíjate en la barra de herramientas, encima de la tabla.",
+                "Los botones no tienen texto, el nombre aparece al dejar el puntero encima."
+              ],
+              img: { src: "assets/img/3_2_Gestor_archivos.png", titulo: "El gestor de archivos con su barra de herramientas", pie: "" }
+            },
+            {
+              titulo: "El botón de importar",
+              texto: "Es el primero de la barra, a la izquierda del todo, el que parece una hoja con una flecha. El segundo, el del portapapeles, es el de encuestas, y conviene no confundirlos.",
+              pasos: [
+                "Pulsa el primer botón de la barra de herramientas.",
+                "Se abre el diálogo del sistema para elegir archivo.",
+                "Puedes seleccionar varios de una vez, con Control o con Mayúsculas."
+              ],
+              img: { src: "assets/img/3_3_Boton_importar.png", titulo: "El primer botón de la barra, el de importar archivos", pie: "" }
+            },
+            {
+              titulo: "Elegir el material",
+              texto: "Admite texto plano, docx, PDF, imágenes, audio y video. Los formatos de texto se convierten al importar, así que conviene revisar cómo quedó cada uno.",
+              pasos: [
+                "Busca la carpeta donde tienes las transcripciones.",
+                "Selecciona los archivos y acepta.",
+                "Abre después cada archivo importado y comprueba que el texto se lee bien.",
+                "Un PDF escaneado sin OCR se importa vacío, no es un error del programa."
+              ],
+              img: { src: "assets/img/3_3_Abrir_archivo.png", titulo: "El diálogo del sistema para elegir los archivos", pie: "" }
+            },
+            {
+              titulo: "Copiar o vincular",
+              texto: "Al importar, el material se copia dentro de la carpeta del proyecto. Vincular es la otra vía, deja los archivos donde están y guarda solo la ruta.",
+              pasos: [
+                "Copia si quieres un proyecto autónomo que se pueda mover y compartir completo.",
+                "Vincula solo con video pesado, cuando duplicarlo sea inviable.",
+                "Si vinculas, no muevas esos archivos de sitio, el vínculo se rompe.",
+                "Los vínculos rotos se reparan desde Gestionar y Vínculos rotos a archivos."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "La tabla con los archivos ya importados", pie: "" }
+            }
+          ],
+          boton: "Listo, a practicar",
+          dice: "Con el material dentro y revisado ya se puede armar todo lo demás, los casos, los atributos y la codificación."
+        },
+        /* 3.2 */ {
+          titulo: "Abrir el gestor de archivos",
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "El proyecto está vacío. Abre el módulo por donde entra todo el material al proyecto.",
+          objetivo: "Abrir el gestor de archivos",
+          ruta: ["gestionar", "archivos"],
+          pista: "Archivos, casos, atributos, diarios y referencias viven en el mismo menú.",
+          dice: "Desde ahí se importa, se vincula, se renombra y se asignan atributos. Copiar deja el proyecto autónomo, vincular deja los archivos fuera y esos enlaces se rompen al cambiar de computadora.",
+          consejo: "Importa primero dos o tres archivos y revísalos antes de meter el corpus completo. Si la conversión sale mal, corregir tres archivos es una tarde y corregir cuarenta es una semana.",
+          consejoImagen: { src: "assets/img/3_2_Gestor_archivos.png", titulo: "El gestor de archivos recién abierto", pie: "" }
+        },
+        /* 3.3 */ {
+          titulo: "Importar los archivos",
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Ya estás dentro del gestor de archivos y el proyecto está vacío. Mete las cuatro entrevistas transcritas.",
+          objetivo: "Importar archivos al proyecto",
+          ruta: ["archivos", "importar"],
+          pista: "Es el primer botón de la barra de herramientas, el de la hoja con la flecha. El segundo, el del portapapeles, es el de encuestas.",
+          dice: "Se abre el diálogo del sistema para elegir los archivos. Se pueden seleccionar varios de una vez y el material queda copiado dentro de la carpeta del proyecto.",
+          consejo: "Importa dos o tres archivos primero y ábrelos para comprobar la conversión. Si algo sale mal, corregir tres es una tarde y corregir cuarenta es una semana.",
+          consejoImagen: { src: "assets/img/3_3_Abrir_archivo.png", titulo: "El diálogo para elegir los archivos que se importan", pie: "" }
+        },
+        /* 3.4 */ {
+          titulo: "Copiar o vincular",
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "Vas a trabajar el proyecto en la computadora del cubículo y también en la de tu casa. ¿Copias los archivos al proyecto o los vinculas?",
+          opciones: [
+            { t: "Copiarlos, así el proyecto viaja completo", ok: true, dice: "La carpeta .qda lleva dentro el material, se mueve de un equipo a otro y sigue funcionando." },
+            { t: "Vincularlos, para que el proyecto pese menos", ok: false, dice: "Al cambiar de equipo las rutas dejan de existir y los archivos no abren. Vincular solo compensa con video pesado y sin moverlo de sitio." },
+            { t: "Da igual, el programa los guarda de las dos formas", ok: false, dice: "No es lo mismo. Copiar deja el proyecto autónomo, vincular lo ata a las rutas de esa computadora." }
+          ],
+          consejo: "Si de todos modos necesitas vincular, guarda el material en una carpeta junto al proyecto y muévelos siempre juntos. Y ejecuta el resumen del proyecto de vez en cuando, que es donde aparecen los vínculos rotos.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El aviso de vínculos rotos en el resumen del proyecto", pie: "" }
+        },
+        /* 3.5 */ {
           titulo: "Cómo se arman casos y atributos",
           tipo: "guia",
           xp: 10,
@@ -972,7 +1060,7 @@ const CURSO = {
           boton: "Entendido, seguir",
           dice: "Con los casos y los atributos puestos, las comparaciones del final salen solas."
         },
-        /* 3.2 */ {
+        /* 3.6 */ {
           titulo: "Abrir la gestión de casos",
           tipo: "interfaz",
           xp: 15,
@@ -984,7 +1072,7 @@ const CURSO = {
           consejo: "Nombra los casos con el mismo criterio que los archivos, por ejemplo E01 para el archivo y Rosa para el caso. Cuando el corpus crece, cualquier ambigüedad de nombres se paga en tiempo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de casos con sus nombres y archivos", pie: "" }
         },
-        /* 3.3 */ {
+        /* 3.7 */ {
           titulo: "Abrir la gestión de atributos",
           tipo: "interfaz",
           xp: 15,
@@ -996,7 +1084,7 @@ const CURSO = {
           consejo: "Define pocos atributos y bien pensados. Veinte variables que nadie va a cruzar solo estorban, y las tres que de verdad separan grupos son las que sostienen los resultados.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de atributos del proyecto", pie: "" }
         },
-        /* 3.4 */ {
+        /* 3.8 */ {
           titulo: "Archivo, caso, atributo y diario",
           tipo: "parejas",
           xp: 15,
@@ -1011,7 +1099,7 @@ const CURSO = {
           consejo: "Si dudas de si algo es caso o atributo, pregúntate si habla de una persona entera o de un rasgo suyo. La persona es el caso, el rasgo es el atributo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un caso con sus atributos asignados", pie: "" }
         },
-        /* 3.5 */ {
+        /* 3.9 */ {
           titulo: "Qué hace falta para comparar",
           tipo: "quiz",
           xp: 10,
