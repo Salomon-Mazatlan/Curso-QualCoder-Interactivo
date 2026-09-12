@@ -457,10 +457,10 @@ const CURSO = {
             },
             {
               titulo: "Windows",
-              texto: "Hay dos archivos y basta con uno. El instalador deja el acceso directo y la entrada en el menú de inicio. El portable arranca sin instalar nada, útil si no tienes permisos de administrador o si lo llevas en una memoria USB.",
+              texto: "4. Hay dos archivos: El instalador (opción a) deja el acceso directo y la entrada en el menú de inicio. El portable (opción b) arranca sin instalar nada, útil si no tienes permisos de administrador o si lo llevas en una memoria USB.",
               caminos: [
                 {
-                  titulo: "Opción A, el instalador",
+                  titulo: "Opción -a-, el instalador",
                   pasos: [
                     "Descarga Win_Qualcoder-4.0-beta_INSTALLER.exe",
                     "Ejecútalo y sigue los pasos de instalación. Si aparece la pantalla azul de Windows, la resolvemos en la lección siguiente.",
@@ -468,7 +468,7 @@ const CURSO = {
                   ]
                 },
                 {
-                  titulo: "Opción B, el portable",
+                  titulo: "Opción -b-, el portable",
                   pasos: [
                     "Descarga Win_Qualcoder-4.0-beta_PORTABLE.exe",
                     "Ejecútalo tal cual, sin instalar nada. La primera apertura tarda unos segundos de más porque descomprime en memoria."
