@@ -457,13 +457,15 @@ const CURSO = {
             },
             {
               titulo: "Windows",
-              texto: "Hay dos archivos, el ejecutable suelto y el instalador. El ejecutable arranca sin instalar nada, tarda unos segundos la primera vez porque descomprime en memoria. El instalador deja el acceso directo y la entrada en el menú de inicio.",
+              texto: "Hay dos archivos, el instalador (1a) y el portable (1b). El portable arranca sin instalar nada, tarda unos segundos la primera vez porque descomprime en memoria. El instalador deja el acceso directo y la entrada en el menú de inicio.",
               pasos: [
-                "Descarga el archivo que corresponda a tu sistema.",
-                "Ejecútalo. Si aparece la pantalla azul de Windows, la resolvemos en la lección 1.5.",
-                "La primera apertura tarda unos veinte segundos, es normal."
+                "1a. Descarga el archivo Win_Qualcoder-4.0-beta_INSTALLER.exe",
+                "2a. Ejecútalo y sige los pasos de instalación. (Si aparece la pantalla azul de Windows, la resolvemos en la lección 1.5.)",
+                "3a. Finalizada la instalación, puedes iniciar el programa desde el acceso directo o en menú de Windows.",
+                "1b. Descarga el archivo Win_Qualcoder-4.0-beta_PORTABLE.exe"
+                "2b. Ejecútalo, la primera vez suele tardar unos segundos adicionales."
               ],
-              img: { src: "assets/img/ejemplo.png", titulo: "Los archivos de la versión para Windows", pie: "" }
+              img: { src: "assets/img/1_1_Instalar_Abrir.png", titulo: "Los archivos de la versión para Windows", pie: "" }
             }
           ],
           boton: "Ya lo instalé, seguir",
