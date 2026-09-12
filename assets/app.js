@@ -1155,8 +1155,15 @@ function montarCodificar(zona, ej, api) {
       if (accionEsperada !== "anotar") return api.fallo("Anotar deja una nota sin asignar código, y aquí hacía falta codificar.");
       if (!tramoOk()) return api.fallo("Revisa el tramo que quieres anotar.");
       cerrado = true;
-      pintar(CURSO.paleta.amarillo, "Anotación");
-      return api.resuelto("Queda una anotación sobre el texto. No entra en ningún informe de codificación, y por eso sirve para lo que todavía no sabes nombrar.");
+      filas.forEach((f, i) => {
+        f.seg.classList.remove("sel");
+        if (seleccion.has(i)) {
+          f.seg.classList.add("anotado");
+          f.seg.title = "Texto anotado";
+        }
+      });
+      marco.ventana.classList.add("qc-listo");
+      return api.resuelto("El texto anotado queda en negritas y el margen de codificaciones no se toca, porque la anotación no asigna ningún código ni entra en los informes de codificación.");
     }
   }
 
@@ -1321,7 +1328,7 @@ function montarDialogo(zona, ej, api) {
   const ventana = crear("div", "qc dialogo");
   const titulo = crear("div", "qc-titulo");
   titulo.appendChild(logoQC());
-  titulo.appendChild(crear("span", "qc-nombre", ej.titulo));
+  titulo.appendChild(crear("span", "qc-nombre", ej.tituloVentana || ej.titulo));
   titulo.appendChild(crear("span", "qc-controles", "✕"));
   ventana.appendChild(titulo);
 
@@ -1581,38 +1588,50 @@ function pasosDe(ej) {
   if (ej.pasos) return ej.pasos;
   const I = CURSO.interfaz;
   if (ej.tipo === "interfaz") {
-    if (ej.ruta && ej.ruta[0] === "arbol") {
-      const item = I.contextual.find(x => x.id === ej.ruta[1]) || {};
-      return ["Sitúate en el árbol de códigos, en el panel izquierdo.",
-              "Haz clic derecho sobre él, aunque esté vacío.",
-              "Elige " + (item.t || "") + (item.k ? ", atajo " + item.k : "") + "."];
-    }
-    if (!ej.ruta) return null;
-    if (ej.ruta[0] === "pestana") {
-      const p = I.pestanas.find(x => x.id === ej.ruta[1]);
-      return ["Mira la fila de pestañas, debajo de la barra de menús.",
-              "Toca la pestaña " + (p ? p.t : "") + "."];
-    }
-    if (ej.ruta[0].indexOf("codigo:") === 0) {
-      let item = I.contextual.find(x => x.id === ej.ruta[1]);
-      let dentro = null;
-      if (!item) {
-        I.contextual.forEach(x => {
-          const hijo = (x.items || []).find(y => y.id === ej.ruta[1]);
-          if (hijo) { item = hijo; dentro = x.t; }
-        });
+    const rutas = ej.rutas || (ej.ruta ? [ej.ruta] : []);
+    if (!rutas.length) return null;
+
+    const describir = (ruta) => {
+      if (ruta[0] === "arbol") {
+        const item = I.contextual.find(x => x.id === ruta[1]) || {};
+        return ["Sitúate en el árbol de códigos, en el panel izquierdo.",
+                "Haz clic derecho sobre él, aunque esté vacío.",
+                "Elige " + (item.t || "") + (item.k ? ", atajo " + item.k : "") + "."];
       }
-      item = item || {};
-      const pasos = ["Busca el código " + ej.ruta[0].slice(7) + " en el árbol de códigos, en el panel izquierdo.",
-                     "En el programa se abre con clic derecho sobre el código. Aquí basta con tocarlo."];
-      if (dentro) pasos.push("Entra en el submenú " + dentro + ".");
-      pasos.push("Elige " + (item.t || "") + (item.k ? ", atajo " + item.k : "") + ".");
-      return pasos;
-    }
-    const menu = I.menus.find(m => m.id === ej.ruta[0]) || { items: [] };
-    const item = (menu.items || []).find(x => x.id === ej.ruta[1]) || {};
-    return ["Abre el menú " + (menu.nombre || "") + " en la barra de menús.",
-            "Elige " + (item.t || "") + "." + (item.k ? " El atajo es " + item.k + "." : "")];
+      if (ruta[0] === "pestana") {
+        const p = I.pestanas.find(x => x.id === ruta[1]);
+        return ["Mira la fila de pestañas, debajo de la barra de menús.",
+                "Toca la pestaña " + (p ? p.t : "") + "."];
+      }
+      if (ruta[0].indexOf("codigo:") === 0) {
+        let item = I.contextual.find(x => x.id === ruta[1]);
+        let dentro = null;
+        if (!item) {
+          I.contextual.forEach(x => {
+            const hijo = (x.items || []).find(y => y.id === ruta[1]);
+            if (hijo) { item = hijo; dentro = x.t; }
+          });
+        }
+        item = item || {};
+        const pasos = ["Busca el código " + ruta[0].slice(7) + " en el árbol de códigos, en el panel izquierdo.",
+                       "En el programa se abre con clic derecho sobre el código. Aquí basta con tocarlo."];
+        if (dentro) pasos.push("Entra en el submenú " + dentro + ".");
+        pasos.push("Elige " + (item.t || "") + (item.k ? ", atajo " + item.k : "") + ".");
+        return pasos;
+      }
+      const menu = I.menus.find(m => m.id === ruta[0]) || { items: [] };
+      const item = (menu.items || []).find(x => x.id === ruta[1]) || {};
+      return ["Abre el menú " + (menu.nombre || "") + " en la barra de menús.",
+              "Elige " + (item.t || "") + "." + (item.k ? " El atajo es " + item.k + "." : "")];
+    };
+
+    const pasos = describir(rutas[0]);
+    rutas.slice(1).forEach(r => {
+      const menu = I.menus.find(m => m.id === r[0]);
+      const item = menu ? (menu.items || []).find(x => x.id === r[1]) : null;
+      if (menu && item) pasos.push("También se llega por el menú " + menu.nombre + " y " + item.t.split(" (")[0] + ".");
+    });
+    return pasos;
   }
   if (ej.tipo === "asistente") {
     return ["Selecciona una columna en la lista de la izquierda.",
@@ -1842,16 +1861,20 @@ function bloqueApoyo(amplio) {
     caja.appendChild(crear("h3", null, a.titulo));
     caja.appendChild(crear("p", "apoyo-texto", a.texto));
     if ((a.enlaces || []).length) {
-      const fila = crear("div", "apoyo-enlaces");
+      const fila = crear("ul", "apoyo-enlaces");
       a.enlaces.forEach(e => {
+        const li = crear("li");
         const enlace = document.createElement("a");
         enlace.href = e.url; enlace.target = "_blank"; enlace.rel = "noopener";
         enlace.className = "apoyo-enlace";
         enlace.textContent = e.t;
-        fila.appendChild(enlace);
+        li.appendChild(enlace);
+        if (e.en) li.appendChild(crear("span", "apoyo-en", e.en));
+        fila.appendChild(li);
       });
       caja.appendChild(fila);
     }
+    if (a.cierre) caja.appendChild(crear("p", "apoyo-cierre", a.cierre));
   } else {
     caja.appendChild(crear("span", "apoyo-texto", a.breve || a.texto));
     if ((a.enlaces || []).length) {

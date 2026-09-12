@@ -842,11 +842,23 @@ const CURSO = {
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El proyecto recién creado en el explorador de archivos", pie: "" }
         },
         /* 2.3 */ {
+          titulo: "Llegar a Configuración",
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Antes de codificar nada hay que dejar puesto tu nombre de codificador. La ventana de Configuración se alcanza por dos caminos y los dos valen.",
+          objetivo: "Abrir la ventana de Configuración",
+          rutas: [["proyecto", "ajustes"], ["ia", "ajustes_ia"]],
+          pista: "Una entrada está en el menú Proyecto, con atajo Alt+S. La otra está en el menú IA, y abre la misma ventana en su sección de inteligencia artificial.",
+          dice: "Es la misma ventana por los dos caminos. Desde Proyecto abre en las preferencias generales y desde IA abre directamente en la sección de inteligencia artificial, con el proveedor, el modelo y las claves.",
+          consejo: "Ese es el único sitio donde se cambia el nombre del codificador. Hazlo antes de marcar el primer segmento, porque todo lo que codifiques queda firmado y reparar codificaciones firmadas como default obliga a tocar la base de datos.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La ventana de Configuración abierta", pie: "" }
+        },
+        /* 2.4 */ {
           titulo: "La ventana de Configuración",
           tipo: "dialogo",
           xp: 15,
           instruccion: "Se abrió Configuración. Déjala lista para trabajar en español, con tu firma y con la copia de seguridad puesta.",
-          titulo: "Configuración",
+          tituloVentana: "Configuración",
           campos: [
             { id: "coder", etiqueta: "Codificador actual", tipo: "texto", marcador: "Escribe tu nombre", correcto: "cualquiera" },
             { id: "idioma", etiqueta: "Idioma", tipo: "select", opciones: ["English en", "Español es", "Français fr", "Deutsch de"], correcto: "Español es" },
@@ -864,7 +876,7 @@ const CURSO = {
           consejo: "Si tus archivos de audio y video son grandes, desmarcar su inclusión acelera mucho la copia de seguridad, aunque entonces hay que respaldarlos aparte.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La ventana de Configuración completa", pie: "" }
         },
-        /* 2.4 */ {
+        /* 2.5 */ {
           titulo: "Abrir el gestor de archivos",
           tipo: "interfaz",
           xp: 15,
@@ -876,7 +888,7 @@ const CURSO = {
           consejo: "Importa primero dos o tres archivos y revísalos antes de meter el corpus completo. Si la conversión sale mal, corregir tres archivos es una tarde y corregir cuarenta es una semana.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El gestor de archivos con las primeras importaciones", pie: "" }
         },
-        /* 2.5 */ {
+        /* 2.6 */ {
           titulo: "El resumen del proyecto",
           tipo: "interfaz",
           xp: 15,
@@ -888,7 +900,7 @@ const CURSO = {
           consejo: "Ejecuta el resumen al empezar y al terminar cada etapa del proyecto, y pega el resultado en el diario. Ese par de capturas documenta el crecimiento del corpus mejor que cualquier descripción.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El resumen del proyecto recién ejecutado", pie: "" }
         },
-        /* 2.6 */ {
+        /* 2.7 */ {
           titulo: "El orden de arranque",
           tipo: "secuencia",
           xp: 15,
@@ -1458,7 +1470,7 @@ const CURSO = {
           tipo: "dialogo",
           xp: 15,
           instruccion: "Se abrió la ventana del código nuevo. Llámalo Abandono del empleo.",
-          titulo: "Añadir un código nuevo",
+          tituloVentana: "Añadir un código nuevo",
           campos: [
             { id: "nombre", etiqueta: "Nombre del código", tipo: "texto", marcador: "Abandono del empleo", correcto: ["abandono"] }
           ],
@@ -1572,14 +1584,14 @@ const CURSO = {
           bloques: [
             {
               titulo: "Anotar",
-              texto: "Deja una nota pegada a un punto del texto, sin asignar ningún código. No entra en los informes de codificación.",
+              texto: "Deja una nota pegada a un punto del texto, sin asignar ningún código. El texto anotado se muestra en negritas y el margen de codificaciones no cambia, porque no hay código que mostrar ahí. No entra en los informes de codificación.",
               pasos: [
                 "Selecciona el tramo que quieres comentar.",
                 "Haz clic derecho sobre la selección y elige Anotar, o pulsa A.",
-                "Escribe la nota y guarda.",
+                "Escribe la nota y guarda. El texto anotado queda en negritas, sin franja en el margen.",
                 "Sirve para lo que todavía no sabes cómo nombrar."
               ],
-              img: { src: "assets/img/ejemplo.png", titulo: "Una anotación sobre el texto", pie: "" }
+              img: { src: "assets/img/ejemplo.png", titulo: "El texto anotado, en negritas y sin franja en el margen", pie: "" }
             },
             {
               titulo: "Memo de la codificación",
@@ -1917,7 +1929,7 @@ const CURSO = {
           tipo: "dialogo",
           xp: 15,
           instruccion: "Configura la recuperación para revisar el código con contexto y llevártela a tu procesador de textos.",
-          titulo: "Recuperación de códigos (Code retrieval)",
+          tituloVentana: "Recuperación de códigos (Code retrieval)",
           campos: [
             { id: "codigos", etiqueta: "Códigos incluidos", tipo: "select", opciones: ["Ninguno", "Solo Culpa", "Todos los códigos"], correcto: "Solo Culpa" },
             { id: "memos", etiqueta: "Incluir los memos de las codificaciones", tipo: "casilla", correcto: true },
