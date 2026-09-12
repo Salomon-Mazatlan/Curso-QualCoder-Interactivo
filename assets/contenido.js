@@ -506,7 +506,7 @@ const CURSO = {
             },
             {
               titulo: "Si prefieres evitar el aviso",
-              texto: "La alternativa que proponen los propios desarrolladores es instalar desde el código fuente. Se descarga el código, se ve lo que se ejecuta y no hay ningún binario sin firmar de por medio. Es la ventaja del software abierto, y en este caso no es retórica.",
+              texto: "La alternativa que proponen los propios desarrolladores es instalar desde el código fuente. Se descarga el código, se ve lo que se ejecuta y no hay ningún binario sin firmar de por medio.",
               pasos: [],
               img: { src: "assets/img/ejemplo.png", titulo: "", pie: "" }
             }
