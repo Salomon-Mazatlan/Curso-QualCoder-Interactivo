@@ -1539,7 +1539,7 @@ const CURSO = {
           ],
           solucion: { segmentos: [1], accion: "invivo" },
           consejo: "Utiliza los códigos In Vivo en la fase inicial del análisis cuando necesites priorizar y honrar la voz directa de los participantes, capturando sus palabras exactas, jerga o expresiones evocadoras sin imponer teorías o sesgos del investigador (Adu, 2019; Charmaz, 2014; Miles et al., 2014; Saldaña, 2021).",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un código in vivo entre comillas en el árbol", pie: "" }
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "", pie: "" }
         },
         /* 6.8 */ {
           titulo: "Código, categoría, segmento y memo",
