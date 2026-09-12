@@ -7,23 +7,24 @@ const CURSO = {
   duracion: "entre dos y tres horas y media",
   responsable: "Lorenzo Salomón Cárdenas",
 
-  // Mensaje de apoyo y enlace de comentarios. Cambia la dirección del formulario por la tuya.
+  // Mensaje de apoyo y enlace de comentarios. Se editan aquí y salen en el mapa y al cerrar cada misión.
   apoyo: {
-    titulo: "El curso es gratuito",
-    texto: "Se mantiene con donativos voluntarios, nunca obligatorios, porque la formación en análisis cualitativo debería estar al alcance de cualquiera. Si te está sirviendo y puedes apoyar, se agradece. Si no, tomarlo y compartirlo ya es una forma de contribuir.",
-    breve: "Curso gratuito, sostenido con donativos voluntarios. Tomarlo y compartirlo ya es una forma de apoyar.",
+    titulo: "Curso gratuito, con donativos voluntarios",
+    texto: "Esta iniciativa es una propuesta de democratización del conocimiento. Las herramientas y la formación en análisis de datos cualitativos deben estar al alcance de todas y todos, así que el curso es gratuito y se mantiene con donativos voluntarios, nunca obligatorios.",
+    cierre: "Tu participación en el curso ya es una forma valiosa de contribuir.",
+    breve: "Curso gratuito, con donativos voluntarios. Tu participación ya es una forma valiosa de contribuir.",
     enlaces: [
-      { t: "Gastos médicos personales", url: "https://gofund.me/5c133cc99" },
-      { t: "Asistencia humanitaria a migrantes y personas desplazadas", url: "https://www.paypal.com/paypalme/lorenzosalomon" },
+      { t: "Gastos médicos personales", en: "Personal medical expenses", url: "https://gofund.me/5c133cc99" },
+      { t: "Asistencia humanitaria a migrantes y personas desplazadas", en: "Humanitarian assistance for migrants and displaced persons", url: "https://www.paypal.com/paypalme/lorenzosalomon" },
       { t: "Perfil de recaudación", url: "https://www.gofundme.com/u/lorenzo-salomon-cardenas" }
     ]
   },
 
-  // Formulario de comentarios. Pon aquí el enlace de tu formulario de Google.
+  // Formulario de comentarios.
   comentarios: {
     texto: "¿Algo que mejorar, un error, una duda? Cuéntamelo en el formulario de comentarios.",
-    etiqueta: "Abrir el formulario de comentarios",
-    url: ""
+    etiqueta: "Abrir el formulario",
+    url: "https://forms.gle/jF4ahFLY3kwsA4BQ9"
   },
 
   emblema: { src: "assets/img/emblema_qualcoder.jpg", alt: "QualCoder, análisis cualitativo de datos, CAQDAS de código abierto" },
