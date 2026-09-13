@@ -524,7 +524,7 @@ const CURSO = {
               titulo: "Qué está pasando",
               texto: "Windows y macOS revisan si el programa viene firmado con un certificado de desarrollador. Esos certificados cuestan dinero cada año y un proyecto libre mantenido por voluntarios no los paga, así que el sistema avisa de que no reconoce a quien lo hizo. El aviso habla del certificado, no del contenido.",
               pasos: [],
-              img: { src: "assets/img/ejemplo.png", titulo: "La pantalla azul de Windows protegió tu PC", pie: "" }
+              img: { src: "assets/img/1_2_Pantalla_azul.png", titulo: "La pantalla azul de Windows protegió tu PC", pie: "" }
             },
             {
               titulo: "Windows, la pantalla azul de SmartScreen",
@@ -535,13 +535,7 @@ const CURSO = {
                 "Haz clic en ese botón. La próxima vez ya no vuelve a preguntar.",
                 "Si el antivirus lo bloquea antes, añade la carpeta de QualCoder a sus excepciones."
               ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El enlace Más información y el botón Ejecutar de todas formas", pie: "" }
-            },
-            {
-              titulo: "Si prefieres evitar el aviso",
-              texto: "La alternativa que proponen los propios desarrolladores es instalar desde el código fuente. Se descarga el código, se ve lo que se ejecuta y no hay ningún binario sin firmar de por medio.",
-              pasos: [],
-              img: { src: "assets/img/ejemplo.png", titulo: "", pie: "" }
+              img: { src: "assets/img/1_2_Ejecutar.png", titulo: "El enlace Más información y el botón Ejecutar de todas formas", pie: "" }
             }
           ],
           boton: "Listo, seguir",
