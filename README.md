@@ -1,7 +1,7 @@
 # Curso QualCoder 4.0-Beta (Interactivo)
 
 Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.0-Beta.
-Está armado como un juego. Doce misiones en orden de trabajo real, setenta y cinco lecciones, insignias,
+Está armado como un juego. Doce misiones en orden de trabajo real, setenta y ocho lecciones, insignias,
 rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
 codificar texto. Son archivos estáticos, sin frameworks ni compilación, y se publica tal cual en GitHub
@@ -51,9 +51,14 @@ aporta y cuándo estorba, y por qué la frecuencia describe la codificación y n
 
 ### Cómo funciona el juego
 
-Cada misión empieza con su galería de videos y capturas, sigue con la lección y después vienen las
-actividades, una a la vez. Cada actividad da tres estrellas y el XP completo. Debajo de
-cada actividad hay dos salidas, reiniciar la lección desde el principio o saltar esa actividad.
+Cada misión empieza con su galería de videos y capturas, sigue con la lección con sus definiciones y después
+vienen las lecciones, una a la vez. Equivocarse no descuenta, cada intento fallido explica por qué esa opción
+no encaja y deja seguir probando, y al resolver se cobran las tres estrellas y el XP completo. Debajo de cada
+lección hay tres salidas, repetir esa lección, reiniciar la misión entera o saltar. Lo único que no suma es
+saltar, y aun así la lección queda marcada para volver a ella.
+
+Las lecciones marcadas como guiadas muestran sus pasos desplegados y van resaltando el elemento que toca
+tocar, el tramo de texto, el código del árbol, la opción del menú o el grupo de destino.
 
 Tres aciertos seguidos dan un bono de racha y cada misión entrega su insignia. Ninguna misión está
 bloqueada, el mapa las propone en un orden recomendado pero se pueden tomar en el que cada quien necesite, y
@@ -70,17 +75,17 @@ comparación posible después.
 
 | Misión | Tema | Qué se practica |
 | --- | --- | --- |
-| 1 | Instalar QualCoder | Instructivos de descarga e instalación por sistema, los programas externos, la advertencia de seguridad, qué revisar cuando el audio falla, recorrido por los siete menús, comprobar la versión y el registro de acciones |
+| 1 | Instalar QualCoder | Descarga e instalación en Windows con sus dos opciones, la advertencia del sistema, los programas externos, recorrido por los siete menús, comprobar la versión y el registro de acciones |
 | 2 | Proyectos | Crear proyecto, llegar a Configuración por sus dos caminos, dejar el nombre del codificador y el resumen del proyecto |
-| 3 | Archivos, casos y atributos | Abrir el gestor, importar archivos desde su barra de herramientas, copiar o vincular, y después casos y atributos |
-| 4 | Encuestas y respuestas abiertas | Importar un CSV desde el gestor de archivos, clasificar columnas entre atributo y texto, y qué queda en el proyecto |
-| 5 | Referencias y Zotero | Importar RIS, conectar la clave de API de Zotero y vincular cada archivo con su ficha |
-| 6 | Codificar texto | Qué es un código, abrir el módulo, crear el primero con el árbol vacío, marcar con Q y crear un código in vivo con V |
-| 7 | Anotar, memos y diario | Anotación con A, memo del código y de la codificación, diarios del proyecto |
-| 8 | El árbol de códigos | Categorías, fusionar un código en otro, mover un código a una categoría |
+| 3 | Archivos, casos, atributos y diarios | Abrir el gestor, importar archivos desde su barra de herramientas, copiar o vincular, y después casos, atributos y diarios |
+| 4 | Codificar texto | Qué es un código, abrir el módulo, crear el primero con el árbol vacío, marcar seleccionando texto y código, y crear un código in vivo |
+| 5 | Anotar y memos | Anotación con A, memo del código desde su menú contextual y memo de la codificación |
+| 6 | El árbol de códigos | Categorías, subcódigos, mover un código y fusionar uno en otro |
+| 7 | Encuestas y respuestas abiertas | Importar un CSV desde el gestor, repartir las columnas en el asistente y qué queda en el proyecto |
+| 8 | Referencias y Zotero | Importar RIS, conectar la clave de API de Zotero y vincular cada archivo con su ficha |
 | 9 | Análisis e informes | Recuperación de códigos, configurar la salida, frecuencias y gráficos |
 | 10 | Grafos y mapas visuales | Abrir el grafo, agrupar nodos, comprobar con la co-ocurrencia y exportar la figura |
-| 11 | Equipo y mantenimiento | Comparación de codificación, vínculos rotos, funciones especiales |
+| 11 | Trabajo colaborativo y funciones especiales | Comparación de codificación, vínculos rotos y funciones especiales |
 | 12 | Prueba de campo | Entrevista nueva de principio a fin, recuperación y entrada de diario |
 
 ### Las definiciones y sus fuentes
@@ -182,7 +187,8 @@ definiciones: [
 ],
 ```
 
-Los instructivos se arman por bloques, cada uno con su título, su párrafo, su lista de pasos y su captura.
+Los instructivos se arman por bloques, cada uno con su título, su párrafo, su lista de pasos y su captura, y
+opcionalmente un video en lugar de la captura o una lista de `enlaces` con direcciones de descarga o consulta.
 Cuando un bloque tiene dos caminos alternativos, por ejemplo un instalador y una versión portable, se usa
 `caminos` en vez de `pasos`, y cada camino lleva su propio rótulo y su numeración desde uno.
 
@@ -238,6 +244,9 @@ cero, `solucion.codigo` el `id` del código correcto y `solucion.accion` la oper
 `marcar`, `invivo` o `anotar`. Con `invivo` el nombre del código lo genera el propio texto seleccionado, así
 que no hace falta `solucion.codigo`.
 
+Una lección de simulador puede terminar abriendo una ventana de un solo campo con `ventanaTras`. Es lo que
+ocurre al crear el primer código, donde se escribe su nombre y el código aparece en el árbol.
+
 En `interfaz`, `ruta` acepta varias formas. El par menú e ítem, por ejemplo `["gestionar", "archivos"]`,
 tomando los `id` definidos en `CURSO.interfaz.menus`. Una pestaña de la ventana principal, con
 `["pestana", "registro"]`. El menú contextual de un código del árbol, escribiendo `codigo:` seguido del
@@ -270,24 +279,6 @@ opcional.
   d: "Qué hace esta entrada.",
   tip: "El consejo que quieres dar sobre ella." }
 ```
-
-## Donativos y comentarios dentro del curso
-
-El mensaje de apoyo aparece en dos sitios, discreto al pie del mapa de misiones y con sus enlaces completos
-al terminar cada misión. Junto a ese segundo se muestra el renglón del formulario de comentarios.
-
-Los dos se editan en `assets/contenido.js`, en los bloques `apoyo` y `comentarios`.
-
-```js
-comentarios: {
-  texto: "¿Algo que mejorar, un error, una duda? Cuéntamelo en el formulario de comentarios.",
-  etiqueta: "Abrir el formulario de comentarios",
-  url: "https://docs.google.com/forms/d/e/TU-FORMULARIO/viewform"
-}
-```
-
-Mientras `url` esté vacío, en su lugar aparece la instrucción para llenarlo. Ninguno de los dos bloques se
-imprime en la constancia.
 
 ## Cómo citar este curso
 
