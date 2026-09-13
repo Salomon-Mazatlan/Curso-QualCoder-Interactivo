@@ -1651,7 +1651,7 @@ const CURSO = {
                 "Revisa que cada fila sea una persona y cada columna una pregunta.",
                 "Borra las columnas que no vayas a usar, como las marcas de tiempo internas de la plataforma."
               ],
-              img: { src: "assets/img/ejemplo.png", titulo: "Un CSV de encuesta con sus columnas de perfil y sus respuestas abiertas", pie: "" }
+              img: { src: "assets/img/7_1_Emcuesta.png", titulo: "Un CSV de encuesta con sus columnas de perfil y sus respuestas abiertas", pie: "" }
             },
             {
               titulo: "Abrir el gestor de archivos",
