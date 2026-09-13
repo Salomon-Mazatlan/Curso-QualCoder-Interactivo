@@ -1618,7 +1618,7 @@ const CURSO = {
     {
       id: "m07",
       titulo: "Encuestas y respuestas abiertas",
-      lema: "Cientos de respuestas cortas, otro oficio",
+      lema: "Importación de archivos de encuestas",
       definiciones: [
         { termino: "Importación de un conjunto de datos",
           texto: "Los programas cualitativos importan una hoja de cálculo y codifican de manera automática casos, atributos y respuestas a partir de las filas y las columnas. Bazeley señala que esa codificación automática resuelve la parte aburrida y rutinaria del trabajo, y deja tiempo para pensar el contenido.",
