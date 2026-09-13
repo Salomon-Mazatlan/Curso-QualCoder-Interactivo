@@ -1311,8 +1311,7 @@ function montarCodificar(zona, ej, api) {
         f.margen.classList.add("con-codigo");
         if (i === Math.min.apply(null, Array.from(seleccion))) {
           const et = crear("span", "qc-etiqueta-margen", corto(etiqueta, 26));
-          et.style.background = color;
-          et.style.color = claro(color) ? "#16263C" : "#fff";
+          et.style.color = color;
           f.margen.appendChild(et);
         }
       }

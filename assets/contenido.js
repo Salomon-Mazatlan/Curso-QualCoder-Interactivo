@@ -783,22 +783,22 @@ const CURSO = {
           titulo: "La ventana de Configuración",
           tipo: "dialogo",
           xp: 15,
-          instruccion: "Se abrió Configuración. Déjala lista para trabajar en español, con tu firma y con la copia de seguridad puesta.",
+          instruccion: "Se abrió Configuración. Lo único que hace falta aquí es tu firma, escribe el nombre con el que vas a codificar.",
           tituloVentana: "Configuración",
           campos: [
             { id: "coder", etiqueta: "Codificador actual", tipo: "texto", marcador: "Escribe tu nombre", correcto: "cualquiera" },
-            { id: "idioma", etiqueta: "Idioma", tipo: "select", opciones: ["English en", "Español es", "Français fr", "Deutsch de"], correcto: "Español es" },
+            { id: "idioma", etiqueta: "Idioma", tipo: "select", opciones: ["English en", "Español es", "Français fr", "Deutsch de"], fijo: "Español es" },
             { id: "fuente", etiqueta: "Fuente y tamaño generales", tipo: "select", opciones: ["Noto Sans 12"], fijo: "Noto Sans 12" },
             { id: "arbol", etiqueta: "Tamaño de fuente para el árbol de códigos", tipo: "select", opciones: ["12"], fijo: "12" },
             { id: "contexto", etiqueta: "Caracteres antes y después en los informes con contexto", tipo: "select", opciones: ["100"], fijo: "100" },
             { id: "franjas", etiqueta: "Vista de franjas de códigos", tipo: "casilla", fijo: true },
             { id: "resaltado", etiqueta: "Estilo de resaltado de los códigos", tipo: "select", opciones: ["resaltador", "subrayado"], fijo: "resaltador" },
-            { id: "copias", etiqueta: "Copias de seguridad que se conservan", tipo: "select", opciones: ["3", "5", "10"], correcto: "5" },
-            { id: "respaldo", etiqueta: "Hacer copia de seguridad de la carpeta del proyecto cada vez que se abra", tipo: "casilla", correcto: true },
+            { id: "copias", etiqueta: "Copias de seguridad que se conservan", tipo: "select", opciones: ["3", "5", "10"], fijo: "5" },
+            { id: "respaldo", etiqueta: "Hacer copia de seguridad de la carpeta del proyecto cada vez que se abra", tipo: "casilla", fijo: true },
             { id: "medios", etiqueta: "Incluir los archivos de audio y video en la copia de seguridad", tipo: "casilla", fijo: true }
           ],
           boton: "Aceptar",
-          dice: "El cambio de idioma pide reiniciar el programa. Y ojo con las copias, rotan, así que solo se conservan las últimas.",
+          dice: "Vale cualquier nombre, el tuyo, tus iniciales o un seudónimo, con tal de que sea siempre el mismo. El resto de la ventana ya viene configurado, y el cambio de idioma pide reiniciar el programa.",
           consejo: "Si tus archivos de audio y video son grandes, desmarcar su inclusión acelera mucho la copia de seguridad, aunque entonces hay que respaldarlos aparte.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La ventana de Configuración completa", pie: "" }
         },
@@ -942,19 +942,6 @@ const CURSO = {
           consejoImagen: { src: "assets/img/3_3_Abrir_archivo.png", titulo: "El diálogo para elegir los archivos que se importan", pie: "" }
         },
         /* 3.4 */ {
-          titulo: "Copiar o vincular",
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "Vas a trabajar el proyecto en la computadora del cubículo y también en la de tu casa. ¿Copias los archivos al proyecto o los vinculas?",
-          opciones: [
-            { t: "Copiarlos, así el proyecto viaja completo", ok: true, dice: "La carpeta .qda lleva dentro el material, se mueve de un equipo a otro y sigue funcionando." },
-            { t: "Vincularlos, para que el proyecto pese menos", ok: false, dice: "Al cambiar de equipo las rutas dejan de existir y los archivos no abren. Vincular solo compensa con video pesado y sin moverlo de sitio." },
-            { t: "Da igual, el programa los guarda de las dos formas", ok: false, dice: "No es lo mismo. Copiar deja el proyecto autónomo, vincular lo ata a las rutas de esa computadora." }
-          ],
-          consejo: "Si de todos modos necesitas vincular, guarda el material en una carpeta junto al proyecto y muévelos siempre juntos. Y ejecuta el resumen del proyecto de vez en cuando, que es donde aparecen los vínculos rotos.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El aviso de vínculos rotos en el resumen del proyecto", pie: "" }
-        },
-        /* 3.5 */ {
           titulo: "Cómo se arman casos y atributos",
           tipo: "guia",
           xp: 10,
@@ -1006,7 +993,7 @@ const CURSO = {
           boton: "Entendido, seguir",
           dice: "Con los casos y los atributos puestos, las comparaciones del final salen solas."
         },
-        /* 3.6 */ {
+        /* 3.5 */ {
           titulo: "Abrir la gestión de casos",
           tipo: "interfaz",
           xp: 15,
@@ -1018,7 +1005,7 @@ const CURSO = {
           consejo: "Nombra los casos con el mismo criterio que los archivos, por ejemplo E01 para el archivo y Rosa para el caso. Cuando el corpus crece, cualquier ambigüedad de nombres se paga en tiempo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de casos con sus nombres y archivos", pie: "" }
         },
-        /* 3.7 */ {
+        /* 3.6 */ {
           titulo: "Abrir la gestión de atributos",
           tipo: "interfaz",
           xp: 15,
@@ -1030,7 +1017,7 @@ const CURSO = {
           consejo: "Define pocos atributos y bien pensados. Veinte variables que nadie va a cruzar solo estorban, y las tres que de verdad separan grupos son las que sostienen los resultados.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de atributos del proyecto", pie: "" }
         },
-        /* 3.8 */ {
+        /* 3.7 */ {
           titulo: "Abrir los diarios del proyecto",
           tipo: "interfaz",
           xp: 15,
@@ -1042,7 +1029,7 @@ const CURSO = {
           consejo: "Escribe en el diario aunque la sesión haya sido corta. Tres renglones con fecha valen más que una reconstrucción de memoria escrita seis meses después.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diario del proyecto con varias entradas fechadas", pie: "" }
         },
-        /* 3.9 */ {
+        /* 3.8 */ {
           titulo: "Archivo, caso, atributo y diario",
           tipo: "parejas",
           xp: 15,
@@ -1057,7 +1044,7 @@ const CURSO = {
           consejo: "Si dudas de si algo es caso o atributo, pregúntate si habla de una persona entera o de un rasgo suyo. La persona es el caso, el rasgo es el atributo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un caso con sus atributos asignados", pie: "" }
         },
-        /* 3.10 */ {
+        /* 3.9 */ {
           titulo: "Qué hace falta para comparar",
           tipo: "quiz",
           xp: 10,
@@ -1126,14 +1113,14 @@ const CURSO = {
           titulo: "Qué etiqueta funciona como código",
           tipo: "quiz",
           xp: 10,
-          pregunta: "Una cuidadora dice \"dejé mi trabajo para cuidar a mi mamá\". ¿Qué etiqueta le pondrías a ese fragmento?",
+          pregunta: "En tres entrevistas aparece algo parecido, \"pedí mi liquidación y me salí\", \"renuncié al mes siguiente\" y \"me tuve que salir del turno de noche\". ¿Qué etiqueta serviría para las tres?",
           opciones: [
-            { t: "Abandono del empleo", ok: true, dice: "Corta, nombra el fenómeno y va a servir para juntar los fragmentos parecidos de otras entrevistas." },
-            { t: "Dejó su trabajo porque su mamá se enfermó y ahora la cuida todo el día", ok: false, dice: "Eso repite lo que dice el fragmento. Un código no cuenta la historia, la nombra." },
-            { t: "Trabajo", ok: false, dice: "Demasiado ancho. Bajo esa etiqueta va a caer cualquier mención al empleo y después no vas a poder distinguir nada." }
+            { t: "Salida del empleo por el cuidado", ok: true, dice: "Nombra lo que las tres comparten y deja fuera lo particular de cada una. Eso es un código, algo que agrupa casos distintos bajo una misma idea." },
+            { t: "Pedí mi liquidación y me salí", ok: false, dice: "Sirve para una sola entrevista. Como código in vivo puede valer, pero con él no se pueden comparar las tres." },
+            { t: "Problemas laborales", ok: false, dice: "Demasiado ancho. Ahí también cabría un conflicto con el jefe o un cambio de horario, que son otra cosa." }
           ],
-          consejo: "Una prueba rápida, si la etiqueta sirve para más de una persona del corpus, es un código. Si solo describe a esta, es un resumen.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El código aplicado en el árbol", pie: "" }
+          consejo: "La prueba rápida es preguntarse si la etiqueta sirve para más de una persona del corpus. Si solo describe a esta, es un resumen del fragmento, no un código.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Los tres fragmentos bajo el mismo código", pie: "" }
         },
         /* 4.2 */ {
           titulo: "Cómo se marca un segmento",
@@ -1205,19 +1192,18 @@ const CURSO = {
           titulo: "Crear el primer código",
           tipo: "interfaz",
           xp: 15,
-          instruccion: "El proyecto es nuevo y todavía no hay ningún código. Crea el primero y llámalo Abandono del empleo.",
+          instruccion: "El proyecto es nuevo y todavía no hay ningún código. Crea el primero con el nombre que quieras, aquí lo que se practica es la ruta.",
           objetivo: "Crear el primer código desde el árbol",
           ruta: ["arbol", "crear_codigo"],
           pista: "El árbol de códigos se maneja con clic derecho, y funciona igual cuando está vacío.",
           ventanaTras: {
             titulo: "Añadir un código nuevo",
             etiqueta: "Nombre del código",
-            marcador: "Abandono del empleo",
-            correcto: ["abandono"],
+            marcador: "Salida del empleo por el cuidado",
             boton: "Aceptar",
             color: "coral"
           },
-          dice: "Crear un código nuevo lo pone en el nivel superior, y la ventana solo pide el nombre. El color, el memo y la categoría se ajustan después desde el mismo menú contextual, con F5, F3 y F6.",
+          dice: "El código queda creado con el nombre que escribiste, en el nivel superior del árbol. La ventana solo pide el nombre. El color, el memo y la categoría se ajustan después desde el mismo menú contextual, con F5, F3 y F6.",
           consejo: "Crea pocos códigos al principio y créalos mientras lees, no antes. Y escribe su memo el mismo día, con F3, porque un código sin memo es una etiqueta que en tres semanas ya no significa lo mismo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol con sus primeros códigos", pie: "" }
         },
