@@ -898,7 +898,7 @@ const CURSO = {
                 "Busca la carpeta donde tienes las transcripciones.",
                 "Selecciona los archivos y acepta.",
                 "Abre después cada archivo importado y comprueba que el texto se lee bien.",
-                "Un PDF escaneado sin OCR se importa vacío, no es un error del programa."
+                "IMPORTANTE: Un archivo PDF protegido con contraseña no se puede importar."
               ],
               img: { src: "assets/img/3_3_Abrir_archivo.png", titulo: "El diálogo del sistema para elegir los archivos", pie: "" }
             },
