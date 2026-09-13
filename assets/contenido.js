@@ -687,7 +687,7 @@ const CURSO = {
     {
       id: "m02",
       titulo: "Proyectos",
-      lema: "Media hora aquí ahorra semanas después",
+      lema: "Creación de proyectos en QualCoder",
       definiciones: [
         { termino: "Diseño de investigación",
           texto: "El plan que articula pregunta, material y métodos, y que se juzga por su capacidad de sostener las conclusiones. Flick advierte que en lo cualitativo no hay umbrales universales de calidad, así que la calidad se construye con estrategias durante el proceso y no con un número al final.",
