@@ -508,7 +508,7 @@ const CURSO = {
                   ]
                 }
               ],
-              img: { src: "assets/img/1_1_Instalar_Abrir.png", titulo: "Los archivos de la versión para Windows", pie: "" }
+              img: { src: "assets/img/1_1_Instalar_Abrir.png", titulo: "Rutas de ejecución", pie: "" }
             }
           ],
           boton: "Ya lo instalé, seguir",
