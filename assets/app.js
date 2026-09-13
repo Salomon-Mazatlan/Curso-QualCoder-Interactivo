@@ -1307,8 +1307,10 @@ function montarCodificar(zona, ej, api) {
       if (seleccion.has(i)) {
         f.seg.classList.add("codificado");
         f.seg.style.background = tinte(color, .5);
-        f.margen.style.borderLeftColor = color;
         f.margen.classList.add("con-codigo");
+        const franja = crear("span", "qc-franja");
+        franja.style.background = color;
+        f.margen.appendChild(franja);
         if (i === Math.min.apply(null, Array.from(seleccion))) {
           const et = crear("span", "qc-etiqueta-margen", corto(etiqueta, 26));
           et.style.color = color;

@@ -266,11 +266,14 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .qc-lineas{display:grid;grid-template-columns:26px clamp(70px, 18%, 150px) minmax(0, 1fr);gap:6px clamp(6px, 1vw, 10px);padding:clamp(10px, 1.6vw, 16px);align-items:start}
 @media (max-width:620px){.qc-lineas{grid-template-columns:20px 10px minmax(0,1fr)}.qc-etiqueta-margen{display:none}}
 .qc-num{font-size:.72rem;color:#9DAEBB;text-align:right;font-variant-numeric:tabular-nums;padding-top:5px}
-.qc-margen{min-height:24px;border-left:3px solid transparent;padding-left:8px;display:block;font-size:.7rem}
-.qc-margen.con-codigo{border-left-width:4px}
+.qc-margen{
+  min-height:24px;display:flex;align-items:flex-start;gap:6px;font-size:.7rem;padding-top:2px;
+}
+.qc-franja{flex:0 0 4px;width:4px;align-self:stretch;min-height:20px;border-radius:2px}
+.qc-margen.con-codigo{background:none}
 .qc-etiqueta-margen{
-  display:inline-block;line-height:1.2;padding:2px 6px;border-radius:3px;font-weight:600;
-  max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  display:inline-block;line-height:1.25;padding:2px 0;font-weight:600;
+  max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;background:none;
 }
 .qc-frase{font-family:var(--serif);font-size:clamp(.95rem, 1.2vw, 1.02rem);line-height:1.6;cursor:pointer;padding:3px 5px;border-radius:3px;display:block}
 .qc-frase:hover{background:#EDF2F5}
