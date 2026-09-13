@@ -832,3 +832,18 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 .categoria li{display:grid;gap:2px}
 .item-texto{display:block}
 .item-porque{display:block;font-size:.76rem;color:var(--tinta-media);line-height:1.35}
+
+.capa-ventana{padding:24px}
+.ventana-flotante{max-width:min(420px, 92vw);width:100%;box-shadow:0 18px 50px rgba(0,0,0,.35)}
+.ventana-flotante .qc-formulario{padding:18px 20px}
+
+.guia-enlaces{display:flex;flex-wrap:wrap;gap:8px 14px;margin:10px 0 0}
+.guia-enlace{
+  font-size:.86rem;color:var(--turquesa);text-decoration:underline;overflow-wrap:anywhere;
+}
+.guia-enlace:hover{color:var(--tinta)}
+.guia-enlace-descarga{
+  text-decoration:none;border:1px solid var(--linea);border-radius:var(--radio);
+  padding:6px 12px;background:var(--alto);
+}
+.guia-enlace-descarga:hover{border-color:var(--turquesa)}

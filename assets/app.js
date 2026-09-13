@@ -1051,7 +1051,6 @@ function montarInterfaz(zona, ej, api) {
     }
     cuerpo.appendChild(lateral);
     const doc = crear("div", "qc-doc");
-    doc.appendChild(crear("div", "qc-doc-cabeza", I.archivos[0]));
     const texto = crear("div", "qc-texto");
     I.fragmento.forEach(f => texto.appendChild(crear("p", null, f)));
     doc.appendChild(texto);
@@ -1077,6 +1076,19 @@ function montarInterfaz(zona, ej, api) {
 
 /* ---------- activity: guia ---------- */
 
+// Enlaces de descarga o consulta dentro de un instructivo.
+function bloqueEnlaces(enlaces) {
+  const caja = crear("div", "guia-enlaces");
+  enlaces.forEach(e => {
+    const a = document.createElement("a");
+    a.href = e.url; a.target = "_blank"; a.rel = "noopener";
+    a.className = "guia-enlace" + (e.descarga ? " guia-enlace-descarga" : "");
+    a.textContent = (e.descarga ? "⭳ " : "") + e.t;
+    caja.appendChild(a);
+  });
+  return caja;
+}
+
 function montarGuia(zona, ej, api) {
   const caja = crear("div", "guia");
   (ej.bloques || []).forEach(b => {
@@ -1095,8 +1107,10 @@ function montarGuia(zona, ej, api) {
       const ol = crear("ol", "guia-pasos");
       (c.pasos || []).forEach(t => ol.appendChild(crear("li", null, t)));
       via.appendChild(ol);
+      if ((c.enlaces || []).length) via.appendChild(bloqueEnlaces(c.enlaces));
       sec.appendChild(via);
     });
+    if ((b.enlaces || []).length) sec.appendChild(bloqueEnlaces(b.enlaces));
     if (b.video) {
       const marco = crear("div", "video-marco");
       const ifr = document.createElement("iframe");
@@ -1232,7 +1246,6 @@ function montarCodificar(zona, ej, api) {
   cuerpo.appendChild(lateral);
 
   const doc = crear("div", "qc-doc");
-  doc.appendChild(crear("div", "qc-doc-cabeza", I.archivos[0]));
 
   const rejilla = crear("div", "qc-lineas");
   const filas = [];

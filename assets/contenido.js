@@ -474,6 +474,10 @@ const CURSO = {
                 "Localiza la versión más reciente, la que aparece marcada como Latest.",
                 "Despliega Assets para ver la lista de archivos de esa versión."
               ],
+              enlaces: [
+                { t: "Repositorio del proyecto en GitHub", url: "https://github.com/ccbogel/QualCoder" },
+                { t: "Versión 4.0-Beta y sus archivos", url: "https://github.com/ccbogel/QualCoder/releases/tag/4.0-Beta" }
+              ],
               img: { src: "assets/img/1_1_Descarga.png", titulo: "El repositorio oficial y su sección de versiones", pie: "" }
             },
             {
@@ -486,6 +490,10 @@ const CURSO = {
                     "Descarga Win_Qualcoder-4.0-beta_INSTALLER.exe",
                     "Ejecútalo y sigue los pasos de instalación. Si aparece la pantalla azul de Windows, la resolvemos en la lección siguiente.",
                     "Al terminar, abre el programa desde el acceso directo o desde el menú de Windows."
+                  ],
+                  enlaces: [
+                    { t: "Descargar el instalador para Windows", descarga: true,
+                      url: "https://github.com/ccbogel/QualCoder/releases/download/4.0-Beta/Win_Qualcoder-4.0-beta_INSTALLER.exe" }
                   ]
                 },
                 {
@@ -493,6 +501,10 @@ const CURSO = {
                   pasos: [
                     "Descarga Win_Qualcoder-4.0-beta_PORTABLE.exe",
                     "Ejecútalo tal cual, sin instalar nada. La primera apertura tarda unos segundos de más porque descomprime en memoria."
+                  ],
+                  enlaces: [
+                    { t: "Descargar la versión portable para Windows", descarga: true,
+                      url: "https://github.com/ccbogel/QualCoder/releases/download/4.0-Beta/Win_Qualcoder-4.0-beta_PORTABLE.exe" }
                   ]
                 }
               ],
@@ -1070,267 +1082,6 @@ const CURSO = {
     /* ============================ 4 ============================ */
     {
       id: "m04",
-      titulo: "Encuestas y respuestas abiertas",
-      lema: "Cientos de respuestas cortas, otro oficio",
-      definiciones: [
-        { termino: "Importación de un conjunto de datos",
-          texto: "Los programas cualitativos importan una hoja de cálculo y codifican de manera automática casos, atributos y respuestas a partir de las filas y las columnas. Bazeley señala que esa codificación automática resuelve la parte aburrida y rutinaria del trabajo, y deja tiempo para pensar el contenido.",
-          cita: "Bazeley, 2013, pp. 172-173", clave: "bazeley2013" },
-        { termino: "Comparación por respuesta cerrada",
-          texto: "Cada respuesta numérica o escalar de la encuesta se usa igual que un dato demográfico, como base para comparar las respuestas abiertas de esa misma encuesta. Cuando la variable es continua o tiene muchas categorías, hay que reagruparla en unas pocas antes de comparar.",
-          cita: "Bazeley, 2013, pp. 268-269", clave: "bazeley2013" }
-      ],
-      insignia: { nombre: "Cuestionario", icono: "▣" },
-      medios: [
-        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Encuestas y respuestas abiertas" },
-        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Encuestas y respuestas abiertas", pie: "" }
-      ],
-      lectura: `
-        <p>Una encuesta con preguntas abiertas no se parece a una entrevista. En vez de cinco transcripciones largas hay cuatrocientas respuestas de dos renglones, y cada una viene acompañada de las variables de perfil que la encuesta ya recogió.</p><p>QualCoder importa ese material desde el gestor de archivos, con un CSV o un XLSX. De una sola pasada crea un caso por persona, convierte en atributos las columnas de respuesta cerrada y deja cada respuesta abierta como un archivo de texto listo para codificar.</p><p>La ventaja es evidente al final. Como los atributos entraron solos, comparar lo que dicen dos grupos es cuestión de filtrar, sin capturar nada a mano.</p>
-      `,
-      ejercicios: [
-        /* 4.1 */ {
-          titulo: "Cómo se importa una encuesta",
-          tipo: "guia",
-          xp: 10,
-          instruccion: "La importación de encuestas no está en el menú Proyecto, vive dentro del gestor de archivos. Así se hace.",
-          bloques: [
-            {
-              titulo: "Preparar el archivo",
-              texto: "El archivo sale de la plataforma donde levantaste la encuesta. Conviene limpiarlo antes, porque lo que entre mal se queda mal.",
-              pasos: [
-                "Exporta las respuestas a CSV o XLSX.",
-                "Deja una sola fila de encabezados, con nombres cortos y sin acentos.",
-                "Revisa que cada fila sea una persona y cada columna una pregunta.",
-                "Borra las columnas que no vayas a usar, como las marcas de tiempo internas de la plataforma."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "Un CSV de encuesta con sus columnas de perfil y sus respuestas abiertas", pie: "" }
-            },
-            {
-              titulo: "Abrir el gestor de archivos",
-              texto: "Todo el material entra por ahí, incluidas las encuestas. El módulo se abre dentro de la pestaña Gestionar.",
-              pasos: [
-                "Abre el menú Gestionar y elige Archivos, atajo Alt+F.",
-                "Fíjate en la barra de herramientas, arriba de la tabla de archivos.",
-                "La tabla muestra una columna por atributo, así que después de importar la verás crecer."
-              ],
-              img: { src: "assets/img/4_1_Gestionar_archivos.png", titulo: "El gestor de archivos con su barra de herramientas", pie: "" }
-            },
-            {
-              titulo: "El botón de importar encuesta",
-              texto: "Es el segundo botón de la barra, el que parece un portapapeles con un clip. No tiene texto, así que conviene reconocerlo por la forma.",
-              pasos: [
-                "Pulsa el segundo botón de la barra de herramientas, el del portapapeles.",
-                "Elige el archivo CSV o XLSX de la encuesta.",
-                "Indica el separador y si la primera fila trae los nombres de las columnas."
-              ],
-              img: { src: "assets/img/4_1_Boton_importar_encuesta.png", titulo: "El segundo botón de la barra, el de importar encuesta", pie: "" }
-            },
-            {
-              titulo: "Repartir las columnas en el asistente",
-              texto: "El asistente muestra a la izquierda todas las columnas del archivo y a la derecha tres grupos. Lo que decide si la importación sirve de algo es en cuál cae cada columna.",
-              pasos: [
-                "Manda al grupo 1, Casos y participantes, la columna que identifica a cada persona, el ID o el nombre.",
-                "Manda al grupo 2, Atributos, las variables de perfil, edad, género, lugar de origen, escolaridad.",
-                "Manda al grupo 3, Textos cualitativos, las columnas de respuesta abierta, que son las que vas a codificar.",
-                "Marca Asignar los atributos a los casos si quieres comparar por persona, y Autocodificar los segmentos con el nombre de la columna para que cada respuesta entre etiquetada con su pregunta.",
-                "Acepta y comprueba el resultado, un caso por fila y un archivo por respuesta abierta."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El asistente de importación de encuestas con sus tres grupos", pie: "" }
-            }
-          ],
-          boton: "Listo, a practicar",
-          dice: "Una encuesta bien importada trae su propio sistema de comparación puesto desde el primer día."
-        },
-        /* 4.2 */ {
-          titulo: "El botón de importar encuestas",
-          tipo: "interfaz",
-          xp: 15,
-          instruccion: "Te llegó un CSV con trescientas respuestas y ocho variables de perfil. Ya estás dentro del gestor de archivos, así que lanza la importación.",
-          objetivo: "Importar una encuesta al proyecto",
-          ruta: ["archivos", "encuesta"],
-          pista: "Es el segundo botón de la barra de herramientas, el del portapapeles. El primero, el de la hoja con flecha, importa archivos sueltos.",
-          medios: [
-            { tipo: "video", id: "p2pWR1IrKbg", titulo: "Abrir el gestor de archivos" },
-            { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Abrir el gestor de archivos para importar la encuesta", pie: "" }
-          ],
-          dice: "Se abre el asistente de importación de encuestas, que es donde se reparte cada columna del archivo.",
-          consejo: "Antes de importar, guarda una copia del CSV original tal como salió de la plataforma. Si la importación queda mal, el arreglo casi siempre es corregir el archivo y volver a importar, y conviene tener el punto de partida intacto.",
-          consejoImagen: { src: "assets/img/4_1_Boton_importar_encuesta.png", titulo: "El botón de importar encuesta en la barra de herramientas", pie: "" }
-        },
-        /* 4.3 */ {
-          titulo: "El asistente de importación",
-          guiado: true,
-          tipo: "asistente",
-          xp: 20,
-          instruccion: "Se abrió el asistente. Reparte cada columna del archivo en el grupo que le toca y deja marcadas las dos opciones de abajo.",
-          tituloVentana: "Asistente de importación de encuestas",
-          destinos: [
-            { id: "casos", t: "1. Casos / Participantes (p. ej., Participante, Nombre)" },
-            { id: "atributos", t: "2. Atributos (p. ej., Edad, Género)" },
-            { id: "textos", t: "3. Textos cualitativos" }
-          ],
-          columnas: [
-            { t: "Participante", destino: "casos" },
-            { t: "Edad", destino: "atributos" },
-            { t: "Género", destino: "atributos" },
-            { t: "Lugar o país de origen", destino: "atributos" },
-            { t: "Respuesta 1", destino: "textos" },
-            { t: "Yo pensé en 1, porque:", destino: "textos" }
-          ],
-          casillas: [
-            { id: "asignar", etiqueta: "Asignar los atributos a los casos (marcar) o a los archivos (desmarcar)", correcto: true },
-            { id: "autocodificar", etiqueta: "Autocodificar los segmentos de texto con el nombre de la columna", correcto: true }
-          ],
-          boton: "Aceptar",
-          pista: "La columna que identifica a cada persona va al primer grupo, las variables de perfil al segundo y las respuestas abiertas al tercero.",
-          dice: "Con los atributos asignados a los casos y la autocodificación activada, cada respuesta entra ya etiquetada con el nombre de su pregunta, y eso ahorra la primera vuelta de codificación entera.",
-          consejo: "Antes de importar, anonimiza el archivo. Sustituye nombres, teléfonos y direcciones por seudónimos en la propia hoja de cálculo, sobre todo si después vas a usar las funciones de inteligencia artificial, porque ese material puede salir de tu computadora hacia el servidor del proveedor. Y la autocodificación por nombre de columna no sustituye tu análisis, solo separa las respuestas por pregunta.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El asistente con las columnas ya repartidas", pie: "" }
-        },
-        /* 4.4 */ {
-          titulo: "Qué deja la importación",
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "Importaste una encuesta con ocho variables de perfil y tres preguntas abiertas, de trescientas personas. ¿Qué esperas encontrar en el proyecto?",
-          opciones: [
-            { t: "Trescientos casos, ocho atributos y novecientos archivos de texto", ok: true, dice: "Un caso por persona, un atributo por variable cerrada y un archivo por cada respuesta abierta." },
-            { t: "Un solo archivo con toda la encuesta dentro", ok: false, dice: "Eso pasaría si importaras el CSV como documento, y entonces no habría ni casos ni atributos con los que comparar." },
-            { t: "Trescientos archivos y ningún atributo", ok: false, dice: "Los atributos se crean si marcaste las columnas cerradas como atributo, que es justo lo que hace útil la importación." }
-          ],
-          consejo: "Con material de encuesta, la codificación se hace mucho más por caso que por documento. Recupera filtrando por atributo desde el principio, porque leer novecientos archivos sueltos no lleva a ningún lado.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La recuperación filtrada por un atributo de la encuesta", pie: "" }
-        },
-        /* 4.5 */ {
-          titulo: "Qué columna va como atributo",
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "En la encuesta hay una columna llamada Municipio y otra llamada ¿Qué fue lo más difícil? ¿Cómo se marcan?",
-          opciones: [
-            { t: "Municipio como atributo y la pregunta abierta como texto", ok: true, dice: "Las cerradas describen al caso, las abiertas son el dato que se codifica." },
-            { t: "Las dos como atributo, para tenerlas en la tabla", ok: false, dice: "Entonces la respuesta abierta no se podría codificar, quedaría como una etiqueta de la ficha del caso." },
-            { t: "Las dos como texto, para poder codificar todo", ok: false, dice: "Codificar el municipio no aporta nada y además pierdes la variable con la que ibas a comparar." }
-          ],
-          consejo: "Cuando dudes de una columna, pregúntate si alguna vez vas a querer filtrar por ella. Si la respuesta es sí, va como atributo.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de atributos con las variables de la encuesta", pie: "" }
-        }
-      ]
-    },
-
-    /* ============================ 5 ============================ */
-    {
-      id: "m05",
-      titulo: "Referencias y Zotero",
-      lema: "El corpus también se cita",
-      definiciones: [
-        { termino: "Corpus documental",
-          texto: "Cuando los documentos son el dato, no se muestrean personas sino materiales, y se arma un archivo o corpus con ellos. Flick subraya que ahí la secuencia se invierte, primero está el material, después la selección y al final el método, y que el corpus puede rediseñarse según los huecos que aparezcan en el análisis.",
-          cita: "Flick, 2007, pp. 31-32", clave: "flick2007" }
-      ],
-      insignia: { nombre: "Fichero bibliográfico", icono: "❐" },
-      medios: [
-        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Referencias y Zotero" },
-        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Referencias y Zotero", pie: "" }
-      ],
-      lectura: `
-        <p>QualCoder guarda referencias bibliográficas dentro del proyecto y las vincula a los archivos. Sirve para dos cosas distintas. Una, dejar documentada la procedencia de cada documento del corpus. Otra, hacer revisiones documentales donde los artículos son el material y los códigos son las categorías de análisis.</p><p>Las referencias entran de dos maneras. Un archivo RIS exportado desde cualquier gestor, que funciona siempre y no necesita nada más, o la conexión directa con Zotero mediante su clave de API, que ahorra el paso de exportar cada vez.</p><p>Cuando el corpus son artículos, vincular cada PDF con su referencia cambia el trabajo. Los informes salen con la cita puesta y se sabe de qué texto vino cada segmento sin abrir el archivo.</p>
-      `,
-      ejercicios: [
-        /* 5.1 */ {
-          titulo: "Cómo entran las referencias",
-          tipo: "guia",
-          xp: 10,
-          instruccion: "Dos caminos, el archivo RIS y la conexión con Zotero. Así se hace cada uno.",
-          bloques: [
-            {
-              titulo: "Abrir el módulo",
-              texto: "Las referencias se gestionan junto al resto del material, en el menú Gestionar.",
-              pasos: [
-                "Abre el menú Gestionar y elige Referencias.",
-                "La tabla muestra las referencias del proyecto y a qué archivos están vinculadas."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "El módulo de referencias del proyecto", pie: "" }
-            },
-            {
-              titulo: "Importar un archivo RIS",
-              texto: "Es la vía universal. Cualquier gestor bibliográfico exporta RIS, y también las bases de datos académicas.",
-              pasos: [
-                "Exporta desde Zotero, Mendeley, EndNote o desde la propia base de datos en formato RIS.",
-                "En el módulo de referencias, importa ese archivo.",
-                "Revisa los campos que llegaron, autores, año, título y revista.",
-                "Corrige a mano lo que venga incompleto, que con exportaciones masivas pasa seguido."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "La importación de un archivo RIS", pie: "" }
-            },
-            {
-              titulo: "Conectar con Zotero",
-              texto: "Evita exportar cada vez, a cambio de configurar una clave. La biblioteca se consulta directamente desde el programa.",
-              pasos: [
-                "Entra a tu cuenta de Zotero y crea una clave de API en los ajustes de seguridad.",
-                "Copia la clave y pégala en el módulo de referencias de QualCoder.",
-                "Trae las referencias de la biblioteca o de una colección concreta.",
-                "Si la clave caduca o la revocas, la conexión deja de funcionar y hay que generar otra."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "La clave de API de Zotero pegada en QualCoder", pie: "" }
-            },
-            {
-              titulo: "Vincular referencia y archivo",
-              texto: "El paso que hace que todo esto valga la pena. Cada documento del corpus queda atado a su ficha.",
-              pasos: [
-                "Selecciona el archivo en la tabla.",
-                "Asígnale su referencia.",
-                "Al exportar informes, la cita viaja con los segmentos de ese archivo."
-              ],
-              img: { src: "assets/img/ejemplo.png", titulo: "Un archivo con su referencia vinculada", pie: "" }
-            }
-          ],
-          boton: "Entendido, seguir",
-          dice: "En una revisión documental, esto es la diferencia entre un informe citable y una lista de fragmentos anónimos."
-        },
-        /* 5.2 */ {
-          titulo: "Abrir el módulo de referencias",
-          tipo: "interfaz",
-          xp: 15,
-          instruccion: "Vas a meter al proyecto las fichas de los cuarenta artículos que vas a revisar.",
-          objetivo: "Abrir la gestión de referencias",
-          ruta: ["gestionar", "referencias"],
-          pista: "Está en el mismo menú donde viven los archivos, los casos y los atributos.",
-          dice: "Desde ahí se importa el RIS, se conecta Zotero y se vinculan las referencias con los archivos del corpus.",
-          consejo: "Si vas a hacer una revisión documental, importa primero las referencias y después los PDF. Así cada archivo encuentra su ficha en el momento de entrar y no hay que emparejarlos a mano después.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de referencias con sus vínculos", pie: "" }
-        },
-        /* 5.3 */ {
-          titulo: "RIS o Zotero",
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "Tienes las cuarenta referencias en Zotero y quieres meterlas al proyecto una sola vez. ¿Qué camino es el más directo?",
-          opciones: [
-            { t: "Exportar la colección a RIS e importar ese archivo", ok: true, dice: "Para una carga única es lo más rápido y no depende de claves ni de conexión." },
-            { t: "Configurar la clave de API de Zotero", ok: false, dice: "Vale la pena cuando vas a consultar la biblioteca seguido, no para una importación de una vez." },
-            { t: "Copiar las citas a mano en el memo del proyecto", ok: false, dice: "Eso no crea referencias vinculables ni sale en los informes." }
-          ],
-          consejo: "La clave de API de Zotero es personal y da acceso a tu biblioteca. Si compartes el proyecto con tu equipo, no la dejes puesta en la copia que envías.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La ventana de configuración de Zotero", pie: "" }
-        },
-        /* 5.4 */ {
-          titulo: "Para qué sirve vincular",
-          tipo: "quiz",
-          xp: 10,
-          pregunta: "¿Qué se gana vinculando cada archivo con su referencia?",
-          opciones: [
-            { t: "Que los informes salgan con la cita de cada segmento", ok: true, dice: "Y de paso queda documentada la procedencia de todo el corpus, que es parte del rastro de auditoría." },
-            { t: "Que el programa codifique solo los artículos", ok: false, dice: "Vincular no codifica nada, solo ata el documento a su ficha bibliográfica." },
-            { t: "Que se reduzca el tamaño del proyecto", ok: false, dice: "No tiene ningún efecto sobre el tamaño, los archivos siguen siendo los mismos." }
-          ],
-          consejo: "En revisión documental conviene además crear un atributo con el año y otro con el tipo de estudio. Con eso puedes comparar qué dicen los trabajos recientes frente a los antiguos sin salir del programa.",
-          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un informe con las citas de cada segmento", pie: "" }
-        }
-      ]
-    },
-
-    /* ============================ 6 ============================ */
-    {
-      id: "m06",
       titulo: "Codificar texto",
       lema: "Seleccionar, elegir el código, marcar",
       definiciones: [
@@ -1377,7 +1128,7 @@ const CURSO = {
         pierde el contexto ni la página entera que vuelve inútil al código.</p>
       `,
       ejercicios: [
-        /* 6.1 */ {
+        /* 4.1 */ {
           titulo: "Qué etiqueta funciona como código",
           tipo: "quiz",
           xp: 10,
@@ -1390,7 +1141,7 @@ const CURSO = {
           consejo: "Una prueba rápida, si la etiqueta sirve para más de una persona del corpus, es un código. Si solo describe a esta, es un resumen.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El código aplicado en el árbol", pie: "" }
         },
-        /* 6.2 */ {
+        /* 4.2 */ {
           titulo: "Cómo se marca un segmento",
           tipo: "guia",
           xp: 10,
@@ -1444,7 +1195,7 @@ const CURSO = {
           boton: "Listo, a practicar",
           dice: "Seleccionar, elegir el código, marcar. Ese ciclo se repite miles de veces en un proyecto."
         },
-        /* 6.3 */ {
+        /* 4.3 */ {
           titulo: "Abrir Codificar texto",
           tipo: "interfaz",
           xp: 15,
@@ -1456,7 +1207,7 @@ const CURSO = {
           consejo: "Ten a mano el atajo Alt+T. Vas a abrir este módulo docenas de veces, y el camino por el menú se vuelve lento a partir de la tercera sesión.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El módulo Codificar texto abierto en su pestaña", pie: "" }
         },
-        /* 6.4 */ {
+        /* 4.4 */ {
           titulo: "Crear el primer código",
           tipo: "interfaz",
           xp: 15,
@@ -1476,7 +1227,7 @@ const CURSO = {
           consejo: "Crea pocos códigos al principio y créalos mientras lees, no antes. Y escribe su memo el mismo día, con F3, porque un código sin memo es una etiqueta que en tres semanas ya no significa lo mismo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol con sus primeros códigos", pie: "" }
         },
-        /* 6.5 */ {
+        /* 4.5 */ {
           titulo: "Marcar el abandono del empleo",
           guiado: true,
           tipo: "codificar",
@@ -1498,7 +1249,7 @@ const CURSO = {
           consejo: "Cuando dudes del tamaño del tramo, marca de más y no de menos. Recortar un segmento largo es fácil, recuperar el contexto que no marcaste obliga a volver al archivo.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un segmento marcado con su franja en el margen", pie: "" }
         },
-        /* 6.6 */ {
+        /* 4.6 */ {
           titulo: "Marcar un tramo de dos frases",
           guiado: true,
           tipo: "codificar",
@@ -1520,7 +1271,7 @@ const CURSO = {
           consejo: "Si el sentido de un fragmento necesita la frase anterior para entenderse, esa frase es parte del segmento. El informe va a mostrar solo lo que marcaste, sin nada alrededor.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un segmento de dos líneas con su código aplicado", pie: "" }
         },
-        /* 6.7 */ {
+        /* 4.7 */ {
           titulo: "Crear un código in vivo",
           guiado: true,
           tipo: "codificar",
@@ -1540,7 +1291,7 @@ const CURSO = {
           consejo: "Utiliza los códigos In Vivo en la fase inicial del análisis cuando necesites priorizar y honrar la voz directa de los participantes, capturando sus palabras exactas, jerga o expresiones evocadoras sin imponer teorías o sesgos del investigador (Adu, 2019; Charmaz, 2014; Miles et al., 2014; Saldaña, 2021).",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "", pie: "" }
         },
-        /* 6.8 */ {
+        /* 4.8 */ {
           titulo: "Código, categoría, segmento y memo",
           tipo: "parejas",
           xp: 15,
@@ -1559,9 +1310,9 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 7 ============================ */
+    /* ============================ 5 ============================ */
     {
-      id: "m07",
+      id: "m05",
       titulo: "Anotar y memos",
       lema: "Lo que no cabe en un código",
       definiciones: [
@@ -1592,7 +1343,7 @@ const CURSO = {
         proceso, que después es tu apartado de método.</p>
       `,
       ejercicios: [
-        /* 7.1 */ {
+        /* 5.1 */ {
           titulo: "Cómo se anota y cómo se escriben memos",
           tipo: "guia",
           xp: 10,
@@ -1623,7 +1374,7 @@ const CURSO = {
           boton: "Entendido, seguir",
           dice: "Codificar, anotar y escribir memos son tres cosas distintas, y el informe final nota la diferencia."
         },
-        /* 7.2 */ {
+        /* 5.2 */ {
           titulo: "Anotar sin asignar código",
           guiado: true,
           tipo: "codificar",
@@ -1642,7 +1393,7 @@ const CURSO = {
           consejo: "Revisa tus anotaciones cada cierto tiempo. La mitad de ellas acaban convirtiéndose en códigos nuevos, y la otra mitad en preguntas para la siguiente entrevista.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Una anotación abierta sobre el texto", pie: "" }
         },
-        /* 7.3 */ {
+        /* 5.3 */ {
           titulo: "Abrir el memo de un código",
           tipo: "interfaz",
           xp: 15,
@@ -1656,7 +1407,7 @@ const CURSO = {
           consejo: "Escribe el memo el día que creas el código y vuelve a él cada vez que dudes al aplicarlo. Ese texto es el que después permite que otra persona codifique igual que tú.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El memo de un código abierto desde el árbol", pie: "" }
         },
-        /* 7.4 */ {
+        /* 5.4 */ {
           titulo: "Escribir el memo de un código",
           tipo: "abierta",
           xp: 20,
@@ -1671,7 +1422,7 @@ const CURSO = {
           consejo: "Guarda una copia del memo con fecha cada vez que lo cambies de forma importante. Ver cómo evolucionó la definición de un código es material de primera para explicar el proceso.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El memo de un código con su definición y sus ejemplos", pie: "" }
         },
-        /* 7.5 */ {
+        /* 5.5 */ {
           titulo: "Memo del código o de la codificación",
           tipo: "quiz",
           xp: 10,
@@ -1687,9 +1438,9 @@ const CURSO = {
       ]
     },
 
-    /* ============================ 8 ============================ */
+    /* ============================ 6 ============================ */
     {
-      id: "m08",
+      id: "m06",
       titulo: "El árbol de códigos",
       lema: "De la lista larga al mapa",
       definiciones: [
@@ -1721,7 +1472,7 @@ const CURSO = {
         simula cómo se ve la paleta para distintas formas de visión cromática.</p>
       `,
       ejercicios: [
-        /* 8.1 */ {
+        /* 6.1 */ {
           titulo: "Cuándo conviene crear una categoría",
           tipo: "quiz",
           xp: 10,
@@ -1734,7 +1485,7 @@ const CURSO = {
           consejo: "Una manera cómoda de trabajar es dejar las categorías para la segunda vuelta, con tres o cuatro entrevistas ya codificadas y la lista de códigos a la vista.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         },
-        /* 8.2 */ {
+        /* 6.2 */ {
           titulo: "Agrupar ocho códigos en tres categorías",
           guiado: true,
           tipo: "clasificar",
@@ -1758,7 +1509,7 @@ const CURSO = {
           consejo: "Nombra las categorías con sustantivos, no con preguntas. Costos del cuidado organiza mejor que ¿Qué cuesta cuidar?, y se lee mejor en los informes.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol con sus categorías ya armadas", pie: "" }
         },
-        /* 8.3 */ {
+        /* 6.3 */ {
           titulo: "Cómo se mantiene el árbol de códigos",
           tipo: "guia",
           xp: 10,
@@ -1809,7 +1560,7 @@ const CURSO = {
           boton: "Listo, a practicar",
           dice: "Fusionar conserva, eliminar tira. Es la diferencia que más caro cuesta aprender por las malas."
         },
-        /* 8.4 */ {
+        /* 6.4 */ {
           titulo: "Crear un subcódigo",
           tipo: "interfaz",
           xp: 15,
@@ -1823,7 +1574,7 @@ const CURSO = {
           consejo: "No bajes más de dos o tres niveles. A partir de ahí nadie recuerda dónde puso las cosas, y menos si codifican varias personas.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un subcódigo colgando de su código", pie: "" }
         },
-        /* 8.5 */ {
+        /* 6.5 */ {
           titulo: "Mover un código a una categoría",
           guiado: true,
           codigoLibre: true,
@@ -1837,7 +1588,7 @@ const CURSO = {
           consejo: "Mueve códigos en bloque cuando reorganices, y hazlo en una sola sesión. Un árbol a medio reordenar confunde más que uno desordenado, sobre todo si codifica otra persona.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol después de mover el código a su categoría", pie: "" }
         },
-        /* 8.6 */ {
+        /* 6.6 */ {
           titulo: "Fusionar dos códigos",
           guiado: true,
           codigoLibre: true,
@@ -1853,7 +1604,7 @@ const CURSO = {
           consejo: "Antes de fusionar, abre la recuperación de los dos códigos y léelos juntos. Si al leerlos seguidos el conjunto tiene sentido, la fusión es correcta, y si chirría, es que nombraban cosas distintas.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diálogo de fusión con el código de destino elegido", pie: "" }
         },
-        /* 8.7 */ {
+        /* 6.7 */ {
           titulo: "Un código con una sola codificación",
           tipo: "quiz",
           xp: 10,
@@ -1865,6 +1616,267 @@ const CURSO = {
           ],
           consejo: "Antes de decidir, abre la recuperación de ese código y lee su único segmento en contexto. Con el fragmento delante, la decisión tarda un minuto.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
+        }
+      ]
+    },
+
+    /* ============================ 7 ============================ */
+    {
+      id: "m07",
+      titulo: "Encuestas y respuestas abiertas",
+      lema: "Cientos de respuestas cortas, otro oficio",
+      definiciones: [
+        { termino: "Importación de un conjunto de datos",
+          texto: "Los programas cualitativos importan una hoja de cálculo y codifican de manera automática casos, atributos y respuestas a partir de las filas y las columnas. Bazeley señala que esa codificación automática resuelve la parte aburrida y rutinaria del trabajo, y deja tiempo para pensar el contenido.",
+          cita: "Bazeley, 2013, pp. 172-173", clave: "bazeley2013" },
+        { termino: "Comparación por respuesta cerrada",
+          texto: "Cada respuesta numérica o escalar de la encuesta se usa igual que un dato demográfico, como base para comparar las respuestas abiertas de esa misma encuesta. Cuando la variable es continua o tiene muchas categorías, hay que reagruparla en unas pocas antes de comparar.",
+          cita: "Bazeley, 2013, pp. 268-269", clave: "bazeley2013" }
+      ],
+      insignia: { nombre: "Cuestionario", icono: "▣" },
+      medios: [
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Encuestas y respuestas abiertas" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Encuestas y respuestas abiertas", pie: "" }
+      ],
+      lectura: `
+        <p>Una encuesta con preguntas abiertas no se parece a una entrevista. En vez de cinco transcripciones largas hay cuatrocientas respuestas de dos renglones, y cada una viene acompañada de las variables de perfil que la encuesta ya recogió.</p><p>QualCoder importa ese material desde el gestor de archivos, con un CSV o un XLSX. De una sola pasada crea un caso por persona, convierte en atributos las columnas de respuesta cerrada y deja cada respuesta abierta como un archivo de texto listo para codificar.</p><p>La ventaja es evidente al final. Como los atributos entraron solos, comparar lo que dicen dos grupos es cuestión de filtrar, sin capturar nada a mano.</p>
+      `,
+      ejercicios: [
+        /* 7.1 */ {
+          titulo: "Cómo se importa una encuesta",
+          tipo: "guia",
+          xp: 10,
+          instruccion: "La importación de encuestas no está en el menú Proyecto, vive dentro del gestor de archivos. Así se hace.",
+          bloques: [
+            {
+              titulo: "Preparar el archivo",
+              texto: "El archivo sale de la plataforma donde levantaste la encuesta. Conviene limpiarlo antes, porque lo que entre mal se queda mal.",
+              pasos: [
+                "Exporta las respuestas a CSV o XLSX.",
+                "Deja una sola fila de encabezados, con nombres cortos y sin acentos.",
+                "Revisa que cada fila sea una persona y cada columna una pregunta.",
+                "Borra las columnas que no vayas a usar, como las marcas de tiempo internas de la plataforma."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "Un CSV de encuesta con sus columnas de perfil y sus respuestas abiertas", pie: "" }
+            },
+            {
+              titulo: "Abrir el gestor de archivos",
+              texto: "Todo el material entra por ahí, incluidas las encuestas. El módulo se abre dentro de la pestaña Gestionar.",
+              pasos: [
+                "Abre el menú Gestionar y elige Archivos, atajo Alt+F.",
+                "Fíjate en la barra de herramientas, arriba de la tabla de archivos.",
+                "La tabla muestra una columna por atributo, así que después de importar la verás crecer."
+              ],
+              img: { src: "assets/img/7_1_Gestionar_archivos.png", titulo: "El gestor de archivos con su barra de herramientas", pie: "" }
+            },
+            {
+              titulo: "El botón de importar encuesta",
+              texto: "Es el segundo botón de la barra, el que parece un portapapeles con un clip. No tiene texto, así que conviene reconocerlo por la forma.",
+              pasos: [
+                "Pulsa el segundo botón de la barra de herramientas, el del portapapeles.",
+                "Elige el archivo CSV o XLSX de la encuesta.",
+                "Indica el separador y si la primera fila trae los nombres de las columnas."
+              ],
+              img: { src: "assets/img/7_1_Boton_importar_encuesta.png", titulo: "El segundo botón de la barra, el de importar encuesta", pie: "" }
+            },
+            {
+              titulo: "Repartir las columnas en el asistente",
+              texto: "El asistente muestra a la izquierda todas las columnas del archivo y a la derecha tres grupos. Lo que decide si la importación sirve de algo es en cuál cae cada columna.",
+              pasos: [
+                "Manda al grupo 1, Casos y participantes, la columna que identifica a cada persona, el ID o el nombre.",
+                "Manda al grupo 2, Atributos, las variables de perfil, edad, género, lugar de origen, escolaridad.",
+                "Manda al grupo 3, Textos cualitativos, las columnas de respuesta abierta, que son las que vas a codificar.",
+                "Marca Asignar los atributos a los casos si quieres comparar por persona, y Autocodificar los segmentos con el nombre de la columna para que cada respuesta entre etiquetada con su pregunta.",
+                "Acepta y comprueba el resultado, un caso por fila y un archivo por respuesta abierta."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "El asistente de importación de encuestas con sus tres grupos", pie: "" }
+            }
+          ],
+          boton: "Listo, a practicar",
+          dice: "Una encuesta bien importada trae su propio sistema de comparación puesto desde el primer día."
+        },
+        /* 7.2 */ {
+          titulo: "El botón de importar encuestas",
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Te llegó un CSV con trescientas respuestas y ocho variables de perfil. Ya estás dentro del gestor de archivos, así que lanza la importación.",
+          objetivo: "Importar una encuesta al proyecto",
+          ruta: ["archivos", "encuesta"],
+          pista: "Es el segundo botón de la barra de herramientas, el del portapapeles. El primero, el de la hoja con flecha, importa archivos sueltos.",
+          medios: [
+            { tipo: "video", id: "p2pWR1IrKbg", titulo: "Abrir el gestor de archivos" },
+            { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Abrir el gestor de archivos para importar la encuesta", pie: "" }
+          ],
+          dice: "Se abre el asistente de importación de encuestas, que es donde se reparte cada columna del archivo.",
+          consejo: "Antes de importar, guarda una copia del CSV original tal como salió de la plataforma. Si la importación queda mal, el arreglo casi siempre es corregir el archivo y volver a importar, y conviene tener el punto de partida intacto.",
+          consejoImagen: { src: "assets/img/7_1_Boton_importar_encuesta.png", titulo: "El botón de importar encuesta en la barra de herramientas", pie: "" }
+        },
+        /* 7.3 */ {
+          titulo: "El asistente de importación",
+          guiado: true,
+          tipo: "asistente",
+          xp: 20,
+          instruccion: "Se abrió el asistente. Reparte cada columna del archivo en el grupo que le toca y deja marcadas las dos opciones de abajo.",
+          tituloVentana: "Asistente de importación de encuestas",
+          destinos: [
+            { id: "casos", t: "1. Casos / Participantes (p. ej., Participante, Nombre)" },
+            { id: "atributos", t: "2. Atributos (p. ej., Edad, Género)" },
+            { id: "textos", t: "3. Textos cualitativos" }
+          ],
+          columnas: [
+            { t: "Participante", destino: "casos" },
+            { t: "Edad", destino: "atributos" },
+            { t: "Género", destino: "atributos" },
+            { t: "Lugar o país de origen", destino: "atributos" },
+            { t: "Respuesta 1", destino: "textos" },
+            { t: "Yo pensé en 1, porque:", destino: "textos" }
+          ],
+          casillas: [
+            { id: "asignar", etiqueta: "Asignar los atributos a los casos (marcar) o a los archivos (desmarcar)", correcto: true },
+            { id: "autocodificar", etiqueta: "Autocodificar los segmentos de texto con el nombre de la columna", correcto: true }
+          ],
+          boton: "Aceptar",
+          pista: "La columna que identifica a cada persona va al primer grupo, las variables de perfil al segundo y las respuestas abiertas al tercero.",
+          dice: "Con los atributos asignados a los casos y la autocodificación activada, cada respuesta entra ya etiquetada con el nombre de su pregunta, y eso ahorra la primera vuelta de codificación entera.",
+          consejo: "Antes de importar, anonimiza el archivo. Sustituye nombres, teléfonos y direcciones por seudónimos en la propia hoja de cálculo, sobre todo si después vas a usar las funciones de inteligencia artificial, porque ese material puede salir de tu computadora hacia el servidor del proveedor. Y la autocodificación por nombre de columna no sustituye tu análisis, solo separa las respuestas por pregunta.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El asistente con las columnas ya repartidas", pie: "" }
+        },
+        /* 7.4 */ {
+          titulo: "Qué deja la importación",
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "Importaste una encuesta con ocho variables de perfil y tres preguntas abiertas, de trescientas personas. ¿Qué esperas encontrar en el proyecto?",
+          opciones: [
+            { t: "Trescientos casos, ocho atributos y novecientos archivos de texto", ok: true, dice: "Un caso por persona, un atributo por variable cerrada y un archivo por cada respuesta abierta." },
+            { t: "Un solo archivo con toda la encuesta dentro", ok: false, dice: "Eso pasaría si importaras el CSV como documento, y entonces no habría ni casos ni atributos con los que comparar." },
+            { t: "Trescientos archivos y ningún atributo", ok: false, dice: "Los atributos se crean si marcaste las columnas cerradas como atributo, que es justo lo que hace útil la importación." }
+          ],
+          consejo: "Con material de encuesta, la codificación se hace mucho más por caso que por documento. Recupera filtrando por atributo desde el principio, porque leer novecientos archivos sueltos no lleva a ningún lado.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La recuperación filtrada por un atributo de la encuesta", pie: "" }
+        },
+        /* 7.5 */ {
+          titulo: "Qué columna va como atributo",
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "En la encuesta hay una columna llamada Municipio y otra llamada ¿Qué fue lo más difícil? ¿Cómo se marcan?",
+          opciones: [
+            { t: "Municipio como atributo y la pregunta abierta como texto", ok: true, dice: "Las cerradas describen al caso, las abiertas son el dato que se codifica." },
+            { t: "Las dos como atributo, para tenerlas en la tabla", ok: false, dice: "Entonces la respuesta abierta no se podría codificar, quedaría como una etiqueta de la ficha del caso." },
+            { t: "Las dos como texto, para poder codificar todo", ok: false, dice: "Codificar el municipio no aporta nada y además pierdes la variable con la que ibas a comparar." }
+          ],
+          consejo: "Cuando dudes de una columna, pregúntate si alguna vez vas a querer filtrar por ella. Si la respuesta es sí, va como atributo.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de atributos con las variables de la encuesta", pie: "" }
+        }
+      ]
+    },
+
+    /* ============================ 8 ============================ */
+    {
+      id: "m08",
+      titulo: "Referencias y Zotero",
+      lema: "El corpus también se cita",
+      definiciones: [
+        { termino: "Corpus documental",
+          texto: "Cuando los documentos son el dato, no se muestrean personas sino materiales, y se arma un archivo o corpus con ellos. Flick subraya que ahí la secuencia se invierte, primero está el material, después la selección y al final el método, y que el corpus puede rediseñarse según los huecos que aparezcan en el análisis.",
+          cita: "Flick, 2007, pp. 31-32", clave: "flick2007" }
+      ],
+      insignia: { nombre: "Fichero bibliográfico", icono: "❐" },
+      medios: [
+        { tipo: "video", id: "p2pWR1IrKbg", titulo: "Referencias y Zotero" },
+        { tipo: "imagen", src: "assets/img/ejemplo.png", titulo: "Referencias y Zotero", pie: "" }
+      ],
+      lectura: `
+        <p>QualCoder guarda referencias bibliográficas dentro del proyecto y las vincula a los archivos. Sirve para dos cosas distintas. Una, dejar documentada la procedencia de cada documento del corpus. Otra, hacer revisiones documentales donde los artículos son el material y los códigos son las categorías de análisis.</p><p>Las referencias entran de dos maneras. Un archivo RIS exportado desde cualquier gestor, que funciona siempre y no necesita nada más, o la conexión directa con Zotero mediante su clave de API, que ahorra el paso de exportar cada vez.</p><p>Cuando el corpus son artículos, vincular cada PDF con su referencia cambia el trabajo. Los informes salen con la cita puesta y se sabe de qué texto vino cada segmento sin abrir el archivo.</p>
+      `,
+      ejercicios: [
+        /* 8.1 */ {
+          titulo: "Cómo entran las referencias",
+          tipo: "guia",
+          xp: 10,
+          instruccion: "Dos caminos, el archivo RIS y la conexión con Zotero. Así se hace cada uno.",
+          bloques: [
+            {
+              titulo: "Abrir el módulo",
+              texto: "Las referencias se gestionan junto al resto del material, en el menú Gestionar.",
+              pasos: [
+                "Abre el menú Gestionar y elige Referencias.",
+                "La tabla muestra las referencias del proyecto y a qué archivos están vinculadas."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "El módulo de referencias del proyecto", pie: "" }
+            },
+            {
+              titulo: "Importar un archivo RIS",
+              texto: "Es la vía universal. Cualquier gestor bibliográfico exporta RIS, y también las bases de datos académicas.",
+              pasos: [
+                "Exporta desde Zotero, Mendeley, EndNote o desde la propia base de datos en formato RIS.",
+                "En el módulo de referencias, importa ese archivo.",
+                "Revisa los campos que llegaron, autores, año, título y revista.",
+                "Corrige a mano lo que venga incompleto, que con exportaciones masivas pasa seguido."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "La importación de un archivo RIS", pie: "" }
+            },
+            {
+              titulo: "Conectar con Zotero",
+              texto: "Evita exportar cada vez, a cambio de configurar una clave. La biblioteca se consulta directamente desde el programa.",
+              pasos: [
+                "Entra a tu cuenta de Zotero y crea una clave de API en los ajustes de seguridad.",
+                "Copia la clave y pégala en el módulo de referencias de QualCoder.",
+                "Trae las referencias de la biblioteca o de una colección concreta.",
+                "Si la clave caduca o la revocas, la conexión deja de funcionar y hay que generar otra."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "La clave de API de Zotero pegada en QualCoder", pie: "" }
+            },
+            {
+              titulo: "Vincular referencia y archivo",
+              texto: "El paso que hace que todo esto valga la pena. Cada documento del corpus queda atado a su ficha.",
+              pasos: [
+                "Selecciona el archivo en la tabla.",
+                "Asígnale su referencia.",
+                "Al exportar informes, la cita viaja con los segmentos de ese archivo."
+              ],
+              img: { src: "assets/img/ejemplo.png", titulo: "Un archivo con su referencia vinculada", pie: "" }
+            }
+          ],
+          boton: "Entendido, seguir",
+          dice: "En una revisión documental, esto es la diferencia entre un informe citable y una lista de fragmentos anónimos."
+        },
+        /* 8.2 */ {
+          titulo: "Abrir el módulo de referencias",
+          tipo: "interfaz",
+          xp: 15,
+          instruccion: "Vas a meter al proyecto las fichas de los cuarenta artículos que vas a revisar.",
+          objetivo: "Abrir la gestión de referencias",
+          ruta: ["gestionar", "referencias"],
+          pista: "Está en el mismo menú donde viven los archivos, los casos y los atributos.",
+          dice: "Desde ahí se importa el RIS, se conecta Zotero y se vinculan las referencias con los archivos del corpus.",
+          consejo: "Si vas a hacer una revisión documental, importa primero las referencias y después los PDF. Así cada archivo encuentra su ficha en el momento de entrar y no hay que emparejarlos a mano después.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La tabla de referencias con sus vínculos", pie: "" }
+        },
+        /* 8.3 */ {
+          titulo: "RIS o Zotero",
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "Tienes las cuarenta referencias en Zotero y quieres meterlas al proyecto una sola vez. ¿Qué camino es el más directo?",
+          opciones: [
+            { t: "Exportar la colección a RIS e importar ese archivo", ok: true, dice: "Para una carga única es lo más rápido y no depende de claves ni de conexión." },
+            { t: "Configurar la clave de API de Zotero", ok: false, dice: "Vale la pena cuando vas a consultar la biblioteca seguido, no para una importación de una vez." },
+            { t: "Copiar las citas a mano en el memo del proyecto", ok: false, dice: "Eso no crea referencias vinculables ni sale en los informes." }
+          ],
+          consejo: "La clave de API de Zotero es personal y da acceso a tu biblioteca. Si compartes el proyecto con tu equipo, no la dejes puesta en la copia que envías.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "La ventana de configuración de Zotero", pie: "" }
+        },
+        /* 8.4 */ {
+          titulo: "Para qué sirve vincular",
+          tipo: "quiz",
+          xp: 10,
+          pregunta: "¿Qué se gana vinculando cada archivo con su referencia?",
+          opciones: [
+            { t: "Que los informes salgan con la cita de cada segmento", ok: true, dice: "Y de paso queda documentada la procedencia de todo el corpus, que es parte del rastro de auditoría." },
+            { t: "Que el programa codifique solo los artículos", ok: false, dice: "Vincular no codifica nada, solo ata el documento a su ficha bibliográfica." },
+            { t: "Que se reduzca el tamaño del proyecto", ok: false, dice: "No tiene ningún efecto sobre el tamaño, los archivos siguen siendo los mismos." }
+          ],
+          consejo: "En revisión documental conviene además crear un atributo con el año y otro con el tipo de estudio. Con eso puedes comparar qué dicen los trabajos recientes frente a los antiguos sin salir del programa.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un informe con las citas de cada segmento", pie: "" }
         }
       ]
     },
@@ -2127,7 +2139,7 @@ const CURSO = {
     /* ============================ 11 ============================ */
     {
       id: "m11",
-      titulo: "Equipo y mantenimiento",
+      titulo: "Trabajo colaborativo y funciones especiales",
       lema: "El acuerdo se construye, no se decreta",
       definiciones: [
         { termino: "Acuerdo entre codificadores",
