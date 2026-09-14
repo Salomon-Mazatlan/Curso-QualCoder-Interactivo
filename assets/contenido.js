@@ -389,6 +389,7 @@ const CURSO = {
       { id: "ocultar", t: "Ocultar panel de control", k: "H" }
     ],
     codigos: [
+      { nombre: "Costos del cuidado", categoria: true },
       { nombre: "Abandono del empleo", color: "coral" },
       { nombre: "Culpa", color: "violeta" },
       { nombre: "Sentimiento de culpa", color: "violeta" },
@@ -1466,6 +1467,32 @@ const CURSO = {
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Captura que acompaña al consejo", pie: "" }
         },
         /* 6.2 */ {
+          titulo: "Crear una categoría",
+          tipo: "interfaz",
+          xp: 15,
+          guiado: true,
+          codigoLibre: true,
+          instruccion: "Las categorías son las carpetas que agrupan códigos. Crea la primera, con el nombre que quieras.",
+          objetivo: "Crear una categoría desde el árbol",
+          ruta: ["codigo:Duración imprevista", "crear_categoria"],
+          codigos: [
+            { nombre: "Abandono del empleo", color: "coral" },
+            { nombre: "Culpa", color: "violeta" },
+            { nombre: "Duración imprevista", color: "turquesa" },
+            { nombre: "Reparto desigual", color: "amarillo" }
+          ],
+          ventanaTras: {
+            titulo: "Añadir una categoría nueva",
+            etiqueta: "Nombre de la categoría",
+            marcador: "Costos del cuidado",
+            boton: "Aceptar"
+          },
+          pista: "Sale del menú contextual del árbol, en la segunda entrada, y da igual sobre qué código hagas clic derecho.",
+          dice: "La categoría aparece en el árbol sin color de fondo, que es como se distinguen de los códigos. Después se le cuelgan códigos con Mover el código a.",
+          consejo: "Crea las categorías cuando ya tengas códigos que agrupar, no antes. Una carpeta inventada en el escritorio termina obligándote a meter el dato donde no cabe.",
+          consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Una categoría recién creada en el árbol", pie: "" }
+        },
+        /* 6.3 */ {
           titulo: "Agrupar ocho códigos en tres categorías",
           guiado: true,
           tipo: "clasificar",
@@ -1489,7 +1516,7 @@ const CURSO = {
           consejo: "Nombra las categorías con sustantivos, no con preguntas. Costos del cuidado organiza mejor que ¿Qué cuesta cuidar?, y se lee mejor en los informes.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol con sus categorías ya armadas", pie: "" }
         },
-        /* 6.3 */ {
+        /* 6.4 */ {
           titulo: "Cómo se mantiene el árbol de códigos",
           tipo: "guia",
           xp: 10,
@@ -1540,7 +1567,7 @@ const CURSO = {
           boton: "Listo, a practicar",
           dice: "Fusionar conserva, eliminar tira. Es la diferencia que más caro cuesta aprender por las malas."
         },
-        /* 6.4 */ {
+        /* 6.5 */ {
           titulo: "Crear un subcódigo",
           tipo: "interfaz",
           xp: 15,
@@ -1550,11 +1577,17 @@ const CURSO = {
           objetivo: "Añadir un subcódigo a un código",
           ruta: ["codigo:Culpa", "subcodigo"],
           pista: "Está en el primer tramo del menú contextual del código, junto a crear código y crear categoría.",
-          dice: "El subcódigo queda colgando del código elegido. Sirve para separar matices sin perder el paraguas común, y en los informes se puede pedir el código con todos sus subcódigos o cada uno por separado.",
+          ventanaTras: {
+            titulo: "Añadir un subcódigo nuevo",
+            etiqueta: "Nombre del subcódigo",
+            marcador: "Escribe el nombre del subcódigo",
+            boton: "Aceptar"
+          },
+          dice: "El subcódigo aparece justo debajo de su código y con una sangría, que es como se ve la jerarquía en el árbol. Sirve para separar matices sin perder el paraguas común, y en los informes se puede pedir el código con todos sus subcódigos o cada uno por separado.",
           consejo: "No bajes más de dos o tres niveles. A partir de ahí nadie recuerda dónde puso las cosas, y menos si codifican varias personas.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "Un subcódigo colgando de su código", pie: "" }
         },
-        /* 6.5 */ {
+        /* 6.6 */ {
           titulo: "Mover un código a una categoría",
           guiado: true,
           codigoLibre: true,
@@ -1568,7 +1601,7 @@ const CURSO = {
           consejo: "Mueve códigos en bloque cuando reorganices, y hazlo en una sola sesión. Un árbol a medio reordenar confunde más que uno desordenado, sobre todo si codifica otra persona.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El árbol después de mover el código a su categoría", pie: "" }
         },
-        /* 6.6 */ {
+        /* 6.7 */ {
           titulo: "Fusionar dos códigos",
           guiado: true,
           codigoLibre: true,
@@ -1584,7 +1617,7 @@ const CURSO = {
           consejo: "Antes de fusionar, abre la recuperación de los dos códigos y léelos juntos. Si al leerlos seguidos el conjunto tiene sentido, la fusión es correcta, y si chirría, es que nombraban cosas distintas.",
           consejoImagen: { src: "assets/img/ejemplo.png", titulo: "El diálogo de fusión con el código de destino elegido", pie: "" }
         },
-        /* 6.7 */ {
+        /* 6.8 */ {
           titulo: "Un código con una sola codificación",
           tipo: "quiz",
           xp: 10,
@@ -2119,6 +2152,7 @@ const CURSO = {
     /* ============================ 11 ============================ */
     {
       id: "m11",
+      bloqueada: "Bajo construcción",
       titulo: "Trabajo colaborativo y funciones especiales",
       lema: "El acuerdo se construye, no se decreta",
       definiciones: [
@@ -2261,6 +2295,7 @@ const CURSO = {
     /* ============================ 12 ============================ */
     {
       id: "m12",
+      bloqueada: "Bajo construcción",
       titulo: "Prueba de campo",
       lema: "Todo junto, una vez más",
       definiciones: [

@@ -29,7 +29,8 @@ const clave = (nivel, i) => nivel.id + "-" + i;
 const hecho = (nivel, i) => estado.hechos[clave(nivel, i)] !== undefined;
 const nivelCompleto = n => n.ejercicios.every((_, i) => hecho(n, i));
 // Todas las misiones están abiertas. Se pueden tomar en cualquier orden.
-const nivelAbierto = () => true;
+const nivelAbierto = i => !CURSO.niveles[i].bloqueada;
+const nivelesActivos = () => CURSO.niveles.filter(n => !n.bloqueada);
 const nivelEmpezado = n => n.ejercicios.some((_, i) => hecho(n, i));
 const persistir = () => guardado.escribir(estado);
 const xpTotal = CURSO.niveles.reduce((s, n) => s + n.ejercicios.reduce((t, e) => t + e.xp, 0), 0);
@@ -245,7 +246,7 @@ function pintarHud() {
   $(".hud-rango").textContent = rango().nombre;
   $(".hud-xp").textContent = estado.xp + " XP";
   $(".hud-barra i").style.width = Math.min(100, (estado.xp / xpTotal) * 100) + "%";
-  $(".hud-insignias").textContent = "✦ " + estado.insignias.length + " / " + CURSO.niveles.length;
+  $(".hud-insignias").textContent = "✦ " + estado.insignias.length + " / " + nivelesActivos().length;
   $(".hud-sonido").textContent = estado.sonido ? "🔊" : "🔇";
   $(".hud-sonido").setAttribute("aria-label", estado.sonido ? "Apagar sonido" : "Encender sonido");
 }
@@ -266,7 +267,15 @@ function navegar(dir) {
     return;
   }
   const n = mision.nivel, idx = mision.idx;
-  const anterior = CURSO.niveles[idx - 1], siguiente = CURSO.niveles[idx + 1];
+  const buscar = (desde, paso) => {
+    let k = desde;
+    while (k >= 0 && k < CURSO.niveles.length) {
+      if (!CURSO.niveles[k].bloqueada) return CURSO.niveles[k];
+      k += paso;
+    }
+    return null;
+  };
+  const anterior = buscar(idx - 1, -1), siguiente = buscar(idx + 1, 1);
 
   if (mision.paso === "briefing") {
     if (dir > 0) { mision.paso = "ej"; mision.i = 0; pintarMision(); }
@@ -316,12 +325,14 @@ function pintarNav() {
   const lista = crear("ol", "rail-misiones");
   CURSO.niveles.forEach((nivel, i) => {
     const activa = mision && mision.nivel.id === nivel.id;
-    const li = crear("li", "rail-mision" + (activa ? " activa" : "") + (nivelCompleto(nivel) ? " listo" : ""));
+    const enObras = !!nivel.bloqueada;
+    const li = crear("li", "rail-mision" + (activa ? " activa" : "") + (enObras ? " en-obras" : (nivelCompleto(nivel) ? " listo" : "")));
 
     const btn = crear("button", "rail-mision-btn");
+    btn.disabled = enObras;
     btn.appendChild(crear("span", "rail-num", String(i + 1)));
-    btn.appendChild(crear("span", "rail-titulo", nivel.titulo));
-    btn.appendChild(estrellasMini(estrellasNivel(nivel)));
+    btn.appendChild(crear("span", "rail-titulo", nivel.titulo + (enObras ? " · " + nivel.bloqueada : "")));
+    if (!enObras) btn.appendChild(estrellasMini(estrellasNivel(nivel)));
     btn.addEventListener("click", () => { location.hash = "#" + nivel.id; rail.classList.remove("abierto"); });
     li.appendChild(btn);
 
@@ -374,21 +385,25 @@ function pintarMapa() {
 
   const senda = crear("ol", "senda");
   CURSO.niveles.forEach((nivel, i) => {
-    const listo = nivelCompleto(nivel), empezada = nivelEmpezado(nivel);
-    const li = crear("li", "nodo" + (listo ? " listo" : empezada ? " en-marcha" : ""));
+    const enObras = !!nivel.bloqueada;
+    const listo = !enObras && nivelCompleto(nivel), empezada = !enObras && nivelEmpezado(nivel);
+    const li = crear("li", "nodo" + (enObras ? " en-obras" : listo ? " listo" : empezada ? " en-marcha" : ""));
     const btn = crear("button", "nodo-btn");
-    btn.appendChild(crear("span", "disco", listo ? nivel.insignia.icono : String(i + 1)));
+    btn.disabled = enObras;
+    btn.appendChild(crear("span", "disco", enObras ? "⛏" : (listo ? nivel.insignia.icono : String(i + 1))));
 
     const bloque = crear("span", "nodo-texto");
     bloque.appendChild(crear("strong", null, (i + 1) + ". " + nivel.titulo));
-    bloque.appendChild(crear("span", "nodo-lema", nivel.lema));
+    bloque.appendChild(crear("span", "nodo-lema", enObras ? nivel.bloqueada : nivel.lema));
     if (empezada && !listo) {
       const hechas = nivel.ejercicios.filter((_, j) => hecho(nivel, j)).length;
       bloque.appendChild(crear("span", "nodo-avance", "En marcha, " + hechas + " de " + nivel.ejercicios.length + " actividades"));
     }
-    const estrellas = crear("span", "estrellas");
-    for (let e = 1; e <= 3; e++) estrellas.appendChild(crear("span", "estrella" + (estrellasNivel(nivel) >= e ? " viva" : ""), "★"));
-    bloque.appendChild(estrellas);
+    if (!enObras) {
+      const estrellas = crear("span", "estrellas");
+      for (let e = 1; e <= 3; e++) estrellas.appendChild(crear("span", "estrella" + (estrellasNivel(nivel) >= e ? " viva" : ""), "★"));
+      bloque.appendChild(estrellas);
+    }
     btn.appendChild(bloque);
 
     btn.addEventListener("click", () => { sonar("toque"); location.hash = "#" + nivel.id; });
@@ -397,12 +412,12 @@ function pintarMapa() {
   });
   cont.appendChild(senda);
 
-  const todo = CURSO.niveles.every(nivelCompleto);
+  const todo = nivelesActivos().every(nivelCompleto);
   const final = crear("div", "nodo-final" + (todo ? " listo" : ""));
   final.appendChild(crear("h2", null, todo ? "Constancia liberada" : "Constancia bloqueada"));
   final.appendChild(crear("p", null, todo
-    ? "Completaste las " + CURSO.niveles.length + " misiones."
-    : "Se libera al terminar las " + CURSO.niveles.length + " misiones."));
+    ? "Completaste las " + nivelesActivos().length + " misiones disponibles."
+    : "Se libera al terminar las " + nivelesActivos().length + " misiones disponibles."));
   if (todo) {
     const b = crear("button", "accion", "Ver mi constancia");
     b.addEventListener("click", () => { location.hash = "#constancia"; });
@@ -924,23 +939,32 @@ function panelArchivos(I, alClic) {
 }
 
 // Code tree panel, shared by the interface and coding activities.
+function nodoCodigo(c, alClic) {
+  const li = crear("li", "qc-rama" + (c.nivel ? " qc-rama-hija" : ""));
+  const b = crear("button", "qc-codigo" + (c.categoria ? " qc-categoria" : ""));
+  b.dataset.nombre = c.nombre;
+  if (c.categoria) {
+    b.style.background = "#FFFFFF";
+    b.style.color = "#16263C";
+  } else {
+    const tono = CURSO.paleta[c.color] || c.color || "#B9C6D1";
+    b.style.background = tono;
+    b.style.color = claro(tono) ? "#16263C" : "#FFFFFF";
+  }
+  b.appendChild(crear("span", null, c.nombre));
+  if (alClic) {
+    b.addEventListener("click", ev => { ev.stopPropagation(); alClic(c, b); });
+    b.addEventListener("contextmenu", ev => { ev.preventDefault(); ev.stopPropagation(); alClic(c, b); });
+  }
+  li.appendChild(b);
+  return li;
+}
+
 function arbolCodigos(codigos, alClic, titulo) {
   const panel = crear("div", "qc-arbol-caja");
   panel.appendChild(crear("div", "qc-cabecera-col", titulo || "Name"));
   const lista = crear("ul", "qc-arbol");
-  codigos.forEach(c => {
-    const li = crear("li");
-    const b = crear("button", "qc-codigo");
-    b.dataset.nombre = c.nombre;
-    const punto = crear("span", "punto");
-    punto.style.background = CURSO.paleta[c.color] || c.color || "#B9C6D1";
-    b.appendChild(punto);
-    b.appendChild(crear("span", null, c.nombre));
-    b.addEventListener("click", ev => { ev.stopPropagation(); alClic(c, b); });
-    b.addEventListener("contextmenu", ev => { ev.preventDefault(); ev.stopPropagation(); alClic(c, b); });
-    li.appendChild(b);
-    lista.appendChild(li);
-  });
+  codigos.forEach(c => lista.appendChild(nodoCodigo(c, alClic)));
   panel.appendChild(lista);
   return panel;
 }
@@ -984,10 +1008,23 @@ function montarInterfaz(zona, ej, api) {
     }
   });
 
-  let arbolLista = null;
+  let arbolLista = null, ultimoNodo = null, ultimoCodigo = null;
 
   function acertar() {
     if (ej.ventanaTras) return abrirVentanaTras();
+    if (principal[1] === "mover" && arbolLista) return moverBajoCategoria();
+    cerrado = true;
+    marco.ventana.classList.add("qc-listo");
+    api.resuelto(ej.dice);
+  }
+
+  function moverBajoCategoria() {
+    const categoria = arbolLista.querySelector(".qc-categoria");
+    if (categoria && ultimoNodo) {
+      const rama = categoria.parentNode;
+      ultimoNodo.classList.add("qc-rama-hija");
+      rama.parentNode.insertBefore(ultimoNodo, rama.nextSibling);
+    }
     cerrado = true;
     marco.ventana.classList.add("qc-listo");
     api.resuelto(ej.dice);
@@ -997,21 +1034,25 @@ function montarInterfaz(zona, ej, api) {
     abrirVentanaCampo(ej.ventanaTras, nombre => {
       cerrado = true;
       if (arbolLista) {
-        const li = crear("li");
-        const b = crear("button", "qc-codigo elegido");
-        const punto = crear("span", "punto");
-        punto.style.background = CURSO.paleta[ej.ventanaTras.color] || CURSO.paleta.coral;
-        b.appendChild(punto);
-        b.appendChild(crear("span", null, nombre));
-        li.appendChild(b);
-        arbolLista.appendChild(li);
+        const esCategoria = principal[1] === "crear_categoria";
+        const esSub = principal[1] === "subcodigo";
+        const nuevo = nodoCodigo({
+          nombre: nombre,
+          categoria: esCategoria,
+          nivel: esSub ? 1 : 0,
+          color: esSub && ultimoCodigo ? ultimoCodigo.color : (ej.ventanaTras.color || "coral")
+        });
+        nuevo.querySelector(".qc-codigo").classList.add("recien");
+        if (esSub && ultimoNodo) arbolLista.insertBefore(nuevo, ultimoNodo.nextSibling);
+        else if (esCategoria) arbolLista.insertBefore(nuevo, arbolLista.firstChild);
+        else arbolLista.appendChild(nuevo);
         const vacio = marco.ventana.querySelector(".qc-arbol-vacio");
         if (vacio) vacio.remove();
       }
       marco.ventana.classList.add("qc-listo");
-      api.resuelto((ej.dice || "") + " El código ya aparece en el árbol, listo para aplicarlo.");
+      api.resuelto(ej.dice);
     }, motivo => {
-      if (motivo === "cancelar") api.fallo("Cancelar cierra la ventana sin crear el código. Vuelve a abrir el menú contextual.");
+      if (motivo === "cancelar") api.fallo("Cancelar cierra la ventana sin crear nada. Vuelve a abrir el menú contextual.");
       else api.fallo("Ese nombre no es el que pedía la lección. Revisa el enunciado.");
     });
   }
@@ -1023,6 +1064,7 @@ function montarInterfaz(zona, ej, api) {
 
     const menuArbol = (nombre, boton) => {
       if (cerrado) return;
+      if (boton) { ultimoNodo = boton.parentNode; ultimoCodigo = (ej.codigos || I.codigos).find(c => c.nombre === nombre) || null; }
       marco.cerrarMenus();
       abrirMenuContextual(
         nombre ? "Menú del código " + nombre : "Menú del árbol de códigos",
@@ -1039,7 +1081,7 @@ function montarInterfaz(zona, ej, api) {
     };
 
     if (arbolVacio) {
-      const panel = arbolCodigos([], () => {}, "Name");
+      const panel = arbolCodigos(ej.codigos || [], (c, boton) => menuArbol(c.nombre, boton), "Name");
       arbolLista = panel.querySelector(".qc-arbol");
       const vacio = crear("p", "qc-arbol-vacio", "Sin códigos todavía. Clic derecho aquí para crear el primero.");
       vacio.addEventListener("click", ev => { ev.stopPropagation(); menuArbol(null); });
@@ -1047,7 +1089,9 @@ function montarInterfaz(zona, ej, api) {
       panel.appendChild(vacio);
       lateral.appendChild(panel);
     } else {
-      lateral.appendChild(arbolCodigos(I.codigos, (c) => menuArbol(c.nombre)));
+      const panel = arbolCodigos(ej.codigos || I.codigos, (c, boton) => menuArbol(c.nombre, boton));
+      arbolLista = panel.querySelector(".qc-arbol");
+      lateral.appendChild(panel);
     }
     cuerpo.appendChild(lateral);
     const doc = crear("div", "qc-doc");
@@ -1308,14 +1352,14 @@ function montarCodificar(zona, ej, api) {
         f.seg.classList.add("codificado");
         f.seg.style.background = tinte(color, .5);
         f.margen.classList.add("con-codigo");
-        const franja = crear("span", "qc-franja");
-        franja.style.background = color;
-        f.margen.appendChild(franja);
         if (i === Math.min.apply(null, Array.from(seleccion))) {
           const et = crear("span", "qc-etiqueta-margen", corto(etiqueta, 26));
           et.style.color = color;
           f.margen.appendChild(et);
         }
+        const franja = crear("span", "qc-franja");
+        franja.style.background = color;
+        f.margen.appendChild(franja);
       }
     });
     marco.ventana.classList.add("qc-listo");
@@ -1348,12 +1392,8 @@ function montarCodificar(zona, ej, api) {
       const primero = libre ? Math.min.apply(null, Array.from(seleccion)) : ej.solucion.segmentos[0];
       const nombre = "\"" + ej.texto[primero].replace(/^[,;\s]+|[.,;\s]+$/g, "") + "\"";
       pintar(CURSO.paleta.amarillo, nombre);
-      const li = crear("li");
-      const b = crear("button", "qc-codigo elegido");
-      const punto = crear("span", "punto");
-      punto.style.background = CURSO.paleta.amarillo;
-      b.appendChild(punto); b.appendChild(crear("span", null, corto(nombre, 28)));
-      li.appendChild(b);
+      const li = nodoCodigo({ nombre: corto(nombre, 28), color: "amarillo" });
+      li.querySelector(".qc-codigo").classList.add("recien");
       arbol.querySelector(".qc-arbol").appendChild(li);
       return api.resuelto("El código in vivo se creó con las palabras del texto y ya está en el árbol.");
     }
@@ -1966,10 +2006,10 @@ function pintarConstancia() {
   mision = null;
   const zona = $("#app");
   zona.innerHTML = "";
-  if (!CURSO.niveles.every(nivelCompleto)) { location.hash = ""; return; }
+  if (!nivelesActivos().every(nivelCompleto)) { location.hash = ""; return; }
 
-  const actividades = CURSO.niveles.reduce((t, n) => t + n.ejercicios.length, 0);
-  const estrellas = CURSO.niveles.reduce((t, n) => t + estrellasNivel(n), 0);
+  const actividades = nivelesActivos().reduce((t, n) => t + n.ejercicios.length, 0);
+  const estrellas = nivelesActivos().reduce((t, n) => t + estrellasNivel(n), 0);
 
   const hoja = crear("section", "constancia");
   const marco = crear("div", "constancia-marco");
@@ -1998,7 +2038,7 @@ function pintarConstancia() {
   marco.appendChild(nombre);
 
   const cuerpo = crear("p", "constancia-cuerpo");
-  cuerpo.textContent = "concluyó las " + CURSO.niveles.length + " misiones del curso, con sus " +
+  cuerpo.textContent = "concluyó las " + nivelesActivos().length + " misiones del curso, con sus " +
     actividades + " actividades prácticas sobre el manejo de QualCoder 4 y los fundamentos del análisis " +
     "cualitativo, con una dedicación estimada de " + CURSO.duracion + ".";
   marco.appendChild(cuerpo);
@@ -2006,8 +2046,8 @@ function pintarConstancia() {
   const datos = crear("ul", "constancia-datos");
   [
     ["Experiencia acumulada", estado.xp + " XP"],
-    ["Insignias obtenidas", estado.insignias.length + " de " + CURSO.niveles.length],
-    ["Estrellas", estrellas + " de " + (CURSO.niveles.length * 3)],
+    ["Insignias obtenidas", estado.insignias.length + " de " + nivelesActivos().length],
+    ["Estrellas", estrellas + " de " + (nivelesActivos().length * 3)],
     ["Nivel alcanzado", rango().nombre]
   ].forEach(([a, b]) => {
     const li = crear("li");
@@ -2187,6 +2227,11 @@ function enrutar() {
   if (id === "referencias") return pintarReferencias();
   const idx = CURSO.niveles.findIndex(n => n.id === id);
   if (idx === -1) return pintarMapa();
+  if (CURSO.niveles[idx].bloqueada) {
+    avisar("Esa misión está en construcción, todavía no se puede jugar.");
+    location.hash = "";
+    return pintarMapa();
+  }
   abrirMision(CURSO.niveles[idx], idx);
   pintarHud();
 }
