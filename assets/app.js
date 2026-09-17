@@ -263,7 +263,7 @@ function puedeNavegar(dir) {
 
 function navegar(dir) {
   if (!mision) {
-    if (dir > 0) location.hash = "#" + CURSO.niveles[0].id;
+    if (dir > 0) location.hash = location.hash === "#mapa" ? "#" + CURSO.niveles[0].id : "#mapa";
     return;
   }
   const n = mision.nivel, idx = mision.idx;
@@ -363,9 +363,49 @@ function pintarNav() {
   const refs = crear("button", "rail-enlace", "Referencias");
   refs.addEventListener("click", () => { location.hash = "#referencias"; });
   const mapa = crear("button", "rail-enlace", "Mapa de misiones");
-  mapa.addEventListener("click", () => { location.hash = ""; if (!location.hash) enrutar(); });
+  mapa.addEventListener("click", () => { location.hash = "#mapa"; });
   pie.appendChild(mapa); pie.appendChild(refs);
   rail.appendChild(pie);
+}
+
+/* ---------- start screen ---------- */
+
+function pintarInicio() {
+  mision = null;
+  const zona = $("#app");
+  zona.innerHTML = "";
+  const i = CURSO.inicio || {};
+  const cont = crear("div", "inicio");
+
+  const marca = crear("div", "inicio-marca");
+  marca.appendChild(logoQC());
+  marca.appendChild(crear("span", "inicio-marca-texto", "QualCoder 4"));
+  cont.appendChild(marca);
+
+  cont.appendChild(crear("h1", null, i.titulo || CURSO.titulo));
+  if (i.subtitulo) cont.appendChild(crear("p", "inicio-sub", i.subtitulo));
+  cont.appendChild(crear("p", "inicio-instruccion", i.instruccion || "Elige el idioma del curso"));
+
+  const lista = crear("div", "idiomas");
+  (CURSO.idiomas || []).forEach(idioma => {
+    const b = crear("button", "idioma" + (idioma.listo ? " idioma-listo" : " idioma-obras"));
+    b.appendChild(crear("span", "idioma-codigo", idioma.bandera || idioma.id.toUpperCase()));
+    b.appendChild(crear("span", "idioma-nombre", idioma.nombre));
+    b.appendChild(crear("span", "idioma-nota", idioma.nota || ""));
+    if (idioma.listo) b.appendChild(crear("span", "idioma-entrar", idioma.entrar || "Empezar"));
+    b.addEventListener("click", () => {
+      if (idioma.listo) { sonar("toque"); location.hash = "#mapa"; return; }
+      avisar(idioma.aviso || idioma.nota || "En construcción");
+    });
+    lista.appendChild(b);
+  });
+  cont.appendChild(lista);
+
+  if (i.nota) cont.appendChild(crear("p", "inicio-nota", i.nota));
+  zona.appendChild(cont);
+  pintarHud();
+  pintarNav();
+  subir();
 }
 
 /* ---------- map ---------- */
@@ -476,7 +516,7 @@ function pantallaBriefing(n) {
   const ir = crear("button", "accion", nivelCompleto(n) ? "Repasar la misión" : "Empezar la misión");
   ir.addEventListener("click", () => { sonar("toque"); mision.paso = "ej"; pintarMision(); });
   const volver = crear("button", "accion fantasma", "Volver al mapa");
-  volver.addEventListener("click", () => { location.hash = ""; });
+  volver.addEventListener("click", () => { location.hash = "#mapa"; });
   fila.appendChild(ir); fila.appendChild(volver);
   c.appendChild(fila);
   return c;
@@ -736,7 +776,7 @@ function pantallaFin(n) {
   const otra = crear("button", "accion fantasma", "Repetir la misión");
   otra.addEventListener("click", () => abrirMision(n, mision.idx, true));
   const mapa = crear("button", "accion fantasma", "Volver al mapa");
-  mapa.addEventListener("click", () => { location.hash = ""; });
+  mapa.addEventListener("click", () => { location.hash = "#mapa"; });
   fila.appendChild(otra); fila.appendChild(mapa);
   c.appendChild(fila);
 
@@ -2006,7 +2046,7 @@ function pintarConstancia() {
   mision = null;
   const zona = $("#app");
   zona.innerHTML = "";
-  if (!nivelesActivos().every(nivelCompleto)) { location.hash = ""; return; }
+  if (!nivelesActivos().every(nivelCompleto)) { location.hash = "#mapa"; return; }
 
   const actividades = nivelesActivos().reduce((t, n) => t + n.ejercicios.length, 0);
   const estrellas = nivelesActivos().reduce((t, n) => t + estrellasNivel(n), 0);
@@ -2121,7 +2161,7 @@ function pintarConstancia() {
   hoja.appendChild(crear("p", "constancia-aviso",
     "Al imprimir sale reducida al 70 por ciento y entra completa en una hoja tamaño carta, sin tocar la escala del navegador."));
   const mapa = crear("button", "accion fantasma", "Volver al mapa");
-  mapa.addEventListener("click", () => { location.hash = ""; });
+  mapa.addEventListener("click", () => { location.hash = "#mapa"; });
   fila.appendChild(imprimir); fila.appendChild(mapa);
   hoja.appendChild(fila);
 
@@ -2210,7 +2250,7 @@ function pintarReferencias() {
 
   const fila = crear("div", "fila-acciones");
   const mapa = crear("button", "accion fantasma", "Volver al mapa");
-  mapa.addEventListener("click", () => { location.hash = ""; });
+  mapa.addEventListener("click", () => { location.hash = "#mapa"; });
   fila.appendChild(mapa);
   c.appendChild(fila);
   zona.appendChild(c);
@@ -2223,13 +2263,15 @@ function pintarReferencias() {
 
 function enrutar() {
   const id = location.hash.replace("#", "");
+  if (id === "") return pintarInicio();
+  if (id === "mapa") return pintarMapa();
   if (id === "constancia") return pintarConstancia();
   if (id === "referencias") return pintarReferencias();
   const idx = CURSO.niveles.findIndex(n => n.id === id);
-  if (idx === -1) return pintarMapa();
+  if (idx === -1) return pintarInicio();
   if (CURSO.niveles[idx].bloqueada) {
     avisar("Esa misión está en construcción, todavía no se puede jugar.");
-    location.hash = "";
+    location.hash = "#mapa";
     return pintarMapa();
   }
   abrirMision(CURSO.niveles[idx], idx);
@@ -2240,7 +2282,7 @@ function reiniciar() {
   if (!confirm("Esto borra tus XP, tus insignias y tus estrellas. ¿Seguimos?")) return;
   guardado.borrar();
   estado = JSON.parse(JSON.stringify(inicial));
-  location.hash = "";
+  location.hash = "#mapa";
   enrutar();
 }
 
@@ -2250,7 +2292,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $(".hud-sonido").addEventListener("click", () => { estado.sonido = !estado.sonido; persistir(); pintarHud(); sonar("toque"); });
   $(".hud-anterior").addEventListener("click", () => navegar(-1));
   $(".hud-siguiente").addEventListener("click", () => navegar(1));
-  $(".hud-mapa").addEventListener("click", () => { if (location.hash) location.hash = ""; else enrutar(); });
+  $(".hud-mapa").addEventListener("click", () => { if (location.hash !== "#mapa") location.hash = "#mapa"; else enrutar(); });
   $(".hud-referencias").addEventListener("click", () => { location.hash = "#referencias"; });
   $(".hud-reinicio").addEventListener("click", reiniciar);
   document.addEventListener("click", cerrarMenuAbierto);

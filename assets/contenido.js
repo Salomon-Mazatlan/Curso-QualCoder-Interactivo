@@ -7,6 +7,22 @@ const CURSO = {
   duracion: "entre dos y tres horas y media",
   responsable: "Lorenzo Salomón Cárdenas",
 
+  // Pantalla de inicio y selector de idioma. Los idiomas sin "listo" muestran su aviso.
+  inicio: {
+    titulo: "Curso QualCoder Interactivo",
+    subtitulo: "Aprender a codificar datos cualitativos practicando dentro de un simulador de QualCoder 4",
+    instruccion: "Elige el idioma del curso",
+    nota: "Curso gratuito, sin registro y sin instalar nada. El avance se guarda en este navegador."
+  },
+  idiomas: [
+    { id: "es", nombre: "Español", bandera: "ES", nota: "Curso completo, 10 misiones disponibles", listo: true, entrar: "Empezar" },
+    { id: "en", nombre: "English", bandera: "EN", nota: "Under construction", aviso: "The English version is under construction." },
+    { id: "de", nombre: "Deutsch", bandera: "DE", nota: "In Bearbeitung", aviso: "Die deutsche Fassung ist noch in Bearbeitung." },
+    { id: "fr", nombre: "Français", bandera: "FR", nota: "En construction", aviso: "La version française est en construction." },
+    { id: "pt", nombre: "Português", bandera: "PT", nota: "Em construção", aviso: "A versão em português está em construção." }
+  ],
+
+
   // Mensaje de apoyo y enlace de comentarios. Se editan aquí y salen en el mapa y al cerrar cada misión.
   apoyo: {
     titulo: "Curso gratuito, con donativos voluntarios",
