@@ -923,3 +923,21 @@ button{font-family:inherit;font-size:inherit;color:inherit;cursor:pointer}
 
 .inicio-nota{margin:26px 0 0;font-size:.85rem;color:var(--tinta-media)}
 @media (max-width:520px){ .idioma-desc{min-height:0} }
+
+/* ---------- language picker in the top bar ---------- */
+
+.hud-idioma{display:flex;align-items:center;gap:7px}
+.hud-idioma-etiqueta{
+  font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);
+}
+.hud-idioma-select{
+  background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.28);
+  border-radius:var(--radio);padding:5px 9px;font-family:var(--sans);font-size:.85rem;
+}
+.hud-idioma-select option{color:var(--tinta);background:#fff}
+@media (max-width:640px){ .hud-idioma-etiqueta{display:none} }
+
+/* la pantalla de inicio no muestra el índice de misiones */
+body.sin-rail .rail-nav,
+body.sin-rail .rail-abrir{display:none}
+body.sin-rail .lienzo{grid-template-columns:minmax(0,1fr)}

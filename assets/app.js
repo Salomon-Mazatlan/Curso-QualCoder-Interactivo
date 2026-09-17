@@ -368,31 +368,66 @@ function pintarNav() {
   rail.appendChild(pie);
 }
 
+/* ---------- language picker ---------- */
+
+function montarSelectorIdioma() {
+  const sel = $(".hud-idioma-select");
+  if (!sel || !(CURSO.idiomas || []).length) return;
+  CURSO.idiomas.forEach(idioma => {
+    const op = document.createElement("option");
+    op.value = idioma.id;
+    op.textContent = idioma.nombre + (idioma.listo ? "" : " · " + (idioma.nota || ""));
+    if (idioma.listo) op.selected = true;
+    sel.appendChild(op);
+  });
+  sel.addEventListener("change", () => {
+    const elegido = CURSO.idiomas.find(x => x.id === sel.value) || {};
+    if (elegido.listo) { location.hash = "#mapa"; return; }
+    avisar(elegido.aviso || elegido.nota || "En construcción");
+    const listo = CURSO.idiomas.find(x => x.listo);
+    if (listo) sel.value = listo.id;
+  });
+}
+
 /* ---------- start screen ---------- */
 
 function pintarInicio() {
   mision = null;
+  document.body.classList.add("sin-rail");
   const zona = $("#app");
   zona.innerHTML = "";
   const i = CURSO.inicio || {};
   const cont = crear("div", "inicio");
 
-  const marca = crear("div", "inicio-marca");
-  marca.appendChild(logoQC());
-  marca.appendChild(crear("span", "inicio-marca-texto", "QualCoder 4"));
-  cont.appendChild(marca);
+  if (i.emblema) {
+    const img = document.createElement("img");
+    img.className = "inicio-emblema";
+    img.src = i.emblema;
+    img.alt = "QualCoder, análisis cualitativo de datos, CAQDAS de código abierto";
+    cont.appendChild(img);
+  }
 
   cont.appendChild(crear("h1", null, i.titulo || CURSO.titulo));
   if (i.subtitulo) cont.appendChild(crear("p", "inicio-sub", i.subtitulo));
-  cont.appendChild(crear("p", "inicio-instruccion", i.instruccion || "Elige el idioma del curso"));
+
+  const franja = crear("div", "inicio-franja");
+  franja.appendChild(crear("span", "inicio-linea"));
+  franja.appendChild(crear("span", "inicio-instruccion", i.instruccion || "Elige el idioma del curso"));
+  franja.appendChild(crear("span", "inicio-linea"));
+  cont.appendChild(franja);
 
   const lista = crear("div", "idiomas");
   (CURSO.idiomas || []).forEach(idioma => {
     const b = crear("button", "idioma" + (idioma.listo ? " idioma-listo" : " idioma-obras"));
-    b.appendChild(crear("span", "idioma-codigo", idioma.bandera || idioma.id.toUpperCase()));
-    b.appendChild(crear("span", "idioma-nombre", idioma.nombre));
-    b.appendChild(crear("span", "idioma-nota", idioma.nota || ""));
-    if (idioma.listo) b.appendChild(crear("span", "idioma-entrar", idioma.entrar || "Empezar"));
+    const cabeza = crear("span", "idioma-cabeza");
+    cabeza.appendChild(crear("span", "idioma-codigo", idioma.bandera || idioma.id.toUpperCase()));
+    cabeza.appendChild(crear("span", "idioma-nombre", idioma.nombre));
+    b.appendChild(cabeza);
+    if (idioma.desc) b.appendChild(crear("span", "idioma-desc", idioma.desc));
+    const pieCard = crear("span", "idioma-pie");
+    pieCard.appendChild(crear("span", "idioma-nota", idioma.nota || ""));
+    pieCard.appendChild(crear("span", "idioma-entrar", idioma.listo ? (idioma.entrar || "Empezar") + " ›" : "⛏"));
+    b.appendChild(pieCard);
     b.addEventListener("click", () => {
       if (idioma.listo) { sonar("toque"); location.hash = "#mapa"; return; }
       avisar(idioma.aviso || idioma.nota || "En construcción");
@@ -412,6 +447,7 @@ function pintarInicio() {
 
 function pintarMapa() {
   mision = null;
+  document.body.classList.remove("sin-rail");
   const zona = $("#app");
   zona.innerHTML = "";
   const cont = crear("div", "mapa");
@@ -2043,6 +2079,7 @@ function fechaLarga() {
 }
 
 function pintarConstancia() {
+  document.body.classList.remove("sin-rail");
   mision = null;
   const zona = $("#app");
   zona.innerHTML = "";
@@ -2228,6 +2265,7 @@ function bloqueComentarios() {
 /* ---------- references ---------- */
 
 function pintarReferencias() {
+  document.body.classList.remove("sin-rail");
   mision = null;
   const zona = $("#app");
   zona.innerHTML = "";
@@ -2290,6 +2328,7 @@ window.addEventListener("hashchange", enrutar);
 document.addEventListener("DOMContentLoaded", () => {
   $(".hud-titulo").textContent = CURSO.titulo;
   $(".hud-sonido").addEventListener("click", () => { estado.sonido = !estado.sonido; persistir(); pintarHud(); sonar("toque"); });
+  montarSelectorIdioma();
   $(".hud-anterior").addEventListener("click", () => navegar(-1));
   $(".hud-siguiente").addEventListener("click", () => navegar(1));
   $(".hud-mapa").addEventListener("click", () => { if (location.hash !== "#mapa") location.hash = "#mapa"; else enrutar(); });
