@@ -9,39 +9,29 @@ const CURSO = {
 
   // Pantalla de inicio y selector de idioma. Los idiomas sin "listo" muestran su aviso.
   inicio: {
+    emblema: "assets/img/emblema_qualcoder.jpg",
     titulo: "Curso QualCoder Interactivo",
     subtitulo: "Aprender a codificar datos cualitativos practicando dentro de un simulador de QualCoder 4",
     instruccion: "Elige el idioma del curso",
     nota: "Curso gratuito, sin registro y sin instalar nada. El avance se guarda en este navegador."
   },
   idiomas: [
-    { id: "es", nombre: "Español", bandera: "ES", nota: "Curso completo, 10 misiones disponibles", listo: true, entrar: "Empezar" },
-    { id: "en", nombre: "English", bandera: "EN", nota: "Under construction", aviso: "The English version is under construction." },
-    { id: "de", nombre: "Deutsch", bandera: "DE", nota: "In Bearbeitung", aviso: "Die deutsche Fassung ist noch in Bearbeitung." },
-    { id: "fr", nombre: "Français", bandera: "FR", nota: "En construction", aviso: "La version française est en construction." },
-    { id: "pt", nombre: "Português", bandera: "PT", nota: "Em construção", aviso: "A versão em português está em construção." }
+    { id: "es", nombre: "Español", bandera: "ES", listo: true,
+      desc: "Aprende a codificar datos cualitativos practicando dentro de un simulador de QualCoder 4.",
+      nota: "10 misiones disponibles", entrar: "Empezar" },
+    { id: "en", nombre: "English", bandera: "EN",
+      desc: "Learn to code qualitative data by practising inside a QualCoder 4 simulator.",
+      nota: "Under construction", aviso: "The English version is under construction." },
+    { id: "de", nombre: "Deutsch", bandera: "DE",
+      desc: "Qualitative Daten kodieren lernen, mit Übungen in einem QualCoder-4-Simulator.",
+      nota: "In Bearbeitung", aviso: "Die deutsche Fassung ist noch in Bearbeitung." },
+    { id: "fr", nombre: "Français", bandera: "FR",
+      desc: "Apprendre à coder des données qualitatives en pratiquant dans un simulateur de QualCoder 4.",
+      nota: "En construction", aviso: "La version française est en construction." },
+    { id: "pt", nombre: "Português", bandera: "PT",
+      desc: "Aprender a codificar dados qualitativos praticando dentro de um simulador do QualCoder 4.",
+      nota: "Em construção", aviso: "A versão em português está em construção." }
   ],
-
-
-  // Mensaje de apoyo y enlace de comentarios. Se editan aquí y salen en el mapa y al cerrar cada misión.
-  apoyo: {
-    titulo: "Curso gratuito, con donativos voluntarios",
-    texto: "Esta iniciativa es una propuesta de democratización del conocimiento. Las herramientas y la formación en análisis de datos cualitativos deben estar al alcance de todas y todos, así que el curso es gratuito y se mantiene con donativos voluntarios, nunca obligatorios.",
-    cierre: "Tu participación en el curso ya es una forma valiosa de contribuir.",
-    breve: "Curso gratuito, con donativos voluntarios. Tu participación ya es una forma valiosa de contribuir.",
-    enlaces: [
-      { t: "Gastos médicos personales", en: "Personal medical expenses", url: "https://gofund.me/5c133cc99" },
-      { t: "Asistencia humanitaria a migrantes y personas desplazadas", en: "Humanitarian assistance for migrants and displaced persons", url: "https://www.paypal.com/paypalme/lorenzosalomon" },
-      { t: "Perfil de recaudación", url: "https://www.gofundme.com/u/lorenzo-salomon-cardenas" }
-    ]
-  },
-
-  // Formulario de comentarios.
-  comentarios: {
-    texto: "¿Algo que mejorar, un error, una duda? Cuéntamelo en el formulario de comentarios.",
-    etiqueta: "Abrir el formulario",
-    url: "https://docs.google.com/forms/d/e/1FAIpQLScumCP4UT7oguOUyNmksELmtQKHoB7I9rWA0i2ehmrR8RwCCQ/viewform"
-  },
 
   emblema: { src: "assets/img/emblema_qualcoder.jpg", alt: "QualCoder, análisis cualitativo de datos, CAQDAS de código abierto" },
   firmaQR: { src: "assets/img/firma_qr.png", url: "https://www.credential.net/profile/lorenzosalomoncardenas560816/wallet" },
