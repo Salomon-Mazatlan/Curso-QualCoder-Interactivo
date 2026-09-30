@@ -2,7 +2,7 @@
 // Activity types: quiz, parejas, secuencia, codificar, clasificar, abierta, interfaz, dialogo.
 
 const CURSO = {
-  titulo: "Introducción a QualCoder 4.0 (Beta)",
+  titulo: "Introducción a QualCoder 4.0",
   subtitulo: "Diez misiones de práctica",
   duracion: "entre dos y tres horas y media",
   responsable: "Lorenzo Salomón Cárdenas",
@@ -483,7 +483,7 @@ const CURSO = {
               ],
               enlaces: [
                 { t: "Repositorio del proyecto en GitHub", url: "https://github.com/ccbogel/QualCoder" },
-                { t: "Versión 4.0-Beta y sus archivos", url: "https://github.com/ccbogel/QualCoder/releases/tag/4.0-Beta" }
+                { t: "Versión 4.0 y sus archivos", url: "https://github.com/ccbogel/QualCoder/releases/tag/4.0" }
               ],
               img: { src: "assets/img/1_1_Descarga.png", titulo: "El repositorio oficial y su sección de versiones", pie: "" }
             },
@@ -494,24 +494,24 @@ const CURSO = {
                 {
                   titulo: "Opción a, el instalador",
                   pasos: [
-                    "Descarga Win_Qualcoder-4.0-beta_INSTALLER.exe",
+                    "Descarga el instalador, el archivo para Windows que termina en INSTALLER.exe.",
                     "Ejecútalo y sigue los pasos de instalación. Si aparece la pantalla azul de Windows, la resolvemos en la lección siguiente.",
                     "Al terminar, abre el programa desde el acceso directo o desde el menú de Windows."
                   ],
                   enlaces: [
                     { t: "Descargar el instalador para Windows", descarga: true,
-                      url: "https://github.com/ccbogel/QualCoder/releases/download/4.0-Beta/Win_Qualcoder-4.0-beta_INSTALLER.exe" }
+                      url: "https://github.com/ccbogel/QualCoder/releases/tag/4.0" }
                   ]
                 },
                 {
                   titulo: "Opción b, el portable",
                   pasos: [
-                    "Descarga Win_Qualcoder-4.0-beta_PORTABLE.exe",
+                    "Descarga la versión portable, el archivo para Windows que termina en PORTABLE.exe.",
                     "Ejecútalo tal cual, sin instalar nada. La primera apertura tarda unos segundos de más porque descomprime en memoria."
                   ],
                   enlaces: [
                     { t: "Descargar la versión portable para Windows", descarga: true,
-                      url: "https://github.com/ccbogel/QualCoder/releases/download/4.0-Beta/Win_Qualcoder-4.0-beta_PORTABLE.exe" }
+                      url: "https://github.com/ccbogel/QualCoder/releases/tag/4.0" }
                   ]
                 }
               ],
