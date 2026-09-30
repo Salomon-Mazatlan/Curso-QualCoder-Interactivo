@@ -1,6 +1,6 @@
-# Curso QualCoder 4.0-Beta (Interactivo)
+# Curso QualCoder 4.0 (Interactivo)
 
-Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.0-Beta.
+Curso interactivo y gratuito, en español, para aprender a codificar datos cualitativos con QualCoder 4.0.
 Está armado como un juego. Doce misiones en orden de trabajo real, setenta y ocho lecciones, insignias,
 rangos y una constancia al final. La mitad de las actividades se practican en un simulador de la
 ventana real del programa, con sus siete menús, sus cinco pestañas, su árbol de códigos y su módulo de
@@ -27,7 +27,7 @@ La mayoría de los tutoriales de software cualitativo enseñan a apretar botones
 y practica los botones mientras tanto. Cada misión combina una lección breve, un video opcional y varias
 actividades donde hay que tomar la decisión analítica y ejecutarla en el simulador.
 
-El simulador reproduce la ventana de QualCoder 4.0 (Beta) tal como es, con la estructura de menús del manual de
+El simulador reproduce la ventana de QualCoder 4.0 tal como es, con la estructura de menús del manual de
 usuario. Proyecto, Gestionar, Codificar, Análisis, Informes, IA y Ayuda, con sus entradas y sus atajos, las
 cinco pestañas de la ventana principal, el menú contextual del árbol de códigos y el módulo de codificar
 texto con su lista de documentos, su nombre de codificador, su margen de franjas de color y sus teclas de
